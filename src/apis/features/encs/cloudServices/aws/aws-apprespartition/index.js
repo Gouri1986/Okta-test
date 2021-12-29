@@ -16,7 +16,7 @@ import '@styles/react/libs/tables/react-dataTable-component.scss'
 const Tables = () => {
   return (
     <Fragment>
-      {/* <Breadcrumbs breadCrumbTitle='Datatables' breadCrumbParent='Home' breadCrumbActive='Datatables Basic' /> */}
+      {/*<Breadcrumbs breadCrumbTitle='Datatables' breadCrumbParent='Home' breadCrumbActive='Datatables Basic' />*/}
       <Row>
         <Col sm='12'>
           <TableWithButtons />
