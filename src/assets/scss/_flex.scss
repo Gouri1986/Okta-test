@@ -1,0 +1,100 @@
+/**********************************************************
+                       flex properties 
+ ***********************************************************/
+.flex-r {
+    display: flex;
+    flex-direction: row;
+}
+
+.flex-r-jc {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.flex-r-ac {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.flex-r-jc-ac {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.flex-c {
+    display: flex;
+    flex-direction: column;
+}
+
+.flex-c-ac {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.flex-c-jc {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.flex-c-jc-ac {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.flex-jc-sp-btn {
+    justify-content: space-between;
+}
+
+.flex-jc-sp-evn{
+    justify-content: space-evenly;
+}
+
+.align-items-end {
+    align-items: flex-end;
+}
+
+.flex-1{
+    flex: 1;
+}
+
+.flex-2{
+    flex: 2;
+}
+
+.flex-3{
+    flex: 3;
+}
+
+.flex-4{
+    flex: 4;
+}
+
+.flex-5{
+    flex: 5;
+}
+.flex-6{
+    flex: 6;
+}
+
+.flex-7{
+    flex: 7;
+}
+
+.flex-8{
+    flex: 8;
+}
+
+.flex-9{
+    flex: 9;
+}
+
+.flex-10{
+    flex: 10;
+}

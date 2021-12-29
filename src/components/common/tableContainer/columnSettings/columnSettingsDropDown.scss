@@ -1,0 +1,29 @@
+@import '../../../../assets/scss/styles.scss';
+
+//Tick mark in the checkbox
+.col-checkbox-input-container .col-checkmark:after {
+  left: 6px;
+  top: 5px;
+  width: 3px;
+  height: 6px;
+  border: solid rgb(255, 255, 255);
+  transform: rotate(45deg);
+  border-width: 0 3px 3px 0;
+}
+
+//Checkbox is checked
+.col-checkbox-input-container {
+  input:checked ~ .col-checkmark {
+    border-radius: 3px;
+    border: none;
+    background-color: $LightBlue;
+  }
+  input:checked ~ .col-checkmark:after {
+    display: block;
+  }
+  .col-checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+  }
+}
