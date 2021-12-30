@@ -9,19 +9,19 @@ $sizes:-1,
                     Border Property
  ***********************************************************/
 
-@each $size in $sizes {
-    .bdr-grey-#{$size}{
-        border: #{$size}px solid $bordergrey;
-    }
+// @each $size in $sizes {
+    // .bdr-primary-#{$size}{
+    //     border: #{$size}px solid $primary;
+    // }
 
-    .bdr-lightgrey-#{$size}{
-        border: #{$size}px solid $borderlightgrey;
-    }
+    // .bdr-secondary-#{$size}{
+    //     border: #{$size}px solid $secondary;
+    // }
     
-    .bdr-white-#{$size}{
-        border: #{$size}px solid $white;
-    }
-}
+    // .bdr-test-#{$size}{
+    //     border: #{$size}px solid $test;
+    // }
+// }
 
 /**********************************************************
                     Border Radius
@@ -40,10 +40,28 @@ $sizes:-1,
     outline:none;
 }
 
-
-// depreciating... Dont use the below below class name for no border...if you find any than change to no-bdr
+/**********************************************************
+                    Depreciating
+ ***********************************************************/
+// 
 .no-border {
     border: none;
 }
       
+@each $size in $sizes {
+    .bdr-grey-#{$size}{
+        border: #{$size}px solid $bordergrey;
+    }
+
+    .bdr-lightgrey-#{$size}{
+        border: #{$size}px solid $borderlightgrey;
+    }
     
+    .bdr-white-#{$size}{
+        border: #{$size}px solid $white;
+    }
+    
+    .border-grey-#{$size}{
+        border: #{$size}px solid $bordergrey;
+    }
+}
