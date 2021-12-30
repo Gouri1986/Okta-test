@@ -5,33 +5,28 @@ $sizes:-1,
 31,32,33,34,35,36,37,38,39,40,
 41,42,43,44,45,46,47,48,49,50;
 
+
 /**********************************************************
                     Border Property
  ***********************************************************/
 
 // @each $size in $sizes {
-    // .bdr-primary-#{$size}{
-    //     border: #{$size}px solid $primary;
-    // }
+//     .bdr-primary-#{$size}{
+//         border: #{$size}px solid $primary;
+//     }
 
-    // .bdr-secondary-#{$size}{
-    //     border: #{$size}px solid $secondary;
-    // }
+//     .bdr-secondary-#{$size}{
+//         border: #{$size}px solid $secondary;
+//     }
     
-    // .bdr-test-#{$size}{
-    //     border: #{$size}px solid $test;
-    // }
+//     .bdr-test-#{$size}{
+//         border: #{$size}px solid $test;
+//     }
 // }
 
 /**********************************************************
                     Border Radius
  ***********************************************************/
-
-@each $size in $sizes {
-    .br-#{$size}{
-        border-radius: #{$size}px;
-    }
-}
 
 .no-bdr {
     border: none;
@@ -40,10 +35,29 @@ $sizes:-1,
     outline:none;
 }
 
+@each $size in $sizes {
+    .br-#{$size}{
+        border-radius: #{$size}px;
+    }
+}
+
+@each $size1 in $sizes {
+    @each $size2 in $sizes {
+        .br-#{$size1}-#{$size2}{
+            border-radius: #{$size1}px #{$size2}px;
+        }
+    }
+}
+
+
+
+
+
+
 /**********************************************************
-                    Depreciating
+                    Deprecating
  ***********************************************************/
-// 
+
 .no-border {
     border: none;
 }
