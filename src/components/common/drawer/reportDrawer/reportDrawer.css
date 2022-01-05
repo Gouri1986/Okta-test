@@ -65,7 +65,7 @@
 }
 
 .report-drawer-header span:nth-child(2) {
-  font-family: Poppins;
+
   font-size: 15px;
   font-weight: 600;
   font-stretch: normal;
@@ -78,7 +78,7 @@
 }
 
 .report-drawer-header span:nth-child(3) {
-  font-family: Poppins;
+
   font-size: 15px;
   font-weight: 600;
   font-stretch: normal;
@@ -102,7 +102,7 @@
 }
 
 .generate-button span:nth-child(1) {
-  font-family: Poppins;
+ 
   font-size: 12px;
   font-weight: 600;
   font-stretch: normal;
@@ -144,8 +144,8 @@
 }
 
 .timeline-component span:nth-child(1) {
-  font-family: Poppins;
-  font-style: normal;
+
+  
   font-weight: 400;
   font-size: 16px;
   line-height: 24px;
@@ -153,9 +153,8 @@
 }
 
 .timeline-component span:nth-child(2) {
-  font-family: Poppins;
-  font-style: normal;
-  font-weight: normal;
+ 
+  font-weight: 400;
   font-size: 16px;
   line-height: 24px;
   color: #07032f;

@@ -4,8 +4,8 @@ import "./timelineComponent.scss";
 
 const TimelineStatComponent = () => {
   return (
-    <div className='bg-lightgrey width100 mb-15 pt-6 pr-9 pl-7'>
-      <h3 className='font-14 fw-700 lh-15 f-black'>Assertion Variable</h3>
+    <div className='bg-lightgrey width100 mb-15 pt-6 pr-9 pl-7 br-80'>
+      <h3 className='font-14 fw-700 lh-1-5 f-black'>Assertion Variable</h3>
       <div className='pt-5 pb-5'>
         <InlineBarChart />
       </div>
