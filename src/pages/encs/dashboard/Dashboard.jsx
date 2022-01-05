@@ -15,15 +15,16 @@ import { FilterDrawer } from "../../../components/common/drawer/filterDrawer";
 import { ColumnSettings } from "../../../components/common/tableContainer/columnSettings";
 import { Refresh } from "../../../components/common/tableContainer/refresh";
 import { Pagination } from "../../../components/common/tableContainer/pagination";
-import Login from "../../authentication/Login";
 import { getTableData } from "../../../apis/table/table";
 import { encsDrawer } from "../../../components/common/drawer/navDrawer/utils";
 import { getApiEndpointNameFromRoutes } from "../../../utils";
+import { useSelector } from "react-redux";
 
 // Import The components Here
 
 const Dashboard = () => {
-  const [user, setUser] = useState(null);
+  const { user } = useSelector((state) => state.userReducer);
+
   // Data to be populated with Filtered Columns
   const [tableContents, setTableContents] = useState([]);
   // Search Value
@@ -85,9 +86,7 @@ const Dashboard = () => {
     data && setTableContents({ header, data });
   };
 
-  return !user ? (
-    <Login setUser={setUser} />
-  ) : (
+  return (
     <div className='flex-r width100'>
       <div>
         <Navbar
@@ -107,13 +106,13 @@ const Dashboard = () => {
         <div>
           <div className='table-option-header mt-30 bg-lightgrey flex-r-ac flex-jc-sp-btn'>
             <div className='table-filter-wrapper ml-10'>
-              <Filter
+              {/* <Filter
                 showReport={showReport}
                 filterDrawer={filterDrawer}
                 showFilterDrawer={showFilterDrawer}
                 setTableContents={setTableContents}
                 tableData={tableContents}
-              />
+              /> */}
             </div>
             <div className='flex-r-ac'>
               <div
@@ -137,12 +136,12 @@ const Dashboard = () => {
               <div className='m-15'>
                 <Refresh />
               </div>
-              <div className='m-15'>
+              {/* <div className='m-15'>
                 <ColumnSettings
                   tableData={tableData}
                   setTableContents={setTableContents}
                 />
-              </div>
+              </div> */}
               <div className='m-15'>
                 <Download
                   selectedRow={selectedRow}
