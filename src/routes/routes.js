@@ -1,5 +1,6 @@
 import Login from "../pages/authentication/Login";
 import Dashboard from "../pages/encs/dashboard/Dashboard";
+import IAMDashboard from "../pages/iam/Dashboard";
 import { Navigate, useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 import { useSelector } from "react-redux";
@@ -38,6 +39,15 @@ export const appRoutes = [
   /**
    * Naming Convention = feature_name/feature_landing_page
    */
+
+  {
+    path: "/iam/*",
+    element: (
+      <RequireAuth>
+        <IAMDashboard />
+      </RequireAuth>
+    ),
+  },
 
   {
     path: "/encs/*",
