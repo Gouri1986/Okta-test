@@ -1,3 +1,4 @@
+import { PencilIcon, TrashIcon } from "./assets";
 import { truncatedDesc } from "./utils";
 
 const TableBody = ({
@@ -56,6 +57,14 @@ const TableBody = ({
               </td>
             )
           )}
+          <div className='flex-r-ac pos-ab r-20 t-20'>
+            <div>
+              <TrashIcon />
+            </div>
+            <div className='ml-15'>
+              <PencilIcon />
+            </div>
+          </div>
         </tr>
       ))}
     </div>

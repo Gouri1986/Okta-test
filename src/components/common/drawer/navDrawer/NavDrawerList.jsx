@@ -1,6 +1,6 @@
 import Tooltip from "@mui/material/Tooltip";
 import React, { useRef, useState } from "react";
-import { DashboardIcon } from "./assets";
+import { DashboardIcon, IAMIcon } from "./assets";
 import { encsDrawer } from "./utils";
 import { useNavigate } from "react-router-dom";
 
@@ -83,9 +83,19 @@ const DrawerList = ({
   setRefresh,
   refresh,
 }) => {
+  const navigate = useNavigate();
+
   return (
     <div className='drawer-list-container mt-100'>
       <ul>
+        <li onClick={() => navigate("/iam")} className='cp p-12 flex-r-ac'>
+          <IAMIcon />
+          {!collapsed && (
+            <span className='ml-20 font-16 fw-600 lh-21 f-grey icon-name'>
+              IAM
+            </span>
+          )}
+        </li>
         <li className='cp p-12 flex-r-ac'>
           <DashboardIcon />
           {!collapsed && (
