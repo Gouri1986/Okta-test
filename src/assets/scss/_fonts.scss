@@ -16,31 +16,72 @@ $sizes:1,2,3,4,5,6,7,8,9,10,
 
 
 /**********************************************************
-                       font-width  
+                       font style  
  ***********************************************************/
-.fw-300 {
-    font-weight: 300;// Light
-}
-.fw-400 {
-    font-weight: 400;// regular or normal
-}
-.fw-600 {
-    font-weight: 600;// semi-bold
-}
-.fw-700 {
-    font-weight: 700;// bold
+ .ff-poppins {
+    font-family: Poppins !important;
 }
 
 
 /**********************************************************
-                       font style  
+                       font-width  
  ***********************************************************/
-.ff-popins {
-    font-family: Poppins !important;
+.fw-100 {
+    font-weight: 100;    //Thin
 }
-.ff-montserrat {
-    font-family: Montserrat !important;
+.fw-200 {
+    font-weight: 200;    //ExtraLight
 }
+.fw-300 {
+    font-weight: 300;    //Light
+}
+.fw-400 {
+    font-weight: 400;    //Regular
+}
+.fw-500 {
+    font-weight: 500;    //Medium
+}
+.fw-600 {
+    font-weight: 600;    //SemiBold
+}
+.fw-700 {
+    font-weight: 700;    //Bold
+}
+.fw-800 {
+    font-weight: 800;    //ExtraBold
+}
+.fw-900 {
+    font-weight: 900;    //Black
+}
+
+
+/**********************************************************
+                        font colors 
+ ***********************************************************/
+ .fc-primary{
+    color: $primary-font-color;
+}
+
+.fc-secondary{
+    color: $secondary-font-color;
+}
+
+.fc-tertiary{
+    color: $tertiary-font-color;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

@@ -7,33 +7,19 @@ $sizes:-1,
 
 
 /**********************************************************
-                    Border Property
- ***********************************************************/
-
-// @each $size in $sizes {
-//     .bdr-primary-#{$size}{
-//         border: #{$size}px solid $primary;
-//     }
-
-//     .bdr-secondary-#{$size}{
-//         border: #{$size}px solid $secondary;
-//     }
-    
-//     .bdr-test-#{$size}{
-//         border: #{$size}px solid $test;
-//     }
-// }
-
-/**********************************************************
-                    Border Radius
+                    Borders & Outlines
  ***********************************************************/
 
 .no-bdr {
     border: none;
 }
-.no-outline{
+.no-outline {
     outline:none;
 }
+
+/**********************************************************
+                    Border Radius
+ ***********************************************************/
 
 @each $size in $sizes {
     .br-#{$size}{
@@ -48,6 +34,64 @@ $sizes:-1,
         }
     }
 }
+
+/**********************************************************
+                    Border size
+ ***********************************************************/
+
+ @each $size in $sizes {
+    .bdr-top-#{$size}{
+        border-top: #{$size}px;
+    }
+    .bdr-right-#{$size}{
+        border-right: #{$size}px;
+    }
+    .bdr-bottom-#{$size}{
+        border-bottom: #{$size}px;
+    }
+    .bdr-left-#{$size}{
+        border-left: #{$size}px;
+    }
+}
+
+
+
+
+
+/**********************************************************
+                    Border Color
+ ***********************************************************/
+
+.bdr-primary{
+    border-color: $border-primary-color;
+}
+
+
+
+/**********************************************************
+                    Border Property
+ ***********************************************************/
+
+ @each $size in $sizes {
+    .bdr-primary-#{$size}{
+        border: #{$size}px solid $border-primary-color;
+    }
+
+    .bdr-buttom-primary-#{$size}{
+        border-bottom: #{$size}px solid $border-primary-color;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
 
 
 
