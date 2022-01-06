@@ -1,11 +1,40 @@
 @import 'variables';
 
+
+
+
 /**********************************************************
-                         background color 
+          Transparent & translucent background
  ***********************************************************/
 .bg-transparent{
-    background: transparent;
+    background-color:transparent;
 }
+
+.bg-translucent{
+    background-color: $translucent-color;
+}
+
+
+/**********************************************************
+                    Background Color
+ ***********************************************************/
+
+
+
+ 
+
+
+
+
+/**********************************************************
+                        status color 
+ ***********************************************************/
+
+
+
+
+
+
 
 
 
