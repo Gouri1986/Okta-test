@@ -1,6 +1,6 @@
 import React from "react";
-import dropupgreen from "../../../../assets/images/icons/drop-up-green.svg";
-import autofixederror from "../../../../assets/images/icons/autofixederror.svg";
+import dropupgreen from "../../../../../assets/images/icons/drop-up-green.svg";
+import autofixederror from "../../../../../assets/images/icons/autofixederror.svg";
 
 export default function AutoFixxedError() {
   return (

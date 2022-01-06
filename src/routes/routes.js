@@ -1,5 +1,5 @@
 import Login from "../pages/authentication/Login";
-import Dashboard from "../pages/encs/dashboard/Dashboard";
+import Dashboard from "../pages/metadata/encs/dashboard/Dashboard";
 import IAMDashboard from "../pages/iam/Dashboard";
 import { Navigate, useNavigate } from "react-router-dom";
 import { useEffect } from "react";
