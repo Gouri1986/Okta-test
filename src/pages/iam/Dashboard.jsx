@@ -5,7 +5,7 @@ import Navbar from "../../components/common/drawer/iamNavDrawer/NavDrawer";
 import TitanTable from "../../components/common/tableContainer/table/Table";
 import { useSelector } from "react-redux";
 import { getTableData } from "../../apis/table/table";
-import { addIAMTableData, getIAMTableData } from "../../apis/features/iam";
+import { addIAMTableData, getIAMTableData } from "../../apis/iam";
 import { Button, Input, Modal } from "@mui/material";
 
 // Import The components Here
