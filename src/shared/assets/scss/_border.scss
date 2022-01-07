@@ -22,18 +22,31 @@ $sizes:-1,
  ***********************************************************/
 
 @each $size in $sizes {
-    .br-#{$size}{
-        border-radius: #{$size}px;
+    .bdr-r-#{$size}{
+        border-radius: #{$size}+'%';
     }
 }
 
 @each $size1 in $sizes {
     @each $size2 in $sizes {
-        .br-#{$size1}-#{$size2}{
-            border-radius: #{$size1}px #{$size2}px;
+        @each $size3 in $sizes {
+            @each $size4 in $sizes {
+                .bdr-r-#{$size1}-#{$size2}-#{$size3}-#{$size4}{
+                    border-radius: #{$size1}+"%" #{$size2}+"%" #{$size3}+"%" #{$size4}+"%";
+                }
+            }
         }
     }
 }
+
+
+// @each $size1 in $sizes {
+//     @each $size2 in $sizes {
+//         .bdr-r-#{$size1}-#{$size2}{
+//             border-radius: #{$size1}px #{$size2}px;
+//         }
+//     }
+// }
 
 /**********************************************************
                     Border size
