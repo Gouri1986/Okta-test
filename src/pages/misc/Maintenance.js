@@ -27,9 +27,7 @@ export default function Maintenance() {
           Website currently under maintenance
         </Typography>
         <Typography sx={{ color: 'text.secondary' }}>We are currently working hard on this page!</Typography>
-
         <MaintenanceIllustration sx={{ my: 10, height: 240 }} />
-
         <Button variant="contained" size="large" component={RouterLink} to="/">
           Go to Home
         </Button>
