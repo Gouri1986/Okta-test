@@ -1,4 +1,4 @@
-import Login from "../pages/iam/authentication/Login";
+import Login from "../pages/authentication/Login";
 import Dashboard from "../pages/metadata/encs/dashboard/Dashboard";
 import IAMDashboard from "../pages/iam/Dashboard";
 import { Navigate, useNavigate } from "react-router-dom";
