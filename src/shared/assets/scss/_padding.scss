@@ -31,16 +31,3 @@ $sizes: -1,
         padding-bottom: #{$size}px !important;
     }
 }
-
-// @each $size1 in $sizes {
-//     @each $size2 in $sizes {
-//         @each $size3 in $sizes {
-//             @each $size4 in $sizes {
-//                 .p-#{$size1}-#{$size2}-#{$size3}-#{$size4} {
-//                     padding: #{$size1}px #{$size2}px #{$size3}px #{$size4}px !important;
-//                 }
-//             } 
-//         }
-        
-//     }
-// }
