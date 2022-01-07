@@ -1,4 +1,4 @@
-import { ENCSRoutes } from "../../../../../routes/featureRoutes";
+import { ENCSRoutes } from "../../../../../../routes/featureRoutes";
 import { drawerSectionIcons } from "../assets";
 
 const spacedWords = (s) =>

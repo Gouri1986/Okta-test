@@ -1,18 +1,18 @@
 import React, { useState } from "react";
-import collapse from "../../../../../assets/images/icons/collapse.png";
+import collapse from "../../../../../shared/assets/images/icons/collapse.png";
 
 import NewComplainChecked from "./NewComplainChecked";
 import AutoFixxedError from "./AutoFixxedError";
-import ApexColumnCharts from "../../../../../components/common/charts/ApexColumnCharts";
-import ApexDonutChart from "../../../../../components/common/charts/ApexDonutChart";
-import PickerRange from "../../../../../components/common/calender/PickerRange";
-import "../../../../../components/common/calender/pickers/flatpickr.scss";
+import ApexColumnCharts from "../../../../../shared/components/common/charts/ApexColumnCharts";
+import ApexDonutChart from "../../../../../shared/components/common/charts/ApexDonutChart";
+import PickerRange from "../../../../../shared/components/common/calender/PickerRange";
+import "../../../../../shared/components/common/calender/pickers/flatpickr.scss";
 
 // importing icons
-import complianceScan from "../../../../../assets/images/icons/complianceScan.svg";
-import tempIcon from "../../../../../assets/images/icons/tempIcon.svg";
-import more from "../../../../../assets/images/icons/more.svg";
-import dummyLineChart from "../../../../../assets/images/icons/dummyLineChart.svg";
+import complianceScan from "../../../../../shared/assets/images/icons/complianceScan.svg";
+import tempIcon from "../../../../../shared/assets/images/icons/tempIcon.svg";
+import more from "../../../../../shared/assets/images/icons/more.svg";
+import dummyLineChart from "../../../../../shared/assets/images/icons/dummyLineChart.svg";
 
 export default function ComplienceIntro() {
   const [showContent, setshowContent] = useState(false);

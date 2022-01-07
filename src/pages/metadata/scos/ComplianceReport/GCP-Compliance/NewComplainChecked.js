@@ -1,6 +1,6 @@
 import React from "react";
-import dropupgreen from "../../../../../assets/images/icons/drop-up-green.svg";
-import compliencechecked from "../../../../../assets/images/icons/compliencechecked.svg";
+import dropupgreen from "../../../../../shared/assets/images/icons/drop-up-green.svg";
+import compliencechecked from "../../../../../shared/assets/images/icons/compliencechecked.svg";
 
 export default function NewComplainChecked() {
   return (

@@ -1,4 +1,4 @@
-import { ENCSRoutes, IAMRoutes } from "../../../../../routes/featureRoutes";
+import { ENCSRoutes, IAMRoutes } from "../../../../../../routes/featureRoutes";
 import { drawerSectionIcons } from "../assets";
 
 const spacedWords = (s) =>

@@ -1,6 +1,6 @@
 import React from "react";
 import "../../../../../index.scss";
-import BASEgcp from "../../../../../assets/images/logo/BASEgcp.svg";
+import BASEgcp from "../../../../../shared/assets/images/logo/BASEgcp.svg";
 
 export default function ComplianceHeader() {
   return (

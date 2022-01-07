@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import "./iam.scss";
-import Navbar from "../../components/common/drawer/iamNavDrawer/NavDrawer";
-import TitanTable from "../../components/common/tableContainer/table/Table";
+import Navbar from "../../shared/components/common/drawer/iamNavDrawer/NavDrawer";
+import TitanTable from "../../shared/components/common/tableContainer/table/Table";
 import { useSelector } from "react-redux";
-import { getTableData } from "../../apis/table/table";
-import { addIAMTableData, getIAMTableData } from "../../apis/iam";
+// import { getTableData } from "../../apis/table/table";
+import { addIAMTableData, getIAMTableData } from "../../shared/apis/iam";
 import { Button, Input, Modal } from "@mui/material";
 
 // Import The components Here

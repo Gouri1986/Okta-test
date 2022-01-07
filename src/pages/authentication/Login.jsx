@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
-import { loginUser } from "../../apis/iam/login/login";
+import { loginUser } from "../../shared/apis/iam/login/login";
 import { addUser } from "../../redux/user/userActions";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";

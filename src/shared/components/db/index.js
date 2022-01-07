@@ -1,5 +1,3 @@
-//Fake DB updated by Gouri
-
 export const tableData = {
   header: [
     { title: "Service Name", id: "service-type" },
@@ -68,5 +66,3 @@ export const tableData = {
     },
   ],
 };
-
-// Committed by Terminator
