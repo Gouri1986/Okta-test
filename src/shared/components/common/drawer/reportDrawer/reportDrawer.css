@@ -1,0 +1,161 @@
+.report-drawer-container {
+  display: flex;
+  flex-direction: column;
+  transform: translateX(0px);
+  opacity: 1;
+  width: 375px;
+  visibility: visible;
+  height: 100vh;
+}
+
+.report-drawer-main::-webkit-scrollbar {
+  width: 0.8em;
+}
+
+.report-drawer-main::-webkit-scrollbar-track {
+  display: none;
+}
+
+.report-drawer-main::-webkit-scrollbar-thumb {
+  background-color: darkgrey;
+  outline: 1px solid slategrey;
+  border-radius: 5px;
+}
+
+.report-drawer-container-expanded {
+  display: flex;
+  flex-direction: column;
+  transform: translateX(375px);
+  height: 0vh;
+  width: 0px;
+  opacity: 0;
+  overflow: hidden;
+}
+
+/* .report-drawer-container-expanded div {
+  display: none;
+} */
+
+.report-drawer-header {
+  flex: 1.5;
+  padding: 20px 30px;
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+  justify-content: flex-end;
+  background-color: #70c1b3;
+  position: relative;
+}
+
+.report-drawer-header span:nth-child(1) {
+  font-family: Poppins;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 36px;
+  /* identical to box height */
+  white-space: nowrap;
+  display: flex;
+  align-items: center;
+  text-align: left;
+
+  /* Black */
+  margin-bottom: 15px;
+  color: #ffffff;
+}
+
+.report-drawer-header span:nth-child(2) {
+
+  font-size: 15px;
+  font-weight: 600;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.53;
+  letter-spacing: normal;
+  text-align: left;
+  color: #fff;
+  white-space: nowrap;
+}
+
+.report-drawer-header span:nth-child(3) {
+
+  font-size: 15px;
+  font-weight: 600;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.53;
+  white-space: nowrap;
+  letter-spacing: normal;
+  text-align: left;
+  color: #fff;
+  margin-block: 10px;
+}
+
+.generate-button {
+  padding: 11px 34.8px 11px 14.3px;
+  background-color: #13945b;
+  border: none;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.generate-button span:nth-child(1) {
+ 
+  font-size: 12px;
+  font-weight: 600;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.5;
+  letter-spacing: normal;
+  text-align: center;
+  color: #fff;
+}
+
+.close-icon-holder {
+  position: absolute;
+  left: -20px;
+  bottom: 50%;
+  cursor: pointer;
+}
+
+.report-close-icon {
+  background-color: white;
+  width: 40px;
+  height: 40px;
+  border: 1px solid black;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.report-drawer-main {
+  flex: 3;
+  background-color: rgb(255, 255, 255);
+  padding: 30px;
+  overflow-y: scroll;
+}
+
+.timeline-component {
+  display: flex;
+  flex-direction: column;
+  width: fit-content;
+}
+
+.timeline-component span:nth-child(1) {
+
+  
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  color: #07032f;
+}
+
+.timeline-component span:nth-child(2) {
+ 
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  color: #07032f;
+}

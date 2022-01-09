@@ -1,7 +1,9 @@
 import Login from "../pages/authentication/Login";
-import Dashboard from "../pages/encs/dashboard/Dashboard";
-import { useNavigate } from "react-router-dom";
+import Dashboard from "../pages/metadata/encs/dashboard/Dashboard";
+import IAMDashboard from "../pages/iam/Dashboard";
+import { Navigate, useNavigate } from "react-router-dom";
 import { useEffect } from "react";
+import { useSelector } from "react-redux";
 
 const Redirect = ({ to }) => {
   let navigate = useNavigate();
@@ -11,6 +13,15 @@ const Redirect = ({ to }) => {
   return null;
 };
 
+const RequireAuth = ({ children }) => {
+  const { user } = useSelector((state) => state.userReducer);
+  if (user) {
+    return children;
+  }
+
+  return <Navigate to='/login' replace />;
+};
+
 export const appRoutes = [
   /**
    * Naming Convention = feature/feature-table-name
@@ -18,11 +29,11 @@ export const appRoutes = [
 
   {
     path: "/",
-    element: <Redirect to='/encs/tech-master' />,
+    element: <Redirect to='/encs/tech-category-master' />,
   },
   {
     path: "/encs",
-    element: <Redirect to='/encs/tech-master' />,
+    element: <Redirect to='/encs/tech-category-master' />,
   },
 
   /**
@@ -30,8 +41,21 @@ export const appRoutes = [
    */
 
   {
+    path: "/iam/*",
+    element: (
+      <RequireAuth>
+        <IAMDashboard />
+      </RequireAuth>
+    ),
+  },
+
+  {
     path: "/encs/*",
-    element: <Dashboard />,
+    element: (
+      <RequireAuth>
+        <Dashboard />
+      </RequireAuth>
+    ),
   },
   {
     path: "/login",

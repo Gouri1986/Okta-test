@@ -1,1 +1,0 @@
-// state managment, redux type

@@ -2,9 +2,24 @@ import React, { useState } from "react";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
-import { loginUser } from "../../apis/login/login";
+import { loginUser } from "../../shared/apis/iam/login/login";
+import { addUser } from "../../redux/user/userActions";
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { useEffect } from "react";
 
-const Login = ({ setUser }) => {
+const Login = () => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const user = sessionStorage.getItem("user");
+    if (user !== null) {
+      dispatch(addUser(user));
+      navigate("/encs");
+    }
+  }, []);
+
   const [loginForm, setLoginForm] = useState({
     username: "adamya@banyandata.com",
     password: "password",
@@ -15,7 +30,11 @@ const Login = ({ setUser }) => {
     const {
       data: { token },
     } = loginRes;
-    setUser(token);
+    if (token) {
+      sessionStorage.setItem("user", token);
+      dispatch(addUser(token));
+      navigate("/encs");
+    }
   };
 
   return (

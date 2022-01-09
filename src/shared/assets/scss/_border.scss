@@ -1,0 +1,123 @@
+$sizes:-1,
+0,1,2,3,4,5,6,7,8,9,10,
+11,12,13,14,15,16,17,18,19,20,
+21,22,23,24,25,26,27,28,29,30,
+31,32,33,34,35,36,37,38,39,40,
+41,42,43,44,45,46,47,48,49,50;
+/**********************************************************
+                    Borders & Outlines
+ ***********************************************************/
+
+.no-bdr {
+    border: none;
+}
+.no-outline {
+    outline:none;
+}
+
+/**********************************************************
+                    Border Radius
+***********************************************************/
+
+@each $size in $sizes {
+    .bdr-r-#{$size}{
+        border-radius: #{$size}+'%';
+    }
+}
+
+@each $size1 in $sizes {
+    @each $size2 in $sizes {
+        .bdr-r-#{$size1}-#{$size2}{
+            border-radius: #{$size1}px #{$size2}px;
+        }
+    }
+}
+
+/**********************************************************
+                    Border size
+ ***********************************************************/
+
+@each $size in $sizes {
+    .bdr-top-#{$size}{
+        border-top: #{$size}px;
+    }
+    .bdr-right-#{$size}{
+        border-right: #{$size}px;
+    }
+    .bdr-bottom-#{$size}{
+        border-bottom: #{$size}px;
+    }
+    .bdr-left-#{$size}{
+        border-left: #{$size}px;
+    }
+}
+
+
+
+
+
+/**********************************************************
+                    Border Color
+ ***********************************************************/
+
+.bdr-primary{
+    border-color: $border-primary-color;
+}
+
+
+
+/**********************************************************
+                    Border Property
+ ***********************************************************/
+
+ @each $size in $sizes {
+    .bdr-primary-#{$size}{
+        border: #{$size}px solid $border-primary-color;
+    }
+
+    .bdr-buttom-primary-#{$size}{
+        border-bottom: #{$size}px solid $border-primary-color;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/**********************************************************
+                    Deprecating
+ ***********************************************************/
+
+.no-border {
+    border: none;
+}
+      
+@each $size in $sizes {
+    .bdr-grey-#{$size}{
+        border: #{$size}px solid $bordergrey;
+    }
+
+    .bdr-lightgrey-#{$size}{
+        border: #{$size}px solid $borderlightgrey;
+    }
+    
+    .bdr-white-#{$size}{
+        border: #{$size}px solid $white;
+    }
+    
+    .border-grey-#{$size}{
+        border: #{$size}px solid $bordergrey;
+    }
+}
