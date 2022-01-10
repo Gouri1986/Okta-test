@@ -4,7 +4,7 @@ import "./timelineComponent.scss";
 
 const TimelineStatComponent = () => {
   return (
-    <div className='bg-lightgrey width100 mb-15 pt-6 pr-9 pl-7 br-80'>
+    <div className='bg-lightgrey wp-100 mb-15 pt-6 pr-9 pl-7 br-80'>
       <h3 className='font-14 fw-700 lh-1-5 f-black'>Assertion Variable</h3>
       <div className='pt-5 pb-5'>
         <InlineBarChart />
@@ -29,7 +29,7 @@ const TimelineComponent = ({ index, length }) => {
           Compliance ID: GDPR 4.2
         </h2>
         <div>
-          <p className='font-12 lh-15 f-black fw-300 mt-10 mb-10 width100'>
+          <p className='font-12 lh-15 f-black fw-300 mt-10 mb-10 wp-100'>
             Scan failed due to vulnerability policy violations: Jenkins Demo, 48
             vulnerabilities, [Critical: 48]
           </p>
@@ -38,10 +38,7 @@ const TimelineComponent = ({ index, length }) => {
           <TimelineStatComponent />
         </div>
         <div>
-          <button
-            className='h-30 bg-DarkDesaturatedBlue no-border no-outline'
-            style={{ width: "40%" }}
-          >
+          <button className='h-30 bg-DarkDesaturatedBlue no-border no-outline wp-40'>
             <span className='review-button font-14 fw-400 lh-15 f-white'>
               Review
             </span>

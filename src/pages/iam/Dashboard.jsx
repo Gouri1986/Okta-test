@@ -76,7 +76,7 @@ const Dashboard = () => {
   };
 
   return (
-    <div className='flex-r width100'>
+    <div className='flex-r wp-100'>
       <div>
         <Navbar
           setActiveEndPoint={setActiveEndPoint}
@@ -85,7 +85,7 @@ const Dashboard = () => {
         />
       </div>
 
-      <div className='main-ly width100 height100vh pl-20 pr-20 flex-c overflow-x-scroll overflow-y-scroll'>
+      <div className='main-ly wp-100 height100vh pl-20 pr-20 flex-c overflow-x-scroll overflow-y-scroll'>
         <div className='table-option-header mt-30 bg-lightgrey flex-r-ac flex-jc-sp-btn  jc-end'>
           <div className='flex-r-ac'>
             <div
@@ -101,7 +101,7 @@ const Dashboard = () => {
         </div>
         <div>
           <div
-            className='table-parent overflow-x-auto overflow-y-scroll width100 '
+            className='table-parent overflow-x-auto overflow-y-scroll wp-100'
             style={{ height: "75%" }}
           >
             <TitanTable
