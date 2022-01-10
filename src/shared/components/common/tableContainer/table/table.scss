@@ -2,7 +2,7 @@
 @import "../../../../assets/scss/styles.scss";
 
 .titan-table {
-  background: $LightGrey;
+  background: $primary-color;
   box-sizing: border-box;
   width: fit-content;
   height: auto;
@@ -14,13 +14,13 @@
   border-radius: 0px;
   flex-direction: row;
   box-shadow: 0 24px 48px 0 rgba(30, 28, 46, 0.08);
-  background-color: #21acdd;
+  background-color: $tertiary-color;
   justify-content: space-evenly;
   th {
     font-size: 15px;
     text-align: center;
     line-height: 28px;
-    color: #ffffff;
+    color: $white;
     display: inline-flex;
     align-items: center;
     cursor: pointer;
@@ -55,7 +55,7 @@
   width: 200px;
   word-wrap: break-word;
   white-space: pre-wrap;
-  color: #000000;
+  color: $black;
   padding: 10px;
   padding-inline: 20px;
   width: 200px;

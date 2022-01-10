@@ -2,30 +2,30 @@
                       
                     variables for colors 
 
- ***********************************************************/
+***********************************************************/
 
 /**********************************************************
                        Base colors
  ***********************************************************/
-
  $primary-color: #001833;
  $secondary-color: #F2F2F2;
  $tertiary-color: #110DEF;
+ $white: #ffffff;
+ $black: #000000;
 
 
 /**********************************************************
                        Font colors 
  ***********************************************************/
-
 $primary-font-color: #1F4173;
 $secondary-font-color: #000000;
-$tertiary-font-color: #717070;
+$tertiary-font-color: #ffffff;
+$quaternary-font-color:#717070;
 
 
 /**********************************************************
                        Status colors 
  ***********************************************************/
-
 $success-color: #00A389;
 $danger-color: #FF5B5B;
 $warning-color: #FFBB54;
@@ -35,28 +35,25 @@ $info-color: #58CDFF;
 /**********************************************************
                        border colors 
  ***********************************************************/
-
-$border-primary-color: #E6EAF0;
+$border-primary-color: #001833;
+$border-secondary-color: #E6EAF0;
 
 
 /**********************************************************
                        Tanslucent colors 
  ***********************************************************/
-
 $translucent-color: rgba(196, 196, 196, 0.24);
 
 
 /**********************************************************
                        Button colors 
  ***********************************************************/
-
  $button-bg-color: #101010;
 
 
 /**********************************************************
                        Box/card colors 
  ***********************************************************/
-
 $button-shadow-color: #A3ABB9;
 $checkbox-border-color: #C4C4C4;
 
@@ -64,7 +61,6 @@ $checkbox-border-color: #C4C4C4;
 /**********************************************************
                        Pagination colors 
  ***********************************************************/
-
 $pagination-selected-color: rgba(17, 13, 239, 0.27);
 
 
@@ -72,57 +68,4 @@ $pagination-selected-color: rgba(17, 13, 239, 0.27);
                        Forms styles
  ***********************************************************/
 $placeholder-color: red;
-
-
-
- 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/**********************************************************
-                    Deprecating
- ***********************************************************/
-
-
-$black: #25213B;
-$grey: #b9b9b9;
-$LightGrey: #F3F4F8; 
-$DarkGrey: #6C6C6C;
-$DividerGrey: #C4C4C4;
-
-
-$BrightGreen: #16C35B;
-$LightGreen: #E2F4EC;
-$MateGreen: rgba(22, 195, 91, 0.59);
-$DarkGreen: #2B662E;
-
-
-$DarkBlue:#3A89FF;
-$LightBlue: #21ACDD;
-$DarkDesaturatedBlue:#354154;
-$MateBlue: rgba(82, 78, 238, 0.74); 
-
-
-//status buttons & alert 
-
-$green: #70c1b3;
-$ButtonPurpal:#7D5AF7;
-$RoyalVilot: #524EEE;
-$LightPurple: rgba(224, 103, 20, 0.3);
-$ButtonMustardYellow: #fdd451;
-
-// border color
-$bordergrey: #707070;
-$borderlightgrey: #dbdbdb;
+$checkbox-border-color: pink;

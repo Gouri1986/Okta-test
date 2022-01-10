@@ -6,8 +6,7 @@ $sizes:-1,
 41,42,43,44,45,46,47,48,49,50;
 /**********************************************************
                     Borders & Outlines
- ***********************************************************/
-
+***********************************************************/
 .no-bdr {
     border: none;
 }
@@ -18,7 +17,6 @@ $sizes:-1,
 /**********************************************************
                     Border Radius
 ***********************************************************/
-
 @each $size in $sizes {
     .bdr-r-#{$size}{
         border-radius: #{$size}+'%';
@@ -33,10 +31,10 @@ $sizes:-1,
     }
 }
 
+
 /**********************************************************
                     Border size
  ***********************************************************/
-
 @each $size in $sizes {
     .bdr-top-#{$size}{
         border-top: #{$size}px;
@@ -53,23 +51,17 @@ $sizes:-1,
 }
 
 
-
-
-
 /**********************************************************
                     Border Color
  ***********************************************************/
-
 .bdr-primary{
     border-color: $border-primary-color;
 }
 
 
-
 /**********************************************************
                     Border Property
  ***********************************************************/
-
  @each $size in $sizes {
     .bdr-primary-#{$size}{
         border: #{$size}px solid $border-primary-color;
@@ -77,43 +69,5 @@ $sizes:-1,
 
     .bdr-buttom-primary-#{$size}{
         border-bottom: #{$size}px solid $border-primary-color;
-    }
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/**********************************************************
-                    Deprecating
- ***********************************************************/
-
-.no-border {
-    border: none;
-}
-      
-@each $size in $sizes {
-    .bdr-grey-#{$size}{
-        border: #{$size}px solid $bordergrey;
-    }
-
-    .bdr-lightgrey-#{$size}{
-        border: #{$size}px solid $borderlightgrey;
-    }
-    
-    .border-grey-#{$size}{
-        border: #{$size}px solid $bordergrey;
     }
 }
