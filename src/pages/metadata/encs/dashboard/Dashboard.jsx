@@ -1,8 +1,6 @@
 import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import "./style.scss";
-import ComplianceHeader from "../../scos/ComplianceReport/GCP-Compliance/ComplianceHeader";
-import ComplienceIntro from "../../scos/ComplianceReport/GCP-Compliance/ComplienceIntro";
 import "../../../../shared/components/common/calender/pickers/flatpickr.scss";
 import Download from "../../../../shared/components/common/tableContainer/download/Download";
 import Navbar from "../../../../shared/components/common/drawer/navDrawer/NavDrawer";
@@ -97,12 +95,6 @@ const Dashboard = () => {
         />
       </div>
       <div className='main-ly width100 height100vh pl-20 pr-20 flex-c overflow-x-scroll overflow-y-scroll'>
-        <div className='ml-25'>
-          <ComplianceHeader />
-        </div>
-        <div className='mt-20'>
-          <ComplienceIntro />
-        </div>
         <div>
           <div className='table-option-header mt-30 bg-lightgrey flex-r-ac flex-jc-sp-btn'>
             <div className='table-filter-wrapper ml-10'>
