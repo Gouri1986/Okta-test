@@ -6,7 +6,6 @@
 .bg-transparent{
     background-color:transparent;
 }
-
 .bg-translucent{
     background-color: $translucent-color;
 }
@@ -14,105 +13,30 @@
 
 /**********************************************************
                     Background Color
- ***********************************************************/
-
-
-
- 
-
-
+***********************************************************/
+.bg-primary{
+    background-color: $primary-color;
+}
+.bg-secondary{
+    background-color: $secondary-color;
+}
+.bg-tertiary{
+    background-color: $tertiary-color;
+}
 
 
 /**********************************************************
                         status color 
  ***********************************************************/
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/**********************************************************
-                    Deprecating
- ***********************************************************/
-.bg-w{
-    background-color: $white;
+.bg-success{
+    background-color: $success-color;
 }
-.bg-lightblue{
-    background-color: $LightBlue;
+.bg-danger{
+    background-color: $danger-color;
 }
-.bg-mategreen{
-    background-color: $MateGreen;
+.bg-warning{
+    background-color: $warning-color;
 }
-.bg-mateBlue{
-    background-color: $MateBlue;
-}
-.bg-DarkDesaturatedBlue{
-    background-color: $DarkDesaturatedBlue;
-}
-.bg-MustardYellow{
-    background-color: $ButtonMustardYellow;
-}
-.bg-red{
-    background-color: $red;
-}
-.bg-green{
-    background-color: $green;
-}
-.bg-lightgrey{
-    background-color: $LightGrey;
-}
-
-.bg-grey{
-    background-color: $grey;
-}
-
-
-// checkbox
-.bg-checkbok-unchecked{
-    background-color: #b9b9b9;
-}
-
-
-/**********************************************************
-                    font color 
- ***********************************************************/
-.f-white {
-    color: $white;
-}
-.f-grey{
-    color: $grey;
-}
-.f-darkgrey{
-    color: $DarkGrey; 
-}
-.f-black{
-    color: $black;
-}
-.f-blue{
-    color: $DarkBlue;
-}
-.f-DarkDesaturatedBlue{
-    color: $DarkDesaturatedBlue;
+.bg-info{
+    background-color: $info-color;
 }

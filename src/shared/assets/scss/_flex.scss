@@ -14,58 +14,48 @@ $sizes: -1, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19
   display: flex;
   flex-direction: row;
 }
-
 .flex-r-jc {
   display: flex;
   flex-direction: row;
   justify-content: center;
 }
-
 .flex-r-ac {
   display: flex;
   flex-direction: row;
   align-items: center;
 }
-
 .flex-r-jc-ac {
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
 }
-
 .flex-c {
   display: flex;
   flex-direction: column;
 }
-
 .flex-c-ac {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
-
 .flex-c-jc {
   display: flex;
   flex-direction: column;
   justify-content: center;
 }
-
 .flex-c-jc-ac {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 }
-
 .flex-jc-sp-btn {
   justify-content: space-between;
 }
-
 .flex-jc-sp-evn {
   justify-content: space-evenly;
 }
-
 .flex-align-items-end {
   align-items: flex-end;
 }

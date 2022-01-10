@@ -68,8 +68,10 @@ $checkbox-border-color: #C4C4C4;
 $pagination-selected-color: rgba(17, 13, 239, 0.27);
 
 
-
-
+/**********************************************************
+                       Forms styles
+ ***********************************************************/
+$placeholder-color: red;
 
 
 
@@ -93,7 +95,7 @@ $pagination-selected-color: rgba(17, 13, 239, 0.27);
                     Deprecating
  ***********************************************************/
 
-$white: #ffffff;
+
 $black: #25213B;
 $grey: #b9b9b9;
 $LightGrey: #F3F4F8; 
@@ -114,7 +116,7 @@ $MateBlue: rgba(82, 78, 238, 0.74);
 
 
 //status buttons & alert 
-$red: #eb547c;
+
 $green: #70c1b3;
 $ButtonPurpal:#7D5AF7;
 $RoyalVilot: #524EEE;
@@ -124,6 +126,3 @@ $ButtonMustardYellow: #fdd451;
 // border color
 $bordergrey: #707070;
 $borderlightgrey: #dbdbdb;
-
-// placeholder color
-$placeholder-color:#cccccc;

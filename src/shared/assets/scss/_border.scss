@@ -113,10 +113,6 @@ $sizes:-1,
         border: #{$size}px solid $borderlightgrey;
     }
     
-    .bdr-white-#{$size}{
-        border: #{$size}px solid $white;
-    }
-    
     .border-grey-#{$size}{
         border: #{$size}px solid $bordergrey;
     }

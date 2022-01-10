@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { DrawerArrow } from "./assets";
-import "./navdrawer.scss";
+import "../navDrawer/navdrawer.scss";
 import DrawerHeader from "./NavDrawerHeader";
 import DrawerList from "./NavDrawerList";
 
