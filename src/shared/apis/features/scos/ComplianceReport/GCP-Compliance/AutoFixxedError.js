@@ -7,11 +7,11 @@ export default function AutoFixxedError() {
         <div className="flex-r-ac flex-jc-sp-btn fixed-error p-15">
         <div className="flex-c lh-12">
             <div className="flex-r align-items-end">
-                <div className="font-30 fw-700">52</div>
+                <div className="f-30 fw-700">52</div>
                 <div className="flex-r ml-3 mb-10"><img src={dropupgreen}></img></div>
-                <div className="font-10 ml-3 mb-10">+12%</div>
+                <div className="f-10 ml-3 mb-10">+12%</div>
             </div>
-            <p className="font-12">AUTOMATICALLY FIXED ERROR</p>
+            <p className="f-12">AUTOMATICALLY FIXED ERROR</p>
         </div>
         <div className="flex-c"><img src={autofixederror}></img></div>
         </div>

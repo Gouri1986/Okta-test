@@ -122,7 +122,7 @@ const Dashboard = () => {
             {modalForm?.map((content, index) => (
               <div className='mb-10 flex-r-ac'>
                 <div className='w-200'>
-                  <label className='font-18'>{content.title}</label>
+                  <label className='f-18'>{content.title}</label>
                 </div>
                 <Input
                   value={modalForm[index]?.[content.id]}

@@ -27,14 +27,14 @@ export default function ComplienceIntro() {
           <div className="flex-r" style={{ width: "81%" }}>
             <div className="white-container h-275 flex-c" style={{ width: "18%" }}>
               <div className="flex-r-ac flex-jc-sp-btn h-50" style={{backgroundColor: "#f9f9f9"}}>
-                <div className="f-grey font-14 fw-600 ml-10">Chart Title</div>
+                <div className="f-grey f-14 fw-600 ml-10">Chart Title</div>
                 <div className="mr-10"><img src={more} alt="more"></img></div>
               </div>
               <div><ApexDonutChart /></div>
             </div>
             <div className="white-container ml-22 h-275" style={{ width: "80%" }}>
             <div className="flex-r-ac flex-jc-sp-btn h-50" style={{backgroundColor: "#f9f9f9"}}>
-                <div className="f-grey font-14 fw-600 ml-10">Chart Title</div>
+                <div className="f-grey f-14 fw-600 ml-10">Chart Title</div>
                 <div className="mr-10"><img src={more} alt="more"></img></div>
             </div>
             <div><ApexColumnCharts /></div>
@@ -71,8 +71,8 @@ export default function ComplienceIntro() {
               <div className="pl-20 pr-20 h-115 blue-container flex-r-jc-ac flex-jc-sp-btn" style={{ width: "25%" }}>
                 <div><img src={complianceScan} alt="icon"></img></div>
                 <div className="f-white pl-20">
-                  <div className="fw-700 font-36 lh-10">1765</div>
-                  <div className="fw-400 font-12">Compliances Scanned</div>
+                  <div className="fw-700 f-36 lh-10">1765</div>
+                  <div className="fw-400 f-12">Compliances Scanned</div>
                 </div>
               </div>
               <div className="ml-20 h-115 blue-container flex-r-jc-ac flex-jc-sp-btn" style={{ width: "75%" }}>

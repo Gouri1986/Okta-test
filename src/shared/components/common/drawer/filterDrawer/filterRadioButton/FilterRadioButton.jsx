@@ -8,7 +8,7 @@ const FilterRadioButton = ({ title, selectedRadio, setSelectedRadio }) => {
       className="bdr-white-2 cp p-10 flex-1"
     >
       <RadioButton selected={selectedRadio === title} />
-      <span className="font-16 f-white ml-10 lh-27">{title}</span>
+      <span className="f-16 f-white ml-10 lh-27">{title}</span>
     </div>
   );
 };
