@@ -51,10 +51,29 @@ const Dashboard = () => {
   };
 
   const addDataToTable = async () => {
-    console.log(modalForm.map(({ id, title, ...rest }) => rest).map((e) => e));
+    const arrayWithRequiredValues = modalForm.map(
+      ({ id, title, ...rest }) => rest
+    );
+    const reducedToOneObject = arrayWithRequiredValues.reduce((prev, cur) => ({
+      ...prev,
+      ...cur,
+    }));
+    await addIAMTableData(activeEndPoint, user, reducedToOneObject);
+    setModalOpen(false);
+    getTable(activeEndPoint);
+  };
 
-    // const data = await addIAMTableData(activeEndPoint, user, modalForm);
-    // console.log(data);
+  const updateDataToTable = async () => {
+    const arrayWithRequiredValues = modalForm.map(
+      ({ id, title, ...rest }) => rest
+    );
+    const reducedToOneObject = arrayWithRequiredValues.reduce((prev, cur) => ({
+      ...prev,
+      ...cur,
+    }));
+    await updateIAMTableData(activeEndPoint, user, reducedToOneObject);
+    setModalOpen(false);
+    getTable(activeEndPoint);
   };
 
   const AddIcon = () => {
