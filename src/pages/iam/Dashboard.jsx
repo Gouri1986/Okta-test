@@ -19,7 +19,6 @@ const Dashboard = () => {
   // Data to be filled with selected Rows(Checked)
   const [selectedRow, setSelectedRow] = useState([]);
   const [report, showReport] = useState(false);
-  const [filterDrawer, showFilterDrawer] = useState(false);
   const [activeEndPoint, setActiveEndPoint] = useState("");
   const [refresh, setRefresh] = useState(false);
   const location = useLocation();
@@ -84,7 +83,6 @@ const Dashboard = () => {
           refresh={refresh}
         />
       </div>
-
       <div className='main-ly width100 height100vh pl-20 pr-20 flex-c overflow-x-scroll overflow-y-scroll'>
         <div className='table-option-header mt-30 bg-lightgrey flex-r-ac flex-jc-sp-btn  jc-end'>
           <div className='flex-r-ac'>
@@ -99,14 +97,10 @@ const Dashboard = () => {
             </div>
           </div>
         </div>
-        <div>
-          <div
-            className='table-parent overflow-x-auto overflow-y-scroll width100 '
-            style={{ height: "75%" }}
-          >
+        <div className='main-ly width100 height100vh pl-20 pr-20 flex-c overflow-x-scroll overflow-y-scroll'>
+          <div className='table-parent overflow-x-auto overflow-y-scroll width100'>
             <TitanTable
               report={report}
-              showFilterDrawer={showFilterDrawer}
               selectedRow={selectedRow}
               tableData={tableContents}
               setTableContents={setTableContents}
@@ -118,7 +112,10 @@ const Dashboard = () => {
 
       <Modal open={modalOpen} onClose={() => setModalOpen(false)}>
         <div className='flex-r-jc-ac'>
-          <div className='bg-w mr-50 ml-50 flex-c-jc-ac hvh-80 mt-100 wvw-50'>
+          <div
+            style={{ backgroundColor: "white" }}
+            className='mr-50 ml-50 flex-c-jc-ac hvh-80 mt-100 wvw-50'
+          >
             {modalForm?.map((content, index) => (
               <div className='mb-10 flex-r-ac'>
                 <div className='w-200'>

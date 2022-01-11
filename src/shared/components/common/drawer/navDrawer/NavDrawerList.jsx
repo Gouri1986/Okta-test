@@ -1,7 +1,7 @@
 import Tooltip from "@mui/material/Tooltip";
 import React, { useRef, useState } from "react";
 import { DashboardIcon, IAMIcon } from "./assets";
-import { encsDrawer } from "./utils";
+import { encsDrawer } from "../../../../utils/drawer";
 import { useNavigate } from "react-router-dom";
 
 const List = ({ sub, collapsed, setActiveEndPoint, setRefresh, refresh }) => {
@@ -35,7 +35,7 @@ const List = ({ sub, collapsed, setActiveEndPoint, setRefresh, refresh }) => {
         className={"cp font-14 fw-400 lh-21 f-white mb-10 p-12 flex-r"}
         key={sub.title}
       >
-        <sub.Icon />
+        {/* <sub.Icon /> */}
         {!collapsed && (
           <span className='ml-15 font-16 fw-600 lh-21 f-grey icon-name'>
             {sub.title}
@@ -52,10 +52,10 @@ const List = ({ sub, collapsed, setActiveEndPoint, setRefresh, refresh }) => {
                 left: subOffset.subLeftOffset,
               }}
             >
-              {hoverSubMenu.map((menu) => (
+              {hoverSubMenu?.map((menu) => (
                 <li
                   onClick={() => {
-                    navigate("/encs" + menu.path);
+                    navigate("/environmentcatelogue" + menu.path);
                     setSubOffset({
                       subLeftOffset: 0,
                       subTopOffset: 0,

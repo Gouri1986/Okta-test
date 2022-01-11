@@ -1,9 +1,10 @@
 import Login from "../pages/authentication/Login";
-import Dashboard from "../pages/metadata/encs/dashboard/Dashboard";
+import ENCSDashboard from "../pages/metadata/environmentCatelogue/Dashboard";
 import IAMDashboard from "../pages/iam/Dashboard";
-import { Navigate, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
-import { useSelector } from "react-redux";
+import { RequireAuth } from "./utils";
+import HomeDashboard from "../pages/home/Home";
 
 const Redirect = ({ to }) => {
   let navigate = useNavigate();
@@ -13,33 +14,19 @@ const Redirect = ({ to }) => {
   return null;
 };
 
-const RequireAuth = ({ children }) => {
-  const { user } = useSelector((state) => state.userReducer);
-  if (user) {
-    return children;
-  }
-
-  return <Navigate to='/login' replace />;
-};
-
 export const appRoutes = [
-  /**
-   * Naming Convention = feature/feature-table-name
-   */
-
+  {
+    path: "/login",
+    element: <Login />,
+  },
   {
     path: "/",
-    element: <Redirect to='/encs/tech-category-master' />,
+    element: (
+      <RequireAuth>
+        <HomeDashboard />
+      </RequireAuth>
+    ),
   },
-  {
-    path: "/encs",
-    element: <Redirect to='/encs/tech-category-master' />,
-  },
-
-  /**
-   * Naming Convention = feature_name/feature_landing_page
-   */
-
   {
     path: "/iam/*",
     element: (
@@ -50,15 +37,11 @@ export const appRoutes = [
   },
 
   {
-    path: "/encs/*",
+    path: "/environmentcatelogue/*",
     element: (
       <RequireAuth>
-        <Dashboard />
+        <ENCSDashboard />
       </RequireAuth>
     ),
-  },
-  {
-    path: "/login",
-    element: <Login />,
   },
 ];

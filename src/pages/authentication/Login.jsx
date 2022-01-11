@@ -16,7 +16,7 @@ const Login = () => {
     const user = sessionStorage.getItem("user");
     if (user !== null) {
       dispatch(addUser(user));
-      navigate("/encs");
+      navigate("/environmentcatelogue");
     }
   }, []);
 
@@ -33,7 +33,7 @@ const Login = () => {
     if (token) {
       sessionStorage.setItem("user", token);
       dispatch(addUser(token));
-      navigate("/encs");
+      navigate("/environmentcatelogue");
     }
   };
 

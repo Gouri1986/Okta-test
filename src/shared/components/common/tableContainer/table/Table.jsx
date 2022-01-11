@@ -5,10 +5,9 @@ import TableHeader from "./TableHeader";
 const Table = ({
   tableData,
   setTableContents,
-  onRowClick,
+  onRowClick = () => {},
   report,
   selectedRow,
-  showFilterDrawer,
   status,
 }) => {
   // destructuring header and rowData from DB(passed as props)
@@ -30,7 +29,6 @@ const Table = ({
       {/* conditional rendering of rows with respect to id of header */}
       <TableBody
         report={report}
-        showFilterDrawer={showFilterDrawer}
         onRowClick={onRowClick}
         rowData={rowData}
         selectedRow={selectedRow}

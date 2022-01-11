@@ -1,14 +1,7 @@
 import { PencilIcon, TrashIcon } from "./assets";
 import { truncatedDesc } from "./utils";
 
-const TableBody = ({
-  rowData,
-  header,
-  onRowClick,
-  selectedRow,
-  showFilterDrawer,
-  status,
-}) => {
+const TableBody = ({ rowData, header, onRowClick, selectedRow, status }) => {
   const StatusColumn = ({ datum, item }) => {
     return (
       <td className={"table-cell"} title={datum[item.id]}>
@@ -33,7 +26,6 @@ const TableBody = ({
         <tr
           onClick={() => {
             onRowClick(datum);
-            showFilterDrawer(false);
           }}
           className='pos-rel flex-r-ac pt-20 pb-20 pr-25 pl-25 mt-2 mb-2 cp titan-table-rows bg-w'
         >
