@@ -98,52 +98,37 @@ const TableBody = ({
             <div
               onClick={() => {
                 console.log(
-                  [
-                    ...Object.keys(datum).map((e) => {
-                      return modalForm?.map((el) => {
-                        return {
-                          [e]: datum[e],
-                          id: e,
-                          pk: tableDetails.pk?.includes(e),
-                          uk: tableDetails.uk?.includes(e),
-                          dropdown: tableDetails.dropdown?.find(
-                            (ele) => ele.name === el.id.trim()
-                          ),
-                          checkbox: tableDetails.checkbox?.find(
-                            (ele) => ele.name === el.id.trim()
-                          ),
-                          json: tableDetails.json?.find(
-                            (ele) => ele.name === el.id.trim()
-                          ),
-                          title: getSpacedDisplayName(e),
-                        };
-                      });
-                    }),
-                  ][0]
+                  Object.keys(datum).map((el) => {
+                    return {
+                      [el]: datum[el],
+                      id: el,
+                      pk: tableDetails.pk?.includes(el),
+                      uk: tableDetails.uk?.includes(el),
+                      title: getSpacedDisplayName(el),
+                    };
+                  })
                 );
                 setModalMode("UPDATE");
                 setModalOpen(true);
                 setModalForm(
-                  modalForm?.map((e) => {
-                    return Object.keys(datum).map((el) => {
-                      return {
-                        [el]: datum[el],
-                        id: el,
-                        pk: tableDetails.pk?.includes(el),
-                        uk: tableDetails.uk?.includes(e.id),
-                        dropdown: tableDetails.dropdown?.find(
-                          (el) => el.name === e.id.trim()
-                        ),
-                        checkbox: tableDetails.checkbox?.find(
-                          (el) => el.name === e.id.trim()
-                        ),
-                        json: tableDetails.json?.find(
-                          (el) => el.name === e.id.trim()
-                        ),
-                        title: getSpacedDisplayName(el),
-                      };
-                    });
-                  })?.[0]
+                  Object.keys(datum).map((el) => {
+                    return {
+                      [el]: datum[el],
+                      id: el,
+                      pk: tableDetails.pk?.includes(el),
+                      uk: tableDetails.uk?.includes(el),
+                      dropdown: tableDetails.dropdown?.find((ele) => {
+                        return ele.name === el;
+                      }),
+                      checkbox: tableDetails.checkbox?.find((ele) => {
+                        return ele.name === el;
+                      }),
+                      json: tableDetails.json?.find((ele) => {
+                        return ele.name === el;
+                      }),
+                      title: getSpacedDisplayName(el),
+                    };
+                  })
                 );
               }}
               className='ml-15'

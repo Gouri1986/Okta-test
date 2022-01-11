@@ -133,7 +133,7 @@ const iamRoutes = [
   {
     path: "/iam-custom-cloud-roles",
     apiEndpoint: "iam-custom-cloud-roles",
-    uk: ["customCloudRoleName"],
+    uk: ["CustomCloudRoleName"],
     dropdown: [
       {
         name: "customerId",
@@ -168,11 +168,13 @@ const iamRoutes = [
       {
         name: "ctgId",
         dynamic: true,
+        displayKey: "ctgId",
         dropdown: `${process.env.REACT_APP_IAM_BASE_URL}list-ctg-id`,
       },
       {
         name: "cloudName",
         dynamic: true,
+        displayKey: "cloudName",
         dropdown: `${process.env.REACT_APP_IAM_BASE_URL}list-customer-clouds-customer-id`,
       },
     ],
