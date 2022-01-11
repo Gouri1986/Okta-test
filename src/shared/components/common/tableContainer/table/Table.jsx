@@ -9,6 +9,12 @@ const Table = ({
   report,
   selectedRow,
   status,
+  setModalMode,
+  setModalOpen,
+  setModalForm,
+  modalForm,
+  tableDetails,
+  deleteDataToTable,
 }) => {
   // destructuring header and rowData from DB(passed as props)
   const { header, data: rowData } = tableData;
@@ -34,6 +40,12 @@ const Table = ({
         selectedRow={selectedRow}
         header={header}
         status={status}
+        setModalMode={setModalMode}
+        setModalOpen={setModalOpen}
+        setModalForm={setModalForm}
+        modalForm={modalForm}
+        tableDetails={tableDetails}
+        deleteDataToTable={deleteDataToTable}
       />
       {/* added pagination */}
     </table>

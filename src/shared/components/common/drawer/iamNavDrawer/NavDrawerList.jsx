@@ -1,24 +1,11 @@
 import Tooltip from "@mui/material/Tooltip";
-import React, { useRef, useState } from "react";
-import { encsDrawer, iamDrawer } from "./utils";
+import React, { useRef } from "react";
+import { iamDrawer } from "./utils";
 import { useNavigate } from "react-router-dom";
 
 const List = ({ sub, collapsed, setActiveEndPoint, setRefresh, refresh }) => {
   const lr = useRef();
   const navigate = useNavigate();
-  const [hoverSubMenu, setHoverSubMenu] = useState([]);
-
-  const [subOffset, setSubOffset] = useState({
-    subTopOffset: 0,
-    subLeftOffset: 0,
-  });
-
-  const listItemHover = () => {
-    setSubOffset({
-      subLeftOffset: lr.current.offsetLeft + 50,
-      subTopOffset: lr.current.offsetTop,
-    });
-  };
 
   return (
     <Tooltip title={sub.title} placement='top-end'>

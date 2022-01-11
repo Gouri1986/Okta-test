@@ -1,12 +1,30 @@
 import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import "./iam.scss";
+import axios from "axios";
 import Navbar from "../../shared/components/common/drawer/iamNavDrawer/NavDrawer";
 import TitanTable from "../../shared/components/common/tableContainer/table/Table";
 import { useSelector } from "react-redux";
+import Checkbox from "@mui/material/Checkbox";
+
 // import { getTableData } from "../../apis/table/table";
-import { addIAMTableData, getIAMTableData } from "../../shared/apis/iam";
+import {
+  addIAMTableData,
+  getIAMTableData,
+  updateIAMTableData,
+  deleteIAMTableData,
+} from "../../shared/apis/iam";
 import { Button, Input, Modal } from "@mui/material";
+import {
+  getSpacedDisplayName,
+  getSanitisedTableData,
+} from "../../shared/utils/table";
+import iamRoutes from "../../routes/metadataRoutes/identityAndAccessManagement";
+import InputLabel from "@mui/material/InputLabel";
+import MenuItem from "@mui/material/MenuItem";
+import FormHelperText from "@mui/material/FormHelperText";
+import FormControl from "@mui/material/FormControl";
+import Select from "@mui/material/Select";
 
 // Import The components Here
 
@@ -25,19 +43,25 @@ const Dashboard = () => {
   const [modalMode, setModalMode] = useState("ADD");
   const [modalOpen, setModalOpen] = useState(false);
   const [modalForm, setModalForm] = useState([]);
+  const [tableDetails, setTableDetails] = useState({});
 
   useEffect(() => {
     activeEndPoint.length > 0 && getTable(activeEndPoint);
   }, [refresh, location.pathname]);
 
   useEffect(() => {
-    setModalForm(tableContents.header);
-  }, [modalOpen]);
+    let tableDetailsFromRoutes = iamRoutes.filter(
+      (e) => e.path === location.pathname.replace("/iam", "")
+    );
+    tableDetailsFromRoutes.length > 0 &&
+      setTableDetails(tableDetailsFromRoutes[0]);
+  }, [location.pathname]);
 
-  const getDisplayName = (s) =>
-    s.replace(/([A-Z])/g, " $1").replace(/^./, function (str) {
-      return str.toUpperCase();
-    });
+  useEffect(() => {
+    if (modalMode === "ADD") {
+      setModalForm(getSanitisedTableData(tableContents, tableDetails));
+    }
+  }, [modalOpen, tableDetails]);
 
   const getTable = async (activeEndPoint) => {
     const data = await getIAMTableData(activeEndPoint, user);
@@ -45,14 +69,14 @@ const Dashboard = () => {
       return Object.keys(e);
     });
     const header = objectKeys?.[0]?.map((el) => {
-      return { title: getDisplayName(el), id: el };
+      return { title: getSpacedDisplayName(el), id: el };
     });
     data && setTableContents({ header, data });
   };
 
   const addDataToTable = async () => {
     const arrayWithRequiredValues = modalForm.map(
-      ({ id, title, ...rest }) => rest
+      ({ id, title, checkbox, dropdown, uk, pk, json, ...rest }) => rest
     );
     const reducedToOneObject = arrayWithRequiredValues.reduce((prev, cur) => ({
       ...prev,
@@ -76,6 +100,19 @@ const Dashboard = () => {
     getTable(activeEndPoint);
   };
 
+  const deleteDataToTable = async () => {
+    const arrayWithRequiredValues = modalForm.map(
+      ({ id, title, ...rest }) => rest
+    );
+    const reducedToOneObject = arrayWithRequiredValues.reduce((prev, cur) => ({
+      ...prev,
+      ...cur,
+    }));
+    await deleteIAMTableData(activeEndPoint, user, reducedToOneObject);
+    setModalOpen(false);
+    getTable(activeEndPoint);
+  };
+
   const AddIcon = () => {
     return (
       <svg
@@ -93,6 +130,87 @@ const Dashboard = () => {
     );
   };
 
+  const DynamicDropDown = ({ dropdown, content, index }) => {
+    const [dropDownData, setDropDownData] = useState([]);
+
+    const getDropDownData = async () => {
+      const response = await axios.get(dropdown?.dropdown);
+      setDropDownData(response.data?.data);
+    };
+
+    useEffect(() => {
+      dropdown?.dynamic && getDropDownData();
+    }, []);
+
+    return dropdown?.dynamic ? (
+      <FormControl className='bdr-grey-1 ml-10 w-200 p-10'>
+        <InputLabel id='demo-simple-select-disabled-label'>
+          {content.title}
+        </InputLabel>
+        <Select
+          labelId='demo-simple-select-disabled-label'
+          id='demo-simple-select-disabled'
+          label='Age'
+          value={modalForm[index]?.[content.id]}
+          onChange={(e) => {
+            console.log(e.target.value);
+            const modalFormCopy = [...modalForm];
+            modalFormCopy[index] = {
+              ...content,
+              [content.id]: e.target.value,
+            };
+            setModalForm(modalFormCopy);
+          }}
+        >
+          {dropDownData?.map((e) => {
+            return (
+              <MenuItem value={e[dropdown?.displayKey]}>
+                {e[dropdown?.displayKey]}
+              </MenuItem>
+            );
+          })}
+        </Select>
+      </FormControl>
+    ) : null;
+  };
+
+  const DynamicCheckBox = ({ content, index }) => {
+    const [dropDownData, setDropDownData] = useState([]);
+    const [checked, setChecked] = useState({});
+
+    const getDropDownData = async () => {
+      const response = await axios.get(content.checkbox?.api);
+      setDropDownData(response.data?.data);
+    };
+
+    useEffect(() => {
+      content.checkbox && getDropDownData();
+    }, []);
+
+    return content.checkbox ? (
+      <FormControl className='bdr-grey-1 ml-10 w-200 p-10'>
+        <div className='flex-r-ac'>
+          {dropDownData?.map((el) => {
+            return (
+              <div>
+                <Checkbox
+                  bool={
+                    el[content.checkbox?.displayKey] ===
+                    checked[content.checkbox?.displayKey]
+                  }
+                  onChange={(e) => {
+                    setChecked(el);
+                  }}
+                />
+                <span>{el[content.checkbox?.displayKey]}</span>
+              </div>
+            );
+          })}
+        </div>
+      </FormControl>
+    ) : null;
+  };
+
   return (
     <div className='flex-r width100'>
       <div>
@@ -102,7 +220,7 @@ const Dashboard = () => {
           refresh={refresh}
         />
       </div>
-      <div className='main-ly width100 height100vh pl-20 pr-20 flex-c overflow-x-scroll overflow-y-scroll'>
+      <div className='main-ly wp-100 height100vh pl-20 pr-20 flex-c overflow-x-scroll overflow-y-scroll'>
         <div className='table-option-header mt-30 bg-lightgrey flex-r-ac flex-jc-sp-btn  jc-end'>
           <div className='flex-r-ac'>
             <div
@@ -116,14 +234,20 @@ const Dashboard = () => {
             </div>
           </div>
         </div>
-        <div className='main-ly width100 height100vh pl-20 pr-20 flex-c overflow-x-scroll overflow-y-scroll'>
-          <div className='table-parent overflow-x-auto overflow-y-scroll width100'>
+        <div className='main-ly wp-100 height100vh pl-20 pr-20 flex-c overflow-x-scroll overflow-y-scroll'>
+          <div className='table-parent overflow-x-auto overflow-y-scroll wp-100'>
             <TitanTable
               report={report}
               selectedRow={selectedRow}
               tableData={tableContents}
               setTableContents={setTableContents}
               status={true}
+              setModalMode={setModalMode}
+              setModalOpen={setModalOpen}
+              modalForm={modalForm}
+              setModalForm={setModalForm}
+              tableDetails={tableDetails}
+              deleteDataToTable={deleteDataToTable}
             />
           </div>
         </div>
@@ -133,27 +257,69 @@ const Dashboard = () => {
         <div className='flex-r-jc-ac'>
           <div
             style={{ backgroundColor: "white" }}
-            className='mr-50 ml-50 flex-c-jc-ac hvh-80 mt-100 wvw-50'
+            className='mr-20 ml-20 flex-c-jc-ac  wvw-80 overflow-y-scroll p-50'
           >
-            {modalForm?.map((content, index) => (
-              <div className='mb-10 flex-r-ac'>
-                <div className='w-200'>
-                  <label className='font-18'>{content.title}</label>
+            {modalForm?.map((content, index) => {
+              return (
+                <div className='mb-10 flex-r-ac'>
+                  <div className='w-200'>
+                    <label className='font-18'>{content.title}</label>
+                  </div>
+                  {content.dropdown && !content.dropdown?.dynamic && (
+                    <FormControl className='bdr-grey-1 ml-10 w-200 p-10'>
+                      <InputLabel id='demo-simple-select-disabled-label'>
+                        {content.title}
+                      </InputLabel>
+                      <Select
+                        labelId='demo-simple-select-disabled-label'
+                        id='demo-simple-select-disabled'
+                        label='Age'
+                        value={modalForm[index]?.[content.id]}
+                        onChange={(e) => {
+                          const modalFormCopy = [...modalForm];
+                          modalFormCopy[index] = {
+                            ...content,
+                            [content.id]: e.target.value,
+                          };
+                          setModalForm(modalFormCopy);
+                        }}
+                      >
+                        {Array.isArray(content.dropdown?.dropdown) &&
+                          content.dropdown?.dropdown?.map((e) => (
+                            <MenuItem value={e}>{e}</MenuItem>
+                          ))}
+                      </Select>
+                    </FormControl>
+                  )}
+
+                  <DynamicDropDown
+                    dropdown={content.dropdown}
+                    content={content}
+                    index={index}
+                  />
+
+                  <DynamicCheckBox content={content} index={index} />
+
+                  {!content.dropdown && !content.checkbox && (
+                    <Input
+                      value={modalForm[index]?.[content.id]}
+                      onChange={(e) => {
+                        const modalFormCopy = [...modalForm];
+                        modalFormCopy[index] = {
+                          ...content,
+                          [content.id]: e.target.value,
+                        };
+                        setModalForm(modalFormCopy);
+                      }}
+                      disabled={
+                        modalMode === "UPDATE" && (content.pk || content.uk)
+                      }
+                      className='bdr-grey-1 ml-10 w-200 p-10'
+                    />
+                  )}
                 </div>
-                <Input
-                  value={modalForm[index]?.[content.id]}
-                  onChange={(e) => {
-                    const modalFormCopy = [...modalForm];
-                    modalFormCopy[index] = {
-                      ...content,
-                      [content.id]: e.target.value,
-                    };
-                    setModalForm(modalFormCopy);
-                  }}
-                  className='bdr-grey-1 ml-10 w-200 p-10'
-                />
-              </div>
-            ))}
+              );
+            })}
             <div className='flex-r-ac mt-50'>
               <Button
                 onClick={() => setModalOpen(false)}
@@ -163,7 +329,9 @@ const Dashboard = () => {
                 Cancel
               </Button>
               <Button
-                onClick={() => addDataToTable()}
+                onClick={() =>
+                  modalMode === "ADD" ? addDataToTable() : updateDataToTable()
+                }
                 variant='contained'
                 color='success'
                 className='ml-50'
