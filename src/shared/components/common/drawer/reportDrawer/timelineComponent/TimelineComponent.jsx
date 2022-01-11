@@ -39,7 +39,7 @@ const TimelineComponent = ({ index, length }) => {
         </div>
         <div>
           <button className='h-30 bg-DarkDesaturatedBlue no-border no-outline wp-40'>
-            <span className='review-button f-14 fw-400 lh-15 f-white'>
+            <span className='review-button f-14 fw-400 lh-15 fc-tertiary'>
               Review
             </span>
           </button>

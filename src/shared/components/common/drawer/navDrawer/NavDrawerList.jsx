@@ -32,7 +32,7 @@ const List = ({ sub, collapsed, setActiveEndPoint, setRefresh, refresh }) => {
           setSubOffset({ subLeftOffset: 0, subTopOffset: 0 });
         }}
         ref={lr}
-        className={"cp f-14 fw-400 lh-21 f-white mb-10 p-12 flex-r"}
+        className={"cp f-14 fw-400 lh-21 fc-tertiary mb-10 p-12 flex-r"}
         key={sub.title}
       >
         <sub.Icon />

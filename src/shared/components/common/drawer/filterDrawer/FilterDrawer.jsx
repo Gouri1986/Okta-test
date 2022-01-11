@@ -19,7 +19,7 @@ const FilterDrawer = (props) => {
       }
     >
       <div className='flex-c pt-80 pb-80 pr-40 pl-40'>
-        <h2 className='f-white'>Filter</h2>
+        <h2 className='fc-tertiary'>Filter</h2>
         <div className='flex-c mt-50'>
           <FilterDrawerDropDown title={"Select Categories"} />
           <FilterDrawerDropDown title={"Select Control ID"} />

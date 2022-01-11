@@ -70,14 +70,14 @@ export default function ComplienceIntro() {
             <div className="flex-r-jc-ac flex-jc-sp-btn" style={{ width: "81%" }}>
               <div className="pl-20 pr-20 h-115 blue-container flex-r-jc-ac flex-jc-sp-btn" style={{ width: "25%" }}>
                 <div><img src={complianceScan} alt="icon"></img></div>
-                <div className="f-white pl-20">
+                <div className="fc-tertiary pl-20">
                   <div className="fw-700 f-36 lh-10">1765</div>
                   <div className="fw-400 f-12">Compliances Scanned</div>
                 </div>
               </div>
               <div className="ml-20 h-115 blue-container flex-r-jc-ac flex-jc-sp-btn" style={{ width: "75%" }}>
               <div className="ml-20"><img src={tempIcon} alt="icon"></img></div>
-                <div className="f-white pl-20 pr-200">
+                <div className="fc-tertiary pl-20 pr-200">
                   <img src={dummyLineChart}></img>
                 </div>
               </div>

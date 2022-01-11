@@ -5,8 +5,8 @@ const FilterButton = ({ title, colored, onClick }) => {
     <div
       onClick={() => onClick(false)}
       className={
-        colored ? "text-center p-10 mr-10 cp f-white lh-21 f-14 fw-600 flex-1 bg-green bdr-grey-2" 
-        : "text-center p-10 flex-1 cp f-white lh-21 f-14 fw-600 bg-transparent bdr-grey-2"
+        colored ? "text-center p-10 mr-10 cp fc-tertiary lh-21 f-14 fw-600 flex-1 bg-green bdr-grey-2" 
+        : "text-center p-10 flex-1 cp fc-tertiary lh-21 f-14 fw-600 bg-transparent bdr-grey-2"
       }
     >
       {title}

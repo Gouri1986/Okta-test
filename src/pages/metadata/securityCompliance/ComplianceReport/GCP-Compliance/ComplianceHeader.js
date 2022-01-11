@@ -13,7 +13,7 @@ export default function ComplianceHeader() {
         }}
       >
         <p className='fw-700 f-48 ml-22 pt-15 lh-13'>
-          <span className='f-white'>GCP</span> Compliance
+          <span className='fc-tertiary'>GCP</span> Compliance
         </p>
         <div className='flex-r ml-20 lh-12'>
           <p className='f-darkgrey fw-600'>
@@ -42,7 +42,7 @@ export default function ComplianceHeader() {
           </p>
         </div>
         <div className='flex-c-jc-ac'>
-          <button className='no-border f-white mt-15 bg-DarkDesaturatedBlue pt-15 pb-15 pl-45 pr-45 f-14'>
+          <button className='no-border fc-tertiary mt-15 bg-DarkDesaturatedBlue pt-15 pb-15 pl-45 pr-45 f-14'>
             New Scan
           </button>
           <p className='font-10 f-black mt-2'>
