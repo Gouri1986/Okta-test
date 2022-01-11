@@ -96,65 +96,67 @@ const Dashboard = () => {
       </div>
       <div className='main-ly wp-100 height100vh pl-20 pr-20 flex-c overflow-x-scroll overflow-y-scroll'>
         <div>
-          <div className='table-option-header mt-30 bg-lightgrey flex-r-ac flex-jc-sp-btn'>
-            <div className='table-filter-wrapper ml-10'>
-              {/* <Filter
-                showReport={showReport}
-                filterDrawer={filterDrawer}
-                showFilterDrawer={showFilterDrawer}
-                setTableContents={setTableContents}
-                tableData={tableContents}
-              /> */}
-            </div>
-            <div className='flex-r-ac'>
-              <div
-                onClick={() => {
-                  isSearchClicked(true);
-                }}
-                className={
-                  searchClicked
-                    ? "titan-searchbar-container-expanded height100 m-15"
-                    : "titan-searchbar-container m-15"
-                }
-              >
-                <TitanSearch
-                  searchValue={searchValue}
-                  setSearchValue={setSearchValue}
-                  isSearchClicked={isSearchClicked}
-                  searchClicked={searchClicked}
-                  tableData={tableContents}
-                />
-              </div>
-              <div className='m-15'>
-                <Refresh />
-              </div>
-              {/* <div className='m-15'>
-                <ColumnSettings
-                  tableData={tableData}
+          <div className="white-container">
+            <div className='table-option-header mt-30 flex-r-ac flex-jc-sp-btn'>
+              <div className='table-filter-wrapper ml-10'>
+                {/* <Filter
+                  showReport={showReport}
+                  filterDrawer={filterDrawer}
+                  showFilterDrawer={showFilterDrawer}
                   setTableContents={setTableContents}
-                />
-              </div> */}
-              <div className='m-15'>
-                <Download
-                  selectedRow={selectedRow}
-                  tableContents={tableContents}
-                />
+                  tableData={tableContents}
+                /> */}
+              </div>
+              <div className='flex-r-ac'>
+                <div
+                  onClick={() => {
+                    isSearchClicked(true);
+                  }}
+                  className={
+                    searchClicked
+                      ? "titan-searchbar-container-expanded height100 m-15"
+                      : "titan-searchbar-container m-15"
+                  }
+                >
+                  <TitanSearch
+                    searchValue={searchValue}
+                    setSearchValue={setSearchValue}
+                    isSearchClicked={isSearchClicked}
+                    searchClicked={searchClicked}
+                    tableData={tableContents}
+                  />
+                </div>
+                <div className='m-15'>
+                  <Refresh />
+                </div>
+                {/* <div className='m-15'>
+                  <ColumnSettings
+                    tableData={tableData}
+                    setTableContents={setTableContents}
+                  />
+                </div> */}
+                <div className='m-15'>
+                  <Download
+                    selectedRow={selectedRow}
+                    tableContents={tableContents}
+                  />
+                </div>
               </div>
             </div>
-          </div>
-          <div
-            className='table-parent overflow-x-auto overflow-y-scroll wp-100'
-            style={{ height: "75%" }}
-          >
-            <TitanTable
-              report={report}
-              showFilterDrawer={showFilterDrawer}
-              selectedRow={selectedRow}
-              onRowClick={onRowClick}
-              tableData={tableContents}
-              setTableContents={setTableContents}
-              status={true}
-            />
+            <div
+              className='table-parent overflow-x-auto overflow-y-scroll wp-100'
+              style={{ height: "75%" }}
+            >
+              <TitanTable
+                report={report}
+                showFilterDrawer={showFilterDrawer}
+                selectedRow={selectedRow}
+                onRowClick={onRowClick}
+                tableData={tableContents}
+                setTableContents={setTableContents}
+                status={true}
+              />
+            </div>
           </div>
           <div className='bg-w flex-r-ac pt-10 pb-10 pagination-holder'>
             <div className='pagination-wrapper'>

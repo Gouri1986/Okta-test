@@ -12,10 +12,7 @@
 /* Table Header  */
 .titan-table-header {
   display: flex;
-  border-radius: 0px;
   flex-direction: row;
-  box-shadow: 0 24px 48px 0 rgba(30, 28, 46, 0.08);
-  background-color: $white;
   justify-content: space-evenly;
   th {
     font-size: 15px;
@@ -36,6 +33,9 @@
 /* Table Rows */
 .titan-table-rows {
   justify-content: space-evenly;
+}
+.titan-table-rows:last-child {
+ border: none;
 }
 
 .table-cell {
@@ -153,6 +153,5 @@
 
 .titan-table-fill {
   width: 100%;
-  background-color:  $white;
   color: $primary-font-color;
 }
