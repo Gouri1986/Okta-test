@@ -35,14 +35,14 @@ const TableBody = ({
             onRowClick(datum);
             showFilterDrawer(false);
           }}
-          className='pos-rel flex-r-ac pt-20 pb-20 pr-25 pl-25 mt-2 mb-2 cp titan-table-rows bg-w'
+          className='pos-rel flex-r-ac pt-20 pb-20 pr-25 pl-25 mt-2 mb-2 cp titan-table-rows'
         >
           <div class='pos-ab pl-25 mb-35 cp table-checkbox-input-container'>
             <input
               type='checkbox'
               checked={selectedRow.find((e) => e.id === datum.id)}
             />
-            <span class='h-20 w-20 no-border checkmark'></span>
+            <span class='h-20 w-20 no-bdr checkmark'></span>
           </div>
           {header?.map((item) =>
             status && item.id === "compliance" ? (

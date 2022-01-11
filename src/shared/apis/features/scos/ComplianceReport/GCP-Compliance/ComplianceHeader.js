@@ -28,21 +28,21 @@ export default function ComplianceHeader() {
         <div className="flex-c-jc mr-10">
           <p>
             Tenet ID:{" "}
-            <span className="f-blue">
+            <span className="fc-primary">
               <u>86224987</u>
             </span>
           </p>
           <p className="divider-grey"></p>
           <p>
             Org ID:{" "}
-            <span className="f-blue">
+            <span className="fc-primary">
               <u>bds2021aws</u>
             </span>
           </p>
         </div>
         <div className="flex-c-jc-ac">
-          <button className="no-border fc-tertiary mt-15 bg-DarkDesaturatedBlue pt-15 pb-15 pl-45 pr-45 f-14">New Scan</button>
-          <p className="font-10 f-black mt-2">
+          <button className="no-bdr fc-tertiary mt-15 bg-DarkDesaturatedBlue pt-15 pb-15 pl-45 pr-45 f-14">New Scan</button>
+          <p className="font-10 fc-primary mt-2">
             Last Scan: <span>13-11-2021</span>
           </p>
         </div>

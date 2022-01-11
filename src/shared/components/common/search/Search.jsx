@@ -5,7 +5,7 @@ import { SearchIcon } from "./assets";
 const Search = (props) => {
   const { searchValue, setSearchValue, isSearchClicked, searchClicked } = props;
   return (
-    <div className="flex-r-ac h-40 pos-rel bg-w bdr-lightgrey-1 br-3">
+    <div className="flex-r-ac h-40 pos-rel bg-secondary bdr-lightgrey-1 br-3">
       <div className="search-input-container wp-100">
         <input
           value={searchValue}
