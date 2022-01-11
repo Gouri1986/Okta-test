@@ -50,9 +50,9 @@ const ColumnSettingsDropDown = ({
   };
 
   return (
-    <div className='p-15 min-w-300 bg-w bdr-lightgrey-1'>
+    <div className='p-15 min-w-300 bg-tertiary bdr-lightgrey-1'>
       <div className='flex-r-ac flex-jc-sp-btn'>
-        <span className='mb-30 font-16 fw-600 f-DarkDesaturatedBlue'>Column</span>
+        <span className='mb-30 f-16 fw-600 fc-primary'>Column</span>
         <span className='cp' onClick={() => showColumnDropdown(false)}>
           <CloseIcon />
         </span>
@@ -63,13 +63,13 @@ const ColumnSettingsDropDown = ({
           setSearchValue={onColumnSettingsSearch}
         />
       </div>
-      <span className='pt-15 pb-15 font-10 f-darkgrey'>Frequently Used</span>
+      <span className='pt-15 pb-15 f-10 fc-primary'>Frequently Used</span>
       <div className='flex-r-ac '>
         <div>
           {columnsToShow.slice(0, 9).map((e) => (
             <div key={e.id} className='mt-15 mb-15 min-w-200'>
               <label class='col-checkbox-input-container cp cp flex-r-ac pl-25 mb-10 pos-rel'>
-                <span className='font-12 f-black ml-8'>{e.title}</span>
+                <span className='f-12 fc-primary ml-8'>{e.title}</span>
                 <input
                   name={e.title}
                   id={e.id}
@@ -95,7 +95,7 @@ const ColumnSettingsDropDown = ({
               .map((e) => (
                 <div key={e.id} className='mt-15 mb-15 min-w-200'>
                   <label class='col-checkbox-input-container cp flex-r-ac pl-25 mb-10 pos-rel '>
-                    <span className='font-12 f-black ml-8'>{e.title}</span>
+                    <span className='f-12 fc-primary ml-8'>{e.title}</span>
                     <input
                       name={e.title}
                       id={e.id}
@@ -118,7 +118,7 @@ const ColumnSettingsDropDown = ({
       </div>
       {tableData.header?.length > 10 && (
         <div className='flex-r-jc-ac p-15'>
-          <button className='font-12 cp pt-10 pb-10 pl-25 pr-25 bg-DarkDesaturatedBlue f-white no-bdr'>
+          <button className='f-12 cp pt-10 pb-10 pl-25 pr-25 bg-DarkDesaturatedBlue fc-tertiary no-bdr'>
             + More
           </button>
         </div>

@@ -212,7 +212,7 @@ const Dashboard = () => {
   };
 
   return (
-    <div className='flex-r width100'>
+    <div className='flex-r wp-100'>
       <div>
         <Navbar
           setActiveEndPoint={setActiveEndPoint}

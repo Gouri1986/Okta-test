@@ -6,7 +6,7 @@
 /************************************************************
                      Global styles 
 ************************************************************/
-* {
+*{
   padding: 0px;
   margin: 0px;
   box-sizing: border-box;
@@ -16,7 +16,7 @@ body {
   font-family:"Poppins", "Roboto","Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans","Helvetica Neue", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  color: $black;
+  background-color:  $secondary-color;
 }
 
 /**************************************************************

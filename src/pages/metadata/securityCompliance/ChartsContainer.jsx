@@ -23,17 +23,15 @@ export default function ComplienceIntro() {
   return (
     <div>
       {showContent ? (
-        <div className='grey-container flex-r-jc-ac h-307 width100'>
-          <div className='flex-r' style={{ width: "81%" }}>
+        <div className='grey-container flex-r-jc-ac h-307 wp-100'>
+          <div className='flex-r wp-81'>
             <div
-              className='white-container h-275 flex-c'
-              style={{ width: "18%" }}
-            >
+              className='white-container h-275 flex-c wp-18'>
               <div
                 className='flex-r-ac flex-jc-sp-btn h-50'
                 style={{ backgroundColor: "#f9f9f9" }}
               >
-                <div className='f-grey font-14 fw-600 ml-10'>Chart Title</div>
+                <div className='f-grey f-14 fw-600 ml-10'>Chart Title</div>
                 <div className='mr-10'>
                   <img src={more} alt='more'></img>
                 </div>
@@ -43,14 +41,12 @@ export default function ComplienceIntro() {
               </div>
             </div>
             <div
-              className='white-container ml-22 h-275'
-              style={{ width: "80%" }}
-            >
+              className='white-container ml-22 h-275 wp-80'>
               <div
                 className='flex-r-ac flex-jc-sp-btn h-50'
                 style={{ backgroundColor: "#f9f9f9" }}
               >
-                <div className='f-grey font-14 fw-600 ml-10'>Chart Title</div>
+                <div className='f-grey f-14 fw-600 ml-10'>Chart Title</div>
                 <div className='mr-10'>
                   <img src={more} alt='more'></img>
                 </div>
@@ -61,12 +57,10 @@ export default function ComplienceIntro() {
             </div>
           </div>
 
-          <div className='flex-r' style={{ width: "19%" }}>
+          <div className='flex-r wp-19'>
             <div
-              className='h-275 flex-c-ac flex-jc-sp-btn ml-22'
-              style={{ width: "100%" }}
-            >
-              <div className='flex-r flex-jc-sp-btn width100'>
+              className='h-275 flex-c-ac flex-jc-sp-btn ml-22 wp-100'>
+              <div className='flex-r flex-jc-sp-btn wp-100'>
                 <div>
                   <PickerRange />
                 </div>
@@ -78,10 +72,10 @@ export default function ComplienceIntro() {
                   />
                 </div>
               </div>
-              <div className='h-100 width100'>
+              <div className='h-100 wp-100'>
                 <NewComplainChecked />
               </div>
-              <div className='h-100 width100'>
+              <div className='h-100 wp-100'>
                 <AutoFixxedError />
               </div>
             </div>
@@ -89,7 +83,7 @@ export default function ComplienceIntro() {
         </div>
       ) : (
         <div>
-          <div className='grey-container flex-r h-150 width100 flex-r'>
+          <div className='grey-container flex-r h-150 wp-100 flex-r'>
             <div
               className='flex-r-jc-ac flex-jc-sp-btn'
               style={{ width: "81%" }}
@@ -101,25 +95,23 @@ export default function ComplienceIntro() {
                 <div>
                   <img src={complianceScan} alt='icon'></img>
                 </div>
-                <div className='f-white pl-20'>
-                  <div className='fw-700 font-36 lh-10'>1765</div>
-                  <div className='fw-400 font-12'>Compliances Scanned</div>
+                <div className='fc-tertiary pl-20'>
+                  <div className='fw-700 f-36 lh-10'>1765</div>
+                  <div className='fw-400 f-12'>Compliances Scanned</div>
                 </div>
               </div>
               <div
-                className='ml-20 h-115 blue-container flex-r-jc-ac flex-jc-sp-btn'
-                style={{ width: "75%" }}
-              >
+                className='ml-20 h-115 blue-container flex-r-jc-ac flex-jc-sp-btn wp-75'>
                 <div className='ml-20'>
                   <img src={tempIcon} alt='icon'></img>
                 </div>
-                <div className='f-white pl-20 pr-200'>
+                <div className='fc-tertiary pl-20 pr-200'>
                   <img alt='line-chart' src={dummyLineChart}></img>
                 </div>
               </div>
             </div>
-            <div className='ml-20 mt-5' style={{ width: "19%" }}>
-              <div className='flex-r flex-jc-sp-btn width100'>
+            <div className='ml-20 mt-5 wp-19'>
+              <div className='flex-r flex-jc-sp-btn wp-100'>
                 <div style={{ width: "92%" }}>
                   {/* <div className="w-150"> */}
                   <PickerRange />

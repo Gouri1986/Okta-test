@@ -4,12 +4,12 @@ import "./timelineComponent.scss";
 
 const TimelineStatComponent = () => {
   return (
-    <div className='bg-lightgrey width100 mb-15 pt-6 pr-9 pl-7 br-80'>
-      <h3 className='font-14 fw-700 lh-1-5 f-black'>Assertion Variable</h3>
+    <div className='bg-lightgrey wp-100 mb-15 pt-6 pr-9 pl-7 br-80'>
+      <h3 className='f-14 fw-700 lh-1-5 fc-primary'>Assertion Variable</h3>
       <div className='pt-5 pb-5'>
         <InlineBarChart />
       </div>
-      <div className='flex-r-ac flex-jc-sp-btn font-10 fw-400 f-darkgrey pb-10'>
+      <div className='flex-r-ac flex-jc-sp-btn f-10 fw-400 f-darkgrey pb-10'>
         <span>10 executed</span>
         <span>Total 27</span>
       </div>
@@ -21,15 +21,15 @@ const TimelineComponent = ({ index, length }) => {
   return (
     <div className='mb-30 pos-rel flex-r'>
       <div
-        className='w-27 h-27 mr-10 bg-MustardYellow'
+        className='w-27 h-27 mr-10 bg-warning'
         style={{ borderRadius: "50%" }}
       ></div>
       <div className='flex-c flex-1'>
-        <h2 className='font-16 font-700 lh-15 f-black'>
+        <h2 className='f-16 font-700 lh-1-5 fc-primary'>
           Compliance ID: GDPR 4.2
         </h2>
         <div>
-          <p className='font-12 lh-15 f-black fw-300 mt-10 mb-10 width100'>
+          <p className='f-12 lh-1-5 fc-primary fw-300 mt-10 mb-10 wp-100'>
             Scan failed due to vulnerability policy violations: Jenkins Demo, 48
             vulnerabilities, [Critical: 48]
           </p>
@@ -38,11 +38,8 @@ const TimelineComponent = ({ index, length }) => {
           <TimelineStatComponent />
         </div>
         <div>
-          <button
-            className='h-30 bg-DarkDesaturatedBlue no-border no-outline'
-            style={{ width: "40%" }}
-          >
-            <span className='review-button font-14 fw-400 lh-15 f-white'>
+          <button className='h-30  no-bdr no-outline fc-quaternary wp-40'>
+            <span className='review-button f-14 fw-400 lh-1-5 fc-tertiary'>
               Review
             </span>
           </button>

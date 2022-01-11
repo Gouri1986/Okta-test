@@ -2,10 +2,11 @@
 @import "../../../../assets/scss/styles.scss";
 
 .titan-table {
-  background: $primary-color;
+  background: $white;
   box-sizing: border-box;
   width: fit-content;
   height: auto;
+  color: $primary-font-color;
 }
 
 /* Table Header  */
@@ -14,13 +15,13 @@
   border-radius: 0px;
   flex-direction: row;
   box-shadow: 0 24px 48px 0 rgba(30, 28, 46, 0.08);
-  background-color: $tertiary-color;
+  background-color: $white;
   justify-content: space-evenly;
   th {
     font-size: 15px;
     text-align: center;
     line-height: 28px;
-    color: $white;
+    color: $primary-font-color;
     display: inline-flex;
     align-items: center;
     cursor: pointer;
@@ -38,16 +39,13 @@
 }
 
 .table-cell {
-  color: #000000;
+  color: $primary-font-color;
   text-align: center;
   height: 50px;
   width: 200px;
 }
 
 .table-data-cell {
-  font-family: "Poppins", sans-serif;
-  font-style: normal;
-  font-weight: normal;
   font-size: 13px;
   line-height: 1em;
   height: 2em;
@@ -55,21 +53,17 @@
   width: 200px;
   word-wrap: break-word;
   white-space: pre-wrap;
-  color: $black;
+  color: $primary-font-color;
   padding: 10px;
   padding-inline: 20px;
-  width: 200px;
 }
 
 .table-data-cell-status {
-  font-family: "Poppins", sans-serif;
-  font-style: normal;
-  font-weight: normal;
   font-size: 13px;
   line-height: 1em;
   height: 2em;
   overflow: hidden;
-  background: #70c1b3;
+  background: $success-color;
   border-radius: 100px;
   text-align: center;
   padding: 5px 10px;
@@ -78,14 +72,11 @@
 }
 
 .table-data-cell-status-neg {
-  font-family: "Poppins", sans-serif;
-  font-style: normal;
-  font-weight: normal;
   font-size: 13px;
   line-height: 1em;
   height: 2em;
   overflow: hidden;
-  background: #eb547c;
+  background:$danger-color;
   border-radius: 100px;
   text-align: center;
   padding: 5px 10px;
@@ -126,7 +117,7 @@
 .table-checkbox-input-container input:checked ~ .checkmark {
   border-radius: 3px;
   border: none;
-  background-color: #21acdd;
+  background-color: $success-color;
 }
 
 .checkmark:after {
@@ -162,4 +153,6 @@
 
 .titan-table-fill {
   width: 100%;
+  background-color:  $white;
+  color: $primary-font-color;
 }

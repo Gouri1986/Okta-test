@@ -32,12 +32,12 @@ const List = ({ sub, collapsed, setActiveEndPoint, setRefresh, refresh }) => {
           setSubOffset({ subLeftOffset: 0, subTopOffset: 0 });
         }}
         ref={lr}
-        className={"cp font-14 fw-400 lh-21 f-white mb-10 p-12 flex-r"}
+        className={"cp f-14 fw-400 lh-2-1 fc-tertiary mb-10 p-12 flex-r"}
         key={sub.title}
       >
         {/* <sub.Icon /> */}
         {!collapsed && (
-          <span className='ml-15 font-16 fw-600 lh-21 f-grey icon-name'>
+          <span className='ml-15 f-16 fw-600 lh-2-1 fc-tertiary icon-name'>
             {sub.title}
           </span>
         )}
@@ -63,7 +63,7 @@ const List = ({ sub, collapsed, setActiveEndPoint, setRefresh, refresh }) => {
                     setActiveEndPoint(menu.apiEndpoint);
                     setRefresh(!refresh);
                   }}
-                  className='pr-15 pl-15 pt-10 pb-10  font-16 fw-600 lh-21 f-grey icon-name'
+                  className='pr-15 pl-15 pt-10 pb-10 f-16 fw-600 lh-2-1 f-grey icon-name'
                 >
                   {menu.title}
                 </li>
@@ -86,12 +86,12 @@ const DrawerList = ({
   const navigate = useNavigate();
 
   return (
-    <div className='drawer-list-container mt-100'>
+    <div className='drawer-list-container mt-50'>
       <ul>
         <li onClick={() => navigate("/iam")} className='cp p-12 flex-r-ac'>
           <IAMIcon />
           {!collapsed && (
-            <span className='ml-20 font-16 fw-600 lh-21 f-grey icon-name'>
+            <span className='ml-20 f-16 fw-600 lh-2-1 fc-tertiary icon-name'>
               IAM
             </span>
           )}
@@ -99,7 +99,7 @@ const DrawerList = ({
         <li className='cp p-12 flex-r-ac'>
           <DashboardIcon />
           {!collapsed && (
-            <span className='ml-20 font-16 fw-600 lh-21 f-grey icon-name'>
+            <span className='ml-20 f-16 fw-600 lh-2-1 fc-tertiary icon-name'>
               Dashboard
             </span>
           )}
@@ -109,7 +109,7 @@ const DrawerList = ({
         {encsDrawer().map((section) => (
           <div className='drawer-lists'>
             {!collapsed && (
-              <span className={"fw-400 font-16 lh-21 f-darkgrey"}>
+              <span className={"fw-400 f-16 lh-2-1 fc-tertiary"}>
                 {section.title}
               </span>
             )}
