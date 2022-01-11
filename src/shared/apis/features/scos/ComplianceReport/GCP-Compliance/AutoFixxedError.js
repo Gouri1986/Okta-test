@@ -5,7 +5,7 @@ import autofixederror from '../../../../assets/images/icons/autofixederror.svg';
 export default function AutoFixxedError() {
     return (
         <div className="flex-r-ac flex-jc-sp-btn fixed-error p-15">
-        <div className="flex-c lh-12">
+        <div className="flex-c lh-1-2">
             <div className="flex-r align-items-end">
                 <div className="f-30 fw-700">52</div>
                 <div className="flex-r ml-3 mb-10"><img src={dropupgreen}></img></div>

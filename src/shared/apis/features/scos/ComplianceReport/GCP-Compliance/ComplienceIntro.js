@@ -71,7 +71,7 @@ export default function ComplienceIntro() {
               <div className="pl-20 pr-20 h-115 blue-container flex-r-jc-ac flex-jc-sp-btn" style={{ width: "25%" }}>
                 <div><img src={complianceScan} alt="icon"></img></div>
                 <div className="fc-tertiary pl-20">
-                  <div className="fw-700 f-36 lh-10">1765</div>
+                  <div className="fw-700 f-36 lh-1-0">1765</div>
                   <div className="fw-400 f-12">Compliances Scanned</div>
                 </div>
               </div>

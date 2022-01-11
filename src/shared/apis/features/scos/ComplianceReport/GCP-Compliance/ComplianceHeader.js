@@ -12,10 +12,10 @@ export default function ComplianceHeader() {
           backgroundRepeat: "no-repeat",
         }}
       >
-        <p className="fw-700 f-48 ml-22 pt-15 lh-13">
+        <p className="fw-700 f-48 ml-22 pt-15 lh-1-3">
           <span className="fc-tertiary">GCP</span> Compliance
         </p>
-        <div className="flex-r ml-20 lh-12">
+        <div className="flex-r ml-20 lh-1-2">
           <p className="f-darkgrey fw-600">
             PROJECT: <span className="f-blue fw-400">titan-testDemo </span>
           </p>
