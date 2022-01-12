@@ -15,7 +15,7 @@ const List = ({ sub, collapsed, setActiveEndPoint, setRefresh, refresh }) => {
           setActiveEndPoint(sub.apiEndpoint);
         }}
         ref={lr}
-        className={"cp f-14 fw-400 lh-2-1 fc-tertiary mb-10 p-12 flex-r"}
+        className={"cp f-14 fw-400 lh-2-1 fc-tertiary mb-10 p-12 flex-r-ac"}
         key={sub.title}
       >
         <sub.Icon />
@@ -59,7 +59,6 @@ const DrawerList = ({
             ))}
           </ul>
         </div>
-        )
       </div>
     </div>
   );

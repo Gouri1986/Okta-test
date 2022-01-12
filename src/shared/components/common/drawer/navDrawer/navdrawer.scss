@@ -23,7 +23,11 @@
   padding-top: 30px;
 }
 .drawer-list-container {
-  overflow: hidden;
+  overflow-y: scroll;
+}
+
+.drawer-list-container::-webkit-scrollbar {
+  display: none;
 }
 
 .drawer-list-container ul {

@@ -12,6 +12,13 @@ const iamRoutes = [
     pageName: "Customer Master",
     pk: ["customerId"],
     whitelist: ["customerId"],
+    dependency: [
+      {
+        parent: "iamType",
+        children: ["externalIamClientId", "externalIamName"],
+        value: "External IDM",
+      },
+    ],
     dropdown: [
       {
         name: "customerBusinessName",
@@ -185,7 +192,9 @@ const iamRoutes = [
     pageName: "CTG Tenants",
     apiEndpoint: "iam-ctg-tenants",
     pk: ["cloudTenantName"],
-    dependency: [{ parent: "ctgId", children: ["ctgName", "customerId"] }],
+    dependency: [
+      { parent: "ctgId", children: ["ctgName", "customerId"], disabled: true },
+    ],
     dropdown: [
       {
         name: "ctgId",

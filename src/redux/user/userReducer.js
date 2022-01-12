@@ -1,7 +1,7 @@
 import { USER } from "./userActionTypes";
 
 const initialState = {
-  user: null,
+  user: null || sessionStorage.getItem("user"),
 };
 
 const userReducer = (state = initialState, action) => {
