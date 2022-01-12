@@ -39,6 +39,7 @@ const MyModal = ({
   updateDataToTable,
   tableDetails,
 }) => {
+  console.log(modalForm);
   return (
     <Modal open={modalOpen} onClose={() => setModalOpen(false)}>
       <div className='flex-r-jc-ac'>
@@ -47,8 +48,8 @@ const MyModal = ({
           className='mr-20 ml-20 flex-c-jc-ac  wvw-80 overflow-y-scroll p-50'
         >
           {modalForm
+            ?.filter((v, i, a) => a.findIndex((t) => t.id === v.id) === i)
             ?.filter((e) => !tableDetails.whitelist?.includes(e.id))
-            .filter((v, i, a) => a.findIndex((t) => t.id === v.id) === i)
             .map((content, index) => {
               return (
                 <div className='mb-10 flex-r-ac'>
@@ -56,27 +57,15 @@ const MyModal = ({
                     <label className='font-18'>{content.title}</label>
                   </div>
                   {content.dropdown && !content.dropdown?.dynamic && (
-                    <FormControl className='bdr-grey-1 ml-10 w-200 p-10'>
-                      <InputLabel id='demo-simple-select-disabled-label'>
-                        {content.title}
-                      </InputLabel>
-                      <Select
-                        value={modalForm[index]?.[content.id]}
-                        onChange={(e) => {
-                          const modalFormCopy = [...modalForm];
-                          modalFormCopy[index] = {
-                            ...content,
-                            [content.id]: e.target.value,
-                          };
-                          setModalForm(modalFormCopy);
-                        }}
-                      >
-                        {Array.isArray(content.dropdown?.dropdown) &&
-                          content.dropdown?.dropdown?.map((e) => (
-                            <MenuItem value={e}>{e}</MenuItem>
-                          ))}
-                      </Select>
-                    </FormControl>
+                    <StaticDropDown
+                      modalForm={modalForm}
+                      modalMode={modalMode}
+                      setModalForm={setModalForm}
+                      dropdown={content.dropdown}
+                      content={content}
+                      index={index}
+                      tableDetails={tableDetails}
+                    />
                   )}
 
                   {content.dropdown?.dynamic && (
@@ -90,14 +79,16 @@ const MyModal = ({
                       tableDetails={tableDetails}
                     />
                   )}
-
-                  <DynamicCheckBox
-                    modalForm={modalForm}
-                    modalMode={modalMode}
-                    setModalForm={setModalForm}
-                    content={content}
-                    index={index}
-                  />
+                  {content.checkbox && (
+                    <DynamicCheckBox
+                      modalForm={modalForm}
+                      modalMode={modalMode}
+                      setModalForm={setModalForm}
+                      content={content}
+                      tableDetails={tableDetails}
+                      index={index}
+                    />
+                  )}
 
                   {!content.dropdown && !content.checkbox && (
                     <Input
@@ -113,9 +104,17 @@ const MyModal = ({
                       disabled={
                         (modalMode === "UPDATE" &&
                           (content.pk || content.uk)) ||
-                        tableDetails.dependency?.find((e) =>
-                          e.children.includes(content.id)
-                        )
+                        tableDetails.dependency?.find(
+                          (e) => e.children.includes(content.id) && e.disabled
+                        ) ||
+                        (tableDetails.dependency &&
+                          !tableDetails.dependency?.find(
+                            (e) =>
+                              e.children.includes(content.id) &&
+                              [...modalForm].find(
+                                (el) => el[e.parent] === e.value
+                              )
+                          ))
                       }
                       className='bdr-grey-1 ml-10 w-200 p-10'
                     />
@@ -148,6 +147,50 @@ const MyModal = ({
   );
 };
 
+const StaticDropDown = ({
+  content,
+  index,
+  modalForm,
+  setModalForm,
+  tableDetails,
+}) => {
+  const [selected, setSelected] = useState("");
+
+  useEffect(() => {
+    if (selected.length > 0) {
+      const modalFormCopy = [
+        ...modalForm
+          ?.filter((v, i, a) => a.findIndex((t) => t.id === v.id) === i)
+          ?.filter((e) => !tableDetails.whitelist?.includes(e.id)),
+      ];
+      modalFormCopy[index] = {
+        ...content,
+        [content.id]: selected,
+      };
+      setModalForm(modalFormCopy);
+    }
+  }, [selected]);
+
+  return (
+    <FormControl className='bdr-grey-1 ml-10 w-200 p-10'>
+      <InputLabel id='demo-simple-select-disabled-label'>
+        {content.title}
+      </InputLabel>
+      <Select
+        value={selected}
+        onChange={(e) => {
+          setSelected(e.target.value);
+        }}
+      >
+        {Array.isArray(content.dropdown?.dropdown) &&
+          content.dropdown?.dropdown?.map((e) => (
+            <MenuItem value={e}>{e}</MenuItem>
+          ))}
+      </Select>
+    </FormControl>
+  );
+};
+
 const DynamicDropDown = ({
   dropdown,
   content,
@@ -174,9 +217,17 @@ const DynamicDropDown = ({
       const dropdownValue = dropDownData.find(
         (e) => e[dropdown?.displayKey] === selected
       );
-      const modalFormCopy = [...modalForm];
+      const modalFormCopy = [
+        ...modalForm
+          ?.filter((v, i, a) => a.findIndex((t) => t.id === v.id) === i)
+          ?.filter((e) => !tableDetails.whitelist?.includes(e.id)),
+      ];
 
-      if (tableDetails.dependency?.find((e) => e.parent === content.id)) {
+      if (
+        tableDetails.dependency?.find(
+          (e) => e.parent === content.id && !e.value
+        )
+      ) {
         let newMF = modalFormCopy.map((mf) => {
           if (Object.keys(dropdownValue).includes(mf.id)) {
             console.log(mf.id, dropdownValue[mf.id]);
@@ -219,7 +270,13 @@ const DynamicDropDown = ({
   ) : null;
 };
 
-const DynamicCheckBox = ({ content, index, modalForm, setModalForm }) => {
+const DynamicCheckBox = ({
+  content,
+  index,
+  modalForm,
+  setModalForm,
+  tableDetails,
+}) => {
   const [dropDownData, setDropDownData] = useState([]);
   const [checked, setChecked] = useState([]);
 
@@ -233,12 +290,18 @@ const DynamicCheckBox = ({ content, index, modalForm, setModalForm }) => {
   }, []);
 
   useEffect(() => {
-    const modalFormCopy = [...modalForm];
-    modalFormCopy[index] = {
-      ...content,
-      [content.id]: checked,
-    };
-    setModalForm(modalFormCopy);
+    if (checked.length > 0) {
+      const modalFormCopy = [
+        ...modalForm
+          ?.filter((v, i, a) => a.findIndex((t) => t.id === v.id) === i)
+          ?.filter((e) => !tableDetails.whitelist?.includes(e.id)),
+      ];
+      modalFormCopy[index] = {
+        ...content,
+        [content.id]: checked,
+      };
+      setModalForm(modalFormCopy);
+    }
   }, [checked]);
 
   return content.checkbox ? (
