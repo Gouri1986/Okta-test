@@ -14,7 +14,6 @@ const TableBody = ({
   setModalMode,
   setModalOpen,
   setModalForm,
-  modalForm,
   tableDetails,
   deleteDataToTable,
 }) => {
@@ -68,27 +67,7 @@ const TableBody = ({
           <div className='flex-r-ac pos-ab r-20 t-20'>
             <div
               onClick={() => {
-                setModalForm(
-                  Object.keys(datum).map((el) => {
-                    return {
-                      [el]: datum[el],
-                      id: el,
-                      pk: tableDetails.pk?.includes(el),
-                      uk: tableDetails.uk?.includes(el),
-                      dropdown: tableDetails.dropdown?.find((ele) => {
-                        return ele.name === el;
-                      }),
-                      checkbox: tableDetails.checkbox?.find((ele) => {
-                        return ele.name === el;
-                      }),
-                      json: tableDetails.json?.find((ele) => {
-                        return ele.name === el;
-                      }),
-                      title: getSpacedDisplayName(el),
-                    };
-                  })
-                );
-                deleteDataToTable();
+                deleteDataToTable(datum);
               }}
             >
               <TrashIcon />

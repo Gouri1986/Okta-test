@@ -41,13 +41,12 @@ const MyModal = ({
   updateDataToTable,
   tableDetails,
 }) => {
-  console.log(modalForm);
   return (
     <Modal open={modalOpen} onClose={() => setModalOpen(false)}>
       <div className='flex-r-jc-ac'>
         <div
           style={{ backgroundColor: "white" }}
-          className='mr-20 ml-20 flex-c-jc-ac  wvw-80 overflow-y-scroll p-50'
+          className='m-50 flex-c-jc-ac  wp-100 hvh-80 overflow-y-scroll p-50'
         >
           {modalForm
             ?.filter((v, i, a) => a.findIndex((t) => t.id === v.id) === i)
@@ -93,32 +92,14 @@ const MyModal = ({
                   )}
 
                   {!content.dropdown && !content.checkbox && (
-                    <Input
-                      value={modalForm[index]?.[content.id]}
-                      onChange={(e) => {
-                        const modalFormCopy = [...modalForm];
-                        modalFormCopy[index] = {
-                          ...content,
-                          [content.id]: e.target.value,
-                        };
-                        setModalForm(modalFormCopy);
-                      }}
-                      disabled={
-                        (modalMode === "UPDATE" &&
-                          (content.pk || content.uk)) ||
-                        tableDetails.dependency?.find(
-                          (e) => e.children.includes(content.id) && e.disabled
-                        ) ||
-                        (tableDetails.dependency &&
-                          !tableDetails.dependency?.find(
-                            (e) =>
-                              e.children.includes(content.id) &&
-                              [...modalForm].find(
-                                (el) => el[e.parent] === e.value
-                              )
-                          ))
-                      }
-                      className='bdr-grey-1 ml-10 w-200 p-10'
+                    <ModalInput
+                      modalForm={modalForm}
+                      modalMode={modalMode}
+                      setModalForm={setModalForm}
+                      dropdown={content.dropdown}
+                      content={content}
+                      index={index}
+                      tableDetails={tableDetails}
                     />
                   )}
                 </div>
@@ -146,6 +127,52 @@ const MyModal = ({
         </div>
       </div>
     </Modal>
+  );
+};
+
+const ModalInput = ({
+  modalForm,
+  setModalForm,
+  modalMode,
+  content,
+  tableDetails,
+  index,
+}) => {
+  return (
+    <Input
+      value={
+        modalForm
+          ?.filter((v, i, a) => a.findIndex((t) => t.id === v.id) === i)
+          ?.filter((e) => !tableDetails.whitelist?.includes(e.id))[index]?.[
+          content.id
+        ]
+      }
+      onChange={(e) => {
+        const modalFormCopy = [
+          ...modalForm
+            ?.filter((v, i, a) => a.findIndex((t) => t.id === v.id) === i)
+            ?.filter((e) => !tableDetails.whitelist?.includes(e.id)),
+        ];
+        modalFormCopy[index] = {
+          ...content,
+          [content.id]: e.target.value,
+        };
+        setModalForm(modalFormCopy);
+      }}
+      disabled={
+        (modalMode === "UPDATE" && (content.pk || content.uk)) ||
+        tableDetails.dependency?.find(
+          (e) => e.children.includes(content.id) && e.disabled
+        ) ||
+        (tableDetails.dependency &&
+          !tableDetails.dependency?.find(
+            (e) =>
+              e.children.includes(content.id) &&
+              [...modalForm].find((el) => el[e.parent] === e.value)
+          ))
+      }
+      className='bdr-grey-1 ml-10 w-200 p-10'
+    />
   );
 };
 
@@ -349,15 +376,12 @@ const Dashboard = () => {
 
   useEffect(() => {
     activeEndPoint.length > 0 && getTable(activeEndPoint);
-  }, [refresh, location.pathname]);
-
-  useEffect(() => {
     let tableDetailsFromRoutes = iamRoutes.filter(
       (e) => e.path === location.pathname.replace("/iam", "")
     );
     tableDetailsFromRoutes.length > 0 &&
       setTableDetails(tableDetailsFromRoutes[0]);
-  }, [location.pathname]);
+  }, [refresh, location.pathname]);
 
   useEffect(() => {
     if (modalMode === "ADD") {
@@ -391,7 +415,7 @@ const Dashboard = () => {
 
   const updateDataToTable = async () => {
     const arrayWithRequiredValues = modalForm.map(
-      ({ id, title, ...rest }) => rest
+      ({ id, title, checkbox, dropdown, uk, pk, json, ...rest }) => rest
     );
     const reducedToOneObject = arrayWithRequiredValues.reduce((prev, cur) => ({
       ...prev,
@@ -402,16 +426,8 @@ const Dashboard = () => {
     getTable(activeEndPoint);
   };
 
-  const deleteDataToTable = async () => {
-    const arrayWithRequiredValues = modalForm.map(
-      ({ id, title, ...rest }) => rest
-    );
-    const reducedToOneObject = arrayWithRequiredValues.reduce((prev, cur) => ({
-      ...prev,
-      ...cur,
-    }));
-    await deleteIAMTableData(activeEndPoint, user, reducedToOneObject);
-    setModalOpen(false);
+  const deleteDataToTable = async (data) => {
+    await deleteIAMTableData(activeEndPoint, user, data);
     getTable(activeEndPoint);
   };
 
@@ -476,17 +492,19 @@ const Dashboard = () => {
         </div>
       )}
 
-      <MyModal
-        modalOpen={modalOpen}
-        modalForm={modalForm}
-        modalMode={modalMode}
-        addDataToTable={addDataToTable}
-        setModalOpen={setModalOpen}
-        updateDataToTable={updateDataToTable}
-        setModalForm={setModalForm}
-        setModalMode={setModalMode}
-        tableDetails={tableDetails}
-      />
+      {tableContents.data?.length > 0 && (
+        <MyModal
+          modalOpen={modalOpen}
+          modalForm={modalForm}
+          modalMode={modalMode}
+          addDataToTable={addDataToTable}
+          setModalOpen={setModalOpen}
+          updateDataToTable={updateDataToTable}
+          setModalForm={setModalForm}
+          setModalMode={setModalMode}
+          tableDetails={tableDetails}
+        />
+      )}
     </div>
   );
 };
