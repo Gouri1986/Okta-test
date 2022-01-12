@@ -19,7 +19,7 @@ $sizes:-1,
 ***********************************************************/
 @each $size in $sizes {
     .bdr-r-#{$size}{
-        border-radius: #{$size}+'%';
+        border-radius: #{$size}px;
     }
 }
 

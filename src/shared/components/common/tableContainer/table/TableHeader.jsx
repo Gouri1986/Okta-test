@@ -23,7 +23,7 @@ const TableHeader = ({ header, tableData, setTableContents }) => {
   };
 
   return (
-    <tr className={"flex-r-ac pt-7 pr-30 pb-7 pl-30 titan-table-header"}>
+    <tr className={"flex-r-ac pt-7 pr-30 pb-7 pl-30 titan-table-header bdr-buttom-primary-1"}>
       {header?.map((item) => (
         <th onClick={() => sortTable(item.id)}>
           <span>{item.title}</span>{" "}
