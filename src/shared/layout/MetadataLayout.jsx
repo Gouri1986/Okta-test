@@ -1,5 +1,6 @@
 import React from "react";
 import Navbar from "../components/common/drawer/navDrawer/NavDrawer";
+import Header from "../components/common/header/Header";
 import ReportDrawer from "../components/common/drawer/reportDrawer/ReportDrawer";
 
 const Layout = (props) => {
@@ -14,7 +15,7 @@ const Layout = (props) => {
   } = props;
 
   return (
-    <div className='flex-r width100'>
+    <div className='flex-r wp-100'>
       <div>
         <Navbar
           setActiveEndPoint={setActiveEndPoint}
@@ -23,7 +24,10 @@ const Layout = (props) => {
           onClick={getTable}
         />
       </div>
-      <div className='main-ly wp-100 height100vh pl-20 pr-20 flex-c overflow-x-scroll overflow-y-scroll'>
+      <div className='main-ly wp-100 height100vh ml-30 mr-30 mt-30 flex-c overflow-x-scroll overflow-y-scroll'>
+        <div>
+          <Header />
+        </div>
         <div className='table-parent overflow-x-auto overflow-y-scroll width100'>
           {children}
         </div>
