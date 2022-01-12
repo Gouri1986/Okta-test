@@ -43,7 +43,7 @@ const TableBody = ({
           onClick={() => {
             onRowClick(datum);
           }}
-          className='pos-rel flex-r-ac pt-20 pb-20 pr-25 pl-25 mt-2 mb-2 cp titan-table-rows'
+          className='pos-rel flex-r-ac pt-20 pb-20 pr-25 pl-25 mt-2 mb-2 cp titan-table-rows bdr-buttom-primary-1'
         >
           <div class='pos-ab pl-25 mb-35 cp table-checkbox-input-container'>
             <input
