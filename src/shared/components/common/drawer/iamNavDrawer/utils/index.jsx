@@ -10,7 +10,7 @@ export const iamDrawer = () => {
   return {
     title: "",
     item: IAMRoutes.map((route) => ({
-      title: spacedWords(route.path.replace(/-/g, " ").replace(/\//, "")),
+      title: route.pageName,
       path: route.path,
       Icon: drawerSectionIcons.AWS,
       apiEndpoint: route.apiEndpoint,
