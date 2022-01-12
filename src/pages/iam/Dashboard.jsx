@@ -25,6 +25,8 @@ import MenuItem from "@mui/material/MenuItem";
 import FormHelperText from "@mui/material/FormHelperText";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
+import { iamDrawer } from "../../shared/components/common/drawer/iamNavDrawer/utils";
+import { getApiEndpointNameFromRoutes } from "../../shared/utils/getApiEndpointFromRoutes";
 
 // Import The components Here
 
@@ -439,38 +441,40 @@ const Dashboard = () => {
           refresh={refresh}
         />
       </div>
-      <div className='main-ly wp-100 height100vh pl-20 pr-20 flex-c overflow-x-scroll overflow-y-scroll'>
-        <div className='table-option-header mt-30 bg-lightgrey flex-r-ac flex-jc-sp-btn  jc-end'>
-          <div className='flex-r-ac'>
-            <div
-              onClick={() => {
-                setModalOpen(true);
-                setModalMode("ADD");
-              }}
-              className='m-15 bg-w p-10 br-10 cp'
-            >
-              <AddIcon />
+      {tableContents.data?.length > 0 && (
+        <div className='main-ly wp-100 height100vh pl-20 pr-20 flex-c overflow-x-scroll overflow-y-scroll'>
+          <div className='table-option-header mt-30 bg-lightgrey flex-r-ac flex-jc-sp-btn  jc-end'>
+            <div className='flex-r-ac'>
+              <div
+                onClick={() => {
+                  setModalOpen(true);
+                  setModalMode("ADD");
+                }}
+                className='m-15 bg-w p-10 br-10 cp'
+              >
+                <AddIcon />
+              </div>
+            </div>
+          </div>
+          <div className='main-ly wp-100 height100vh pl-20 pr-20 flex-c overflow-x-scroll overflow-y-scroll'>
+            <div className='table-parent overflow-x-auto overflow-y-scroll wp-100'>
+              <TitanTable
+                report={report}
+                selectedRow={selectedRow}
+                tableData={tableContents}
+                setTableContents={setTableContents}
+                status={true}
+                setModalMode={setModalMode}
+                setModalOpen={setModalOpen}
+                modalForm={modalForm}
+                setModalForm={setModalForm}
+                tableDetails={tableDetails}
+                deleteDataToTable={deleteDataToTable}
+              />
             </div>
           </div>
         </div>
-        <div className='main-ly wp-100 height100vh pl-20 pr-20 flex-c overflow-x-scroll overflow-y-scroll'>
-          <div className='table-parent overflow-x-auto overflow-y-scroll wp-100'>
-            <TitanTable
-              report={report}
-              selectedRow={selectedRow}
-              tableData={tableContents}
-              setTableContents={setTableContents}
-              status={true}
-              setModalMode={setModalMode}
-              setModalOpen={setModalOpen}
-              modalForm={modalForm}
-              setModalForm={setModalForm}
-              tableDetails={tableDetails}
-              deleteDataToTable={deleteDataToTable}
-            />
-          </div>
-        </div>
-      </div>
+      )}
 
       <MyModal
         modalOpen={modalOpen}

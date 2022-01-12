@@ -65,7 +65,11 @@ const Login = () => {
             setLoginForm({ ...loginForm, password: e.target.value })
           }
         />
-        <Button onClick={authenticate} variant='contained' className="bg-primary">
+        <Button
+          onClick={authenticate}
+          variant='contained'
+          className='bg-primary'
+        >
           Login
         </Button>
       </div>

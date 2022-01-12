@@ -21,11 +21,7 @@ export const appRoutes = [
   },
   {
     path: "/",
-    element: (
-      <RequireAuth>
-        <HomeDashboard />
-      </RequireAuth>
-    ),
+    element: <Redirect to='/environmentcatelogue/' />,
   },
   {
     path: "/iam/*",
