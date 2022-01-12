@@ -112,30 +112,11 @@ export const DashboardIcon = () => (
 );
 
 export const DrawerArrow = ({ right }) => {
-  return (
-    <svg
-      width='20'
-      height='17'
-      viewBox='0 0 20 17'
-      fill='none'
-      className={right ? "drawer-right-arrow" : "drawer-left-arrow"}
-      xmlns='http://www.w3.org/2000/svg'
-    >
-      <path
-        d='M1.8623 8.28711H17.6123'
-        stroke='white'
-        stroke-width='2.8'
-        stroke-linecap='round'
-        stroke-linejoin='round'
-      />
-      <path
-        d='M8.2153 14.6129L1.8623 8.28791L8.2153 1.96191'
-        stroke='white'
-        stroke-width='2.8'
-        stroke-linecap='round'
-        stroke-linejoin='round'
-      />
-    </svg>
+  return (<svg width="30" height="31" viewBox="0 0 30 31" fill="none" xmlns="http://www.w3.org/2000/svg" className={right ? "drawer-left-arrow" : "drawer-right-arrow"}>
+  <rect width="30" height="30" rx="15" transform="matrix(0 1 1 0 0 0.838867)" fill="#110DEF"/>
+  <path d="M20.8125 16.0442L9.5625 16.0442" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M16.2751 20.5626L20.8126 16.0446L16.2751 11.5259" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+  </svg>
   );
 };
 
