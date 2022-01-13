@@ -5,6 +5,61 @@ import {
 import { PencilIcon, TrashIcon } from "./assets";
 import { truncatedDesc } from "./utils";
 
+// const RowAction=()=>{
+//   return(
+//     <div className='flex-r-ac pos-ab r-20 t-20'>
+//     <div
+//       onClick={() => {
+//         deleteDataToTable(datum);
+//       }}
+//     >
+//       <TrashIcon />
+//     </div>
+//     <div
+//       onClick={() => {
+//         setModalMode("UPDATE");
+//         setModalOpen(true);
+//         setModalForm(
+//           Object.keys(datum).map((el) => {
+//             return {
+//               [el]: datum[el],
+//               id: el,
+//               pk: tableDetails.pk?.includes(el),
+//               uk: tableDetails.uk?.includes(el),
+//               dropdown: tableDetails.dropdown?.find((ele) => {
+//                 return ele.name === el;
+//               }),
+//               checkbox: tableDetails.checkbox?.find((ele) => {
+//                 return ele.name === el;
+//               }),
+//               json: tableDetails.json?.find((ele) => {
+//                 return ele.name === el;
+//               }),
+//               title: getSpacedDisplayName(el),
+//             };
+//           })
+//         );
+//       }}
+//       className='ml-15'
+//     >
+//       <PencilIcon />
+//     </div>
+//   </div>
+//   )
+// }
+
+// const RowCheckBox=()=>{
+//   return(
+//        <div class='pos-ab pl-25 mb-35 cp table-checkbox-input-container'>
+//             <input
+//               type='checkbox'
+//               checked={selectedRow.find((e) => e.id === datum.id)}
+//             />
+//             <span class='h-20 w-20 no-bdr checkmark'></span>
+//           </div>
+//   )
+// }
+
 const TableBody = ({
   rowData,
   header,
@@ -44,13 +99,6 @@ const TableBody = ({
           }}
           className='pos-rel flex-r-ac pt-20 pb-20 pr-25 pl-25 mt-2 mb-2 cp titan-table-rows bdr-buttom-primary-1'
         >
-          <div class='pos-ab pl-25 mb-35 cp table-checkbox-input-container'>
-            <input
-              type='checkbox'
-              checked={selectedRow.find((e) => e.id === datum.id)}
-            />
-            <span class='h-20 w-20 no-bdr checkmark'></span>
-          </div>
           {header?.map((item) =>
             status && item.id === "compliance" ? (
               <StatusColumn datum={datum} item={item} />
@@ -64,44 +112,6 @@ const TableBody = ({
               </td>
             )
           )}
-          <div className='flex-r-ac pos-ab r-20 t-20'>
-            <div
-              onClick={() => {
-                deleteDataToTable(datum);
-              }}
-            >
-              <TrashIcon />
-            </div>
-            <div
-              onClick={() => {
-                setModalMode("UPDATE");
-                setModalOpen(true);
-                setModalForm(
-                  Object.keys(datum).map((el) => {
-                    return {
-                      [el]: datum[el],
-                      id: el,
-                      pk: tableDetails.pk?.includes(el),
-                      uk: tableDetails.uk?.includes(el),
-                      dropdown: tableDetails.dropdown?.find((ele) => {
-                        return ele.name === el;
-                      }),
-                      checkbox: tableDetails.checkbox?.find((ele) => {
-                        return ele.name === el;
-                      }),
-                      json: tableDetails.json?.find((ele) => {
-                        return ele.name === el;
-                      }),
-                      title: getSpacedDisplayName(el),
-                    };
-                  })
-                );
-              }}
-              className='ml-15'
-            >
-              <PencilIcon />
-            </div>
-          </div>
         </tr>
       ))}
     </div>
