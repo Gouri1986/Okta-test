@@ -10,7 +10,7 @@ function Header() {
                     <p className='f-40 fw-600 fc-primary lh-1-0'>Customer Master</p>
                     <p className='f-14 fw-400 fc-primary ml-3'>Welcome To Customer Master</p>
                 </div>
-                <div className='flex-r-ac wp-22 flex-jc-sp-btn'>
+                <div className='flex-r-ac wp-21 flex-jc-sp-btn'>
                     <div className='flex-r-ac'><HelpIcon /></div>
                     <div className='pos-rel mr-15 flex-r-ac'>
                         <NotificationIcon />
