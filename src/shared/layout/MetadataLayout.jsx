@@ -28,8 +28,9 @@ const Layout = (props) => {
         <div>
           <Header />
         </div>
-        <div className='table-parent overflow-x-auto overflow-y-scroll wp-100'>
-          {children}
+        <div className='bg-white bdr-r-10 table-parent  wp-100'>
+          <div>Test</div>
+          <div>{children}</div>
         </div>
         <div>
           <ReportDrawer report={report} showReport={showReport} />

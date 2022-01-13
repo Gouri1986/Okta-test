@@ -91,7 +91,7 @@ const TableBody = ({
   };
 
   return (
-    <div className='table-row-container'>
+    <div className='table-row-container overflow-y-scroll scroll-style'>
       {rowData?.map((datum) => (
         <tr
           onClick={() => {

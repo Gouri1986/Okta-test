@@ -35,7 +35,7 @@
   justify-content: space-evenly;
 }
 .titan-table-rows:last-child {
- border: none;
+  border: none;
 }
 
 .table-cell {
@@ -76,7 +76,7 @@
   line-height: 1em;
   height: 2em;
   overflow: hidden;
-  background:$danger-color;
+  background: $danger-color;
   border-radius: 100px;
   text-align: center;
   padding: 5px 10px;
@@ -154,4 +154,8 @@
 .titan-table-fill {
   width: 100%;
   color: $primary-font-color;
+}
+
+.scroll-style::-webkit-scrollbar-track {
+  background-color: yellow;
 }
