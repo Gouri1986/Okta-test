@@ -28,9 +28,8 @@ const Layout = (props) => {
         <div>
           <Header />
         </div>
-        <div className='bg-white bdr-r-10 table-parent  wp-100'>
-          <div>Test</div>
-          <div>{children}</div>
+        <div className='bg-white bdr-r-10 table-parent wp-100'>
+          {children}
         </div>
         <div>
           <ReportDrawer report={report} showReport={showReport} />

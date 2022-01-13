@@ -1,5 +1,5 @@
 import React from "react";
-import "./filter.css";
+import "./filter.scss";
 import { FilterIcon } from "./assets";
 import { FilterDropDown } from "./filterDropDown";
 import { tableData as tbData } from "../../../db";
