@@ -21,6 +21,9 @@ $sizes:-1,
     .bdr-r-#{$size}{
         border-radius: #{$size}px;
     }
+    .bdr-rp-#{$size}{
+        border-radius: #{$size}+'%';
+    }
 }
 
 @each $size1 in $sizes {

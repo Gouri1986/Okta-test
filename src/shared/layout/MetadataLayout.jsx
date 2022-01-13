@@ -24,11 +24,11 @@ const Layout = (props) => {
           onClick={getTable}
         />
       </div>
-      <div className='main-ly wp-100 height100vh ml-30 mr-30 mt-30 flex-c overflow-x-scroll overflow-y-scroll'>
+      <div className='main-ly wp-100 hvh-100 pl-38 pr-30 pt-31 flex-c overflow-x-scroll overflow-y-scroll'>
         <div>
           <Header />
         </div>
-        <div className='table-parent overflow-x-auto overflow-y-scroll width100'>
+        <div className='table-parent overflow-x-auto overflow-y-scroll wp-100'>
           {children}
         </div>
         <div>

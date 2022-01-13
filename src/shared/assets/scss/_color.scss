@@ -14,17 +14,23 @@
 /**********************************************************
                     Background Color
 ***********************************************************/
+// theme blue
 .bg-primary{
     background-color: $primary-color;
 }
+// theme grey
 .bg-secondary{
     background-color: $secondary-color;
 }
+// theme navy blue
 .bg-tertiary{
     background-color: $tertiary-color;
 }
 .bg-white{
     background-color: $white;
+}
+.bg-black{
+    background-color: $black;
 }
 
 /**********************************************************
