@@ -1,7 +1,7 @@
 /***********************************************************
                     Import other style files 
  ***********************************************************/
-@import "./shared/assets/scss/styles.scss";
+// @import "./shared/assets/scss/styles.scss";
 
 /************************************************************
                      Global styles 
@@ -16,7 +16,8 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   font-family:"Poppins", sans-serif;
-  background-color:  $secondary-color;
+  // background-color:  $secondary-color;
+  background-color: #F2F2F2;
 }
 
 /**************************************************************
