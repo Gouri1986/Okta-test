@@ -8,6 +8,7 @@ import { getApiEndpointNameFromRoutes } from "../../../shared/utils/getApiEndpoi
 import { useSelector } from "react-redux";
 import { getSpacedDisplayName } from "../../../shared/utils/table";
 import { MetadataLayout } from "../../../shared/layout";
+import TreeView from "../../../shared/components/common/treeView/TreeView.jsx"
 
 const Dashboard = () => {
   const { user } = useSelector((state) => state.userReducer);
@@ -72,6 +73,7 @@ const Dashboard = () => {
       report={report}
       showReport={showReport}
     >
+      <TreeView />
       <Table
         report={report}
         selectedRow={selectedRow}
