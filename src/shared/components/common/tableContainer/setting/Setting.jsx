@@ -1,10 +1,10 @@
 import React from "react";
-import { RefreshIcon } from "./assets";
+import { SettingIcon } from "./assets";
 
 const Setting = () => {
   return (
     <div>
-      <RefreshIcon />
+      <SettingIcon />
     </div>
   );
 };

@@ -16,7 +16,7 @@
   input:checked ~ .col-checkmark {
     border-radius: 3px;
     border: none;
-    background-color: $LightBlue;
+    background-color: $primary-color;
   }
   input:checked ~ .col-checkmark:after {
     display: block;
