@@ -13,26 +13,30 @@
 .titan-table-header {
   display: flex;
   flex-direction: row;
+  background-color: white;
   justify-content: space-evenly;
-  th {
-    font-size: 15px;
-    text-align: center;
-    line-height: 28px;
-    color: $primary-font-color;
-    display: inline-flex;
-    align-items: center;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 200px;
-    padding-inline: 20px;
-  }
+}
+
+.table-header-cell {
+  font-size: 15px;
+  text-align: center;
+  line-height: 28px;
+  color: $primary-font-color;
+  display: inline-flex;
+  align-items: center;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  justify-content: center;
+  width: fit-content;
+  white-space: nowrap;
 }
 
 /* Table Rows */
 .titan-table-rows {
-  justify-content: space-evenly;
+  display: flex;
+  flex-direction: row;
 }
 .titan-table-rows:last-child {
   border: none;
@@ -41,8 +45,6 @@
 .table-cell {
   color: $primary-font-color;
   text-align: center;
-  height: 50px;
-  width: 200px;
 }
 
 .table-data-cell {
@@ -50,7 +52,6 @@
   line-height: 1em;
   height: 2em;
   overflow: hidden;
-  width: 200px;
   word-wrap: break-word;
   white-space: pre-wrap;
   color: $primary-font-color;
@@ -67,7 +68,6 @@
   border-radius: 100px;
   text-align: center;
   padding: 5px 10px;
-  width: 200px;
   color: white;
 }
 
@@ -80,7 +80,6 @@
   border-radius: 100px;
   text-align: center;
   padding: 5px 10px;
-  width: 200px;
   color: white;
 }
 
@@ -154,8 +153,4 @@
 .titan-table-fill {
   width: 100%;
   color: $primary-font-color;
-}
-
-.scroll-style::-webkit-scrollbar-track {
-  background-color: yellow;
 }

@@ -60,6 +60,24 @@ import { truncatedDesc } from "./utils";
 //   )
 // }
 
+// const StatusColumn = ({ datum, item }) => {
+//   return (
+//     <td className={"table-cell"} title={datum[item.id]}>
+//       <span
+//         className={
+//           datum[item.id] === "compliant"
+//             ? "table-data-cell-status"
+//             : "table-data-cell-status-neg"
+//         }
+//       >
+//         {datum[item.id]?.length > 15
+//           ? truncatedDesc(datum[item.id])
+//           : datum[item.id]}
+//       </span>
+//     </td>
+//   );
+// };
+
 const TableBody = ({
   rowData,
   header,
@@ -72,46 +90,27 @@ const TableBody = ({
   tableDetails,
   deleteDataToTable,
 }) => {
-  const StatusColumn = ({ datum, item }) => {
-    return (
-      <td className={"table-cell"} title={datum[item.id]}>
-        <span
-          className={
-            datum[item.id] === "compliant"
-              ? "table-data-cell-status"
-              : "table-data-cell-status-neg"
-          }
-        >
-          {datum[item.id]?.length > 15
-            ? truncatedDesc(datum[item.id])
-            : datum[item.id]}
-        </span>
-      </td>
-    );
-  };
-
   return (
-    <div className='table-row-container overflow-y-scroll scroll-style'>
-      {rowData?.map((datum) => (
+    <div className='flex-r-ac flex-jc-sp-evn'>
+      {header?.map((item) => (
         <tr
-          onClick={() => {
-            onRowClick(datum);
-          }}
-          className='pos-rel flex-r-ac pt-20 pb-20 pr-25 pl-25 mt-2 mb-2 cp titan-table-rows bdr-buttom-primary-1'
+          className={`w-${
+            rowData.find((e) => e[item.id]?.length > 30)
+              ? 400
+              : item.title?.length > 25
+              ? 400
+              : item.title?.length > 20
+              ? 300
+              : 200
+          } pos-rel flex-c-ac titan-table-rows bdr-button-primary-1 p-15`}
         >
-          {header?.map((item) =>
-            status && item.id === "compliance" ? (
-              <StatusColumn datum={datum} item={item} />
-            ) : (
-              <td className={"table-cell"} title={datum[item.id]}>
-                <span className={"table-data-cell"}>
-                  {datum[item.id]?.length > 15
-                    ? truncatedDesc(datum[item.id])
-                    : datum[item.id]}
-                </span>
+          {rowData?.map((datum) => {
+            return (
+              <td className={` bdr-primary table-cell p-15`}>
+                <span className={"table-data-cell"}>{datum[item.id]}</span>
               </td>
-            )
-          )}
+            );
+          })}
         </tr>
       ))}
     </div>

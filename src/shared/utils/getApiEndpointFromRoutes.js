@@ -21,3 +21,9 @@ export const getApiEndpointNameFromRoutes = (routes, location, mainRoute) => {
     3
   )?.[0]?.apiEndpoint;
 };
+
+export const getTableTitleNameFromRoutes = (routes, location, mainRoute) => {
+  return weedoutArrays(getExactPathArray(routes, location, mainRoute)).flat(
+    3
+  )?.[0]?.title;
+};

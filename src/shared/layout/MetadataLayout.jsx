@@ -1,7 +1,7 @@
 import React from "react";
 import Navbar from "../components/common/drawer/navDrawer/NavDrawer";
 import Header from "../components/common/header/Header";
-import ReportDrawer from "../components/common/drawer/reportDrawer/ReportDrawer";
+import "./metadataLayout.scss";
 
 const Layout = (props) => {
   const {
@@ -10,12 +10,12 @@ const Layout = (props) => {
     refresh,
     getTable,
     children,
-    report,
-    showReport,
+    tableData,
+    tableTitle,
   } = props;
 
   return (
-    <div className='flex-r wp-100'>
+    <div className='flex-r pos-rel'>
       <div>
         <Navbar
           setActiveEndPoint={setActiveEndPoint}
@@ -24,16 +24,18 @@ const Layout = (props) => {
           onClick={getTable}
         />
       </div>
-      <div className='main-ly wp-100 hvh-100 pl-38 pr-30 pt-31 flex-c overflow-x-scroll overflow-y-scroll'>
-        <div>
-          <Header />
+      <div className='wp-93 hvh-100 flex-1 flex-c '>
+        <div className=' mt-50 mr-50 ml-50'>
+          <Header tableTitle={tableTitle} />
         </div>
-        <div className='bg-white bdr-r-10 table-parent  wp-100'>
-          <div>Test</div>
-          <div>{children}</div>
-        </div>
-        <div>
-          <ReportDrawer report={report} showReport={showReport} />
+        <div className='bg-white bdr-r-10 overflow-x-scroll m-50 metadata-table-container'>
+          {tableData.data?.length > 0 ? (
+            children
+          ) : (
+            <div className='wp-100 hp-100 flex-r-jc-ac p-50'>
+              <span className='f-20 fw-500'>No data to display</span>
+            </div>
+          )}
         </div>
       </div>
     </div>

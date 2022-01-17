@@ -1,7 +1,36 @@
 // Import fatcolumns array to use it
 // to  check if the cloumn require bigger width
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { TableHeaderSortDownArrow } from "./assets";
+
+const TableHeaderCell = ({
+  index,
+  tableData,
+  sort,
+  sortTable,
+  item,
+  thWidths,
+}) => {
+  return (
+    <th
+      className={` table-header-cell w-${
+        tableData.data.find((e) => e[item.id]?.length > 30)
+          ? 400
+          : item.title.length > 25
+          ? 400
+          : item.title.length > 20
+          ? 300
+          : 200
+      } p-15`}
+      onClick={() => sortTable(item.id)}
+    >
+      <span>{item.title}</span>{" "}
+      <TableHeaderSortDownArrow
+        up={sort.id === item.id && sort.dir === "asc"}
+      />
+    </th>
+  );
+};
 
 const TableHeader = ({ header, tableData, setTableContents }) => {
   const [sort, setSort] = useState({ id: "", dir: "" });
@@ -23,14 +52,20 @@ const TableHeader = ({ header, tableData, setTableContents }) => {
   };
 
   return (
-    <tr className={"flex-r-ac pt-7 pr-30 pb-7 pl-30 titan-table-header bdr-buttom-primary-1"}>
-      {header?.map((item) => (
-        <th onClick={() => sortTable(item.id)}>
-          <span>{item.title}</span>{" "}
-          <TableHeaderSortDownArrow
-            up={sort.id === item.id && sort.dir === "asc"}
-          />
-        </th>
+    <tr
+      className={
+        "pos-sk z-1 t-0 flex-r-ac titan-table-header bdr-buttom-primary-1"
+      }
+    >
+      {header?.map((item, index) => (
+        <TableHeaderCell
+          header={header}
+          sort={sort}
+          index={index}
+          item={item}
+          sortTable={sortTable}
+          tableData={tableData}
+        />
       ))}
     </tr>
   );

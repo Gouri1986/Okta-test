@@ -1,9 +1,9 @@
 import { Logo } from "./assets";
 
-const DrawerHeader = ({ collapsed }) => {
+const DrawerHeader = () => {
   return (
-    <div className="mt-30">
-      <Logo collapsed={collapsed} />
+    <div className='mt-30'>
+      <Logo />
     </div>
   );
 };

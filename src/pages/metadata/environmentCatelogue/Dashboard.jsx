@@ -4,7 +4,10 @@ import "./style.scss";
 import Table from "../../../shared/components/common/tableContainer/table/Table";
 import { getTableData } from "../../../shared/apis/table/table";
 import { encsDrawer } from "../../../shared/utils/drawer";
-import { getApiEndpointNameFromRoutes } from "../../../shared/utils/getApiEndpointFromRoutes";
+import {
+  getApiEndpointNameFromRoutes,
+  getTableTitleNameFromRoutes,
+} from "../../../shared/utils/getApiEndpointFromRoutes";
 import { useSelector } from "react-redux";
 import { getSpacedDisplayName } from "../../../shared/utils/table";
 import { MetadataLayout } from "../../../shared/layout";
@@ -18,6 +21,7 @@ const Dashboard = () => {
   const [activeEndPoint, setActiveEndPoint] = useState("");
   const [refresh, setRefresh] = useState(false);
   const location = useLocation();
+  const [tableTitle, setTableTitle] = useState("");
 
   useEffect(() => {
     if (
@@ -37,6 +41,10 @@ const Dashboard = () => {
     } else {
       activeEndPoint.length > 0 && getTable(activeEndPoint);
     }
+
+    setTableTitle(
+      getTableTitleNameFromRoutes(encsDrawer, location, "environmentcatelogue/")
+    );
   }, [refresh, location.pathname]);
 
   const onRowClick = (rowData) => {
@@ -47,7 +55,6 @@ const Dashboard = () => {
       selectedRow.length === 2 && showReport(true);
     } else {
       setSelectedRow([rowData]);
-      // selectedRow.length > 0 ? showReport(false) :
       !report && showReport(true);
     }
   };
@@ -71,15 +78,19 @@ const Dashboard = () => {
       getTable={getTable}
       report={report}
       showReport={showReport}
+      tableData={tableContents}
+      tableTitle={tableTitle}
     >
-      <Table
-        report={report}
-        selectedRow={selectedRow}
-        onRowClick={onRowClick}
-        tableData={tableContents}
-        setTableContents={setTableContents}
-        status={true}
-      />
+      {tableContents.data?.length > 0 && (
+        <Table
+          report={report}
+          selectedRow={selectedRow}
+          onRowClick={onRowClick}
+          tableData={tableContents}
+          setTableContents={setTableContents}
+          status={true}
+        />
+      )}
     </MetadataLayout>
   );
 };

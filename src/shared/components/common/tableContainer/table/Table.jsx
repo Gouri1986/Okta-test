@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import "./table.scss";
 import TableBody from "./TableBody";
 import TableHeader from "./TableHeader";
@@ -22,7 +23,7 @@ const Table = ({
   return (
     // start of the table
     <table
-      className={`flex-c ${
+      className={`pos-rel flex-c ${
         header?.length < 10 ? "titan-table-fill" : "titan-table"
       }`}
     >
