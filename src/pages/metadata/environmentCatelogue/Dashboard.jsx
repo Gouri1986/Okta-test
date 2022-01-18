@@ -9,7 +9,7 @@ import { useSelector } from "react-redux"
 import { getSpacedDisplayName } from "../../../shared/utils/table"
 import { MetadataLayout } from "../../../shared/layout"
 import TreeView from "../../../shared/components/common/treeView/TreeView.jsx"
-import data from "./treeViewdata"
+import { treeViewData } from "../../../shared/components/db"
 
 const Dashboard = () => {
   const { user } = useSelector(state => state.userReducer)
@@ -62,7 +62,7 @@ const Dashboard = () => {
       report={report}
       showReport={showReport}
     >
-      <TreeView data={data} />
+      <TreeView data={treeViewData} />
     </MetadataLayout>
   )
 }
