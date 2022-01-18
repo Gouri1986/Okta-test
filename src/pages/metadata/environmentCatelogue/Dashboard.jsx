@@ -8,8 +8,11 @@ import { getApiEndpointNameFromRoutes } from "../../../shared/utils/getApiEndpoi
 import { useSelector } from "react-redux"
 import { getSpacedDisplayName } from "../../../shared/utils/table"
 import { MetadataLayout } from "../../../shared/layout"
+
+//Common components testing
 import TreeView from "../../../shared/components/common/treeView/TreeView.jsx"
 import { treeViewData } from "../../../shared/components/db"
+import RangeSlider from "../../../shared/components/common/inputs/range/rangeSlider"
 
 const Dashboard = () => {
   const { user } = useSelector(state => state.userReducer)
@@ -63,6 +66,28 @@ const Dashboard = () => {
       showReport={showReport}
     >
       <TreeView data={treeViewData} />
+      <div className="w-200">
+        <RangeSlider
+          marks={[
+            {
+              value: 0,
+              label: "Low"
+            },
+            {
+              value: 50,
+              label: "Medium"
+            },
+            {
+              value: 100,
+              label: "High"
+            }
+          ]}
+          defaultValue={0}
+          handleFunction={function handleFunction(value) {
+            console.log(value)
+          }}
+        />
+      </div>
     </MetadataLayout>
   )
 }
