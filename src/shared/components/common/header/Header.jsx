@@ -10,7 +10,7 @@ import { getSpacedDisplayName } from "../../../utils/table";
 
 function Header({ tableTitle }) {
   return (
-    <div className='h-100  flex-r-ac flex-jc-sp-btn'>
+    <div className='h-100 flex-r-ac flex-jc-sp-btn'>
       <div className='flex-c'>
         {tableTitle && (
           <>
@@ -21,7 +21,7 @@ function Header({ tableTitle }) {
           </>
         )}
       </div>
-      <div className='flex-r-ac wp-21 flex-jc-sp-btn'>
+      <div className='flex-r-ac wp-23 flex-jc-sp-btn'>
         <div className='flex-r-ac mr-15'>
           <HelpIcon />
         </div>
@@ -31,12 +31,12 @@ function Header({ tableTitle }) {
             <p className='f-12 fc-tertiary'>2</p>
           </div>
         </div>
-        <div className='wp-100 flex-r-ac white-container-br-5 flex-jc-sp-btn p-15'>
+        <div className='wp-100 flex-r-ac white-container-br-5 flex-jc-sp-btn p-10'>
           <div className='flex-c fc-secondary mr-30'>
             <span className='f-16 fw-400 lh-1-5'>Gouri Biswas</span>
             <span className='f-13 fw-400'>Marketing Administrator</span>
           </div>
-          <div className='min-w-60 '>
+          <div className='min-w-60 flex-r-ac'>
             <img src={User} alt='profile-pic' width='100%' height='100%'></img>
           </div>
         </div>
