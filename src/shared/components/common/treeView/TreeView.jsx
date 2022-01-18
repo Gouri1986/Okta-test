@@ -1,13 +1,12 @@
 import React from "react"
 import "./treeView.scss"
 
-import data from "./data.js"
 
 const treeView = props => {
-  
+  const { data } = props
   return (
     <div>
-      {data.map((item, i) => (
+      {data?.map((item, i) => (
         <ul class="tree" key={i}>
           <li className="li-l1">
             <input type="checkbox" id={`l1_${i}`} />

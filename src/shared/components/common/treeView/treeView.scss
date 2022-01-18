@@ -35,7 +35,6 @@
 .tree_label {
   position: relative;
   display: inline-block;
-  background: #fff;
 }
 
 label.tree_label,
@@ -131,5 +130,5 @@ label.label_l2::after {
 }
 
 ::marker {
-  color: white;
+  color: transparent;
 }

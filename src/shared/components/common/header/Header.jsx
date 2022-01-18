@@ -21,7 +21,7 @@ function Header() {
                     <div className='wp-70 h-72 flex-r-ac white-container-br-5 flex-jc-sp-btn'>
                         <div className='flex-c ml-12 fc-secondary'>
                             <p className='f-16 fw-400 lh-1-5'>Gouri Biswas</p>
-                            <p className='f-13 fw-400'>Marketing Administrator</p>
+                            <p className='f-13 fw-400'>Admin</p>
                         </div>
                         <div className='mr-10 h-50'>
                             <img src={User} alt="profile-pic" width="100%" height="100%"></img>
