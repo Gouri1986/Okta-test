@@ -86,14 +86,14 @@
 .table-checkbox-input-container {
   display: block;
   position: relative;
+  top: 5px;
   left: 20px;
-  cursor: pointer;
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
   input {
-    position: absolute;
+    // position: absolute;
     opacity: 0;
     cursor: pointer;
     height: 0;
@@ -105,8 +105,9 @@
   position: absolute;
   top: 0;
   left: 0;
-  border-radius: 4px;
-  background-color: #dbdbdb;
+  border: 1px solid #c4c4c4;
+  box-sizing: border-box;
+  border-radius: 5px;
 }
 
 .table-checkbox-input-container:hover input ~ .checkmark {
@@ -153,4 +154,13 @@
 .titan-table-fill {
   width: 100%;
   color: $primary-font-color;
+}
+
+.table-add-icon {
+  &:hover {
+    background-color: $tertiary-color;
+    .add-icon-path {
+      fill: white;
+    }
+  }
 }
