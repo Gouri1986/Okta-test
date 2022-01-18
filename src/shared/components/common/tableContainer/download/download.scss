@@ -1,5 +1,21 @@
+@import "../../../../assets/scss/styles.scss";
+
 .dropdown {
   position: relative;
+}
+
+.dropdown-header {
+  background-color: white;
+  &:hover {
+    background-color: $tertiary-color;
+    .download-icon-path {
+      fill: white;
+    }
+  }
+}
+
+.download-icon-path {
+  fill: #001833;
 }
 
 .icon {
