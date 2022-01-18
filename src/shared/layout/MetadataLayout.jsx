@@ -25,8 +25,8 @@ const Layout = (props) => {
           onClick={getTable}
         />
       </div>
-      <div className='wp-93 hvh-100 flex-1 flex-c '>
-        <div className=' mt-50 mr-50 ml-50'>
+      <div className='wp-93 hvh-100 flex-1 flex-c'>
+        <div className='mt-33 mr-30 ml-30'>
           <Header tableTitle={tableTitle} />
         </div>
         <div className='mr-50 ml-50 mt-50 '>
