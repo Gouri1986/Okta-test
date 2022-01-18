@@ -48,17 +48,17 @@ import { truncatedDesc } from "./utils";
 //   )
 // }
 
-// const RowCheckBox=()=>{
-//   return(
-//        <div class='pos-ab pl-25 mb-35 cp table-checkbox-input-container'>
-//             <input
-//               type='checkbox'
-//               checked={selectedRow.find((e) => e.id === datum.id)}
-//             />
-//             <span class='h-20 w-20 no-bdr checkmark'></span>
-//           </div>
-//   )
-// }
+const RowCheckBox = () => {
+  return (
+    <div class='pos-ab pl-25 mb-35 cp table-checkbox-input-container'>
+      <input
+        type='checkbox'
+        // checked={selectedRow.find((e) => e.id === datum.id)}
+      />
+      <span class='h-20 w-20 no-bdr checkmark'></span>
+    </div>
+  );
+};
 
 // const StatusColumn = ({ datum, item }) => {
 //   return (
@@ -92,7 +92,7 @@ const TableBody = ({
 }) => {
   return (
     <div className='flex-r-ac flex-jc-sp-evn'>
-      {header?.map((item) => (
+      {[{}, ...header]?.map((item) => (
         <tr
           className={`w-${
             rowData.find((e) => e[item.id]?.length > 30)

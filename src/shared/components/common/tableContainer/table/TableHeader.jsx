@@ -54,10 +54,10 @@ const TableHeader = ({ header, tableData, setTableContents }) => {
   return (
     <tr
       className={
-        "pos-sk z-1 t-0 flex-r-ac titan-table-header bdr-buttom-primary-1"
+        "pl-25 pr-25 pb-25 pos-sk t-0 z-1 flex-r-ac titan-table-header bdr-buttom-primary-1"
       }
     >
-      {header?.map((item, index) => (
+      {[{}, ...header]?.map((item, index) => (
         <TableHeaderCell
           header={header}
           sort={sort}

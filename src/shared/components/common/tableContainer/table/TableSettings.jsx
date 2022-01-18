@@ -5,7 +5,10 @@ import Download from "../download/Download";
 
 function TableSettings() {
   return (
-    <div className='flex-r-ac flex-jc-sp-btn p-30 pos-sk t-0'>
+    <div
+      style={{ borderTopLeftRadius: 10, borderTopRightRadius: 10 }}
+      className='flex-r-ac flex-jc-sp-btn bg-white p-25'
+    >
       <div className='flex-c'></div>
       <div className='flex-r-ac flex-jc-sp-btn'>
         <div className='mr-30'>
