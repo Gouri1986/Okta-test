@@ -98,14 +98,10 @@ const TableBody = ({
         <tr
           className={`pos-rel flex-jc-sp-evn titan-table-rows bdr-buttom-primary-1 p-15`}
         >
-          {[
-            { id: "cb", title: "" },
-            ...header,
-            { id: "action", title: "Action" },
-          ]?.map((item) => {
+          {header?.map((item) => {
             return (
               <td
-                className={`${item.id === "action" && "pos-sk r-0"}
+                className={`${item.id === "action" && "pos-sk r-0 bg-white"}
                   w-${
                     rowData.find((e) => e[item.id]?.length > 30)
                       ? 400

@@ -20,10 +20,26 @@ const Table = (props) => {
   } = props;
   const { header, data: rowData } = tableData;
 
+  const checkBoxObj = {
+    title: "",
+    id: "cb",
+  };
+
+  const actionObj = {
+    title: "Action",
+    id: "action",
+  };
+
+  const finalHeader = [
+    showCheckBox && checkBoxObj,
+    ...header,
+    showAction && actionObj,
+  ];
+
   const headerProps = {
     setTableContents: setTableContents,
     tableData: tableData,
-    header: header,
+    header: finalHeader,
   };
 
   const bodyProps = {
@@ -31,7 +47,7 @@ const Table = (props) => {
     onRowClick: onRowClick,
     rowData: rowData,
     selectedRow: selectedRow,
-    header: header,
+    header: finalHeader,
     setModalMode: setModalMode,
     setModalOpen: setModalOpen,
     setModalForm: setModalForm,
