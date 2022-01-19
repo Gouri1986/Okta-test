@@ -96,7 +96,7 @@ const TableBody = ({
     <div className='flex-c '>
       {rowData?.map((datum) => (
         <tr
-          className={`pos-rel flex-jc-sp-evn titan-table-rows bdr-buttom-primary-1 p-15`}
+          className={`pos-rel flex-jc-sp-evn titan-table-rows bdr-buttom-primary-1 pt-10 pb-10`}
         >
           {header?.map((item) => {
             return (
