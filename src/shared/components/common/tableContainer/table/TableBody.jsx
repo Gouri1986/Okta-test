@@ -105,7 +105,7 @@ const TableBody = ({
           ]?.map((item) => {
             return (
               <td
-                className={`${item.id === "action" && "pos-sk r-0 bg-white"}
+                className={`${item.id === "action" && "pos-sk r-0"}
                   w-${
                     rowData.find((e) => e[item.id]?.length > 30)
                       ? 400
