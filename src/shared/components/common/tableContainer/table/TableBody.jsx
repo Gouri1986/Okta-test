@@ -48,17 +48,17 @@ import { truncatedDesc } from "./utils";
 //   )
 // }
 
-// const RowCheckBox=()=>{
-//   return(
-//        <div class='pos-ab pl-25 mb-35 cp table-checkbox-input-container'>
-//             <input
-//               type='checkbox'
-//               checked={selectedRow.find((e) => e.id === datum.id)}
-//             />
-//             <span class='h-20 w-20 no-bdr checkmark'></span>
-//           </div>
-//   )
-// }
+const RowCheckBox = () => {
+  return (
+    <div class=' cp table-checkbox-input-container'>
+      <input
+        type='checkbox'
+        // checked={selectedRow.find((e) => e.id === datum.id)}
+      />
+      <span class='h-15 w-15  checkmark'></span>
+    </div>
+  );
+};
 
 // const StatusColumn = ({ datum, item }) => {
 //   return (
@@ -92,7 +92,7 @@ const TableBody = ({
 }) => {
   return (
     <div className='flex-r-ac flex-jc-sp-evn'>
-      {header?.map((item) => (
+      {[{ title: "", id: "cb" }, ...header]?.map((item) => (
         <tr
           className={`w-${
             rowData.find((e) => e[item.id]?.length > 30)
@@ -101,13 +101,19 @@ const TableBody = ({
               ? 400
               : item.title?.length > 20
               ? 300
+              : item.title?.length === 0
+              ? 50
               : 200
           } pos-rel flex-c-ac titan-table-rows bdr-button-primary-1 p-15`}
         >
           {rowData?.map((datum) => {
             return (
               <td className={` bdr-primary table-cell p-15`}>
-                <span className={"table-data-cell"}>{datum[item.id]}</span>
+                {item.id === "cb" ? (
+                  <RowCheckBox />
+                ) : (
+                  <span className={"table-data-cell"}>{datum[item.id]}</span>
+                )}
               </td>
             );
           })}

@@ -16,6 +16,7 @@ export const ColumnSettingsIcon = ({ columnDropDown }) => {
         strokeWidth='1.91877'
         strokeLinecap='round'
         strokeLinejoin='round'
+        className='column-setting-path'
       />
       <path
         d='M19.7772 20.8277V4.8064C19.7772 4.36398 19.423 4.00533 18.9861 4.00533H15.0308C14.5939 4.00533 14.2397 4.36398 14.2397 4.8064V20.8277C14.2397 21.2701 14.5939 21.6288 15.0308 21.6288H18.9861C19.423 21.6288 19.7772 21.2701 19.7772 20.8277Z'
@@ -23,6 +24,7 @@ export const ColumnSettingsIcon = ({ columnDropDown }) => {
         strokeWidth='1.91877'
         strokeLinecap='round'
         strokeLiinejoin='round'
+        className='column-setting-path'
       />
     </svg>
   );

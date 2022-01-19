@@ -14,7 +14,6 @@ import { MetadataLayout } from "../../../shared/layout";
 
 const Dashboard = () => {
   const { user } = useSelector((state) => state.userReducer);
-
   const [tableContents, setTableContents] = useState([]);
   const [selectedRow, setSelectedRow] = useState([]);
   const [report, showReport] = useState(false);
@@ -24,40 +23,20 @@ const Dashboard = () => {
   const [tableTitle, setTableTitle] = useState("");
 
   useEffect(() => {
-    if (
-      getApiEndpointNameFromRoutes(
-        encsDrawer,
-        location,
-        "environmentcatelogue/"
-      )
-    ) {
-      getTable(
-        getApiEndpointNameFromRoutes(
-          encsDrawer,
-          location,
-          "environmentcatelogue/"
-        )
-      );
+    let endpointFromPath = getApiEndpointNameFromRoutes(
+      encsDrawer,
+      location,
+      "environmentcatelogue/"
+    );
+    if (endpointFromPath) {
+      getTable(endpointFromPath);
     } else {
       activeEndPoint.length > 0 && getTable(activeEndPoint);
     }
-
     setTableTitle(
       getTableTitleNameFromRoutes(encsDrawer, location, "environmentcatelogue/")
     );
   }, [refresh, location.pathname]);
-
-  const onRowClick = (rowData) => {
-    if (selectedRow.find((e) => e.id === rowData.id)) {
-      const selectedItems = selectedRow.filter((e) => e.id !== rowData.id);
-      setSelectedRow(selectedItems);
-      showReport(false);
-      selectedRow.length === 2 && showReport(true);
-    } else {
-      setSelectedRow([rowData]);
-      !report && showReport(true);
-    }
-  };
 
   const getTable = async (activeEndPoint) => {
     const data = await getTableData(activeEndPoint, user);
@@ -70,6 +49,17 @@ const Dashboard = () => {
     data && setTableContents({ header, data });
   };
 
+  const onRowClick = (rowData) => {
+    if (selectedRow.find((e) => e.id === rowData.id)) {
+      const selectedItems = selectedRow.filter((e) => e.id !== rowData.id);
+      setSelectedRow(selectedItems);
+      showReport(false);
+      selectedRow.length === 2 && showReport(true);
+    } else {
+      setSelectedRow([rowData]);
+      !report && showReport(true);
+    }
+  };
   return (
     <MetadataLayout
       setActiveEndPoint={setActiveEndPoint}
@@ -88,7 +78,6 @@ const Dashboard = () => {
           onRowClick={onRowClick}
           tableData={tableContents}
           setTableContents={setTableContents}
-          status={true}
         />
       )}
     </MetadataLayout>
