@@ -77,6 +77,8 @@ const Dashboard = () => {
           onRowClick={onRowClick}
           tableData={tableContents}
           setTableContents={setTableContents}
+          showCheckBox
+          showAction
         />
       )}
     </MetadataLayout>
