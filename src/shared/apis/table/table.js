@@ -1,7 +1,6 @@
 import axios from "axios";
 
 export const getTableData = async (path, token) => {
-  console.log(token);
   const response = await axios.get(
     `${process.env.REACT_APP_ENCS_BASE_URL}${path}`,
     {

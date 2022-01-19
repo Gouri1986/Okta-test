@@ -71,7 +71,10 @@ const Download = ({ selectedRow, tableContents }) => {
   }
   return (
     <div className='dropdown'>
-      <div className='dropdown-header cp' onClick={toggleDropdown}>
+      <div
+        className='dropdown-header cp pt-7 pl-7 pr-7 bdr-r-6'
+        onClick={toggleDropdown}
+      >
         {/* {selectedItem ? (
           items.find((item) => item.id == selectedItem).label
         ) : */}

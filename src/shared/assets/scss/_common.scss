@@ -1,47 +1,46 @@
 /**********************************************************
                        Overflow properties 
  ***********************************************************/
-.overflow-x-hide{
-    overflow-y: hidden; 
+.overflow-x-hide {
+  overflow-x: hidden;
 }
 
-.overflow-y-hide{
-    overflow-y: hidden; 
+.overflow-y-hide {
+  overflow-y: hidden;
 }
 
-.overflow-x-scroll{
-    overflow-x: scroll; 
+.overflow-x-scroll {
+  overflow-x: scroll;
 }
 
-.overflow-y-scroll{
-    overflow-y: scroll; 
+.overflow-y-scroll {
+  overflow-y: scroll;
 }
 
-.overflow-x-auto{
+.overflow-x-auto {
   overflow-x: auto;
 }
 
-.overflow-y-auto{
+.overflow-y-auto {
   overflow-y: auto;
 }
-
 
 /**********************************************************
                        Visibility & Display properties 
 ***********************************************************/
-.v-visible{
+.v-visible {
   visibility: visible;
 }
 
-.v-hidden{
+.v-hidden {
   visibility: hidden;
 }
 
-.d-none{
+.d-none {
   display: none;
 }
 
-.d-block{
+.d-block {
   display: block;
 }
 
@@ -55,57 +54,19 @@
   cursor: pointer;
 }
 
-
 /**********************************************************
                 Container & cards Layout 
  ***********************************************************/
-$sizes:1,2,3,4,5,6,7,8,9,10,
-11,12,13,14,15,16,17,18,19,20,
-21,22,23,24,25,26,27,28,29,30,
-31,32,33,34,35,36,37,38,39,40,
-41,42,43,44,45,46,47,48,49,50;
+$sizes: 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20,
+  21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40,
+  41, 42, 43, 44, 45, 46, 47, 48, 49, 50;
 @each $size in $sizes {
-    .white-container-br-#{$size}{
-      background: $white;
-      box-shadow: 0px 4px 90px 12px rgba(163, 171, 185, 0.25);
-      border-radius: #{$size}px;
-    }
+  .white-container-br-#{$size} {
+    background: $white;
+    box-shadow: 0px 4px 90px 12px rgba(163, 171, 185, 0.25);
+    border-radius: #{$size}px;
+  }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 /**********************************************************
                     Deprecating
@@ -114,7 +75,7 @@ $sizes:1,2,3,4,5,6,7,8,9,10,
 /**********************************************************
                        divider  
  ***********************************************************/
- .divider-grey {
+.divider-grey {
   border: 1px solid $tertiary-color;
   border-radius: 5px;
   height: 0px;
@@ -126,28 +87,25 @@ $sizes:1,2,3,4,5,6,7,8,9,10,
   height: 0px;
 }
 
-
-
 /**********************************************************
                        rotate-icon 
  ***********************************************************/
- .rotate-icon {
+.rotate-icon {
   transform: rotate(180deg);
 }
-
 
 /**********************************************************
                 Container & cards Layout 
  ***********************************************************/
-.grey-container{
-    background-color: $secondary-color;
-    padding: 10px 10px;
+.grey-container {
+  background-color: $secondary-color;
+  padding: 10px 10px;
 }
 
-.blue-container{
-    background-color:$secondary-color;
-    border-radius: 5px;
-    box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.05)
+.blue-container {
+  background-color: $secondary-color;
+  border-radius: 5px;
+  box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.05);
 }
 .new-checked {
   background-color: $secondary-color;

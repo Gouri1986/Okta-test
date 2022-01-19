@@ -3,36 +3,38 @@
 
 .titan-table {
   background: $white;
-  box-sizing: border-box;
   width: fit-content;
   height: auto;
+  max-height: 62vh;
   color: $primary-font-color;
 }
 
 /* Table Header  */
-.titan-table-header {
+// .titan-table-header {
+//   display: flex;
+//   flex-direction: row;
+//   background-color: $white;
+//   justify-content: space-evenly;
+// }
+
+.table-header-cell {
+  font-size: 15px;
+  line-height: 28px;
+  color: $primary-font-color;
+  display: inline-flex;
+  align-items: center;
+  cursor: pointer;
   display: flex;
-  flex-direction: row;
-  justify-content: space-evenly;
-  th {
-    font-size: 15px;
-    text-align: center;
-    line-height: 28px;
-    color: $primary-font-color;
-    display: inline-flex;
-    align-items: center;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 200px;
-    padding-inline: 20px;
-  }
+  text-align: center;
+  justify-content: center;
+  width: fit-content;
+  white-space: nowrap;
 }
 
 /* Table Rows */
 .titan-table-rows {
-  justify-content: space-evenly;
+  display: flex;
+  flex-direction: row;
 }
 .titan-table-rows:last-child {
   border: none;
@@ -41,8 +43,6 @@
 .table-cell {
   color: $primary-font-color;
   text-align: center;
-  height: 50px;
-  width: 200px;
 }
 
 .table-data-cell {
@@ -50,12 +50,10 @@
   line-height: 1em;
   height: 2em;
   overflow: hidden;
-  width: 200px;
   word-wrap: break-word;
   white-space: pre-wrap;
   color: $primary-font-color;
   padding: 10px;
-  padding-inline: 20px;
 }
 
 .table-data-cell-status {
@@ -67,8 +65,7 @@
   border-radius: 100px;
   text-align: center;
   padding: 5px 10px;
-  width: 200px;
-  color: white;
+  color: $white;
 }
 
 .table-data-cell-status-neg {
@@ -80,21 +77,20 @@
   border-radius: 100px;
   text-align: center;
   padding: 5px 10px;
-  width: 200px;
-  color: white;
+  color: $white;
 }
 
 .table-checkbox-input-container {
   display: block;
   position: relative;
+  top: 5px;
   left: 20px;
-  cursor: pointer;
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
   input {
-    position: absolute;
+    // position: absolute;
     opacity: 0;
     cursor: pointer;
     height: 0;
@@ -106,8 +102,9 @@
   position: absolute;
   top: 0;
   left: 0;
-  border-radius: 4px;
-  background-color: #dbdbdb;
+  border: 1px solid #c4c4c4;
+  box-sizing: border-box;
+  border-radius: 5px;
 }
 
 .table-checkbox-input-container:hover input ~ .checkmark {
@@ -131,12 +128,12 @@
 }
 
 .table-checkbox-input-container .checkmark:after {
-  left: 6px;
-  top: 5px;
+  left: 5px;
+  top: 3px;
   width: 3px;
   height: 6px;
   border: solid rgb(255, 255, 255);
-  border-width: 0 3px 3px 0;
+  border-width: 0 2px 2px 0;
   -webkit-transform: rotate(45deg);
   -ms-transform: rotate(45deg);
   transform: rotate(45deg);
@@ -156,6 +153,11 @@
   color: $primary-font-color;
 }
 
-.scroll-style::-webkit-scrollbar-track {
-  background-color: yellow;
+.table-add-icon {
+  &:hover {
+    background-color: $tertiary-color;
+    .add-icon-path {
+      fill: $white;
+    }
+  }
 }

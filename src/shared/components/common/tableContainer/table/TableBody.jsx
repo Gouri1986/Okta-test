@@ -5,113 +5,133 @@ import {
 import { PencilIcon, TrashIcon } from "./assets";
 import { truncatedDesc } from "./utils";
 
-// const RowAction=()=>{
-//   return(
-//     <div className='flex-r-ac pos-ab r-20 t-20'>
-//     <div
-//       onClick={() => {
-//         deleteDataToTable(datum);
-//       }}
-//     >
-//       <TrashIcon />
-//     </div>
-//     <div
-//       onClick={() => {
-//         setModalMode("UPDATE");
-//         setModalOpen(true);
-//         setModalForm(
-//           Object.keys(datum).map((el) => {
-//             return {
-//               [el]: datum[el],
-//               id: el,
-//               pk: tableDetails.pk?.includes(el),
-//               uk: tableDetails.uk?.includes(el),
-//               dropdown: tableDetails.dropdown?.find((ele) => {
-//                 return ele.name === el;
-//               }),
-//               checkbox: tableDetails.checkbox?.find((ele) => {
-//                 return ele.name === el;
-//               }),
-//               json: tableDetails.json?.find((ele) => {
-//                 return ele.name === el;
-//               }),
-//               title: getSpacedDisplayName(el),
-//             };
-//           })
-//         );
-//       }}
-//       className='ml-15'
-//     >
-//       <PencilIcon />
-//     </div>
-//   </div>
-//   )
-// }
+const RowAction = () => {
+  return (
+    <div className='flex-r-jc-ac t-20'>
+      <div
+        onClick={() => {
+          // deleteDataToTable(datum);
+        }}
+      >
+        <TrashIcon />
+      </div>
+      <div
+        onClick={() => {
+          // setModalMode("UPDATE");
+          // setModalOpen(true);
+          // setModalForm(
+          //   Object.keys(datum).map((el) => {
+          //     return {
+          //       [el]: datum[el],
+          //       id: el,
+          //       pk: tableDetails.pk?.includes(el),
+          //       uk: tableDetails.uk?.includes(el),
+          //       dropdown: tableDetails.dropdown?.find((ele) => {
+          //         return ele.name === el;
+          //       }),
+          //       checkbox: tableDetails.checkbox?.find((ele) => {
+          //         return ele.name === el;
+          //       }),
+          //       json: tableDetails.json?.find((ele) => {
+          //         return ele.name === el;
+          //       }),
+          //       title: getSpacedDisplayName(el),
+          //     };
+          //   })
+          // );
+        }}
+        className='ml-15'
+      >
+        <PencilIcon />
+      </div>
+    </div>
+  );
+};
 
-// const RowCheckBox=()=>{
-//   return(
-//        <div class='pos-ab pl-25 mb-35 cp table-checkbox-input-container'>
-//             <input
-//               type='checkbox'
-//               checked={selectedRow.find((e) => e.id === datum.id)}
-//             />
-//             <span class='h-20 w-20 no-bdr checkmark'></span>
-//           </div>
-//   )
-// }
+const RowCheckBox = ({ onRowClick, selectedRow, datum }) => {
+  return (
+    <div class=' cp table-checkbox-input-container'>
+      <input
+        type='checkbox'
+        checked={selectedRow.find((e) => e.id === datum.id)}
+      />
+      <span
+        onClick={() => onRowClick(datum)}
+        class='h-15 w-15  checkmark'
+      ></span>
+    </div>
+  );
+};
+
+// const StatusColumn = ({ datum, item }) => {
+//   return (
+//     <td className={"table-cell"} title={datum[item.id]}>
+//       <span
+//         className={
+//           datum[item.id] === "compliant"
+//             ? "table-data-cell-status"
+//             : "table-data-cell-status-neg"
+//         }
+//       >
+//         {datum[item.id]?.length > 15
+//           ? truncatedDesc(datum[item.id])
+//           : datum[item.id]}
+//       </span>
+//     </td>
+//   );
+// };
 
 const TableBody = ({
   rowData,
   header,
   onRowClick,
   selectedRow,
-  status,
   setModalMode,
   setModalOpen,
   setModalForm,
   tableDetails,
   deleteDataToTable,
 }) => {
-  const StatusColumn = ({ datum, item }) => {
-    return (
-      <td className={"table-cell"} title={datum[item.id]}>
-        <span
-          className={
-            datum[item.id] === "compliant"
-              ? "table-data-cell-status"
-              : "table-data-cell-status-neg"
-          }
-        >
-          {datum[item.id]?.length > 15
-            ? truncatedDesc(datum[item.id])
-            : datum[item.id]}
-        </span>
-      </td>
-    );
-  };
-
   return (
-    <div className='table-row-container overflow-y-scroll scroll-style'>
+    <div className='flex-c '>
       {rowData?.map((datum) => (
         <tr
-          onClick={() => {
-            onRowClick(datum);
-          }}
-          className='pos-rel flex-r-ac pt-20 pb-20 pr-25 pl-25 mt-2 mb-2 cp titan-table-rows bdr-buttom-primary-1'
+          className={`pos-rel flex-jc-sp-evn titan-table-rows bdr-buttom-primary-1 pt-10 pb-10`}
         >
-          {header?.map((item) =>
-            status && item.id === "compliance" ? (
-              <StatusColumn datum={datum} item={item} />
-            ) : (
-              <td className={"table-cell"} title={datum[item.id]}>
-                <span className={"table-data-cell"}>
-                  {datum[item.id]?.length > 15
-                    ? truncatedDesc(datum[item.id])
-                    : datum[item.id]}
-                </span>
+          {[
+            { id: "cb", title: "" },
+            ...header,
+            { id: "action", title: "Action" },
+          ]?.map((item) => {
+            return (
+              <td
+                className={`${item.id === "action" && "pos-sk r-0 bg-white"}
+                  w-${
+                    rowData.find((e) => e[item.id]?.length > 30)
+                      ? 400
+                      : item.title?.length > 25
+                      ? 400
+                      : item.title?.length > 20
+                      ? 300
+                      : item.title?.length === 0
+                      ? 50
+                      : 200
+                  }     bdr-primary table-cell p-15`}
+              >
+                {item.id === "action" ? (
+                  <RowAction />
+                ) : item.id === "cb" ? (
+                  <RowCheckBox
+                    onRowClick={() => onRowClick(datum)}
+                    selectedRow={selectedRow}
+                    datum={datum}
+                  />
+                ) : (
+                  <span className={"table-data-cell"}>{datum[item.id]}</span>
+                )}
               </td>
-            )
-          )}
+            );
+          })}
         </tr>
       ))}
     </div>
