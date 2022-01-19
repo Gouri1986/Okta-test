@@ -13,6 +13,7 @@ import { MetadataLayout } from "../../../shared/layout"
 import TreeView from "../../../shared/components/common/treeView/TreeView.jsx"
 import { treeViewData } from "../../../shared/components/db"
 import RangeSlider from "../../../shared/components/common/inputs/range/rangeSlider"
+import BreadCumbs from "../../../shared/components/common/breadcumbs/BreadCumbs.jsx"
 
 const Dashboard = () => {
   const { user } = useSelector(state => state.userReducer)
@@ -81,13 +82,31 @@ const Dashboard = () => {
               value: 100,
               label: "High"
             }
-          ]}
-          defaultValue={0}
+          ]} // slider marks with value and label
+          defaultValue={0} // default value
           handleFunction={function handleFunction(value) {
             console.log(value)
-          }}
+          }} // handleFunction
         />
       </div>
+      <BreadCumbs
+        titleData={[
+          {
+            type: "Parent",
+            title: "Dashboard",
+            link: "/dashboard"
+          },
+          {
+            type: "Parent",
+            title: "Meta Data",
+            link: "/metadata/environmentcatelogue"
+          },
+          {
+            type: "Child",
+            title: "Environment Catalogue"
+          }
+        ]}
+      />
     </MetadataLayout>
   )
 }
