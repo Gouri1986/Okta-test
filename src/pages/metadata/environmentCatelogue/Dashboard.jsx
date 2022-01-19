@@ -84,24 +84,7 @@ const Dashboard = () => {
         size="sm" // sm, md, lg, xl
         body={
           <>
-            <BreadCumbs
-              titleData={[
-                {
-                  type: "Parent",
-                  title: "Dashboard",
-                  link: "/dashboard"
-                },
-                {
-                  type: "Parent",
-                  title: "Meta Data",
-                  link: "/metadata/environmentcatelogue"
-                },
-                {
-                  type: "Child",
-                  title: "Environment Catalogue"
-                }
-              ]}
-            />
+            
             <div className="w-200">
               <RangeSlider
                 marks={[
