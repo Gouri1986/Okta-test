@@ -68,10 +68,11 @@ const Login = () => {
         <Button
           onClick={authenticate}
           variant='contained'
-          className='bg-primary'
+          className='bg-tertiary'
         >
           Login
         </Button>
+        {/* <button ClassName='bg-tertiary no-bdr p-15 fc-tertiary bdr-r-5'  onClick={authenticate}>Login</button> */}
       </div>
     </Box>
   );
