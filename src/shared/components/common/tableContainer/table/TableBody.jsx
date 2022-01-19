@@ -48,14 +48,17 @@ import { truncatedDesc } from "./utils";
 //   )
 // }
 
-const RowCheckBox = () => {
+const RowCheckBox = ({ onRowClick, selectedRow, datum }) => {
   return (
     <div class=' cp table-checkbox-input-container'>
       <input
         type='checkbox'
-        // checked={selectedRow.find((e) => e.id === datum.id)}
+        checked={selectedRow.find((e) => e.id === datum.id)}
       />
-      <span class='h-15 w-15  checkmark'></span>
+      <span
+        onClick={() => onRowClick(datum)}
+        class='h-15 w-15  checkmark'
+      ></span>
     </div>
   );
 };
@@ -83,7 +86,6 @@ const TableBody = ({
   header,
   onRowClick,
   selectedRow,
-  status,
   setModalMode,
   setModalOpen,
   setModalForm,
@@ -91,26 +93,32 @@ const TableBody = ({
   deleteDataToTable,
 }) => {
   return (
-    <div className='flex-r-ac flex-jc-sp-evn'>
-      {[{ title: "", id: "cb" }, ...header]?.map((item) => (
+    <div className='flex-c '>
+      {rowData?.map((datum) => (
         <tr
-          className={`w-${
-            rowData.find((e) => e[item.id]?.length > 30)
-              ? 400
-              : item.title?.length > 25
-              ? 400
-              : item.title?.length > 20
-              ? 300
-              : item.title?.length === 0
-              ? 50
-              : 200
-          } pos-rel flex-c-ac titan-table-rows bdr-button-primary-1 p-15`}
+          className={`pos-rel flex-jc-sp-evn titan-table-rows bdr-buttom-primary-1 p-15`}
         >
-          {rowData?.map((datum) => {
+          {[{ id: "cb", title: "" }, ...header]?.map((item) => {
             return (
-              <td className={` bdr-primary table-cell p-15`}>
+              <td
+                className={`w-${
+                  rowData.find((e) => e[item.id]?.length > 30)
+                    ? 400
+                    : item.title?.length > 25
+                    ? 400
+                    : item.title?.length > 20
+                    ? 300
+                    : item.title?.length === 0
+                    ? 50
+                    : 200
+                }     bdr-primary table-cell p-15`}
+              >
                 {item.id === "cb" ? (
-                  <RowCheckBox />
+                  <RowCheckBox
+                    onRowClick={() => onRowClick(datum)}
+                    selectedRow={selectedRow}
+                    datum={datum}
+                  />
                 ) : (
                   <span className={"table-data-cell"}>{datum[item.id]}</span>
                 )}

@@ -53,11 +53,10 @@ const Dashboard = () => {
     if (selectedRow.find((e) => e.id === rowData.id)) {
       const selectedItems = selectedRow.filter((e) => e.id !== rowData.id);
       setSelectedRow(selectedItems);
-      showReport(false);
-      selectedRow.length === 2 && showReport(true);
+      console.log(rowData);
     } else {
-      setSelectedRow([rowData]);
-      !report && showReport(true);
+      setSelectedRow([rowData, ...selectedRow]);
+      console.log(rowData);
     }
   };
   return (

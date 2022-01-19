@@ -41,7 +41,6 @@ const Table = (props) => {
           rowData={rowData}
           selectedRow={selectedRow}
           header={header}
-          status={status}
           setModalMode={setModalMode}
           setModalOpen={setModalOpen}
           setModalForm={setModalForm}
