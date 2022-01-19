@@ -82,18 +82,6 @@ export const treeViewData = [
       {
         l2: "TreeView data v2 l2",
         l3_data: [{ l3: "Lorem Ipsum is simply dummy text of the printing and typesetting indus" }]
-      },
-      {
-        l2: "TreeView data v2 l2",
-        l3_data: [{ l3: "Lorem Ipsum is simply dummy text of the printing and typesetting indus" }]
-      },
-      {
-        l2: "TreeView data v2 l2",
-        l3_data: [{ l3: "Lorem Ipsum is simply dummy text of the printing and typesetting indus" }]
-      },
-      {
-        l2: "TreeView data v2 l2",
-        l3_data: [{ l3: "Lorem Ipsum is simply dummy text of the printing and typesetting indus" }]
       }
     ]
   }

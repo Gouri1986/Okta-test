@@ -14,6 +14,7 @@ import TreeView from "../../../shared/components/common/treeView/TreeView.jsx"
 import { treeViewData } from "../../../shared/components/db"
 import RangeSlider from "../../../shared/components/common/inputs/range/rangeSlider"
 import BreadCumbs from "../../../shared/components/common/breadcumbs/BreadCumbs.jsx"
+import ModalRight from "../../../shared/components/common/modal/right/ModalRight"
 
 const Dashboard = () => {
   const { user } = useSelector(state => state.userReducer)
@@ -56,6 +57,7 @@ const Dashboard = () => {
     })
     data && setTableContents({ header, data })
   }
+  const [open, setOpen] = useState(false)
 
   return (
     <MetadataLayout
@@ -66,46 +68,65 @@ const Dashboard = () => {
       report={report}
       showReport={showReport}
     >
-      <TreeView data={treeViewData} />
-      <div className="w-200">
-        <RangeSlider
-          marks={[
-            {
-              value: 0,
-              label: "Low"
-            },
-            {
-              value: 50,
-              label: "Medium"
-            },
-            {
-              value: 100,
-              label: "High"
-            }
-          ]} // slider marks with value and label
-          defaultValue={0} // default value
-          handleFunction={function handleFunction(value) {
-            console.log(value)
-          }} // handleFunction
-        />
-      </div>
-      <BreadCumbs
-        titleData={[
-          {
-            type: "Parent",
-            title: "Dashboard",
-            link: "/dashboard"
-          },
-          {
-            type: "Parent",
-            title: "Meta Data",
-            link: "/metadata/environmentcatelogue"
-          },
-          {
-            type: "Child",
-            title: "Environment Catalogue"
-          }
-        ]}
+      <button
+        style={{
+          width: "100px",
+          height: "40px",
+          cursor: "pointer"
+        }}
+        onClick={() => setOpen(!open)}
+      >
+       Modal Open
+      </button>
+      <ModalRight
+        open={open}
+        close={() => setOpen(false)}
+        size="sm" // sm, md, lg, xl
+        body={
+          <>
+            <BreadCumbs
+              titleData={[
+                {
+                  type: "Parent",
+                  title: "Dashboard",
+                  link: "/dashboard"
+                },
+                {
+                  type: "Parent",
+                  title: "Meta Data",
+                  link: "/metadata/environmentcatelogue"
+                },
+                {
+                  type: "Child",
+                  title: "Environment Catalogue"
+                }
+              ]}
+            />
+            <div className="w-200">
+              <RangeSlider
+                marks={[
+                  {
+                    value: 0,
+                    label: "Low"
+                  },
+                  {
+                    value: 50,
+                    label: "Medium"
+                  },
+                  {
+                    value: 100,
+                    label: "High"
+                  }
+                ]} // slider marks with value and label
+                defaultValue={0} // default value
+                handleFunction={function handleFunction(value) {
+                  console.log(value)
+                }} // handleFunction
+              />
+            </div>
+            <TreeView data={treeViewData} />
+          </>
+        }
       />
     </MetadataLayout>
   )
