@@ -3,31 +3,28 @@
 
 .titan-table {
   background: $white;
-  box-sizing: border-box;
   width: fit-content;
   height: auto;
-  max-height: 600px;
+  max-height: 62vh;
   color: $primary-font-color;
 }
 
 /* Table Header  */
-.titan-table-header {
-  display: flex;
-  flex-direction: row;
-  background-color: white;
-  justify-content: space-evenly;
-}
+// .titan-table-header {
+//   display: flex;
+//   flex-direction: row;
+//   background-color: $white;
+//   justify-content: space-evenly;
+// }
 
 .table-header-cell {
   font-size: 15px;
-  text-align: center;
   line-height: 28px;
   color: $primary-font-color;
   display: inline-flex;
   align-items: center;
   cursor: pointer;
   display: flex;
-  align-items: center;
   text-align: center;
   justify-content: center;
   width: fit-content;
@@ -57,7 +54,6 @@
   white-space: pre-wrap;
   color: $primary-font-color;
   padding: 10px;
-  padding-inline: 20px;
 }
 
 .table-data-cell-status {
@@ -69,7 +65,7 @@
   border-radius: 100px;
   text-align: center;
   padding: 5px 10px;
-  color: white;
+  color: $white;
 }
 
 .table-data-cell-status-neg {
@@ -81,7 +77,7 @@
   border-radius: 100px;
   text-align: center;
   padding: 5px 10px;
-  color: white;
+  color: $white;
 }
 
 .table-checkbox-input-container {
@@ -161,7 +157,7 @@
   &:hover {
     background-color: $tertiary-color;
     .add-icon-path {
-      fill: white;
+      fill: $white;
     }
   }
 }
