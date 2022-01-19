@@ -6,24 +6,16 @@ import NavigateNextIcon from "@mui/icons-material/NavigateNext"
 import "./BreadCumbs.scss"
 
 const BreadCumbs = props => {
-  const { titleData } = props
-
+  const { parentTitle, parentPath, tableTitle } = props
   return (
     <div>
       <Breadcrumbs separator={<NavigateNextIcon fontSize="small" />} aria-label="breadcrumb">
-        {titleData?.map((item, i) =>
-          item?.type === "Parent" ? (
-            <Typography key={i} color="text.primary">
-              <Link to={item?.link}>{item?.title}</Link>
-            </Typography>
-          ) : item?.type === "Child" ? (
-            <Typography key={i} color="text.primary">
-              {item?.title}
-            </Typography>
-          ) : (
-            ""
-          )
-        )}
+        <Typography key={1} color="text.primary">
+          <Link to={parentPath}>{parentTitle}</Link>
+        </Typography>
+        <Typography key={2} color="text.primary">
+          {tableTitle}
+        </Typography>
       </Breadcrumbs>
     </div>
   )
