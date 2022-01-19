@@ -26,10 +26,10 @@ const Layout = (props) => {
         />
       </div>
       <div className='wp-93 hvh-100 flex-1 flex-c'>
-        <div className='mt-33 mr-30 ml-30'>
+        <div className='mt-33 mr-30 ml-30 hvh-15'>
           <Header tableTitle={tableTitle} />
         </div>
-        <div className="flex-c mt-50 ml-30 mr-30">
+        <div className="flex-c ml-30 mr-30 hvh-85">
           <div className="flex-c bdr-r-10 bg-white">
             <div>
               <TableSettings />

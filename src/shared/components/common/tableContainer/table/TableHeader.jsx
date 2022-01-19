@@ -14,7 +14,7 @@ const TableHeaderCell = ({
   return (
     <th
       className={`${
-        item.id === "action" && "pos-sk r-0"
+        item.id === "action" && "pos-sk r-0 bg-white"
       } table-header-cell w-${
         tableData.data.find((e) => e[item.id]?.length > 30)
           ? 400
