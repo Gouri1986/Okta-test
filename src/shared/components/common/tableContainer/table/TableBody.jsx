@@ -98,11 +98,7 @@ const TableBody = ({
         <tr
           className={`pos-rel flex-jc-sp-evn titan-table-rows bdr-buttom-primary-1 pt-10 pb-10`}
         >
-          {[
-            { id: "cb", title: "" },
-            ...header,
-            { id: "action", title: "Action" },
-          ]?.map((item) => {
+          {header?.map((item) => {
             return (
               <td
                 className={`${item.id === "action" && "pos-sk r-0 bg-white"}

@@ -61,11 +61,7 @@ const TableHeader = ({ header, tableData, setTableContents }) => {
         "pl-25 pr-25 pb-0 pos-sk t-0 z-1 flex-r-ac titan-table-header bdr-buttom-primary-1 flex-jc-sp-evn bg-white"
       }
     >
-      {[
-        { id: "cb", title: "" },
-        ...header,
-        { id: "action", title: "Action" },
-      ]?.map((item, index) => (
+      {header?.map((item, index) => (
         <TableHeaderCell
           header={header}
           sort={sort}

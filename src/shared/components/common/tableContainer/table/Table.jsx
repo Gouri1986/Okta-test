@@ -9,7 +9,8 @@ const Table = (props) => {
     onRowClick = () => {},
     report,
     selectedRow,
-    status,
+    showCheckBox,
+    showAction,
     setModalMode,
     setModalOpen,
     setModalForm,
@@ -19,6 +20,42 @@ const Table = (props) => {
   } = props;
   const { header, data: rowData } = tableData;
 
+  const checkBoxObj = {
+    title: "",
+    id: "cb",
+  };
+
+  const actionObj = {
+    title: "Action",
+    id: "action",
+  };
+
+  const finalHeader = [
+    showCheckBox && checkBoxObj,
+    ...header,
+    showAction && actionObj,
+  ];
+
+  const headerProps = {
+    setTableContents: setTableContents,
+    tableData: tableData,
+    header: finalHeader,
+  };
+
+  const bodyProps = {
+    report: report,
+    onRowClick: onRowClick,
+    rowData: rowData,
+    selectedRow: selectedRow,
+    header: finalHeader,
+    setModalMode: setModalMode,
+    setModalOpen: setModalOpen,
+    setModalForm: setModalForm,
+    modalForm: modalForm,
+    tableDetails: tableDetails,
+    deleteDataToTable: deleteDataToTable,
+  };
+
   return (
     <>
       {/* start of the table */}
@@ -27,28 +64,8 @@ const Table = (props) => {
           header?.length < 10 ? "titan-table-fill" : "titan-table"
         }`}
       >
-        {/* condition rendering of header */}
-        <TableHeader
-          setTableContents={setTableContents}
-          tableData={tableData}
-          header={header}
-        />
-
-        {/* conditional rendering of rows with respect to id of header */}
-        <TableBody
-          report={report}
-          onRowClick={onRowClick}
-          rowData={rowData}
-          selectedRow={selectedRow}
-          header={header}
-          setModalMode={setModalMode}
-          setModalOpen={setModalOpen}
-          setModalForm={setModalForm}
-          modalForm={modalForm}
-          tableDetails={tableDetails}
-          deleteDataToTable={deleteDataToTable}
-        />
-        {/* added pagination */}
+        <TableHeader {...headerProps} />
+        <TableBody {...bodyProps} />
       </table>
       {/* end of the table */}
     </>
