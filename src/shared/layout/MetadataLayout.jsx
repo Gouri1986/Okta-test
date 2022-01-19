@@ -29,10 +29,10 @@ const Layout = (props) => {
         <div className='mt-33 mr-30 ml-30'>
           <Header tableTitle={tableTitle} />
         </div>
-        <div className='mr-50 ml-50 mt-50 '>
+        <div className='mr-30 ml-30 mt-50 '>
           <TableSettings />
         </div>
-        <div className='bg-white overflow-x-scroll ml-50 mr-50 mb-50 metadata-table-container'>
+        <div className='bg-white overflow-x-scroll ml-30 mr-30 mb-50 metadata-table-container'>
           {tableData.data?.length > 0 ? (
             <div>{children}</div>
           ) : (
