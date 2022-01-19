@@ -13,7 +13,9 @@ const TableHeaderCell = ({
 }) => {
   return (
     <th
-      className={` table-header-cell w-${
+      className={`${
+        item.id === "action" && "pos-sk r-0 bg-white"
+      } table-header-cell w-${
         tableData.data.find((e) => e[item.id]?.length > 30)
           ? 400
           : item.title.length > 25
@@ -56,10 +58,14 @@ const TableHeader = ({ header, tableData, setTableContents }) => {
   return (
     <tr
       className={
-        "pl-25 pr-25 pb-25 pos-sk t-0 z-1 flex-r-ac titan-table-header bdr-buttom-primary-1"
+        "pl-25 pr-25 pb-0 pos-sk t-0 z-1 flex-r-ac titan-table-header bdr-buttom-primary-1"
       }
     >
-      {[{ id: "cb", title: "" }, ...header]?.map((item, index) => (
+      {[
+        { id: "cb", title: "" },
+        ...header,
+        { id: "action", title: "Action" },
+      ]?.map((item, index) => (
         <TableHeaderCell
           header={header}
           sort={sort}
