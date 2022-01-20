@@ -50,16 +50,8 @@ const Layout = props => {
         open={open}
         close={() => setOpen(false)}
         size="lg" // sm, md, lg, xl
-        body={
-          <div>
-            <h3>{tableTitle}</h3>
-            <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, ratione. Aliquam inventore,
-              vel fuga repudiandae officia, incidunt, esse eius eveniet optio sit nemo quasi a aperiam
-              temporibus. Architecto, amet quos.
-            </p>
-          </div>
-        }
+        modalTitle={tableTitle}
+        body={`lorem`}
       />
     </div>
   )
