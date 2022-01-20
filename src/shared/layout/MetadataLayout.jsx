@@ -20,13 +20,13 @@ const Layout = props => {
         />
       </div>
       <div className="wp-93 hvh-100 flex-1 flex-c">
-        <div className="mt-33 mr-30 ml-30 hvh-15">
+        <div className="mt-33 mr-30 ml-30 hvh-13">
           <Header tableTitle={tableTitle} />
         </div>
-        <div className="ml-30 mb-10 hvh-4">
+        <div className="ml-30 mb-10 hvh-3">
           <BreadCumbs parentTitle="Dashboard" parentPath="" tableTitle={tableTitle} />
         </div>
-        <div className="flex-c ml-30 mr-30 hvh-81">
+        <div className="flex-c ml-30 mr-30 hvh-82">
           <div className="flex-c bdr-r-10 bg-white">
             <div>
               <TableSettings modalOnClick={() => setOpen(!open)} />
