@@ -20,10 +20,10 @@ const Layout = props => {
         <div className="mt-33 mr-30 ml-30 hvh-15">
           <Header tableTitle={tableTitle} />
         </div>
-        <div className="ml-30 mb-10">
+        <div className="ml-30 hvh-4">
           <BreadCumbs parentTitle='Dashboard' parentPath='' tableTitle={tableTitle} />
         </div>
-        <div className="flex-c ml-30 mr-30 hvh-85">
+        <div className="flex-c ml-30 mr-30 hvh-81">
           <div className="flex-c bdr-r-10 bg-white">
             <div>
               <TableSettings />
