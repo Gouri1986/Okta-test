@@ -1,11 +1,14 @@
-import React from "react"
+import React, { useState } from "react"
 import Navbar from "../components/common/drawer/navDrawer/NavDrawer"
 import Header from "../components/common/header/Header"
 import TableSettings from "../components/common/tableContainer/table/TableSettings"
 import "./metadataLayout.scss"
 import BreadCumbs from "../components/common/breadcumbs/BreadCumbs"
+import Modal from "../components/common/modal/center/Modal"
+
 const Layout = props => {
   const { setActiveEndPoint, setRefresh, refresh, getTable, children, tableData, tableTitle } = props
+  const [open, setOpen] = useState(false)
   return (
     <div className="flex-r pos-rel">
       <div>
@@ -20,13 +23,13 @@ const Layout = props => {
         <div className="mt-33 mr-30 ml-30 hvh-15">
           <Header tableTitle={tableTitle} />
         </div>
-        <div className="ml-30 hvh-4">
-          <BreadCumbs parentTitle='Dashboard' parentPath='' tableTitle={tableTitle} />
+        <div className="ml-30 mb-10 hvh-4">
+          <BreadCumbs parentTitle="Dashboard" parentPath="" tableTitle={tableTitle} />
         </div>
         <div className="flex-c ml-30 mr-30 hvh-81">
           <div className="flex-c bdr-r-10 bg-white">
             <div>
-              <TableSettings />
+              <TableSettings modalOnClick={() => setOpen(!open)}/>
             </div>
             <div className="overflow-x-scroll metadata-table-container">
               {tableData.data?.length > 0 ? (
@@ -43,6 +46,17 @@ const Layout = props => {
           </div>
         </div>
       </div>
+      <Modal
+        open={open}
+        close={() => setOpen(false)}
+        size="lg" // sm, md, lg, xl
+        body={` Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
+        industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type
+        and scrambled it to make a type specimen book. It has survived not only five centuries, but also the
+        leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s
+        with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop
+        publishing software like Aldus PageMaker including versions of Lorem Ipsum`}
+      />
     </div>
   )
 }
