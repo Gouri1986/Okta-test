@@ -58,7 +58,7 @@ const TableHeader = ({ header, tableData, setTableContents }) => {
   return (
     <tr
       className={
-        "pl-25 pr-25 pb-0 pos-sk t-0 z-1 flex-r-ac titan-table-header bdr-buttom-primary-1 flex-jc-sp-evn bg-white"
+        "pl-25 pb-0 pos-sk t-0 z-1 flex-r-ac titan-table-header bdr-buttom-primary-1 flex-jc-sp-evn bg-white"
       }
     >
       {header?.map((item, index) => (
