@@ -2,7 +2,7 @@ import React from "react"
 import "./Modal.scss"
 
 const Modal = props => {
-  const { open, close, size, body } = props
+  const { open, close, size, modalTitle, body } = props
 
   return (
     <div className={`modal ${open === true ? "side-on-state" : "side-off-state"}`}>
@@ -22,7 +22,17 @@ const Modal = props => {
         <button onClick={() => close()} className="modal-btn-close">
           &times;
         </button>
-        <div className="container">{body}</div>
+        <h3 className="mb-5">{modalTitle}</h3>
+        <div className="modal-container">
+          <p>{body}</p>
+          {[...Array(5)].map(i => (
+            <p key={i}>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Reprehenderit officiis dolorum cum
+              temporibus eum. Earum nihil nam harum eaque accusamus id. Corrupti obcaecati facere perspiciatis
+              magnam mollitia inventore alias dolores.
+            </p>
+          ))}
+        </div>
       </div>
     </div>
   )
