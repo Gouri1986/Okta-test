@@ -8,13 +8,13 @@ const ModalRight = props => {
     <div
       className={`sidebar sidebar-animation ${open === true ? "side-on-state" : "side-off-state"} ${
         size === "sm"
-          ? "wd-sm"
+          ? "wd-sb-sm"
           : size === "md"
-          ? "wd-md"
+          ? "wd-sb-md"
           : size === "lg"
-          ? "wd-lg"
+          ? "wd-sb-lg"
           : size === "xl"
-          ? "wd-xl"
+          ? "wd-sb-xl"
           : ""
       } `}
     >
