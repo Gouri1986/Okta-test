@@ -5,17 +5,17 @@
   display: none;
 }
 
-.wd-sm {
-  width: 30%;
+.wd-sb-sm {
+  width: 30% !important;
 }
-.wd-md {
-  width: 50%;
+.wd-sb-md {
+  width: 50% !important;
 }
-.wd-lg {
-  width: 70%;
+.wd-sb-lg {
+  width: 70% !important;
 }
-.wd-xl {
-  width: 100%;
+.wd-sb-xl {
+  width: 100% !important;
 }
 
 .sidebar {
@@ -65,10 +65,10 @@
 }
 
 @media screen and (max-width: 768px) {
-  .wd-sm,
-  .wd-md,
-  .wd-lg,
-  .wd-xl {
+  .wd-sb-sm,
+  .wd-sb-md,
+  .wd-sb-lg,
+  .wd-sb-xl {
     width: 100%;
   }
 }
