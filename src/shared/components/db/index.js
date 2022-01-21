@@ -6,7 +6,7 @@ export const tableData = {
     { title: "Control Description", id: "control-description" },
     { title: "Regulation Control", id: "regular-control" },
     { title: "Verified Date", id: "verified-date" },
-    { title: "Compliance", id: "compliance" },
+    { title: "Compliance", id: "compliance" }
   ],
   data: [
     {
@@ -18,7 +18,7 @@ export const tableData = {
         "The traffic flows over your network are complex. You may have a hybrid or multi-cloud networks, which make visibility even more complex. It is difficult to manage firewall policies without clear visibility into traffic flows over your entire network.",
       "regular-control": "C6.2 - SOC 2A8.111 - ISO 27001",
       "verified-date": "13-11-2022",
-      compliance: "compliant",
+      compliance: "compliant"
     },
     {
       id: 1,
@@ -29,7 +29,7 @@ export const tableData = {
         "The traffic flows over your network are complex. You may have a hybrid or multi-cloud networks, which make visibility even more complex. It is difficult to manage firewall policies without clear visibility into traffic flows over your entire network.",
       "regular-control": "C6.2 - SOC 2A8.111 - ISO 27001",
       "verified-date": "13-11-2022",
-      compliance: "non-compliant",
+      compliance: "non-compliant"
     },
     {
       id: 2,
@@ -40,7 +40,7 @@ export const tableData = {
         "The traffic flows over your network are complex. You may have a hybrid or multi-cloud networks, which make visibility even more complex. It is difficult to manage firewall policies without clear visibility into traffic flows over your entire network.",
       "regular-control": "C6.2 - SOC 2A8.111 - ISO 27002",
       "verified-date": "13-11-2022",
-      compliance: "compliant",
+      compliance: "compliant"
     },
     {
       id: 3,
@@ -51,7 +51,7 @@ export const tableData = {
         "The traffic flows over your network are complex. You may have a hybrid or multi-cloud networks, which make visibility even more complex. It is difficult to manage firewall policies without clear visibility into traffic flows over your entire network.",
       "regular-control": "C6.2 - SOC 2A8.111 - ISO 27001",
       "verified-date": "13-11-2022",
-      compliance: "compliant",
+      compliance: "compliant"
     },
     {
       id: 4,
@@ -62,7 +62,27 @@ export const tableData = {
         "The traffic flows over your network are complex. You may have a hybrid or multi-cloud networks, which make visibility even more complex. It is difficult to manage firewall policies without clear visibility into traffic flows over your entire network.",
       "regular-control": "C6.2 - SOC 2A8.111 - ISO 27001",
       "verified-date": "13-11-2022",
-      compliance: "non-compliant",
-    },
-  ],
-};
+      compliance: "non-compliant"
+    }
+  ]
+}
+
+export const treeViewData = [
+  {
+    l1: "TreeView data v1 l1",
+    l2_data: [
+      {
+        l2: "TreeView data v1 l2",
+        l3_data: [{ l3: "TreeView data v1 l3" }]
+      },
+      {
+        l2: "TreeView data v2 l2",
+        l3_data: [{ l3: "Lorem Ipsum is simply dummy text of the printing and typesetting indus" }]
+      },
+      {
+        l2: "TreeView data v2 l2",
+        l3_data: [{ l3: "Lorem Ipsum is simply dummy text of the printing and typesetting indus" }]
+      }
+    ]
+  }
+]

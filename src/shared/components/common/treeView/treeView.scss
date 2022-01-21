@@ -1,4 +1,4 @@
-/* Tree styles */
+/* Tree core styles */
 .tree {
   margin: 1em;
 }
@@ -31,31 +31,28 @@
   padding-bottom: 0;
 }
 
-/* Tree labels*/
+/* Tree labels */
 .tree_label {
   position: relative;
   display: inline-block;
-  background: #fff;
 }
 
-.tree_label label {
+label.tree_label,
+.label_l2 {
   cursor: pointer;
 }
 
-.tree_label label:hover {
+label.tree_label:hover,
+.label_l2:hover {
   color: #666;
 }
-::marker {
-  display: none;
-}
+
 /* Tree expanded icon */
-.tree_label_1 label:before,
-.tree_label_2 label:before,
-.tree_label_3 label:before {
-  background: rgb(255, 255, 255);
-  color: rgb(19, 18, 18);
+//parent l1 icon
+label.tree_label:before {
+  background: #fff;
+  color: black;
   border: 2px solid black;
-  font-weight: 500;
   position: relative;
   z-index: 1;
   float: left;
@@ -65,135 +62,73 @@
   border-radius: 1em;
   content: "+";
   text-align: center;
-  line-height: 1em;
+  line-height: 0.9em;
 }
 
-:checked ~ .tree_label_1 label:before,
-:checked ~ .tree_label_2 label:before,
-:checked ~ .tree_label_3 label:before {
+:checked ~ label.tree_label:before {
   content: "–";
 }
+//Child l2 icon
+label.label_l2:before {
+  background: #fff;
+  color: black;
+  border: 2px solid black;
+  position: relative;
+  z-index: 1;
+  float: left;
+  margin: 0 1em 0 -2em;
+  width: 1em;
+  height: 1em;
+  border-radius: 1em;
+  content: "+";
+  text-align: center;
+  line-height: 0.9em;
+}
 
+:checked ~ label.label_l2:before {
+  content: "–";
+}
 /* Tree branches */
+.tree li:before {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: -1.4em;
+  display: block;
+  width: 0;
+  border-left: 2px solid #777;
+  content: "";
+}
 
-// /* Tree styles */
-// .tree {
-//   margin: 1em;
-// }
+.tree_label:after {
+  position: absolute;
+  top: 0;
+  left: -1.5em;
+  display: block;
+  height: 0.5em;
+  width: 1em;
+  content: "";
+}
 
-// .tree input {
-//   position: absolute;
-//   clip: rect(0, 0, 0, 0);
-// }
+label.label_l2::after {
+  border-left: 2px solid #777;
+  border-bottom: 2px solid #777;
+  bottom: 0;
+  left: -2.4em;
+  top: -0.3em;
+  bottom: 0.6em;
+  height: auto;
+}
 
-// .tree input ~ ul {
-//   display: none;
-// }
+.tree li:last-child:before {
+  height: 1em;
+  bottom: auto;
+}
 
-// .tree input:checked ~ ul {
-//   display: block;
-// }
+.tree > li:last-child:before {
+  display: none;
+}
 
-// /* Tree rows */
-// .tree li {
-//   line-height: 1.2;
-//   position: relative;
-//   padding: 0 0 1em 1em;
-// }
-
-// .tree ul li {
-//   padding: 1em 0 0 1em;
-// }
-
-// .tree > li:last-child {
-//   padding-bottom: 0;
-// }
-
-// /* Tree labels*/
-// .tree_label {
-//   position: relative;
-//   display: inline-block;
-//   background: #fff;
-// }
-
-// label.tree_label {
-//   cursor: pointer;
-// }
-
-// label.tree_label:hover {
-//   color: #666;
-// }
-
-// /* Tree expanded icon */
-// label.tree_label:before {
-//   background: rgb(255, 255, 255);
-//   color: rgb(19, 18, 18);
-//   border: 2px solid black;
-//   font-weight: 500;
-//   position: relative;
-//   z-index: 1;
-//   float: left;
-//   margin: 0 1em 0 -2em;
-//   width: 1em;
-//   height: 1em;
-//   border-radius: 1em;
-//   content: "+";
-//   text-align: center;
-//   line-height: 1em;
-// }
-
-// :checked ~ label.tree_label:before {
-//   content: "–";
-// }
-
-// /* Tree branches */
-// .tree li:before {
-//   position: absolute;
-//   top: 0;
-//   bottom: 0;
-//   left: -0.45em;
-//   display: block;
-//   width: 0;
-//   border-left: 2px solid #777;
-//   content: "";
-// }
-
-// .tree_label:after {
-//   position: absolute;
-//   top: 0;
-//   left: -1.47em;
-//   display: block;
-//   height: 0.5em;
-//   width: 1em;
-//   border-bottom: 2px solid #777;
-//   border-left: 2px solid #777;
-//   content: "";
-// }
-
-// label.tree_label:after {
-//   border-bottom: 0;
-// }
-
-// :checked ~ label.tree_label:after {
-//   border-radius: 0 0 0 0;
-//   border-top: 2px solid #777;
-//   border-right: 2px solid #777;
-//   border-bottom: 0;
-//   border-left: 0;
-//   bottom: 0;
-//   top: 0.5em;
-//   height: auto;
-// }
-
-// .tree li:last-child:before {
-//   height: 1em;
-//   bottom: auto;
-// }
-
-// .tree > li:last-child:before {
-//   display: none;
-// }
-
-// ::marker {
-//   color: #fff;
-// }
+::marker {
+  color: transparent;
+}

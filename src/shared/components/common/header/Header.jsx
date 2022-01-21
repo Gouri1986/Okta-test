@@ -21,7 +21,7 @@ function Header({ tableTitle }) {
           </>
         )}
       </div>
-      <div className='flex-r-ac wp-23 flex-jc-sp-btn'>
+      <div className='flex-r-ac flex-jc-sp-btn'>
         <div className='flex-r-ac mr-15'>
           <HelpIcon />
         </div>

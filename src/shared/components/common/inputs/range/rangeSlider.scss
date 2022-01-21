@@ -1,0 +1,37 @@
+.css-1aznpnh-MuiSlider-root {
+  padding: none !important;
+}
+
+// range slider track
+.css-14pt78w-MuiSlider-rail {
+  background: linear-gradient(90deg, #00ff19 0%, #ffee00 52.53%, #ff0000 104.23%);
+  opacity: 2 !important;
+  height: 10px !important;
+}
+.css-1gv0vcd-MuiSlider-track {
+  background-color: transparent !important;
+  border: transparent !important;
+}
+
+// range thumb
+.css-eg0mwd-MuiSlider-thumb {
+  background-color: #ffffff !important;
+  border: 2px #b8b8b8 !important;
+  height: 20px !important;
+  width: 20px !important;
+  border-radius: 50% !important;
+  box-sizing: border-box;
+}
+
+// range marker
+.css-1tfve6q-MuiSlider-mark {
+  background-color: #777 !important;
+  height: 5px !important;
+  width: 0.1px !important;
+}
+
+// label
+.MuiSlider-markLabel {
+  font-size: 0.8rem !important;
+  font-weight: 500 !important;
+}

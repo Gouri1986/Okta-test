@@ -491,7 +491,6 @@ const Dashboard = () => {
           </div>
         </div>
       )}
-
       {tableContents.data?.length > 0 && (
         <MyModal
           modalOpen={modalOpen}

@@ -1,0 +1,74 @@
+.side-on-state {
+  display: block;
+}
+.side-off-state {
+  display: none;
+}
+
+.wd-sb-sm {
+  width: 30% !important;
+}
+.wd-sb-md {
+  width: 50% !important;
+}
+.wd-sb-lg {
+  width: 70% !important;
+}
+.wd-sb-xl {
+  width: 100% !important;
+}
+
+.sidebar {
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 100%;
+  background-color: #fff;
+  box-shadow: 0 2px 5px 0 rgba(240, 240, 240, 0.16), 0 2px 10px 0 rgba(139, 139, 139, 0.12);
+  position: fixed !important;
+  z-index: 999;
+  overflow: auto;
+}
+
+.sidebar-btn {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  width: 30px;
+  height: 30px;
+  background-color: rgb(255, 255, 255);
+  border-radius: 50%;
+  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+  cursor: pointer;
+  z-index: 2;
+}
+
+.sidebar-body {
+  padding: 20px;
+  margin-top: 30px;
+}
+
+.sidebar-animation {
+  position: relative;
+  animation: animateopen 0.4s;
+}
+
+@keyframes animateopen {
+  from {
+    right: -300px;
+    opacity: 1;
+  }
+  to {
+    right: 0;
+    opacity: 1;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .wd-sb-sm,
+  .wd-sb-md,
+  .wd-sb-lg,
+  .wd-sb-xl {
+    width: 100%;
+  }
+}

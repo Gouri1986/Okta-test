@@ -1,0 +1,13 @@
+// MUI styles override
+
+.MuiBreadcrumbs-li {
+  text-transform: capitalize;
+}
+
+.MuiBreadcrumbs-li a {
+  text-decoration: none;
+}
+
+.MuiBreadcrumbs-li a:hover {
+  color: grey;
+}

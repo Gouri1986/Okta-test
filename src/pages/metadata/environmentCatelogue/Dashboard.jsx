@@ -11,7 +11,6 @@ import {
 import { useSelector } from "react-redux";
 import { getSpacedDisplayName } from "../../../shared/utils/table";
 import { MetadataLayout } from "../../../shared/layout";
-
 const Dashboard = () => {
   const { user } = useSelector((state) => state.userReducer);
   const [tableContents, setTableContents] = useState([]);
@@ -21,7 +20,6 @@ const Dashboard = () => {
   const [refresh, setRefresh] = useState(false);
   const location = useLocation();
   const [tableTitle, setTableTitle] = useState("");
-
   useEffect(() => {
     let endpointFromPath = getApiEndpointNameFromRoutes(
       encsDrawer,
@@ -37,7 +35,6 @@ const Dashboard = () => {
       getTableTitleNameFromRoutes(encsDrawer, location, "environmentcatelogue/")
     );
   }, [refresh, location.pathname]);
-
   const getTable = async (activeEndPoint) => {
     const data = await getTableData(activeEndPoint, user);
     const objectKeys = data?.map((e) => {
@@ -48,7 +45,6 @@ const Dashboard = () => {
     });
     data && setTableContents({ header, data });
   };
-
   const onRowClick = (rowData) => {
     if (selectedRow.find((e) => e.id === rowData.id)) {
       const selectedItems = selectedRow.filter((e) => e.id !== rowData.id);
@@ -84,5 +80,4 @@ const Dashboard = () => {
     </MetadataLayout>
   );
 };
-
 export default Dashboard;
