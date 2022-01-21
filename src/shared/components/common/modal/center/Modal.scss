@@ -51,7 +51,7 @@
 }
 .modal-header {
   padding: 5px 0 5px 0;
-  margin-bottom: 10px;
+  margin-bottom: 20px;
   border-bottom: 1px solid #e5e5e5;
 }
 
@@ -61,7 +61,8 @@
 }
 
 .modal-container::-webkit-scrollbar {
-  width: 0.8em;
+  width: 0.5em;
+  left: -10px;
 }
 
 .modal-container::-webkit-scrollbar-track {
