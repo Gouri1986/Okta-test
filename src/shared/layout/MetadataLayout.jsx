@@ -8,6 +8,7 @@ import Modal from "../components/common/modal/center/Modal"
 
 const Layout = props => {
   const { setActiveEndPoint, setRefresh, refresh, getTable, children, tableData, tableTitle } = props
+
   const [open, setOpen] = useState(false)
   return (
     <div className="flex-r pos-rel">
@@ -49,10 +50,24 @@ const Layout = props => {
       <Modal
         open={open}
         close={() => setOpen(false)}
-        size="lg" // sm, md, lg, xl
+        size={`${
+          tableData?.header?.length < 10
+            ? `sm`
+            : tableData?.header?.length < 15
+            ? `md`
+            : tableData?.header?.length < 30
+            ? `lg`
+            : tableData?.header?.length > 30 ? `xl` : ""
+        }`} // sm, md, lg, xl
         modalTitle={tableTitle}
-        body={`lorem`}
-      />
+      >
+        {tableData?.header?.map((obj, i) => (
+          <div key={i}>
+            <span>{obj.title}</span> <br />
+            <span>{obj.title}</span>
+          </div>
+        ))}
+      </Modal>
     </div>
   )
 }
