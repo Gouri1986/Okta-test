@@ -475,17 +475,17 @@ const Dashboard = () => {
           <div className='main-ly wp-100 height100vh pl-20 pr-20 flex-c overflow-x-scroll overflow-y-scroll'>
             <div className='table-parent overflow-x-auto overflow-y-scroll wp-100'>
               <TitanTable
-                report={report}
                 selectedRow={selectedRow}
                 tableData={tableContents}
                 setTableContents={setTableContents}
-                status={true}
                 setModalMode={setModalMode}
                 setModalOpen={setModalOpen}
                 modalForm={modalForm}
                 setModalForm={setModalForm}
                 tableDetails={tableDetails}
                 deleteDataToTable={deleteDataToTable}
+                showCheckBox
+                showAction
               />
             </div>
           </div>
