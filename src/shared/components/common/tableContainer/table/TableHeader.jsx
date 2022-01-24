@@ -29,7 +29,7 @@ const TableHeaderCell = ({
       onClick={() => sortTable(item.id)}
     >
       <span>{item.title}</span>{" "}
-      {(item.id !== "cb" || item.id !== "action") &&
+      {(item.id !== "cb" && item.id !== "action") &&
       <TableHeaderSortDownArrow
         up={sort.id === item.id && sort.dir === "asc"}
       /> }
