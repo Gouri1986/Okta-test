@@ -5,6 +5,8 @@ import TableSettings from "../components/common/tableContainer/table/TableSettin
 import "./metadataLayout.scss"
 import BreadCumbs from "../components/common/breadcumbs/BreadCumbs"
 import Modal from "../components/common/modal/center/Modal"
+import ModalForm from "../components/common/forms/ModalForm"
+import { Pagination } from "../components/common/tableContainer/pagination"
 
 const Layout = props => {
   const { setActiveEndPoint, setRefresh, refresh, getTable, children, tableData, tableTitle } = props
@@ -34,7 +36,7 @@ const Layout = props => {
             </div>
             <div className="overflow-x-scroll metadata-table-container">
               {tableData.data?.length > 0 ? (
-                <div>{children}</div>
+                <div>{children[0]}</div>
               ) : (
                 <div className="wp-100 hp-100 flex-r-jc-ac p-50">
                   <span className="f-20 fw-500">No data to display</span>
@@ -43,7 +45,7 @@ const Layout = props => {
             </div>
           </div>
           <div className="mt-20">
-            <p>pagination</p>
+            {children[1]}
           </div>
         </div>
       </div>
@@ -57,16 +59,14 @@ const Layout = props => {
             ? `md`
             : tableData?.header?.length < 30
             ? `lg`
-            : tableData?.header?.length > 30 ? `xl` : ""
+            : tableData?.header?.length > 30
+            ? `xl`
+            : ""
         }`} // sm, md, lg, xl
+        columnCount={tableData?.header?.length}
         modalTitle={tableTitle}
       >
-        {tableData?.header?.map((obj, i) => (
-          <div key={i}>
-            <span>{obj.title}</span> <br />
-            <span>{obj.title}</span>
-          </div>
-        ))}
+        <ModalForm tableData={tableData} onCancel={() => setOpen(false)} />
       </Modal>
     </div>
   )

@@ -2,8 +2,7 @@ import React, { Children } from "react"
 import "./Modal.scss"
 
 const Modal = props => {
-  const { open, close, size, modalTitle, children } = props
-
+  const { open, close, size, columnCount, modalTitle, children } = props
   return (
     <div className={`modal ${open === true ? "side-on-state" : "side-off-state"}`}>
       <div
@@ -25,7 +24,17 @@ const Modal = props => {
           </button>
           <h3 className="mb-5">{modalTitle}</h3>
         </div>
-        <div className="modal-container">{children}</div>
+        <div
+          className={`modal-container ${
+            columnCount <= 10
+              ? ""
+              : (
+                  columnCount > 11? "modal-container-h-75" : ""
+              )
+          }`}
+        >
+          {children}
+        </div>
       </div>
     </div>
   )

@@ -1,8 +1,8 @@
-import "./table.scss";
-import TableBody from "./TableBody";
-import TableHeader from "./TableHeader";
+import "./table.scss"
+import TableBody from "./TableBody"
+import TableHeader from "./TableHeader"
 
-const Table = (props) => {
+const Table = props => {
   const {
     tableData,
     setTableContents,
@@ -17,30 +17,28 @@ const Table = (props) => {
     modalForm,
     tableDetails,
     deleteDataToTable,
-  } = props;
-  const { header, data: rowData } = tableData;
+    page,
+    rowsPerPage
+  } = props
+  const { header, data: rowData } = tableData
 
   const checkBoxObj = {
     title: "",
-    id: "cb",
-  };
+    id: "cb"
+  }
 
   const actionObj = {
     title: "Action",
-    id: "action",
-  };
+    id: "action"
+  }
 
-  const finalHeader = [
-    showCheckBox && checkBoxObj,
-    ...header,
-    showAction && actionObj,
-  ];
+  const finalHeader = [showCheckBox && checkBoxObj, ...header, showAction && actionObj]
 
   const headerProps = {
     setTableContents: setTableContents,
     tableData: tableData,
-    header: finalHeader,
-  };
+    header: finalHeader
+  }
 
   const bodyProps = {
     report: report,
@@ -54,22 +52,20 @@ const Table = (props) => {
     modalForm: modalForm,
     tableDetails: tableDetails,
     deleteDataToTable: deleteDataToTable,
-  };
+    page: page,
+    rowsPerPage: rowsPerPage
+  }
 
   return (
     <>
       {/* start of the table */}
-      <table
-        className={`flex-c ${
-          header?.length < 10 ? "titan-table-fill" : "titan-table"
-        }`}
-      >
+      <table className={`flex-c ${header?.length < 10 ? "titan-table-fill" : "titan-table"}`}>
         <TableHeader {...headerProps} />
         <TableBody {...bodyProps} />
       </table>
       {/* end of the table */}
     </>
-  );
-};
+  )
+}
 
-export default Table;
+export default Table
