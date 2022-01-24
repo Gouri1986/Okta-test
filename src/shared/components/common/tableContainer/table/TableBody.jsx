@@ -6,7 +6,6 @@ import { truncatedDesc } from "./utils"
 
 import ModalRight from "../../modal/right/ModalRight"
 
-
 const RowAction = () => {
   return (
     <div className="flex-r-jc-ac t-20">
@@ -77,35 +76,38 @@ const RowCheckBox = ({ onRowClick, selectedRow, datum }) => {
 //   );
 // };
 
-const TableBody = ({
-  rowData,
-  header,
-  onRowClick,
-  selectedRow,
-  setModalMode,
-  setModalOpen,
-  setModalForm,
-  tableDetails,
-  deleteDataToTable
-}) => {
+const TableBody = props => {
+  const {
+    rowData,
+    header,
+    onRowClick,
+    selectedRow,
+    setModalMode,
+    setModalOpen,
+    setModalForm,
+    tableDetails,
+    deleteDataToTable,
+    page,
+    rowsPerPage
+  } = props
+
   const [open, setOpen] = useState(false)
+
+  /*
+   page count = 0 --->  slice 0 to 4  [ 0 + 5 - 1]
+    page count = 1 --->  slice 5 to 9
+  */
+  const start = page * rowsPerPage
+  const end = start + rowsPerPage
 
   return (
     <div className="flex-c ">
-      {rowData?.map(datum => (
+      {(rowData ?? []).slice(start, end)?.map(datum => (
         console.log(datum),
         <tr
           onClick={() => setOpen(!open)}
           className={`pos-rel flex-jc-sp-evn titan-table-rows bdr-buttom-primary-1 pt-10 pb-10`}
         >
-           <ModalRight
-        open={open}
-        close={() => setOpen(false)}
-        size="sm" // sm, md, lg, xl
-        body={<p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-        </p>}
-      />
           {header?.map(item => {
             return (
               <td
@@ -131,10 +133,16 @@ const TableBody = ({
                 )}
               </td>
             )
-          })}
+          })
+          }
         </tr>
       ))}
-     
+      <ModalRight
+        open={open}
+        close={() => setOpen(false)}
+        size="sm" // sm, md, lg, xl
+        body={<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>}
+      />
     </div>
   )
 }
