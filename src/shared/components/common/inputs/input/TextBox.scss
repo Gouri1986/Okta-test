@@ -1,0 +1,52 @@
+// textbox
+.text-box {
+  height: 40px;
+  padding: 0 10px;
+  width: 100%;
+  background: #fcfcfd;
+  border: 1.16712px solid #cfd0d7;
+  box-sizing: border-box;
+  border-radius: 2.33425px;
+  color: #767777;
+}
+.text-box::placeholder {
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 20px;
+  color: rgba(26, 32, 61, 0.3);
+}
+.text-box:focus {
+  outline: none;
+}
+
+.text-box-label {
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 20px;
+  color: #5f6377;
+  margin: 6px 0px;
+}
+
+// textarea
+.textarea {
+  padding: 8px 12px;
+  width: 100%;
+  background: #fcfcfd;
+  border: 1.16712px solid #cfd0d7;
+  box-sizing: border-box;
+  border-radius: 2.33425px;
+  resize: vertical;
+  color: #767777;
+}
+.textarea:focus {
+  outline: none;
+}
+.textarea::placeholder {
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 20px;
+  color: rgba(26, 32, 61, 0.3);
+}

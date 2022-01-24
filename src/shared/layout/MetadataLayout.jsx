@@ -5,6 +5,7 @@ import TableSettings from "../components/common/tableContainer/table/TableSettin
 import "./metadataLayout.scss"
 import BreadCumbs from "../components/common/breadcumbs/BreadCumbs"
 import Modal from "../components/common/modal/center/Modal"
+import ModalForm from "../components/common/forms/ModalForm"
 
 const Layout = props => {
   const { setActiveEndPoint, setRefresh, refresh, getTable, children, tableData, tableTitle } = props
@@ -61,12 +62,13 @@ const Layout = props => {
         }`} // sm, md, lg, xl
         modalTitle={tableTitle}
       >
-        {tableData?.header?.map((obj, i) => (
+        {/* {.map((obj, i) => (
           <div key={i}>
             <span>{obj.title}</span> <br />
             <span>{obj.title}</span>
           </div>
-        ))}
+        ))} */}
+        <ModalForm tableData={tableData} onCancel={() => setOpen(false)}/>
       </Modal>
     </div>
   )
