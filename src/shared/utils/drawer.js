@@ -1,6 +1,18 @@
-import { ENCSRoutes } from "../../routes/metadataRoutes";
+import { ENCSRoutes, IAMRoutes } from "../../routes/metadataRoutes";
 import { drawerSectionIcons } from "../components/common/drawer/iamNavDrawer/assets";
 import { getSpacedDisplayName } from "./table";
+
+export const iamDrawer = () => {
+  return IAMRoutes.map((rt) => ({
+    title: "",
+    items: rt.routes.routes.map((route) => ({
+      title: route.pageName,
+      path: route.path,
+      Icon: drawerSectionIcons.AWS,
+      apiEndpoint: route.apiEndpoint,
+    })),
+  }));
+};
 
 export const encsDrawer = () => {
   return ENCSRoutes.map((rt) => ({
@@ -16,6 +28,7 @@ export const encsDrawer = () => {
         id: route.path,
         apiEndpoint: route.apiEndpoint,
         expandable: true,
+        key: route.pk,
       })),
     })),
   }));

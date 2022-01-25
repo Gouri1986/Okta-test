@@ -4,14 +4,20 @@ const weedoutArrays = (exPath) => {
     .filter((e) => e.length > 0);
 };
 
-const getExactPathArray = (routes, location, mainRoute) =>
-  routes().map((e) =>
-    e.items?.map((el) =>
-      el.items?.filter(
+const getExactPathArray = (routes, location, mainRoute) => {
+  return routes().map((e) =>
+    e.items?.map((el) => {
+      if (el.items) {
+        return el.items?.filter(
+          (it) => it.path === location?.pathname?.replace(mainRoute, "")
+        );
+      }
+      return e.items?.filter(
         (it) => it.path === location?.pathname?.replace(mainRoute, "")
-      )
-    )
+      );
+    })
   );
+};
 
 // NOTE : Flat(3) is 3 level deep routing (...). 3 is tentative.
 // it will change based on available nested routes.
@@ -26,4 +32,10 @@ export const getTableTitleNameFromRoutes = (routes, location, mainRoute) => {
   return weedoutArrays(getExactPathArray(routes, location, mainRoute)).flat(
     3
   )?.[0]?.title;
+};
+
+export const getTableKeyNameFromRoutes = (routes, location, mainRoute) => {
+  return weedoutArrays(getExactPathArray(routes, location, mainRoute)).flat(
+    3
+  )?.[0]?.key;
 };

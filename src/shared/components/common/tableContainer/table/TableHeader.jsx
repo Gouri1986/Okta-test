@@ -20,23 +20,8 @@ const TableHeaderCell = ({ tableData, sort, sortTable, item }) => {
   const thClassName = `p-15 w-${getWidthOfCell()} table-header-cell ${actionColumnClassName}`;
 
   return (
-    <th
-      className={`${
-        item.id === 'action' && 'pos-sk r-0 bg-white'
-      } table-header-cell w-${
-        tableData.data.find((e) => e[item.id]?.length > 30)
-          ? 400
-          : item.title.length > 25
-          ? 400
-          : item.title.length > 20
-          ? 300
-          : item.title.length === 0
-          ? 50
-          : 200
-      } p-15`}
-      onClick={() => sortTable(item.id)}
-    >
-      <span>{item.title}</span>{' '}
+    <th className={thClassName} onClick={() => sortTable(item.id)}>
+      <span>{item.title}</span>
       {item.id !== 'cb' && item.id !== 'action' && (
         <TableHeaderSortDownArrow
           up={sort.id === item.id && sort.dir === 'asc'}

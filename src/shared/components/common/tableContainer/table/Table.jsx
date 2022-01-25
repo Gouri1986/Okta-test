@@ -7,7 +7,6 @@ const Table = (props) => {
     tableData,
     setTableContents,
     onRowClick = () => {},
-    report,
     selectedRow,
     showCheckBox,
     showAction,
@@ -20,6 +19,7 @@ const Table = (props) => {
     page,
     rowsPerPage,
     tableTitle,
+    tableRowkey,
   } = props;
   const { header, data: rowData } = tableData;
 
@@ -46,7 +46,6 @@ const Table = (props) => {
   };
 
   const bodyProps = {
-    report: report,
     onRowClick: onRowClick,
     rowData: rowData,
     selectedRow: selectedRow,
@@ -60,6 +59,7 @@ const Table = (props) => {
     page: page,
     rowsPerPage: rowsPerPage,
     tableTitle,
+    tableRowkey,
   };
 
   return (

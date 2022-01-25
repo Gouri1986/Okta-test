@@ -52,18 +52,15 @@ const RowAction = () => {
   );
 };
 
-const RowCheckBox = ({ onRowClick, selectedRow, datum, setActiveData }) => {
+const RowCheckBox = ({ onRowClick, selectedRow, datum, tableRowkey }) => {
   return (
     <div class=' cp table-checkbox-input-container'>
       <input
         type='checkbox'
-        checked={selectedRow.find((e) => e.id === datum.id)}
+        checked={selectedRow.find((e) => e[tableRowkey] === datum[tableRowkey])}
       />
       <span
-        onClick={() => {
-          onRowClick(datum);
-          setActiveData(datum);
-        }}
+        onClick={() => onRowClick(datum)}
         class='h-15 w-15  checkmark'
       ></span>
     </div>
@@ -94,6 +91,7 @@ const TableBody = (props) => {
     header,
     onRowClick,
     selectedRow,
+    tableRowkey,
     setModalMode,
     setModalOpen,
     setModalForm,
