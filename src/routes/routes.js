@@ -1,10 +1,10 @@
-import Login from "../pages/authentication/Login";
-import ENCSDashboard from "../pages/metadata/environmentCatelogue/Dashboard";
-import IAMDashboard from "../pages/iam/Dashboard";
-import { useNavigate } from "react-router-dom";
-import { useEffect } from "react";
-import { RequireAuth } from "./utils";
-import HomeDashboard from "../pages/home/Home";
+import Login from '../pages/authentication/Login';
+import ENCSDashboard from '../pages/metadata/environmentCatelogue/Dashboard';
+import IAMDashboard from '../pages/iam/Dashboard';
+import { useNavigate } from 'react-router-dom';
+import { useEffect } from 'react';
+import { RequireAuth } from './utils';
+import HomeDashboard from '../pages/home/Home';
 
 const Redirect = ({ to }) => {
   let navigate = useNavigate();
@@ -16,15 +16,15 @@ const Redirect = ({ to }) => {
 
 export const appRoutes = [
   {
-    path: "/login",
+    path: '/login',
     element: <Login />,
   },
   {
-    path: "/",
+    path: '/',
     element: <Redirect to='/environmentcatelogue/' />,
   },
   {
-    path: "/iam/*",
+    path: '/iam/*',
     element: (
       <RequireAuth>
         <IAMDashboard />
@@ -33,7 +33,7 @@ export const appRoutes = [
   },
 
   {
-    path: "/environmentcatelogue/*",
+    path: '/environmentcatelogue/*',
     element: (
       <RequireAuth>
         <ENCSDashboard />
