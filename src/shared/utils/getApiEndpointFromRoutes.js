@@ -1,4 +1,5 @@
 const weedoutArrays = (exPath) => {
+  console.log(exPath);
   return exPath
     .map((ar) => ar.filter((art) => art.length > 0))
     .filter((e) => e.length > 0);

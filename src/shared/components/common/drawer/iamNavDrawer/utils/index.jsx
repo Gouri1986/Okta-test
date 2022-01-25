@@ -1,4 +1,5 @@
 import { ENCSRoutes, IAMRoutes } from "../../../../../../routes/metadataRoutes";
+import iamRoutes from "../../../../../../routes/metadataRoutes/identityAndAccessManagement";
 import { drawerSectionIcons } from "../assets";
 
 const spacedWords = (s) =>
@@ -7,15 +8,15 @@ const spacedWords = (s) =>
   });
 
 export const iamDrawer = () => {
-  return {
+  return iamRoutes.map((rt) => ({
     title: "",
-    item: IAMRoutes.map((route) => ({
+    item: rt.routes.routes.map((route) => ({
       title: route.pageName,
       path: route.path,
       Icon: drawerSectionIcons.AWS,
       apiEndpoint: route.apiEndpoint,
     })),
-  };
+  }));
 };
 
 export const encsDrawer = () => {

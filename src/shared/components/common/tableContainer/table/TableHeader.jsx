@@ -22,9 +22,11 @@ const TableHeaderCell = ({ tableData, sort, sortTable, item }) => {
   return (
     <th className={thClassName} onClick={() => sortTable(item.id)}>
       <span>{item.title}</span>
-      <TableHeaderSortDownArrow
-        up={sort.id === item.id && sort.dir === "asc"}
-      />
+      {item.id !== "cb" && item.id !== "action" && (
+        <TableHeaderSortDownArrow
+          up={sort.id === item.id && sort.dir === "asc"}
+        />
+      )}
     </th>
   );
 };
