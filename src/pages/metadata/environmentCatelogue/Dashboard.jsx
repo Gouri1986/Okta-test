@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react"
 import { useLocation } from "react-router-dom"
 import "./style.scss"
-import Table from "../../../shared/components/common/tableContainer/table/Table"
 import { getTableData } from "../../../shared/apis/table/table"
 import { encsDrawer } from "../../../shared/utils/drawer"
 import {
@@ -11,7 +10,7 @@ import {
 import { useSelector } from "react-redux"
 import { getSpacedDisplayName } from "../../../shared/utils/table"
 import { MetadataLayout } from "../../../shared/layout"
-import { PaginationV2 } from "../../../shared/components/common/tableContainer/pagination"
+import { Table, Pagination } from "../../../shared/components/common"
 
 const Dashboard = () => {
   const { user } = useSelector(state => state.userReducer)
@@ -82,7 +81,7 @@ const Dashboard = () => {
           rowsPerPage={rowsPerPage}
         />
       )}
-      <PaginationV2
+      <Pagination
         dataCount={tableContents.data?.length}
         page={page}
         setPage={setPage}

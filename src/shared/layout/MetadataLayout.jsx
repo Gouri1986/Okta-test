@@ -1,12 +1,7 @@
 import React, { useState } from "react"
-import Navbar from "../components/common/drawer/navDrawer/NavDrawer"
-import Header from "../components/common/header/Header"
-import TableSettings from "../components/common/tableContainer/table/TableSettings"
 import "./metadataLayout.scss"
-import BreadCumbs from "../components/common/breadcumbs/BreadCumbs"
-import Modal from "../components/common/modal/center/Modal"
-import ModalForm from "../components/common/forms/ModalForm"
-import { Pagination } from "../components/common/tableContainer/pagination"
+// Common components imports
+import { Navbar, Header, TableSettings, BreadCumbs, Modal, ModalForm } from "../components/common"
 
 const Layout = props => {
   const { setActiveEndPoint, setRefresh, refresh, getTable, children, tableData, tableTitle } = props
@@ -44,9 +39,7 @@ const Layout = props => {
               )}
             </div>
           </div>
-          <div className="mt-20">
-            {children[1]}
-          </div>
+          <div className="mt-20">{children[1]}</div>
         </div>
       </div>
       <Modal
