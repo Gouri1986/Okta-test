@@ -12,6 +12,7 @@ import { useSelector } from 'react-redux';
 import { getSpacedDisplayName } from '../../../shared/utils/table';
 import { MetadataLayout } from '../../../shared/layout';
 import './style.scss';
+import { PaginationV2 } from '../../../shared/components/common/tableContainer/pagination';
 
 const Dashboard = () => {
   // loggin user details from store
@@ -95,6 +96,9 @@ const Dashboard = () => {
     }
   };
 
+  const [page, setPage] = useState(0);
+  const [rowsPerPage, setRowsPerPage] = useState(10);
+
   const onRowClick = (rowData) => {
     if (selectedRow.find((e) => e[tableRowkey] === rowData[tableRowkey])) {
       const selectedItems = selectedRow.filter(
@@ -124,11 +128,21 @@ const Dashboard = () => {
     setTableContents: setTableContents,
     showCheckBox: true,
     showAction: true,
+    page,
+    tableTitle,
+    rowsPerPage,
   };
 
   return (
     <MetadataLayout {...layoutProps}>
       {tableContents.data?.length > 0 && <Table {...tableProps} />}
+      <PaginationV2
+        dataCount={tableContents.data?.length}
+        page={page}
+        setPage={setPage}
+        rowsPerPage={rowsPerPage}
+        setRowsPerPage={setRowsPerPage}
+      />
     </MetadataLayout>
   );
 };
