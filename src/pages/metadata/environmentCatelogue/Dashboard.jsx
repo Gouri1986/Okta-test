@@ -21,6 +21,9 @@ const Dashboard = () => {
   const [refresh, setRefresh] = useState(false)
   const location = useLocation()
   const [tableTitle, setTableTitle] = useState("")
+  const [page, setPage] = useState(0) // Current page
+  const [rowsPerPage, setRowsPerPage] = useState(10) // Rows per page
+
   useEffect(() => {
     let endpointFromPath = getApiEndpointNameFromRoutes(encsDrawer, location, "environmentcatelogue/")
     if (endpointFromPath) {
@@ -51,9 +54,6 @@ const Dashboard = () => {
     }
   }
 
-  const [page, setPage] = useState(0) // Current page
-  const [rowsPerPage, setRowsPerPage] = useState(10) // Rows per page
-
   // change the pagination state after new table is rendered
   useEffect(() => {
     setPage(0)
@@ -71,6 +71,7 @@ const Dashboard = () => {
       showReport={showReport}
       tableData={tableContents}
       tableTitle={tableTitle}
+      serviceTitle="Environment Catalogue"
     >
       {tableContents.data?.length > 0 && (
         <Table

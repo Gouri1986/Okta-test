@@ -4,7 +4,8 @@ import "./metadataLayout.scss"
 import { Navbar, Header, TableSettings, BreadCumbs, Modal, ModalForm } from "../components/common"
 
 const Layout = props => {
-  const { setActiveEndPoint, setRefresh, refresh, getTable, children, tableData, tableTitle } = props
+  const { setActiveEndPoint, setRefresh, refresh, getTable, children, tableData, tableTitle, serviceTitle } =
+    props
 
   const [open, setOpen] = useState(false)
   return (
@@ -22,7 +23,12 @@ const Layout = props => {
           <Header tableTitle={tableTitle} />
         </div>
         <div className="ml-30 mb-10 hvh-3">
-          <BreadCumbs parentTitle="Dashboard" parentPath="" tableTitle={tableTitle} />
+          <BreadCumbs
+            parentTitle="Dashboard"
+            parentPath=""
+            tableTitle1={serviceTitle}
+            tableTitle2={tableTitle}
+          />
         </div>
         <div className="flex-c ml-30 mr-30 hvh-82">
           <div className="flex-c bdr-r-10 bg-white">

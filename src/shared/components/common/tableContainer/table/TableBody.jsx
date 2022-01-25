@@ -104,18 +104,15 @@ const TableBody = props => {
 
   return (
     <div className="flex-c ">
-      {(rowData ?? []).slice(start, end)?.map(
-        datum => (
-          console.log(datum),
-          (
-            <tr
-              onClick={() => setOpen(!open)}
-              className={`pos-rel flex-jc-sp-evn titan-table-rows bdr-buttom-primary-1 pt-10 pb-10`}
-            >
-              {header?.map(item => {
-                return (
-                  <td
-                    className={`${item.id === "action" && "pos-sk r-0 bg-white"}
+      {(rowData ?? []).slice(start, end)?.map(datum => (
+        <tr
+          onClick={() => setOpen(!open)}
+          className={`pos-rel flex-jc-sp-evn titan-table-rows bdr-buttom-primary-1 pt-10 pb-10`}
+        >
+          {header?.map(item => {
+            return (
+              <td
+                className={`${item.id === "action" && "pos-sk r-0 bg-white"}
                   w-${
                     rowData.find(e => e[item.id]?.length > 30)
                       ? 400
@@ -127,26 +124,20 @@ const TableBody = props => {
                       ? 50
                       : 200
                   }     bdr-primary table-cell p-15`}
-                  >
-                    {item.id === "action" ? (
-                      <RowAction />
-                    ) : item.id === "cb" ? (
-                      <RowCheckBox
-                        onRowClick={() => onRowClick(datum)}
-                        selectedRow={selectedRow}
-                        datum={datum}
-                      />
-                    ) : (
-                      <span className={"table-data-cell"}>{datum[item.id]}</span>
-                    )}
-                  </td>
-                )
-              })}
-            </tr>
-          )
-        )
-      )}
-       {/* {emptyRows > 0 ?? (
+              >
+                {item.id === "action" ? (
+                  <RowAction />
+                ) : item.id === "cb" ? (
+                  <RowCheckBox onRowClick={() => onRowClick(datum)} selectedRow={selectedRow} datum={datum} />
+                ) : (
+                  <span className={"table-data-cell"}>{datum[item.id]}</span>
+                )}
+              </td>
+            )
+          })}
+        </tr>
+      ))}
+      {/* {emptyRows > 0 ?? (
             <tr style={{ height: 53 * emptyRows }}>
               <td colSpan={header.length} />
             </tr>
