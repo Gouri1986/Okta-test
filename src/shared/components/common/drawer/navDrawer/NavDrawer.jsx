@@ -4,8 +4,8 @@ import "./navdrawer.scss";
 import DrawerHeader from "./NavDrawerHeader";
 import DrawerList from "./NavDrawerList";
 
-const Drawer = ({ onClick, setActiveEndPoint, setRefresh, refresh }) => {
-  // const [collapsed, isCollapsed] = useState(true);
+const Drawer = (props) => {
+  const { onClick, setActiveEndPoint, setRefresh, refresh, drawer } = props;
 
   return (
     <div className={"drawer-container"}>
@@ -17,6 +17,7 @@ const Drawer = ({ onClick, setActiveEndPoint, setRefresh, refresh }) => {
         onClick={onClick}
         refresh={refresh}
         setRefresh={setRefresh}
+        drawer={drawer}
       />
     </div>
   );

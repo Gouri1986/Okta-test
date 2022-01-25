@@ -2,22 +2,22 @@ const technologyRoutes = [
   {
     path: "/tech-category-master",
     apiEndpoint: "encs-tech-category-master",
-    pk: "isc_tech_category_name",
+    pk: "iscTechCategoryName",
   },
   {
     path: "/os-tech-master",
     apiEndpoint: "encs-os-tech-master",
-    pk: "isc_os_tech_name	",
+    pk: "iscOsTechName	",
   },
   {
     path: "/data-tech-master",
     apiEndpoint: "encs-data-tech-master",
-    pk: "isc_data_tech_name	",
+    pk: "iscDataTechName	",
   },
   {
     path: "/application-master",
     apiEndpoint: "encs-app-tech-master",
-    pk: "isc_app_tech_name",
+    pk: "iscAppTechName",
   },
 ];
 
@@ -25,27 +25,27 @@ const customer = [
   {
     path: "/customer-master",
     apiEndpoint: "encs-customer-master",
-    pk: "customer_id",
+    pk: "customerId",
   },
   {
     path: "/customer-contact",
     apiEndpoint: "encs-customer-contact",
-    pk: "customer_contact_id",
+    pk: "customerContactId",
   },
   {
     path: "/customer-location",
     apiEndpoint: "encs-customer-location-info",
-    pk: "customer_location_id ",
+    pk: "customerLocationId ",
   },
   {
     path: "/business-group",
     apiEndpoint: "encs-business-group-details",
-    pk: "business_group_id ",
+    pk: "businessGroupId ",
   },
   {
     path: "/functional-group",
     apiEndpoint: "encs-functional-group-details",
-    pk: "fg_id",
+    pk: "fgId",
   },
 ];
 
@@ -53,22 +53,22 @@ const application = [
   {
     path: "/application-details",
     apiEndpoint: "encs-application-details",
-    pk: "application_id",
+    pk: "applicationId",
   },
   {
     path: "/environment-details",
     apiEndpoint: "encs-app-env-master",
-    pk: "app_env_name",
+    pk: "appEnvName",
   },
   {
     path: "/partition-details",
     apiEndpoint: "encs-app-partition-details",
-    pk: "app_partition_id",
+    pk: "appPartitionId",
   },
   {
     path: "/sub-partition-details",
     apiEndpoint: "encs-app-sub-partition-details",
-    pk: "app_sub_partition_id",
+    pk: "appSubPartitionId",
   },
 ];
 

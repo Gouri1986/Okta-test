@@ -1,10 +1,12 @@
 import Tooltip from "@mui/material/Tooltip";
 import React, { useRef, useState } from "react";
 import { DashboardIcon, IAMIcon } from "./assets";
-import { encsDrawer } from "../../../../utils/drawer";
 import { useNavigate } from "react-router-dom";
 
-const List = ({ sub, setActiveEndPoint, setRefresh, refresh }) => {
+const List = (props) => {
+  const { item, setActiveEndPoint, setRefresh, refresh } = props;
+  const { title, items, Icon } = item;
+
   const lr = useRef();
   const navigate = useNavigate();
   const [hoverSubMenu, setHoverSubMenu] = useState([]);
@@ -22,22 +24,31 @@ const List = ({ sub, setActiveEndPoint, setRefresh, refresh }) => {
   };
 
   return (
-    <Tooltip title={sub.title} placement='top-end'>
+    <Tooltip title={title} placement='top-end'>
       <li
         onMouseEnter={() => {
-          setHoverSubMenu(sub.items);
+          setHoverSubMenu(items);
           listItemHover(lr);
         }}
         onMouseLeave={() => {
           setSubOffset({ subLeftOffset: 0, subTopOffset: 0 });
         }}
+        onClick={() => {
+          // navigate("/environmentcatelogue" + menu.path);
+          // setSubOffset({
+          //   subLeftOffset: 0,
+          //   subTopOffset: 0,
+          // });
+          // setActiveEndPoint(menu.apiEndpoint);
+          // setRefresh(!refresh);
+        }}
         ref={lr}
         className={"cp f-14 fw-400 lh-2-1 fc-tertiary mb-10 p-12 flex-r-ac"}
-        key={sub.title}
+        key={title}
       >
-        <sub.Icon />
+        <Icon />
 
-        <span>
+        {hoverSubMenu && (
           <ul
             className='sub-menu-section p-10 z-2000'
             style={{
@@ -64,38 +75,32 @@ const List = ({ sub, setActiveEndPoint, setRefresh, refresh }) => {
               </li>
             ))}
           </ul>
-        </span>
+        )}
       </li>
     </Tooltip>
   );
 };
 
-const DrawerList = ({ onClick, setActiveEndPoint, setRefresh, refresh }) => {
-  const navigate = useNavigate();
+const DrawerList = (props) => {
+  const { onClick, setActiveEndPoint, setRefresh, refresh, drawer } = props;
 
   return (
     <div className='drawer-list-container mt-50'>
       <ul>
-        <li onClick={() => navigate("/iam")} className='cp p-12 flex-r-ac'>
-          <IAMIcon />
-        </li>
         <li className='cp p-12 flex-r-ac'>
           <DashboardIcon />
         </li>
       </ul>
+
+      {/* Side navigation routes list */}
       <div className='mt-20'>
-        {encsDrawer().map((section) => (
+        {drawer().map((section) => (
           <div className='drawer-lists'>
-            {/* {!collapsed && (
-              <span className={"fw-400 f-16 lh-2-1 fc-tertiary"}>
-                {section.title}
-              </span>
-            )} */}
             <ul className='mt-10'>
-              {section.items?.map((sub, index) => (
+              {section.items?.map((item, index) => (
                 <List
                   setActiveEndPoint={setActiveEndPoint}
-                  sub={sub}
+                  item={item}
                   setRefresh={setRefresh}
                   refresh={refresh}
                   index={index}
@@ -106,6 +111,7 @@ const DrawerList = ({ onClick, setActiveEndPoint, setRefresh, refresh }) => {
           </div>
         ))}
       </div>
+      {/* Side navigation routes list */}
     </div>
   );
 };

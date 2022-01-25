@@ -23,12 +23,12 @@ import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
-import { iamDrawer } from "../../shared/components/common/drawer/iamNavDrawer/utils";
 import {
   getApiEndpointNameFromRoutes,
   getTableTitleNameFromRoutes,
 } from "../../shared/utils/getApiEndpointFromRoutes";
 import { MetadataLayout } from "../../shared/layout";
+import { iamDrawer } from "../../shared/utils/drawer";
 
 // Import The components Here
 
@@ -449,6 +449,7 @@ const Dashboard = () => {
       showReport={showReport}
       tableData={tableContents}
       tableTitle={tableTitle}
+      drawer={iamDrawer}
     >
       <TitanTable
         selectedRow={selectedRow}

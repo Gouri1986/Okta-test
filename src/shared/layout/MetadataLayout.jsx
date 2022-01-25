@@ -17,6 +17,7 @@ const Layout = (props) => {
     children,
     tableData,
     tableTitle,
+    drawer,
   } = props;
 
   const [open, setOpen] = useState(false);
@@ -24,6 +25,7 @@ const Layout = (props) => {
     <div className='flex-r pos-rel'>
       <div>
         <Navbar
+          drawer={drawer}
           setActiveEndPoint={setActiveEndPoint}
           setRefresh={setRefresh}
           refresh={refresh}

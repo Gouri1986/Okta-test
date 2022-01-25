@@ -7,7 +7,6 @@ const Table = (props) => {
     tableData,
     setTableContents,
     onRowClick = () => {},
-    report,
     selectedRow,
     showCheckBox,
     showAction,
@@ -17,6 +16,7 @@ const Table = (props) => {
     modalForm,
     tableDetails,
     deleteDataToTable,
+    tableRowkey,
   } = props;
   const { header, data: rowData } = tableData;
 
@@ -43,7 +43,6 @@ const Table = (props) => {
   };
 
   const bodyProps = {
-    report: report,
     onRowClick: onRowClick,
     rowData: rowData,
     selectedRow: selectedRow,
@@ -54,6 +53,7 @@ const Table = (props) => {
     modalForm: modalForm,
     tableDetails: tableDetails,
     deleteDataToTable: deleteDataToTable,
+    tableRowkey,
   };
 
   return (

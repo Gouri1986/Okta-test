@@ -1,15 +1,17 @@
-import React, { useState } from "react"
+import React, { useState } from "react";
 
-import { getSanitisedTableDatum, getSpacedDisplayName } from "../../../../utils/table"
-import { PencilIcon, TrashIcon } from "./assets"
-import { truncatedDesc } from "./utils"
+import {
+  getSanitisedTableDatum,
+  getSpacedDisplayName,
+} from "../../../../utils/table";
+import { PencilIcon, TrashIcon } from "./assets";
+import { truncatedDesc } from "./utils";
 
-import ModalRight from "../../modal/right/ModalRight"
-
+import ModalRight from "../../modal/right/ModalRight";
 
 const RowAction = () => {
   return (
-    <div className="flex-r-jc-ac t-20">
+    <div className='flex-r-jc-ac t-20'>
       <div
         onClick={() => {
           // deleteDataToTable(datum);
@@ -42,22 +44,28 @@ const RowAction = () => {
           //   })
           // );
         }}
-        className="ml-15"
+        className='ml-15'
       >
         <PencilIcon />
       </div>
     </div>
-  )
-}
+  );
+};
 
-const RowCheckBox = ({ onRowClick, selectedRow, datum }) => {
+const RowCheckBox = ({ onRowClick, selectedRow, datum, tableRowkey }) => {
   return (
-    <div class=" cp table-checkbox-input-container">
-      <input type="checkbox" checked={selectedRow.find(e => e.id === datum.id)} />
-      <span onClick={() => onRowClick(datum)} class="h-15 w-15  checkmark"></span>
+    <div class=' cp table-checkbox-input-container'>
+      <input
+        type='checkbox'
+        checked={selectedRow.find((e) => e[tableRowkey] === datum[tableRowkey])}
+      />
+      <span
+        onClick={() => onRowClick(datum)}
+        class='h-15 w-15  checkmark'
+      ></span>
     </div>
-  )
-}
+  );
+};
 
 // const StatusColumn = ({ datum, item }) => {
 //   return (
@@ -77,41 +85,42 @@ const RowCheckBox = ({ onRowClick, selectedRow, datum }) => {
 //   );
 // };
 
-const TableBody = ({
-  rowData,
-  header,
-  onRowClick,
-  selectedRow,
-  setModalMode,
-  setModalOpen,
-  setModalForm,
-  tableDetails,
-  deleteDataToTable
-}) => {
-  const [open, setOpen] = useState(false)
+const TableBody = (props) => {
+  const {
+    rowData,
+    header,
+    onRowClick,
+    selectedRow,
+    tableRowkey,
+    setModalMode,
+    setModalOpen,
+    setModalForm,
+    tableDetails,
+    deleteDataToTable,
+  } = props;
+  const [open, setOpen] = useState(false);
 
   return (
-    <div className="flex-c ">
-      {rowData?.map(datum => (
-        console.log(datum),
+    <div className='flex-c '>
+      {rowData?.map((datum) => (
         <tr
           onClick={() => setOpen(!open)}
           className={`pos-rel flex-jc-sp-evn titan-table-rows bdr-buttom-primary-1 pt-10 pb-10`}
         >
-           <ModalRight
-        open={open}
-        close={() => setOpen(false)}
-        size="sm" // sm, md, lg, xl
-        body={<p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-        </p>}
-      />
-          {header?.map(item => {
+          <ModalRight
+            open={open}
+            close={() => setOpen(false)}
+            size='sm' // sm, md, lg, xl
+            body={
+              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+            }
+          />
+          {header?.map((item) => {
             return (
               <td
                 className={`${item.id === "action" && "pos-sk r-0 bg-white"}
                   w-${
-                    rowData.find(e => e[item.id]?.length > 30)
+                    rowData.find((e) => e[item.id]?.length > 30)
                       ? 400
                       : item.title?.length > 25
                       ? 400
@@ -125,18 +134,22 @@ const TableBody = ({
                 {item.id === "action" ? (
                   <RowAction />
                 ) : item.id === "cb" ? (
-                  <RowCheckBox onRowClick={() => onRowClick(datum)} selectedRow={selectedRow} datum={datum} />
+                  <RowCheckBox
+                    onRowClick={() => onRowClick(datum)}
+                    selectedRow={selectedRow}
+                    datum={datum}
+                    tableRowkey={tableRowkey}
+                  />
                 ) : (
                   <span className={"table-data-cell"}>{datum[item.id]}</span>
                 )}
               </td>
-            )
+            );
           })}
         </tr>
       ))}
-     
     </div>
-  )
-}
+  );
+};
 
-export default TableBody
+export default TableBody;
