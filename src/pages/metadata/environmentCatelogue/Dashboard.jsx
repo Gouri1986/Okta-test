@@ -51,11 +51,15 @@ const Dashboard = () => {
     }
   }
 
-  const [page, setPage] = useState(0)
-  const [rowsPerPage, setRowsPerPage] = useState(10)
+  const [page, setPage] = useState(0) // Current page
+  const [rowsPerPage, setRowsPerPage] = useState(10) // Rows per page
 
-  console.log("Page Count=", page)
-  console.log("Rows =", rowsPerPage)
+  // change the pagination state after new table is rendered
+  useEffect(() => {
+    setPage(0)
+    setRowsPerPage(10)
+  }, [tableContents]);
+
 
   return (
     <MetadataLayout
