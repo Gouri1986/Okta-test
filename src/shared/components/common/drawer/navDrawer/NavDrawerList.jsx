@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 
 const List = (props) => {
   const { item, setActiveEndPoint, setRefresh, refresh } = props;
-  const { title, items, Icon } = item;
+  const { title = "", items = [], Icon, path = "", apiEndpoint = "" } = item;
 
   const lr = useRef();
   const navigate = useNavigate();
@@ -34,13 +34,11 @@ const List = (props) => {
           setSubOffset({ subLeftOffset: 0, subTopOffset: 0 });
         }}
         onClick={() => {
-          // navigate("/environmentcatelogue" + menu.path);
-          // setSubOffset({
-          //   subLeftOffset: 0,
-          //   subTopOffset: 0,
-          // });
-          // setActiveEndPoint(menu.apiEndpoint);
-          // setRefresh(!refresh);
+          if (path.length > 0) {
+            navigate("/iam" + path);
+            setActiveEndPoint(apiEndpoint);
+            setRefresh(!refresh);
+          }
         }}
         ref={lr}
         className={"cp f-14 fw-400 lh-2-1 fc-tertiary mb-10 p-12 flex-r-ac"}
@@ -48,7 +46,7 @@ const List = (props) => {
       >
         <Icon />
 
-        {hoverSubMenu && (
+        {items.length > 0 && (
           <ul
             className='sub-menu-section p-10 z-2000'
             style={{

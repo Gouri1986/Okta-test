@@ -1,12 +1,9 @@
-import React, { useState } from 'react';
-import Navbar from '../components/common/drawer/navDrawer/NavDrawer';
-import Header from '../components/common/header/Header';
-import TableSettings from '../components/common/tableContainer/table/TableSettings';
-import './metadataLayout.scss';
-import BreadCumbs from '../components/common/breadcumbs/BreadCumbs';
-import Modal from '../components/common/modal/center/Modal';
-import ModalForm from '../components/common/forms/ModalForm';
-import { Pagination } from '../components/common/tableContainer/pagination';
+import React from "react";
+import Navbar from "../components/common/drawer/navDrawer/NavDrawer";
+import Header from "../components/common/header/Header";
+import TableSettings from "../components/common/tableContainer/table/TableSettings";
+import "./metadataLayout.scss";
+import BreadCumbs from "../components/common/breadcumbs/BreadCumbs";
 
 const Layout = (props) => {
   const {
@@ -18,9 +15,10 @@ const Layout = (props) => {
     tableData,
     tableTitle,
     drawer,
+    openCRUDModal,
+    setOpenCRUDModal,
   } = props;
 
-  const [open, setOpen] = useState(false);
   return (
     <div className='flex-r pos-rel'>
       <div>
@@ -46,7 +44,9 @@ const Layout = (props) => {
         <div className='flex-c ml-30 mr-30 hvh-82'>
           <div className='flex-c bdr-r-10 bg-white'>
             <div>
-              <TableSettings modalOnClick={() => setOpen(!open)} />
+              <TableSettings
+                modalOnClick={() => setOpenCRUDModal(!openCRUDModal)}
+              />
             </div>
             <div className='overflow-x-scroll metadata-table-container'>
               {tableData.data?.length > 0 ? (
@@ -61,25 +61,6 @@ const Layout = (props) => {
           <div className='mt-20'>{children[1]}</div>
         </div>
       </div>
-      <Modal
-        open={open}
-        close={() => setOpen(false)}
-        size={`${
-          tableData?.header?.length < 10
-            ? `sm`
-            : tableData?.header?.length < 15
-            ? `md`
-            : tableData?.header?.length < 30
-            ? `lg`
-            : tableData?.header?.length > 30
-            ? `xl`
-            : ''
-        }`} // sm, md, lg, xl
-        columnCount={tableData?.header?.length}
-        modalTitle={tableTitle}
-      >
-        <ModalForm tableData={tableData} onCancel={() => setOpen(false)} />
-      </Modal>
     </div>
   );
 };

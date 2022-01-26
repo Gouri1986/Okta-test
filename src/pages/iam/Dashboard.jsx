@@ -18,7 +18,6 @@ import {
   getSpacedDisplayName,
   getSanitisedTableData,
 } from "../../shared/utils/table";
-import iamRoutes from "../../routes/metadataRoutes/identityAndAccessManagement";
 import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
@@ -29,6 +28,8 @@ import {
 } from "../../shared/utils/getApiEndpointFromRoutes";
 import { MetadataLayout } from "../../shared/layout";
 import { iamDrawer } from "../../shared/utils/drawer";
+import { PaginationV2 } from "../../shared/components/common/tableContainer/pagination";
+import { IAMRoutes } from "../../routes/metadataRoutes";
 
 // Import The components Here
 
@@ -392,6 +393,14 @@ const Dashboard = () => {
   }, [refresh, location.pathname]);
 
   useEffect(() => {
+    let tableDetailsFromRoutes = IAMRoutes[0]?.routes.routes.filter(
+      (e) => e.path === location.pathname.replace("/iam", "")
+    );
+    tableDetailsFromRoutes.length > 0 &&
+      setTableDetails(tableDetailsFromRoutes[0]);
+  }, [location.pathname]);
+
+  useEffect(() => {
     if (modalMode === "ADD") {
       setModalForm(getSanitisedTableData(tableContents, tableDetails));
     }
@@ -434,10 +443,11 @@ const Dashboard = () => {
     getTable(activeEndPoint);
   };
 
-  const deleteDataToTable = async (data) => {
-    await deleteIAMTableData(activeEndPoint, user, data);
-    getTable(activeEndPoint);
-  };
+  const [page, setPage] = useState(0);
+  const [rowsPerPage, setRowsPerPage] = useState(10);
+
+  // state for the visibility of crud modal
+  const [openCRUDModal, setOpenCRUDModal] = useState(false);
 
   return (
     <MetadataLayout
@@ -450,33 +460,32 @@ const Dashboard = () => {
       tableData={tableContents}
       tableTitle={tableTitle}
       drawer={iamDrawer}
+      openCRUDModal={openCRUDModal}
+      setOpenCRUDModal={setOpenCRUDModal}
     >
       <TitanTable
         selectedRow={selectedRow}
         tableData={tableContents}
-        setTableContents={setTableContents}
-        setModalMode={setModalMode}
-        setModalOpen={setModalOpen}
-        modalForm={modalForm}
-        setModalForm={setModalForm}
         tableDetails={tableDetails}
-        deleteDataToTable={deleteDataToTable}
+        setTableContents={setTableContents}
+        tableDetails={tableDetails}
         showCheckBox
+        tableTitle={tableTitle}
         showAction
+        page={page}
+        rowsPerPage={rowsPerPage}
+        openCRUDModal={openCRUDModal}
+        setOpenCRUDModal={setOpenCRUDModal}
+        activeEndPoint={activeEndPoint}
+        getTable={getTable}
       />
-      {tableContents.data?.length > 0 && (
-        <MyModal
-          modalOpen={modalOpen}
-          modalForm={modalForm}
-          modalMode={modalMode}
-          addDataToTable={addDataToTable}
-          setModalOpen={setModalOpen}
-          updateDataToTable={updateDataToTable}
-          setModalForm={setModalForm}
-          setModalMode={setModalMode}
-          tableDetails={tableDetails}
-        />
-      )}
+      <PaginationV2
+        dataCount={tableContents.data?.length}
+        page={page}
+        setPage={setPage}
+        rowsPerPage={rowsPerPage}
+        setRowsPerPage={setRowsPerPage}
+      />
     </MetadataLayout>
   );
 };
