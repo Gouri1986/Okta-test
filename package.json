@@ -8,6 +8,7 @@
     "@mui/icons-material": "^5.3.0",
     "@mui/lab": "^5.0.0-alpha.64",
     "@mui/material": "^5.2.2",
+    "@react-spring/web": "^9.4.2",
     "@testing-library/jest-dom": "^5.15.1",
     "@testing-library/react": "^11.2.7",
     "@testing-library/user-event": "^12.8.3",
@@ -20,6 +21,7 @@
     "react-redux": "^7.2.6",
     "react-router-dom": "^6.2.1",
     "react-scripts": "5.0.0",
+    "react-spring": "^9.4.2",
     "redux-thunk": "^2.4.1",
     "web-vitals": "^1.1.2"
   },
@@ -28,6 +30,9 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
+  },
+  "peerDependencies": {
+    "react-spring": "^8.x"
   },
   "eslintConfig": {
     "extends": [

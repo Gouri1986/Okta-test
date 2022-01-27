@@ -37,7 +37,7 @@ export const TableHeaderSortDownArrow = ({ up }) => {
       viewBox='0 0 10 7'
       fill='none'
       className='ml-10'
-      transform={up ? "rotate(180)" : "rotate(0)"}
+      transform={up ? 'rotate(180)' : 'rotate(0)'}
       xmlns='http://www.w3.org/2000/svg'
     >
       <path

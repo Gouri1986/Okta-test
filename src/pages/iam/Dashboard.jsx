@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import "./iam.scss";
 import axios from "axios";
-import Navbar from "../../shared/components/common/drawer/iamNavDrawer/NavDrawer";
 import TitanTable from "../../shared/components/common/tableContainer/table/Table";
 import { useSelector } from "react-redux";
 import Checkbox from "@mui/material/Checkbox";
@@ -19,14 +18,18 @@ import {
   getSpacedDisplayName,
   getSanitisedTableData,
 } from "../../shared/utils/table";
-import iamRoutes from "../../routes/metadataRoutes/identityAndAccessManagement";
 import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
-import FormHelperText from "@mui/material/FormHelperText";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
-import { iamDrawer } from "../../shared/components/common/drawer/iamNavDrawer/utils";
-import { getApiEndpointNameFromRoutes } from "../../shared/utils/getApiEndpointFromRoutes";
+import {
+  getApiEndpointNameFromRoutes,
+  getTableTitleNameFromRoutes,
+} from "../../shared/utils/getApiEndpointFromRoutes";
+import { MetadataLayout } from "../../shared/layout";
+import { iamDrawer } from "../../shared/utils/drawer";
+import { PaginationV2 } from "../../shared/components/common/tableContainer/pagination";
+import { IAMRoutes } from "../../routes/metadataRoutes";
 
 // Import The components Here
 
@@ -373,15 +376,29 @@ const Dashboard = () => {
   const [modalOpen, setModalOpen] = useState(false);
   const [modalForm, setModalForm] = useState([]);
   const [tableDetails, setTableDetails] = useState({});
+  const [tableTitle, setTableTitle] = useState("");
 
   useEffect(() => {
-    activeEndPoint.length > 0 && getTable(activeEndPoint);
-    let tableDetailsFromRoutes = iamRoutes.filter(
+    let endpointFromPath = getApiEndpointNameFromRoutes(
+      iamDrawer,
+      location,
+      "iam/"
+    );
+    if (endpointFromPath) {
+      getTable(endpointFromPath);
+    } else {
+      activeEndPoint.length > 0 && getTable(activeEndPoint);
+    }
+    setTableTitle(getTableTitleNameFromRoutes(iamDrawer, location, "iam/"));
+  }, [refresh, location.pathname]);
+
+  useEffect(() => {
+    let tableDetailsFromRoutes = IAMRoutes[0]?.routes.routes.filter(
       (e) => e.path === location.pathname.replace("/iam", "")
     );
     tableDetailsFromRoutes.length > 0 &&
       setTableDetails(tableDetailsFromRoutes[0]);
-  }, [refresh, location.pathname]);
+  }, [location.pathname]);
 
   useEffect(() => {
     if (modalMode === "ADD") {
@@ -426,85 +443,50 @@ const Dashboard = () => {
     getTable(activeEndPoint);
   };
 
-  const deleteDataToTable = async (data) => {
-    await deleteIAMTableData(activeEndPoint, user, data);
-    getTable(activeEndPoint);
-  };
+  const [page, setPage] = useState(0);
+  const [rowsPerPage, setRowsPerPage] = useState(10);
 
-  const AddIcon = () => {
-    return (
-      <svg
-        width='24'
-        height='24'
-        viewBox='0 0 38 38'
-        fill='none'
-        xmlns='http://www.w3.org/2000/svg'
-      >
-        <path
-          d='M2.33333 21.0833H16.9167V35.6667C16.9167 36.2192 17.1362 36.7491 17.5269 37.1398C17.9176 37.5305 18.4475 37.75 19 37.75C19.5525 37.75 20.0824 37.5305 20.4731 37.1398C20.8638 36.7491 21.0833 36.2192 21.0833 35.6667V21.0833H35.6667C36.2192 21.0833 36.7491 20.8638 37.1398 20.4731C37.5305 20.0824 37.75 19.5525 37.75 19C37.75 18.4475 37.5305 17.9176 37.1398 17.5269C36.7491 17.1362 36.2192 16.9167 35.6667 16.9167H21.0833V2.33333C21.0833 1.7808 20.8638 1.25089 20.4731 0.860194C20.0824 0.469493 19.5525 0.25 19 0.25C18.4475 0.25 17.9176 0.469493 17.5269 0.860194C17.1362 1.25089 16.9167 1.7808 16.9167 2.33333V16.9167H2.33333C1.7808 16.9167 1.25089 17.1362 0.860194 17.5269C0.469493 17.9176 0.25 18.4475 0.25 19C0.25 19.5525 0.469493 20.0824 0.860194 20.4731C1.25089 20.8638 1.7808 21.0833 2.33333 21.0833Z'
-          fill='#464255'
-        />
-      </svg>
-    );
-  };
+  // state for the visibility of crud modal
+  const [openCRUDModal, setOpenCRUDModal] = useState(false);
 
   return (
-    <div className='flex-r wp-100'>
-      <div>
-        <Navbar
-          setActiveEndPoint={setActiveEndPoint}
-          setRefresh={setRefresh}
-          refresh={refresh}
-        />
-      </div>
-      {tableContents.data?.length > 0 && (
-        <div className='main-ly wp-100 height100vh pl-20 pr-20 flex-c overflow-x-scroll overflow-y-scroll'>
-          <div className='table-option-header mt-30 bg-lightgrey flex-r-ac flex-jc-sp-btn  jc-end'>
-            <div className='flex-r-ac'>
-              <div
-                onClick={() => {
-                  setModalOpen(true);
-                  setModalMode("ADD");
-                }}
-                className='m-15 bg-w p-10 br-10 cp'
-              >
-                <AddIcon />
-              </div>
-            </div>
-          </div>
-          <div className='main-ly wp-100 height100vh pl-20 pr-20 flex-c overflow-x-scroll overflow-y-scroll'>
-            <div className='table-parent overflow-x-auto overflow-y-scroll wp-100'>
-              <TitanTable
-                report={report}
-                selectedRow={selectedRow}
-                tableData={tableContents}
-                setTableContents={setTableContents}
-                status={true}
-                setModalMode={setModalMode}
-                setModalOpen={setModalOpen}
-                modalForm={modalForm}
-                setModalForm={setModalForm}
-                tableDetails={tableDetails}
-                deleteDataToTable={deleteDataToTable}
-              />
-            </div>
-          </div>
-        </div>
-      )}
-      {tableContents.data?.length > 0 && (
-        <MyModal
-          modalOpen={modalOpen}
-          modalForm={modalForm}
-          modalMode={modalMode}
-          addDataToTable={addDataToTable}
-          setModalOpen={setModalOpen}
-          updateDataToTable={updateDataToTable}
-          setModalForm={setModalForm}
-          setModalMode={setModalMode}
-          tableDetails={tableDetails}
-        />
-      )}
-    </div>
+    <MetadataLayout
+      setActiveEndPoint={setActiveEndPoint}
+      setRefresh={setRefresh}
+      refresh={refresh}
+      getTable={getTable}
+      report={report}
+      showReport={showReport}
+      tableData={tableContents}
+      tableTitle={tableTitle}
+      drawer={iamDrawer}
+      openCRUDModal={openCRUDModal}
+      setOpenCRUDModal={setOpenCRUDModal}
+    >
+      <TitanTable
+        selectedRow={selectedRow}
+        tableData={tableContents}
+        tableDetails={tableDetails}
+        setTableContents={setTableContents}
+        tableDetails={tableDetails}
+        showCheckBox
+        tableTitle={tableTitle}
+        showAction
+        page={page}
+        rowsPerPage={rowsPerPage}
+        openCRUDModal={openCRUDModal}
+        setOpenCRUDModal={setOpenCRUDModal}
+        activeEndPoint={activeEndPoint}
+        getTable={getTable}
+      />
+      <PaginationV2
+        dataCount={tableContents.data?.length}
+        page={page}
+        setPage={setPage}
+        rowsPerPage={rowsPerPage}
+        setRowsPerPage={setRowsPerPage}
+      />
+    </MetadataLayout>
   );
 };
 

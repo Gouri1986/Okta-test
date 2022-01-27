@@ -1,71 +1,80 @@
-import "./table.scss"
-import TableBody from "./TableBody"
-import TableHeader from "./TableHeader"
+import "./table.scss";
+import TableBody from "./TableBody";
+import TableHeader from "./TableHeader";
 
-const Table = props => {
+const Table = (props) => {
   const {
     tableData,
     setTableContents,
     onRowClick = () => {},
-    report,
     selectedRow,
     showCheckBox,
     showAction,
-    setModalMode,
-    setModalOpen,
-    setModalForm,
-    modalForm,
     tableDetails,
-    deleteDataToTable,
     page,
-    rowsPerPage
-  } = props
-  const { header, data: rowData } = tableData
+    rowsPerPage,
+    tableTitle,
+    tableRowkey,
+    openCRUDModal,
+    setOpenCRUDModal,
+    activeEndPoint,
+    getTable,
+  } = props;
+  const { header, data: rowData } = tableData;
 
   const checkBoxObj = {
     title: "",
-    id: "cb"
-  }
+    id: "cb",
+  };
 
   const actionObj = {
     title: "Action",
-    id: "action"
-  }
+    id: "action",
+  };
 
-  const finalHeader = [showCheckBox && checkBoxObj, ...header, showAction && actionObj]
+  const finalHeader = [
+    showCheckBox && checkBoxObj,
+    ...header,
+    showAction && actionObj,
+  ];
 
   const headerProps = {
-    setTableContents: setTableContents,
-    tableData: tableData,
-    header: finalHeader
-  }
+    setTableContents,
+    tableData,
+    header: finalHeader,
+  };
 
   const bodyProps = {
-    report: report,
-    onRowClick: onRowClick,
-    rowData: rowData,
-    selectedRow: selectedRow,
+    tableData,
+    onRowClick,
+    rowData,
+    selectedRow,
     header: finalHeader,
-    setModalMode: setModalMode,
-    setModalOpen: setModalOpen,
-    setModalForm: setModalForm,
-    modalForm: modalForm,
-    tableDetails: tableDetails,
-    deleteDataToTable: deleteDataToTable,
-    page: page,
-    rowsPerPage: rowsPerPage
-  }
+    tableDetails,
+    page,
+    rowsPerPage,
+    tableTitle,
+    tableRowkey,
+    openCRUDModal,
+    setOpenCRUDModal,
+    activeEndPoint,
+    getTable,
+  };
+
+  const tableClassName = `flex-c ${
+    finalHeader?.length < 10 ? "titan-table-fill" : "titan-table"
+  }`;
 
   return (
     <>
       {/* start of the table */}
-      <table className={`flex-c ${header?.length < 10 ? "titan-table-fill" : "titan-table"}`}>
+      <table className={tableClassName}>
         <TableHeader {...headerProps} />
         <TableBody {...bodyProps} />
       </table>
       {/* end of the table */}
     </>
-  )
-}
+  );
+};
 
-export default Table
+export default Table;

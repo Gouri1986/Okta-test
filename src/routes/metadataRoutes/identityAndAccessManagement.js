@@ -1,4 +1,4 @@
-const iamRoutes = [
+const routes = [
   {
     path: "/iam-ctg-cloud-ref",
     pageName: "CTG Cloud Reference",
@@ -210,6 +210,15 @@ const iamRoutes = [
       },
     ],
     json: [{ name: "recsConfig" }],
+  },
+];
+
+const iamRoutes = [
+  {
+    section: "",
+    routes: {
+      routes,
+    },
   },
 ];
 
