@@ -28,7 +28,7 @@ import {
 } from "../../shared/utils/getApiEndpointFromRoutes";
 import { MetadataLayout } from "../../shared/layout";
 import { iamDrawer } from "../../shared/utils/drawer";
-import { PaginationV2 } from "../../shared/components/common/tableContainer/pagination";
+import Pagination  from "../../shared/components/common/tableContainer/pagination/Pagination";
 import { IAMRoutes } from "../../routes/metadataRoutes";
 
 // Import The components Here
@@ -479,7 +479,7 @@ const Dashboard = () => {
         activeEndPoint={activeEndPoint}
         getTable={getTable}
       />
-      <PaginationV2
+      <Pagination
         dataCount={tableContents.data?.length}
         page={page}
         setPage={setPage}
