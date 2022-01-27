@@ -32,7 +32,7 @@ const Table = (props) => {
     id: "action",
   };
 
-  const finalHeader = [
+  const finalHeader = header && [
     showCheckBox && checkBoxObj,
     ...header,
     showAction && actionObj,
