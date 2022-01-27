@@ -1,18 +1,11 @@
 import React, { useState } from "react";
-
-import {
-  getSanitisedTableData,
-  getSanitisedTableDatum,
-  getSpacedDisplayName,
-} from "../../../../utils/table";
+import { getSanitisedTableData } from "../../../../utils/table";
 import { PencilIcon, TrashIcon } from "./assets";
-import { truncatedDesc } from "./utils";
-
 import ModalRight from "../../modal/right/ModalRight";
 import Modal from "../../modal/center/Modal";
 import ModalForm from "../../forms/ModalForm";
 import { useSelector } from "react-redux";
-import { deleteIAMTableData } from "../../../../apis/iam";
+import { deleteTableData } from "../../../../apis/table/table";
 
 const RowAction = ({ setOpenCRUDModal, activeEndPoint, datum, getTable }) => {
   const { user } = useSelector((state) => state.userReducer);
@@ -20,7 +13,7 @@ const RowAction = ({ setOpenCRUDModal, activeEndPoint, datum, getTable }) => {
   const deleteDataFromTable = async (e) => {
     e.preventDefault();
     e.stopPropagation();
-    await deleteIAMTableData(activeEndPoint, user, datum);
+    await deleteTableData(activeEndPoint, user, datum);
     getTable(activeEndPoint);
   };
 
@@ -34,28 +27,6 @@ const RowAction = ({ setOpenCRUDModal, activeEndPoint, datum, getTable }) => {
           e.preventDefault();
           e.stopPropagation();
           setOpenCRUDModal(true);
-          // setModalMode("UPDATE");
-          // setModalOpen(true);
-          // setModalForm(
-          //   Object.keys(datum).map((el) => {
-          //     return {
-          //       [el]: datum[el],
-          //       id: el,
-          //       pk: tableDetails.pk?.includes(el),
-          //       uk: tableDetails.uk?.includes(el),
-          //       dropdown: tableDetails.dropdown?.find((ele) => {
-          //         return ele.name === el;
-          //       }),
-          //       checkbox: tableDetails.checkbox?.find((ele) => {
-          //         return ele.name === el;
-          //       }),
-          //       json: tableDetails.json?.find((ele) => {
-          //         return ele.name === el;
-          //       }),
-          //       title: getSpacedDisplayName(el),
-          //     };
-          //   })
-          // );
         }}
         className='ml-15 cp'
       >
@@ -231,7 +202,6 @@ const TableBody = (props) => {
         <ModalForm
           form={getSanitisedTableData(tableData, tableDetails)}
           tableDetails={tableDetails}
-          tableData={tableData}
           onCancel={() => setOpenCRUDModal(false)}
           activeEndPoint={activeEndPoint}
           getTable={getTable}

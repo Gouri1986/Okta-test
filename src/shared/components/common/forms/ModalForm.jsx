@@ -3,7 +3,9 @@ import { Button, Grid } from "@mui/material";
 import TextBox from "../inputs/input/TextBox";
 import "./ModalForm.scss";
 import { useSelector } from "react-redux";
-import { addIAMTableData } from "../../../apis/iam";
+import Select from "../inputs/select/Select";
+import Checkbox from "../inputs/checkbox/Checkbox";
+import { addTableData } from "../../../apis/table/table";
 
 const ModalForm = (props) => {
   const { user } = useSelector((state) => state.userReducer);
@@ -15,25 +17,34 @@ const ModalForm = (props) => {
     (e) => !tableDetails.whitelist?.includes(e.id)
   );
 
-  const handleChange = (event) => {
+  const onTextInputChange = (event) => {
     const name = event.target.name;
     const value = event.target.value;
     setInputs((values) => ({ ...values, [name]: value }));
   };
 
+  const onDropDownChange = (v) => {
+    setInputs((values) => ({ ...values, ...v }));
+  };
+
+  const onCheckboxChange = (v) => {
+    setInputs((values) => ({ ...values, ...v }));
+  };
+
   const handleSubmit = async (event) => {
-    await addIAMTableData(activeEndPoint, user, inputs);
+    await addTableData(activeEndPoint, user, inputs);
     getTable(activeEndPoint);
     onCancel();
     setInputs({});
     inputRef.current.reset();
+    console.log(inputs);
   };
 
   return (
     <div className='modal-form'>
       <form ref={inputRef}>
         <Grid container spacing={2}>
-          {inputForm.map((item, i) => (
+          {inputForm?.map((item, i) => (
             <Grid
               key={i}
               item
@@ -42,15 +53,29 @@ const ModalForm = (props) => {
               md={inputForm.length < 7 ? 12 : 6}
               lg={inputForm.length < 7 ? 12 : 6}
             >
-              <TextBox
-                type='text'
-                madatory={true}
-                id={item?.id}
-                placeholder={`Enter your ${item.title}`}
-                label={item?.title}
-                value={inputs?.id ?? ""}
-                onChange={handleChange}
-              />
+              {item.dropdown ? (
+                <Select
+                  item={item}
+                  value={inputs?.id ?? ""}
+                  onChange={onDropDownChange}
+                />
+              ) : item.checkbox ? (
+                <Checkbox
+                  label={item?.title}
+                  item={item}
+                  onChange={onCheckboxChange}
+                />
+              ) : (
+                <TextBox
+                  type='text'
+                  madatory={true}
+                  id={item?.id}
+                  placeholder={`Enter your ${item.title}`}
+                  label={item?.title}
+                  value={inputs?.id ?? ""}
+                  onChange={onTextInputChange}
+                />
+              )}
             </Grid>
           ))}
         </Grid>

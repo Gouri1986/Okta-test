@@ -131,6 +131,7 @@ const routes = [
       {
         name: "cloudName",
         dynamic: true,
+        displayKey: "cloudName",
         dropdown: `${process.env.REACT_APP_ENCS_BASE_URL}list-cloudNames`,
       },
       {

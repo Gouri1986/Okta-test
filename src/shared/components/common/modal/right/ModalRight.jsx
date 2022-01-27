@@ -22,10 +22,12 @@ const ModalRight = (props) => {
           : ''
       } `}
     >
-      <button onClick={() => close()} className='sidebar-btn'>
-        &times;
-      </button>
-      <h2 className='table-title'>{tableTitle}</h2>
+      <h2 className='table-title'>
+        {tableTitle}
+        <button onClick={() => close()} className='sidebar-btn'>
+          &times;
+        </button>
+      </h2>
       <div className='sidebar-body'>
         {Object.keys(data).map((datum) => (
           <div className='flex-c mb-10'>
