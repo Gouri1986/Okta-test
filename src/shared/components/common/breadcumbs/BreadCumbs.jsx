@@ -3,7 +3,7 @@ import { Breadcrumbs, Typography } from "@mui/material"
 import { Link } from "react-router-dom"
 import NavigateNextIcon from "@mui/icons-material/NavigateNext"
 
-import "./BreadCumbs.scss"
+import "./Breadcumbs.scss"
 import HomeIcon from "./HomeIcon"
 
 const BreadCumbs = props => {
