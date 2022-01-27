@@ -111,6 +111,8 @@ const Dashboard = () => {
 
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(10);
+  // state for the visibility of crud modal
+  const [openCRUDModal, setOpenCRUDModal] = useState(false);
 
   const onRowClick = (rowData) => {
     if (selectedRow.find((e) => e[tableRowkey] === rowData[tableRowkey])) {
@@ -131,6 +133,8 @@ const Dashboard = () => {
     tableTitle,
     refresh,
     drawer: encsDrawer,
+    openCRUDModal,
+    setOpenCRUDModal,
   };
 
   const tableProps = {
@@ -145,6 +149,10 @@ const Dashboard = () => {
     tableTitle,
     tableDetails,
     rowsPerPage,
+    openCRUDModal,
+    setOpenCRUDModal,
+    activeEndPoint,
+    getTable,
   };
 
   const paginationProps = {

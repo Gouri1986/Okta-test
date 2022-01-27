@@ -48,7 +48,7 @@ const Dropdown = (props) => {
         );
       }
     } else {
-      onChange({ id, selected });
+      onChange({ [id]: selected });
     }
   }, [selected]);
 

@@ -434,6 +434,7 @@ const Dashboard = () => {
     drawer: iamDrawer,
     openCRUDModal,
     setOpenCRUDModal,
+    setActiveEndPoint,
   };
 
   const tableProps = {
