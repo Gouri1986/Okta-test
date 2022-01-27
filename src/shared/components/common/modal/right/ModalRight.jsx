@@ -25,12 +25,12 @@ const ModalRight = (props) => {
       <button onClick={() => close()} className='sidebar-btn'>
         &times;
       </button>
-      <h1>{tableTitle}</h1>
+      <h2 className='table-title'>{tableTitle}</h2>
       <div className='sidebar-body'>
         {Object.keys(data).map((datum) => (
           <div className='flex-c mb-10'>
-            <span>{getSpacedDisplayName(datum)}</span>
-            <span>{data[datum]}</span>
+            <span className='column-name'>{getSpacedDisplayName(datum)}</span>
+            <span className='column-data'>{data[datum]}</span>
           </div>
         ))}
       </div>
