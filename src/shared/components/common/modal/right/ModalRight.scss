@@ -56,6 +56,8 @@
   animation: animateopen 0.4s;
 }
 .table-title {
+  position: sticky;
+  top: 0;
   color: #fff;
   background-color: #001833;
   height: 80px;
