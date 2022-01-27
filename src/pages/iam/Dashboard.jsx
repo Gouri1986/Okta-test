@@ -24,6 +24,7 @@ import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 import {
   getApiEndpointNameFromRoutes,
+  getTableDetailFromRoutes,
   getTableTitleNameFromRoutes,
 } from "../../shared/utils/getApiEndpointFromRoutes";
 import { MetadataLayout } from "../../shared/layout";
@@ -372,9 +373,6 @@ const Dashboard = () => {
   const [activeEndPoint, setActiveEndPoint] = useState("");
   const [refresh, setRefresh] = useState(false);
   const location = useLocation();
-  const [modalMode, setModalMode] = useState("ADD");
-  const [modalOpen, setModalOpen] = useState(false);
-  const [modalForm, setModalForm] = useState([]);
   const [tableDetails, setTableDetails] = useState({});
   const [tableTitle, setTableTitle] = useState("");
 
@@ -390,21 +388,10 @@ const Dashboard = () => {
       activeEndPoint.length > 0 && getTable(activeEndPoint);
     }
     setTableTitle(getTableTitleNameFromRoutes(iamDrawer, location, "iam/"));
+
+    let tableDetail = getTableDetailFromRoutes(IAMRoutes, location, "iam/");
+    setTableDetails(tableDetail);
   }, [refresh, location.pathname]);
-
-  useEffect(() => {
-    let tableDetailsFromRoutes = IAMRoutes[0]?.routes.routes.filter(
-      (e) => e.path === location.pathname.replace("/iam", "")
-    );
-    tableDetailsFromRoutes.length > 0 &&
-      setTableDetails(tableDetailsFromRoutes[0]);
-  }, [location.pathname]);
-
-  useEffect(() => {
-    if (modalMode === "ADD") {
-      setModalForm(getSanitisedTableData(tableContents, tableDetails));
-    }
-  }, [modalOpen, tableDetails]);
 
   const getTable = async (activeEndPoint) => {
     const data = await getIAMTableData(activeEndPoint, user);
@@ -417,31 +404,18 @@ const Dashboard = () => {
     data && setTableContents({ header, data });
   };
 
-  const addDataToTable = async () => {
-    const arrayWithRequiredValues = modalForm.map(
-      ({ id, title, checkbox, dropdown, uk, pk, json, ...rest }) => rest
-    );
-    const reducedToOneObject = arrayWithRequiredValues.reduce((prev, cur) => ({
-      ...prev,
-      ...cur,
-    }));
-    await addIAMTableData(activeEndPoint, user, reducedToOneObject);
-    setModalOpen(false);
-    getTable(activeEndPoint);
-  };
-
-  const updateDataToTable = async () => {
-    const arrayWithRequiredValues = modalForm.map(
-      ({ id, title, checkbox, dropdown, uk, pk, json, ...rest }) => rest
-    );
-    const reducedToOneObject = arrayWithRequiredValues.reduce((prev, cur) => ({
-      ...prev,
-      ...cur,
-    }));
-    await updateIAMTableData(activeEndPoint, user, reducedToOneObject);
-    setModalOpen(false);
-    getTable(activeEndPoint);
-  };
+  // const updateDataToTable = async () => {
+  //   const arrayWithRequiredValues = modalForm.map(
+  //     ({ id, title, checkbox, dropdown, uk, pk, json, ...rest }) => rest
+  //   );
+  //   const reducedToOneObject = arrayWithRequiredValues.reduce((prev, cur) => ({
+  //     ...prev,
+  //     ...cur,
+  //   }));
+  //   await updateIAMTableData(activeEndPoint, user, reducedToOneObject);
+  //   setModalOpen(false);
+  //   getTable(activeEndPoint);
+  // };
 
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(10);
@@ -449,43 +423,48 @@ const Dashboard = () => {
   // state for the visibility of crud modal
   const [openCRUDModal, setOpenCRUDModal] = useState(false);
 
+  const layoutProps = {
+    setRefresh,
+    refresh,
+    getTable,
+    report,
+    showReport,
+    tableData: tableContents,
+    tableTitle,
+    drawer: iamDrawer,
+    openCRUDModal,
+    setOpenCRUDModal,
+  };
+
+  const tableProps = {
+    selectedRow,
+    tableData: tableContents,
+    tableDetails,
+    setTableContents,
+    tableDetails,
+    showCheckBox: true,
+    tableTitle,
+    showAction: true,
+    page,
+    rowsPerPage,
+    openCRUDModal,
+    setOpenCRUDModal,
+    activeEndPoint,
+    getTable,
+  };
+
+  const paginationProps = {
+    dataCount: tableContents.data?.length,
+    page,
+    setPage,
+    rowsPerPage,
+    setRowsPerPage,
+  };
+
   return (
-    <MetadataLayout
-      setActiveEndPoint={setActiveEndPoint}
-      setRefresh={setRefresh}
-      refresh={refresh}
-      getTable={getTable}
-      report={report}
-      showReport={showReport}
-      tableData={tableContents}
-      tableTitle={tableTitle}
-      drawer={iamDrawer}
-      openCRUDModal={openCRUDModal}
-      setOpenCRUDModal={setOpenCRUDModal}
-    >
-      <TitanTable
-        selectedRow={selectedRow}
-        tableData={tableContents}
-        tableDetails={tableDetails}
-        setTableContents={setTableContents}
-        tableDetails={tableDetails}
-        showCheckBox
-        tableTitle={tableTitle}
-        showAction
-        page={page}
-        rowsPerPage={rowsPerPage}
-        openCRUDModal={openCRUDModal}
-        setOpenCRUDModal={setOpenCRUDModal}
-        activeEndPoint={activeEndPoint}
-        getTable={getTable}
-      />
-      <PaginationV2
-        dataCount={tableContents.data?.length}
-        page={page}
-        setPage={setPage}
-        rowsPerPage={rowsPerPage}
-        setRowsPerPage={setRowsPerPage}
-      />
+    <MetadataLayout {...layoutProps}>
+      <TitanTable {...tableProps} />
+      <PaginationV2 {...paginationProps} />
     </MetadataLayout>
   );
 };

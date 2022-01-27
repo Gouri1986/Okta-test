@@ -224,7 +224,6 @@ const TableBody = (props) => {
         <ModalForm
           form={getSanitisedTableData(tableData, tableDetails)}
           tableDetails={tableDetails}
-          tableData={tableData}
           onCancel={() => setOpenCRUDModal(false)}
           activeEndPoint={activeEndPoint}
           getTable={getTable}

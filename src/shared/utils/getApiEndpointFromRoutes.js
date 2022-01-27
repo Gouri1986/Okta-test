@@ -41,7 +41,12 @@ export const getTableKeyNameFromRoutes = (routes, location, mainRoute) => {
 };
 
 export const getTableDetailFromRoutes = (routes, location, mainRoute) => {
-  return weedoutArrays(getExactPathArray(routes, location, mainRoute)).flat(
-    3
-  )?.[0];
+  let mappedRoute = routes.map((e) =>
+    Object.values(e.routes).map((v) =>
+      v.find((vl) => vl.path === location.pathname.replace(mainRoute, ""))
+    )
+  );
+  return mappedRoute
+    .filter((e) => e.filter((el) => el !== undefined).length > 0)[0]
+    ?.filter((e) => e !== undefined)[0];
 };

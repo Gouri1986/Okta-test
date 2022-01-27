@@ -6,6 +6,7 @@ import { encsDrawer } from "../../../shared/utils/drawer";
 import { ENCSRoutes } from "../../../routes/metadataRoutes";
 import {
   getApiEndpointNameFromRoutes,
+  getTableDetailFromRoutes,
   getTableKeyNameFromRoutes,
   getTableTitleNameFromRoutes,
 } from "../../../shared/utils/getApiEndpointFromRoutes";
@@ -57,6 +58,15 @@ const Dashboard = () => {
       "environmentcatelogue/"
     );
 
+    // get table detail from routes
+
+    let tableDetail = getTableDetailFromRoutes(
+      ENCSRoutes,
+      location,
+      "environmentcatelogue/"
+    );
+    setTableDetails(tableDetail);
+
     // get the key for the table for crud or any other row level operation
     let tableKey = getTableKeyNameFromRoutes(
       encsDrawer,
@@ -81,22 +91,6 @@ const Dashboard = () => {
 
     // dependency array
   }, [refresh, location.pathname]);
-
-  useEffect(() => {
-    let tableDetailsFromRoutes = ENCSRoutes.map((e) =>
-      Object.values(e.routes).map((v) =>
-        v.find(
-          (vl) =>
-            vl.path === location.pathname.replace("/environmentcatelogue", "")
-        )
-      )
-    );
-    setTableDetails(
-      tableDetailsFromRoutes
-        .filter((e) => e.filter((el) => el !== undefined).length > 0)[0]
-        ?.filter((e) => e !== undefined)[0]
-    );
-  }, [location.pathname]);
 
   const getTable = async (activeEndPoint) => {
     // get the table data by passsing endpoint and user data
@@ -153,16 +147,18 @@ const Dashboard = () => {
     rowsPerPage,
   };
 
+  const paginationProps = {
+    dataCount: tableContents.data?.length,
+    page,
+    setPage,
+    rowsPerPage,
+    setRowsPerPage,
+  };
+
   return (
     <MetadataLayout {...layoutProps}>
       {tableContents.data?.length > 0 && <Table {...tableProps} />}
-      <PaginationV2
-        dataCount={tableContents.data?.length}
-        page={page}
-        setPage={setPage}
-        rowsPerPage={rowsPerPage}
-        setRowsPerPage={setRowsPerPage}
-      />
+      <PaginationV2 {...paginationProps} />
     </MetadataLayout>
   );
 };
