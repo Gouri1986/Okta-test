@@ -5,18 +5,18 @@ import Button from "@mui/material/Button";
 import { loginUser } from "../../shared/apis/login/login";
 import { addUser } from "../../redux/user/userActions";
 import { useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import { useEffect } from "react";
 
 const Login = () => {
   const dispatch = useDispatch();
-  const navigate = useNavigate();
+  const history = useHistory();
 
   useEffect(() => {
     const user = sessionStorage.getItem("user");
     if (user !== null) {
       dispatch(addUser(user));
-      navigate("/environmentcatelogue");
+      history.push("/environmentcatelogue");
     }
   }, []);
 
@@ -33,7 +33,7 @@ const Login = () => {
     if (token) {
       sessionStorage.setItem("user", token);
       dispatch(addUser(token));
-      navigate("/environmentcatelogue");
+      history.push("/environmentcatelogue");
     }
   };
 

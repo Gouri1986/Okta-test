@@ -1,8 +1,33 @@
-import { useRoutes } from "react-router-dom";
+import { Route, Switch } from "react-router-dom";
+import Login from "../pages/authentication/Login";
 import { appRoutes } from "./routes";
+import IAMDashboard from "../pages/iam/Dashboard";
+import ENCSDashboard from "../pages/metadata/environmentCatelogue/Dashboard";
+
+import { RequireAuth } from "./utils";
 
 const AppRouter = () => {
-  const Routes = useRoutes(appRoutes);
-  return Routes;
+  return (
+    <Switch>
+      <Route path={"/"} exact>
+        <Login />
+      </Route>
+      <Route path={"/login"}>
+        <Login />
+      </Route>
+      <Route path='/iam/*'>
+        <RequireAuth>
+          <IAMDashboard />
+        </RequireAuth>
+        ),
+      </Route>
+      <Route path='/environmentcatelogue'>
+        <RequireAuth>
+          <ENCSDashboard />
+        </RequireAuth>
+      </Route>
+    </Switch>
+  );
 };
+
 export default AppRouter;

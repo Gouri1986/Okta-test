@@ -1,31 +1,30 @@
-import Login from '../pages/authentication/Login';
-import ENCSDashboard from '../pages/metadata/environmentCatelogue/Dashboard';
-import IAMDashboard from '../pages/iam/Dashboard';
-import { useNavigate } from 'react-router-dom';
-import { useEffect } from 'react';
-import { RequireAuth } from './utils';
-import HomeDashboard from '../pages/home/Home';
+import Login from "../pages/authentication/Login";
+import ENCSDashboard from "../pages/metadata/environmentCatelogue/Dashboard";
+import IAMDashboard from "../pages/iam/Dashboard";
+import { useHistory } from "react-router-dom";
+import { useEffect } from "react";
+import { RequireAuth } from "./utils";
 
 const Redirect = ({ to }) => {
-  let navigate = useNavigate();
+  let history = useHistory();
   useEffect(() => {
-    navigate(to);
+    history.push(to);
   });
   return null;
 };
 
 export const appRoutes = [
   {
-    path: '/login',
-    element: <Login />,
+    path: "/login",
+    Element: <Login />,
   },
   {
-    path: '/',
-    element: <Redirect to='/environmentcatelogue/' />,
+    path: "/",
+    Element: <Redirect to='/environmentcatelogue/' />,
   },
   {
-    path: '/iam/*',
-    element: (
+    path: "/iam/*",
+    Element: (
       <RequireAuth>
         <IAMDashboard />
       </RequireAuth>
@@ -33,11 +32,7 @@ export const appRoutes = [
   },
 
   {
-    path: '/environmentcatelogue/*',
-    element: (
-      <RequireAuth>
-        <ENCSDashboard />
-      </RequireAuth>
-    ),
+    path: "/environmentcatelogue/:subpath",
+    Element: <h1>Helllo</h1>,
   },
 ];

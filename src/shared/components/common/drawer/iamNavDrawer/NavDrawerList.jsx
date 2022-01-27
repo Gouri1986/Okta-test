@@ -1,17 +1,17 @@
 import Tooltip from "@mui/material/Tooltip";
 import React, { useRef } from "react";
 import { iamDrawer } from "./utils";
-import { useNavigate } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 
 const List = ({ sub, collapsed, setActiveEndPoint, setRefresh, refresh }) => {
   const lr = useRef();
-  const navigate = useNavigate();
+  const history = useHistory();
 
   return (
     <Tooltip title={sub.title} placement='top-end'>
       <li
         onClick={() => {
-          navigate("/iam" + sub.path);
+          history.push("/iam" + sub.path);
           setActiveEndPoint(sub.apiEndpoint);
         }}
         ref={lr}

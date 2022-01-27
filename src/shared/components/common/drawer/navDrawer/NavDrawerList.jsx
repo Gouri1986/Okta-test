@@ -1,14 +1,14 @@
 import Tooltip from "@mui/material/Tooltip";
 import React, { useRef, useState } from "react";
 import { DashboardIcon, IAMIcon } from "./assets";
-import { useNavigate } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 
 const List = (props) => {
   const { item, setActiveEndPoint, setRefresh, refresh } = props;
   const { title = "", items = [], Icon, path = "", apiEndpoint = "" } = item;
 
   const lr = useRef();
-  const navigate = useNavigate();
+  const history = useHistory();
   const [hoverSubMenu, setHoverSubMenu] = useState([]);
 
   const [subOffset, setSubOffset] = useState({
@@ -35,7 +35,7 @@ const List = (props) => {
         }}
         onClick={() => {
           if (path.length > 0) {
-            navigate("/iam" + path);
+            history.push("/iam" + path);
             setActiveEndPoint(apiEndpoint);
             setRefresh(!refresh);
           }
@@ -59,7 +59,7 @@ const List = (props) => {
             {hoverSubMenu?.map((menu) => (
               <li
                 onClick={() => {
-                  navigate("/environmentcatelogue" + menu.path);
+                  history.push("/environmentcatelogue" + menu.path);
                   setSubOffset({
                     subLeftOffset: 0,
                     subTopOffset: 0,
