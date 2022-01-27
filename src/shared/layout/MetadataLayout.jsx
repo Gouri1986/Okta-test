@@ -1,9 +1,6 @@
 import React from "react";
-import Navbar from "../components/common/drawer/navDrawer/NavDrawer";
-import Header from "../components/common/header/Header";
-import TableSettings from "../components/common/tableContainer/table/TableSettings";
 import "./metadataLayout.scss";
-import BreadCumbs from "../components/common/breadcumbs/BreadCumbs";
+import {Navbar, Header,TableSettings,BreadCumbs} from "../components/common";
 
 const Layout = (props) => {
   const {
@@ -38,7 +35,8 @@ const Layout = (props) => {
           <BreadCumbs
             parentTitle='Dashboard'
             parentPath=''
-            tableTitle={tableTitle}
+            tableTitle1={'Environmental Catalog'}
+            tableTitle2={tableTitle}
           />
         </div>
         <div className='flex-c ml-30 mr-30 hvh-82'>
