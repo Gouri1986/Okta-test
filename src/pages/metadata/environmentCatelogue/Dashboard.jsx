@@ -1,18 +1,19 @@
-import { useEffect, useState } from 'react';
-import { useLocation } from 'react-router-dom';
-import Table from '../../../shared/components/common/tableContainer/table/Table';
-import { getTableData } from '../../../shared/apis/table/table';
-import { encsDrawer } from '../../../shared/utils/drawer';
+import { useEffect, useState } from "react";
+import { useLocation } from "react-router-dom";
+import Table from "../../../shared/components/common/tableContainer/table/Table";
+import { getTableData } from "../../../shared/apis/table/table";
+import { encsDrawer } from "../../../shared/utils/drawer";
+import { ENCSRoutes } from "../../../routes/metadataRoutes";
 import {
   getApiEndpointNameFromRoutes,
   getTableKeyNameFromRoutes,
   getTableTitleNameFromRoutes,
-} from '../../../shared/utils/getApiEndpointFromRoutes';
-import { useSelector } from 'react-redux';
-import { getSpacedDisplayName } from '../../../shared/utils/table';
-import { MetadataLayout } from '../../../shared/layout';
-import './style.scss';
-import { PaginationV2 } from '../../../shared/components/common/tableContainer/pagination';
+} from "../../../shared/utils/getApiEndpointFromRoutes";
+import { useSelector } from "react-redux";
+import { getSpacedDisplayName } from "../../../shared/utils/table";
+import { MetadataLayout } from "../../../shared/layout";
+import "./style.scss";
+import { PaginationV2 } from "../../../shared/components/common/tableContainer/pagination";
 
 const Dashboard = () => {
   // loggin user details from store
@@ -20,13 +21,15 @@ const Dashboard = () => {
   //table data fetched from api
   const [tableContents, setTableContents] = useState([]);
   // table title returned from the routes with respect to the url path
-  const [tableTitle, setTableTitle] = useState('');
+  const [tableTitle, setTableTitle] = useState("");
+  // table details
+  const [tableDetails, setTableDetails] = useState({});
   // key for the table row
-  const [tableRowkey, setTableRowKey] = useState('');
+  const [tableRowkey, setTableRowKey] = useState("");
   // checked table row
   const [selectedRow, setSelectedRow] = useState([]);
   // active api endpoint to fetch table data with respect to the url path
-  const [activeEndPoint, setActiveEndPoint] = useState('');
+  const [activeEndPoint, setActiveEndPoint] = useState("");
   // refresh the table
   const [refresh, setRefresh] = useState(false);
   // location hook to get the location variables
@@ -41,7 +44,7 @@ const Dashboard = () => {
     let endpointFromPath = getApiEndpointNameFromRoutes(
       encsDrawer,
       location,
-      'environmentcatelogue/'
+      "environmentcatelogue/"
     );
     /**
      * in the same way, getting the correct title of the table from routes
@@ -51,14 +54,14 @@ const Dashboard = () => {
     let tableTitle = getTableTitleNameFromRoutes(
       encsDrawer,
       location,
-      'environmentcatelogue/'
+      "environmentcatelogue/"
     );
 
     // get the key for the table for crud or any other row level operation
     let tableKey = getTableKeyNameFromRoutes(
       encsDrawer,
       location,
-      'environmentcatelogue/'
+      "environmentcatelogue/"
     );
 
     setTableRowKey(tableKey);
@@ -78,6 +81,22 @@ const Dashboard = () => {
 
     // dependency array
   }, [refresh, location.pathname]);
+
+  useEffect(() => {
+    let tableDetailsFromRoutes = ENCSRoutes.map((e) =>
+      Object.values(e.routes).map((v) =>
+        v.find(
+          (vl) =>
+            vl.path === location.pathname.replace("/environmentcatelogue", "")
+        )
+      )
+    );
+    setTableDetails(
+      tableDetailsFromRoutes
+        .filter((e) => e.filter((el) => el !== undefined).length > 0)[0]
+        ?.filter((e) => e !== undefined)[0]
+    );
+  }, [location.pathname]);
 
   const getTable = async (activeEndPoint) => {
     // get the table data by passsing endpoint and user data
@@ -106,7 +125,7 @@ const Dashboard = () => {
       );
       setSelectedRow(selectedItems);
     } else {
-      setSelectedRow([rowData, ...selectedRow]);
+      setSelectedRow([rowData]);
     }
   };
 
@@ -130,6 +149,7 @@ const Dashboard = () => {
     showAction: true,
     page,
     tableTitle,
+    tableDetails,
     rowsPerPage,
   };
 

@@ -17,21 +17,16 @@ import { deleteIAMTableData } from "../../../../apis/iam";
 const RowAction = ({ setOpenCRUDModal, activeEndPoint, datum, getTable }) => {
   const { user } = useSelector((state) => state.userReducer);
 
-  const deleteDataFromTable = async () => {
+  const deleteDataFromTable = async (e) => {
+    e.preventDefault();
+    e.stopPropagation();
     await deleteIAMTableData(activeEndPoint, user, datum);
     getTable(activeEndPoint);
   };
 
   return (
     <div className='flex-r-jc-ac t-20'>
-      <div
-        className='cp'
-        onClick={(e) => {
-          e.preventDefault();
-          e.stopPropagation();
-          deleteDataFromTable();
-        }}
-      >
+      <div className='cp' onClick={deleteDataFromTable}>
         <TrashIcon />
       </div>
       <div
@@ -70,26 +65,15 @@ const RowAction = ({ setOpenCRUDModal, activeEndPoint, datum, getTable }) => {
   );
 };
 
-const RowCheckBox = ({
-  onRowClick,
-  selectedRow,
-  datum,
-  tableRowkey,
-  setActiveData,
-}) => {
+const RowCheckBox = ({ selectedRow, datum, tableRowkey }) => {
+  const checked = selectedRow.find(
+    (e) => e[tableRowkey] === datum[tableRowkey]
+  );
+
   return (
     <div class=' cp table-checkbox-input-container'>
-      <input
-        type='checkbox'
-        checked={selectedRow.find((e) => e[tableRowkey] === datum[tableRowkey])}
-      />
-      <span
-        onClick={() => {
-          onRowClick(datum);
-          setActiveData(datum);
-        }}
-        class='h-15 w-15  checkmark'
-      ></span>
+      <input type='checkbox' checked={checked} />
+      <span class='h-15 w-15 checkmark'></span>
     </div>
   );
 };
@@ -181,10 +165,25 @@ const TableBody = (props) => {
   };
 
   const TableRow = ({ datum }) => {
+    const rowClick = () => {
+      const checked = selectedRow.find(
+        (e) => e[tableRowkey] === datum[tableRowkey]
+      );
+      if (!checked) {
+        onRowClick(datum);
+        setActiveData(datum);
+        setOpenRightDescModal(true);
+      } else {
+        onRowClick({});
+        setActiveData({});
+        setOpenRightDescModal(false);
+      }
+    };
+
     return (
       <tr
-        onClick={() => setOpenRightDescModal(!openRightDescModal)}
-        className={`pos-rel flex-jc-sp-evn titan-table-rows bdr-buttom-primary-1 pt-10 pb-10`}
+        onClick={rowClick}
+        className={`pos-rel flex-jc-sp-evn titan-table-rows bdr-buttom-primary-1 pt-10 pb-10 cp`}
       >
         {header?.map((item) => (
           <TableRowCell item={item} datum={datum} />

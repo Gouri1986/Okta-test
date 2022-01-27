@@ -39,3 +39,9 @@ export const getTableKeyNameFromRoutes = (routes, location, mainRoute) => {
     3
   )?.[0]?.key;
 };
+
+export const getTableDetailFromRoutes = (routes, location, mainRoute) => {
+  return weedoutArrays(getExactPathArray(routes, location, mainRoute)).flat(
+    3
+  )?.[0];
+};
