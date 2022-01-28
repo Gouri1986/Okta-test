@@ -1,7 +1,7 @@
-import React from "react";
-import "./metadataLayout.scss";
-import {Navbar, Header,TableSettings,BreadCumbs} from "../components/common";
-
+import React from 'react';
+import './metadataLayout.scss';
+import { Navbar, Header, TableSettings } from '../components/common';
+import Breadcrumbs from '../components/common/breadcumbs/Breadcrumbs';
 const Layout = (props) => {
   const {
     setActiveEndPoint,
@@ -32,7 +32,7 @@ const Layout = (props) => {
           <Header tableTitle={tableTitle} />
         </div>
         <div className='ml-30 mb-10 hvh-3'>
-          <BreadCumbs
+          <Breadcrumbs
             parentTitle='Dashboard'
             parentPath=''
             tableTitle1={'Environmental Catalog'}
