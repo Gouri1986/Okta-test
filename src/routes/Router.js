@@ -1,6 +1,5 @@
 import { Route, Switch } from "react-router-dom";
 import Login from "../pages/authentication/Login";
-import { appRoutes } from "./routes";
 import IAMDashboard from "../pages/iam/Dashboard";
 import ENCSDashboard from "../pages/metadata/environmentCatelogue/Dashboard";
 
