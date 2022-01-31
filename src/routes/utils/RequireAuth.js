@@ -3,11 +3,11 @@ import { Redirect } from "react-router-dom";
 
 const RequireAuth = ({ children }) => {
   const { user } = useSelector((state) => state.userReducer);
-  // if (user) {
-  return children;
-  // }
+  if (user) {
+    return children;
+  }
 
-  // return <Redirect to='/login' />;
+  return <Redirect to='/login' />;
 };
 
 export default RequireAuth;
