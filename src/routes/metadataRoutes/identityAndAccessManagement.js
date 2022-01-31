@@ -140,15 +140,14 @@ const routes = [
         dynamic: true,
         displayKey: "cloudServiceName",
 
-        dropdown: `${process.env.REACT_APP_ENCS_BASE_URL}encs-cloud-resources/`,
+        dropdown: `${process.env.REACT_APP_ENCS_BASE_URL}encs-cloud-resources`,
         params: ["cloudName"],
       },
       {
         name: "cloudResourceType",
-        dropdownKey: "cloudResource",
         displayKey: "cloudResourceName",
         dynamic: true,
-        dropdown: `${process.env.REACT_APP_ENCS_BASE_URL}encs-cloud-resources/`,
+        dropdown: `${process.env.REACT_APP_ENCS_BASE_URL}encs-cloud-resources`,
         params: ["cloudName"],
       },
     ],
