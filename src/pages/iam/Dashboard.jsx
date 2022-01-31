@@ -29,7 +29,7 @@ import {
 } from "../../shared/utils/getApiEndpointFromRoutes";
 import { MetadataLayout } from "../../shared/layout";
 import { iamDrawer } from "../../shared/utils/drawer";
-import { PaginationV2 } from "../../shared/components/common/tableContainer/pagination";
+import Pagination  from "../../shared/components/common/tableContainer/pagination/Pagination";
 import { IAMRoutes } from "../../routes/metadataRoutes";
 
 // Import The components Here
@@ -465,7 +465,7 @@ const Dashboard = () => {
   return (
     <MetadataLayout {...layoutProps}>
       <TitanTable {...tableProps} />
-      <PaginationV2 {...paginationProps} />
+      <Pagination {...paginationProps} />
     </MetadataLayout>
   );
 };

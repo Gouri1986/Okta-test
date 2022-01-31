@@ -163,11 +163,18 @@ const TableBody = (props) => {
     );
   };
 
+  const emptyRows = rowsPerPage - Math.min(rowsPerPage, rowData.length - page * rowsPerPage)
+
   return (
     <div className='flex-c '>
       {tableRowData?.map((datum) => (
         <TableRow datum={datum} />
       ))}
+      {/* {emptyRows > 0 ?? (
+            <tr style={{ height: 53 * emptyRows }}>
+              <td colSpan={header.length} />
+            </tr>
+          )} */}
       <ModalRight
         open={openRightDescModal}
         close={() => setOpenRightDescModal(false)}

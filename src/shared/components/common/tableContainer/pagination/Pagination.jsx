@@ -1,63 +1,32 @@
-import React, { useEffect, useState } from "react";
-import { PaginationLeftArrow, PaginationRightArrow } from "./assets";
-import "./pagination.css";
+import React, { useEffect, useState } from "react"
+import TablePagination from "@mui/material/TablePagination"
 
-const Pagination = () => {
-  const totalNumbers = 12;
-  const [selectedPageNumber, setSelectedPageNumber] = useState(1);
-  const [showingPageNumbersRange, setShowingPageNumbersRange] = useState([]);
+import "./pagination.css"
 
-  const getArrayOfNumbers = (factor = 0) => {
-    setShowingPageNumbersRange(
-      new Array(totalNumbers)
-        .fill("")
-        .map((_, index) =>
-          index === totalNumbers - 1 ? index + 1 : index + factor + 1
-        )
-    );
-  };
+const Pagination = props => {
+  const { dataCount, page, rowsPerPage, setPage, setRowsPerPage } = props
 
-  useEffect(() => {
-    getArrayOfNumbers();
-  }, []);
+  const handleChangePage = (event, newPage) => {
+    setPage(newPage)
+  }
 
+  const handleChangeRowsPerPage = event => {
+    setRowsPerPage(parseInt(event.target.value), 10)
+    setPage(0)
+  }
   return (
-    <div className="pagination-container">
-      <div className="pagination-left-button">
-        <PaginationLeftArrow />
-      </div>
-      <div className="pagination-numbers">
-        {showingPageNumbersRange.map((number) => {
-          return (
-            (number < showingPageNumbersRange[5] ||
-              number === showingPageNumbersRange[totalNumbers - 1]) && (
-              <div
-                onClick={() =>
-                  number === showingPageNumbersRange[4]
-                    ? getArrayOfNumbers(4)
-                    : setSelectedPageNumber(number)
-                }
-                className={
-                  selectedPageNumber === number
-                    ? "page-number-selected"
-                    : "page-number"
-                }
-              >
-                {number === showingPageNumbersRange[4] ? (
-                  <span>...</span>
-                ) : (
-                  <span>{number}</span>
-                )}
-              </div>
-            )
-          );
-        })}
-      </div>
-      <div className="pagination-right-button">
-        <PaginationRightArrow />
-      </div>
+    <div>
+      <TablePagination
+        component="div"
+        count={dataCount}
+        page={page}
+        onPageChange={handleChangePage}
+        rowsPerPage={rowsPerPage}
+        // rowsPerPageOptions={[5, 10, 15, 20]}
+        onRowsPerPageChange={handleChangeRowsPerPage}
+      />
     </div>
-  );
-};
+  )
+}
 
-export default Pagination;
+export default Pagination

@@ -8,9 +8,9 @@ function TableSettings(props) {
   const { modalOnClick } = props
   return (
     <div className="flex-r-ac flex-jc-sp-btn p-25">
-      <div className="flex-c">
+      <div className="flex-c wp-30">
         <div className="f-13 fw-500 fc-quaternary">Filter</div>
-        <div className="bdr-buttom-primary-1 w-600">
+        <div className="bdr-buttom-primary-1 wp-100">
           <FilterIcon />
         </div>
       </div>

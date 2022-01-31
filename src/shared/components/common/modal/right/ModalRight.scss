@@ -25,8 +25,7 @@
   right: 0;
   height: 100%;
   background-color: #fff;
-  box-shadow: 0 2px 5px 0 rgba(240, 240, 240, 0.16),
-    0 2px 10px 0 rgba(139, 139, 139, 0.12);
+  box-shadow: 0 2px 5px 0 rgba(240, 240, 240, 0.16), 0 2px 10px 0 rgba(139, 139, 139, 0.12);
   position: fixed !important;
   z-index: 999;
   overflow: auto;
@@ -48,7 +47,24 @@
 
 .sidebar-body {
   padding: 15px;
-  margin-top: 30px;
+  overflow: auto;
+  margin-top: 20px;
+  height: 80%;
+}
+
+.sidebar-body::-webkit-scrollbar {
+  width: 0.5em;
+  left: -10px;
+}
+
+.sidebar-body::-webkit-scrollbar-track {
+  background-color: rgb(236, 233, 233);
+}
+
+.sidebar-body::-webkit-scrollbar-thumb {
+  background-color: darkgrey;
+  outline: 1px solid slategrey;
+  border-radius: 15px;
 }
 
 .sidebar-animation {
@@ -60,7 +76,7 @@
   top: 0;
   color: #fff;
   background-color: #001833;
-  height: 80px;
+  height: 100px;
   padding-top: 40px;
   padding-left: 5px;
 }
