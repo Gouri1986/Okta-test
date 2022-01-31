@@ -164,12 +164,14 @@ const routes = [
       {
         name: "customerId",
         dynamic: true,
+        displayKey: "cloudName",
         dropdown: `${process.env.REACT_APP_IAM_BASE_URL}list-customer-clouds-customer-id`,
       },
     ],
     checkbox: [
       {
         name: "privilegesAssigned",
+        displayKey: "privilege",
         api: `${process.env.REACT_APP_IAM_BASE_URL}list-cloud-privileges`,
       },
     ],
@@ -212,6 +214,31 @@ const routes = [
     ],
     json: [{ name: "recsConfig" }],
   },
+  // {
+  //   path: "/iam-user-roles",
+  //   pageName: "IAM User Roles",
+  //   apiEndpoint: "iam-user-roles",
+  //   pk: ["userRoleId"],
+  //   dependency: [
+  //     { parent: "roleType", children: ["ctgName", "customerId"], disabled: true },
+  //   ],
+  //   dropdown: [
+  //     {
+  //       name: "userId",
+  //       dynamic: true,
+  //       displayKey: "userId",
+  //       dropdown: `${process.env.REACT_APP_IAM_BASE_URL}list-users-id-role`,
+  //     },
+  //     { name: "roleType", dropdown: ["Custom", "Default"] },
+  //     {
+  //       name: "cloudName",
+  //       dynamic: true,
+  //       displayKey: "cloudName",
+  //       dropdown: `${process.env.REACT_APP_IAM_BASE_URL}list-customer-clouds-customer-id`,
+  //     },
+  //   ],
+  //   json: [{ name: "recsConfig" }],
+  // },
 ];
 
 const iamRoutes = [
