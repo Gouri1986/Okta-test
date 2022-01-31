@@ -6,14 +6,22 @@ import Modal from "../../modal/center/Modal";
 import ModalForm from "../../forms/ModalForm";
 import { useSelector } from "react-redux";
 import { deleteTableData } from "../../../../apis/table/table";
+import { deleteIAMTableData } from "../../../../apis/iam";
 
-const RowAction = ({ setOpenCRUDModal, activeEndPoint, datum, getTable }) => {
+const RowAction = ({
+  setOpenCRUDModal,
+  setCRUDModalType,
+  activeEndPoint,
+  datum,
+  setActiveData,
+  getTable,
+}) => {
   const { user } = useSelector((state) => state.userReducer);
 
   const deleteDataFromTable = async (e) => {
     e.preventDefault();
     e.stopPropagation();
-    await deleteTableData(activeEndPoint, user, datum);
+    await deleteIAMTableData(activeEndPoint, user, datum);
     getTable(activeEndPoint);
   };
 
@@ -26,7 +34,9 @@ const RowAction = ({ setOpenCRUDModal, activeEndPoint, datum, getTable }) => {
         onClick={(e) => {
           e.preventDefault();
           e.stopPropagation();
+          setCRUDModalType("update");
           setOpenCRUDModal(true);
+          setActiveData(datum);
         }}
         className='ml-15 cp'
       >
@@ -63,6 +73,8 @@ const TableBody = (props) => {
     tableTitle,
     openCRUDModal,
     setOpenCRUDModal,
+    CRUDModalType,
+    setCRUDModalType,
     activeEndPoint,
     getTable,
   } = props;
@@ -113,8 +125,10 @@ const TableBody = (props) => {
         {id === "action" ? (
           <RowAction
             setOpenCRUDModal={setOpenCRUDModal}
+            setCRUDModalType={setCRUDModalType}
             activeEndPoint={activeEndPoint}
             datum={datum}
+            setActiveData={setActiveData}
             getTable={getTable}
           />
         ) : /*action buttons column is rendred conditionally
@@ -163,7 +177,8 @@ const TableBody = (props) => {
     );
   };
 
-  const emptyRows = rowsPerPage - Math.min(rowsPerPage, rowData.length - page * rowsPerPage)
+  const emptyRows =
+    rowsPerPage - Math.min(rowsPerPage, rowData.length - page * rowsPerPage);
 
   return (
     <div className='flex-c '>
@@ -205,6 +220,9 @@ const TableBody = (props) => {
           onCancel={() => setOpenCRUDModal(false)}
           activeEndPoint={activeEndPoint}
           getTable={getTable}
+          CRUDModalType={CRUDModalType}
+          openCRUDModal={openCRUDModal}
+          activeData={activeData}
         />
       </Modal>
     </div>

@@ -29,7 +29,7 @@ import {
 } from "../../shared/utils/getApiEndpointFromRoutes";
 import { MetadataLayout } from "../../shared/layout";
 import { iamDrawer } from "../../shared/utils/drawer";
-import Pagination  from "../../shared/components/common/tableContainer/pagination/Pagination";
+import Pagination from "../../shared/components/common/tableContainer/pagination/Pagination";
 import { IAMRoutes } from "../../routes/metadataRoutes";
 
 // Import The components Here
@@ -422,6 +422,7 @@ const Dashboard = () => {
 
   // state for the visibility of crud modal
   const [openCRUDModal, setOpenCRUDModal] = useState(false);
+  const [CRUDModalType, setCRUDModalType] = useState("add");
 
   const layoutProps = {
     setRefresh,
@@ -434,7 +435,10 @@ const Dashboard = () => {
     drawer: iamDrawer,
     openCRUDModal,
     setOpenCRUDModal,
+    CRUDModalType,
+    setCRUDModalType,
     setActiveEndPoint,
+    pageTitle: "IAM",
   };
 
   const tableProps = {
@@ -450,6 +454,8 @@ const Dashboard = () => {
     rowsPerPage,
     openCRUDModal,
     setOpenCRUDModal,
+    CRUDModalType,
+    setCRUDModalType,
     activeEndPoint,
     getTable,
   };

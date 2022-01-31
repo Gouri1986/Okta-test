@@ -12,11 +12,11 @@ const routes = [
     pageName: "Customer Master",
     pk: ["customerId"],
     whitelist: ["customerId"],
-    dependency: [
+    visibilitydependency: [
       {
         parent: "iamType",
-        children: ["externalIamClientId", "externalIamName"],
         value: "External IDM",
+        children: ["externalIamClientId", "externalIamName"],
       },
     ],
     dropdown: [
@@ -127,6 +127,7 @@ const routes = [
     pageName: "Cloud Privileges",
     apiEndpoint: "iam-cloud-privileges",
     pk: ["privilegeId"],
+    whitelist: ["privilegeId"],
     dropdown: [
       {
         name: "cloudName",
@@ -137,11 +138,15 @@ const routes = [
       {
         name: "cloudServiceType",
         dynamic: true,
+        displayKey: "cloudServiceName",
+
         dropdown: `${process.env.REACT_APP_ENCS_BASE_URL}encs-cloud-resources/`,
         params: ["cloudName"],
       },
       {
         name: "cloudResourceType",
+        dropdownKey: "cloudResource",
+        displayKey: "cloudResourceName",
         dynamic: true,
         dropdown: `${process.env.REACT_APP_ENCS_BASE_URL}encs-cloud-resources/`,
         params: ["cloudName"],
@@ -159,10 +164,11 @@ const routes = [
     path: "/iam-custom-cloud-roles",
     pageName: "Custom Cloud Roles",
     apiEndpoint: "iam-custom-cloud-roles",
-    uk: ["CustomCloudRoleName"],
+    uk: ["customCloudRoleName"],
+    whitelist: ["customCloudRoleId", "customerId"],
     dropdown: [
       {
-        name: "customerId",
+        name: "cloudName",
         dynamic: true,
         displayKey: "cloudName",
         dropdown: `${process.env.REACT_APP_IAM_BASE_URL}list-customer-clouds-customer-id`,
@@ -198,11 +204,12 @@ const routes = [
     dependency: [
       { parent: "ctgId", children: ["ctgName", "customerId"], disabled: true },
     ],
+    whitelist: ["ctgId", "customerId"],
     dropdown: [
       {
-        name: "ctgId",
+        name: "ctgName",
         dynamic: true,
-        displayKey: "ctgId",
+        displayKey: "ctgName",
         dropdown: `${process.env.REACT_APP_IAM_BASE_URL}list-ctg-id`,
       },
       {
@@ -214,31 +221,60 @@ const routes = [
     ],
     json: [{ name: "recsConfig" }],
   },
-  // {
-  //   path: "/iam-user-roles",
-  //   pageName: "IAM User Roles",
-  //   apiEndpoint: "iam-user-roles",
-  //   pk: ["userRoleId"],
-  //   dependency: [
-  //     { parent: "roleType", children: ["ctgName", "customerId"], disabled: true },
-  //   ],
-  //   dropdown: [
-  //     {
-  //       name: "userId",
-  //       dynamic: true,
-  //       displayKey: "userId",
-  //       dropdown: `${process.env.REACT_APP_IAM_BASE_URL}list-users-id-role`,
-  //     },
-  //     { name: "roleType", dropdown: ["Custom", "Default"] },
-  //     {
-  //       name: "cloudName",
-  //       dynamic: true,
-  //       displayKey: "cloudName",
-  //       dropdown: `${process.env.REACT_APP_IAM_BASE_URL}list-customer-clouds-customer-id`,
-  //     },
-  //   ],
-  //   json: [{ name: "recsConfig" }],
-  // },
+  {
+    path: "/iam-user-roles",
+    pageName: "IAM User Roles",
+    apiEndpoint: "iam-user-roles",
+    pk: ["userRoleId"],
+    whitelist: ["userRoleId"],
+    visibilitydependency: [
+      {
+        parent: "roleType",
+        value: "custom",
+        children: [
+          "customCloudRoleId",
+          "customCloudRoleName",
+          "customRoleCloud",
+        ],
+      },
+      {
+        parent: "roleType",
+        value: "default",
+        children: [
+          "defaultCloudRoleId",
+          "defaultCloudRoleName",
+          "defaultRoleCloud",
+        ],
+      },
+    ],
+    dropdown: [
+      {
+        name: "userId",
+        dynamic: true,
+        displayKey: "userId",
+        dropdown: `${process.env.REACT_APP_IAM_BASE_URL}list-users-id-roles`,
+      },
+      {
+        name: "customCloudRoleName",
+        dynamic: true,
+        displayKey: "customCloudRoleName",
+        dropdown: `${process.env.REACT_APP_IAM_BASE_URL}list-custom-cloud-role-id`,
+      },
+      {
+        name: "defaultCloudRoleName",
+        dynamic: true,
+        displayKey: "defaultCloudRoleName",
+        dropdown: `${process.env.REACT_APP_IAM_BASE_URL}list-default-cloud-role-id`,
+      },
+      { name: "roleType", dropdown: ["Custom", "Default"] },
+      {
+        name: "cloudName",
+        dynamic: true,
+        displayKey: "cloudName",
+        dropdown: `${process.env.REACT_APP_IAM_BASE_URL}list-customer-clouds-customer-id`,
+      },
+    ],
+  },
 ];
 
 const iamRoutes = [

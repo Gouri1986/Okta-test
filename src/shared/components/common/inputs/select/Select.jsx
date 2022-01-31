@@ -21,7 +21,7 @@ const DropDownArrow = () => {
 };
 
 const Dropdown = (props) => {
-  const { item = {}, onChange } = props;
+  const { item = {}, onChange, value = "", inputs } = props;
   const { title = "", id = "", dropdown = {} } = item;
 
   const [dropDownData, setDropDownData] = useState([]);
@@ -32,13 +32,28 @@ const Dropdown = (props) => {
     setDropDownData(response.data?.data);
   };
 
+  const getDropDownDataWidthParams = async (params) => {
+    if (dropdown.params && inputs[dropdown.params]) {
+      const response = await axios.get(
+        dropdown?.dropdown + "?" + params + "=" + inputs[dropdown.params]
+      );
+      setDropDownData(response.data?.data);
+    }
+  };
+
+  useEffect(() => {
+    if (dropdown.dynamic && dropdown.params) {
+      getDropDownDataWidthParams(dropdown.params);
+    }
+  }, [inputs[dropdown.params]]);
+
   useEffect(() => {
     if (dropdown.dynamic) {
       getDropDownData();
     } else {
       setDropDownData(dropdown.dropdown);
     }
-  }, []);
+  }, [dropdown]);
 
   useEffect(() => {
     if (dropdown.dynamic) {
@@ -61,7 +76,7 @@ const Dropdown = (props) => {
           displayEmpty
           id={id}
           className='p-0'
-          value={selected}
+          value={value}
           onChange={(e) => setSelected(e.target.value)}
           IconComponent={() => (
             <div className='flex-r-ac pr-15'>
@@ -94,7 +109,7 @@ const Dropdown = (props) => {
         <Select
           displayEmpty
           id={id}
-          value={selected}
+          value={value}
           onChange={(e) => setSelected(e.target.value)}
           IconComponent={() => (
             <div className='flex-r-ac pr-15'>

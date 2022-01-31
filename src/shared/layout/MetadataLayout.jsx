@@ -1,7 +1,7 @@
-import React from 'react';
-import './metadataLayout.scss';
-import { Navbar, Header, TableSettings } from '../components/common';
-import Breadcrumbs from '../components/common/breadcumbs/Breadcrumbs';
+import React from "react";
+import "./metadataLayout.scss";
+import { Navbar, Header, TableSettings } from "../components/common";
+import Breadcrumbs from "../components/common/breadcumbs/Breadcrumbs";
 const Layout = (props) => {
   const {
     setActiveEndPoint,
@@ -14,6 +14,8 @@ const Layout = (props) => {
     drawer,
     openCRUDModal,
     setOpenCRUDModal,
+    pageTitle,
+    setCRUDModalType,
   } = props;
 
   return (
@@ -35,7 +37,7 @@ const Layout = (props) => {
           <Breadcrumbs
             parentTitle='Dashboard'
             parentPath=''
-            tableTitle1={'Environmental Catalog'}
+            tableTitle1={pageTitle}
             tableTitle2={tableTitle}
           />
         </div>
@@ -43,7 +45,10 @@ const Layout = (props) => {
           <div className='flex-c bdr-r-10 bg-white'>
             <div>
               <TableSettings
-                modalOnClick={() => setOpenCRUDModal(!openCRUDModal)}
+                modalOnClick={() => {
+                  setOpenCRUDModal(!openCRUDModal);
+                  setCRUDModalType("add");
+                }}
               />
             </div>
             <div className='overflow-x-scroll metadata-table-container'>

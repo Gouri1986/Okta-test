@@ -6,12 +6,36 @@ import { useSelector } from "react-redux";
 import Select from "../inputs/select/Select";
 import Checkbox from "../inputs/checkbox/Checkbox";
 import { addTableData } from "../../../apis/table/table";
+import { addIAMTableData, updateIAMTableData } from "../../../apis/iam";
 
 const ModalForm = (props) => {
   const { user } = useSelector((state) => state.userReducer);
-  const { form, tableDetails, onCancel, getTable, activeEndPoint } = props;
+
+  const {
+    form,
+    tableDetails,
+    onCancel,
+    getTable,
+    activeEndPoint,
+    CRUDModalType,
+    openCRUDModal,
+    activeData,
+  } = props;
+
   const [inputs, setInputs] = useState({});
   const inputRef = useRef();
+
+  useEffect(() => {
+    if (CRUDModalType === "update") {
+      setInputs(activeData);
+    }
+  }, [activeData]);
+
+  useEffect(() => {
+    if (CRUDModalType === "add") {
+      setInputs({});
+    }
+  }, [openCRUDModal]);
 
   const inputForm = form?.filter(
     (e) => !tableDetails.whitelist?.includes(e.id)
@@ -31,53 +55,102 @@ const ModalForm = (props) => {
     setInputs((values) => ({ ...values, ...v }));
   };
 
-  const handleSubmit = async (event) => {
-    await addTableData(activeEndPoint, user, inputs);
+  const handleSubmit = async () => {
+    if (CRUDModalType === "add") {
+      await addIAMTableData(activeEndPoint, user, inputs);
+    } else {
+      await updateIAMTableData(activeEndPoint, user, inputs);
+    }
     getTable(activeEndPoint);
     onCancel();
     setInputs({});
     inputRef.current.reset();
-    console.log(inputs);
   };
 
   return (
     <div className='modal-form'>
       <form ref={inputRef}>
         <Grid container spacing={2}>
-          {inputForm?.map((item, i) => (
-            <Grid
-              key={i}
-              item
-              xs={12}
-              sm={12}
-              md={inputForm.length < 7 ? 12 : 6}
-              lg={inputForm.length < 7 ? 12 : 6}
-            >
-              {item.dropdown ? (
-                <Select
-                  item={item}
-                  value={inputs?.id ?? ""}
-                  onChange={onDropDownChange}
-                />
-              ) : item.checkbox ? (
-                <Checkbox
-                  label={item?.title}
-                  item={item}
-                  onChange={onCheckboxChange}
-                />
-              ) : (
-                <TextBox
-                  type='text'
-                  madatory={true}
-                  id={item?.id}
-                  placeholder={`Enter your ${item.title}`}
-                  label={item?.title}
-                  value={inputs?.id ?? ""}
-                  onChange={onTextInputChange}
-                />
-              )}
-            </Grid>
-          ))}
+          {inputForm?.map((item, i) => {
+            let visibilityDependencyValue = item.visibilitydependency?.value;
+            let visibilityDependencyParent = item.visibilitydependency?.parent;
+            if (visibilityDependencyValue) {
+              return (
+                inputs[visibilityDependencyParent]?.toLowerCase() ===
+                  visibilityDependencyValue?.toLowerCase() && (
+                  <Grid
+                    key={i}
+                    item
+                    xs={12}
+                    sm={12}
+                    md={inputForm.length < 7 ? 12 : 6}
+                    lg={inputForm.length < 7 ? 12 : 6}
+                  >
+                    {item.dropdown ? (
+                      <Select
+                        item={item}
+                        value={inputs[item?.id] ?? ""}
+                        inputs={inputs}
+                        onChange={onDropDownChange}
+                      />
+                    ) : item.checkbox ? (
+                      <Checkbox
+                        label={item?.title}
+                        item={item}
+                        onChange={onCheckboxChange}
+                      />
+                    ) : (
+                      <TextBox
+                        type='text'
+                        madatory={true}
+                        id={item?.id}
+                        placeholder={`Enter your ${item.title}`}
+                        label={item?.title}
+                        value={inputs[item?.id] ?? ""}
+                        onChange={onTextInputChange}
+                      />
+                    )}
+                  </Grid>
+                )
+              );
+            } else {
+              return (
+                <Grid
+                  key={i}
+                  item
+                  xs={12}
+                  sm={12}
+                  md={inputForm.length < 7 ? 12 : 6}
+                  lg={inputForm.length < 7 ? 12 : 6}
+                >
+                  {item.dropdown ? (
+                    <Select
+                      item={item}
+                      value={inputs[item?.id] ?? ""}
+                      inputs={inputs}
+                      onChange={onDropDownChange}
+                    />
+                  ) : item.checkbox ? (
+                    <Checkbox
+                      label={item?.title}
+                      item={item}
+                      onChange={onCheckboxChange}
+                    />
+                  ) : (
+                    <TextBox
+                      type='text'
+                      madatory={true}
+                      id={item?.id}
+                      placeholder={`Enter your ${item.title}`}
+                      label={item?.title}
+                      value={inputs[item?.id] ?? ""}
+                      onChange={onTextInputChange}
+                    />
+                  )}
+                </Grid>
+              );
+            }
+          })}
         </Grid>
       </form>
       <div className='modal-form-footer mt-50'>
@@ -86,7 +159,7 @@ const ModalForm = (props) => {
           variant='contained'
           onClick={(e) => handleSubmit(e)}
         >
-          Submit
+          {CRUDModalType === "add" ? "Submit" : "Update"}
         </Button>
         <Button
           variant='outlined'

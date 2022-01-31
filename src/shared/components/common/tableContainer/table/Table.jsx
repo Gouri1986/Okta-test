@@ -17,6 +17,8 @@ const Table = (props) => {
     tableRowkey,
     openCRUDModal,
     setOpenCRUDModal,
+    CRUDModalType,
+    setCRUDModalType,
     activeEndPoint,
     getTable,
   } = props;
@@ -58,6 +60,8 @@ const Table = (props) => {
     openCRUDModal,
     setOpenCRUDModal,
     activeEndPoint,
+    CRUDModalType,
+    setCRUDModalType,
     getTable,
   };
 

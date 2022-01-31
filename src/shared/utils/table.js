@@ -13,7 +13,10 @@ export const getSanitisedTableData = (tableContents, tableDataDetails) => {
     const checkbox = tableDataDetails.checkbox?.find(
       (el) => el.name === e.id.trim()
     );
+    const visibilitydependency = tableDataDetails.visibilitydependency?.find(
+      (el) => el.children?.includes(e.id.trim())
+    );
     const json = tableDataDetails.json?.find((el) => el.name === e.id.trim());
-    return { ...e, pk, uk, dropdown, checkbox, json };
+    return { ...e, pk, uk, dropdown, checkbox, json, visibilitydependency };
   });
 };

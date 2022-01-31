@@ -1,39 +1,39 @@
-import { useEffect, useState } from "react"
-import { useLocation } from "react-router-dom"
-import { getTableData } from "../../../shared/apis/table/table"
-import { encsDrawer } from "../../../shared/utils/drawer"
-import { ENCSRoutes } from "../../../routes/metadataRoutes"
+import { useEffect, useState } from "react";
+import { useLocation } from "react-router-dom";
+import { getTableData } from "../../../shared/apis/table/table";
+import { encsDrawer } from "../../../shared/utils/drawer";
+import { ENCSRoutes } from "../../../routes/metadataRoutes";
 import {
   getApiEndpointNameFromRoutes,
   getTableDetailFromRoutes,
   getTableKeyNameFromRoutes,
-  getTableTitleNameFromRoutes
-} from "../../../shared/utils/getApiEndpointFromRoutes"
-import { useSelector } from "react-redux"
-import { getSpacedDisplayName } from "../../../shared/utils/table"
-import { MetadataLayout } from "../../../shared/layout"
-import "./style.scss"
-import { Table, Pagination } from "../../../shared/components/common"
+  getTableTitleNameFromRoutes,
+} from "../../../shared/utils/getApiEndpointFromRoutes";
+import { useSelector } from "react-redux";
+import { getSpacedDisplayName } from "../../../shared/utils/table";
+import { MetadataLayout } from "../../../shared/layout";
+import "./style.scss";
+import { Table, Pagination } from "../../../shared/components/common";
 
 const Dashboard = () => {
   // loggin user details from store
-  const { user } = useSelector(state => state.userReducer)
+  const { user } = useSelector((state) => state.userReducer);
   //table data fetched from api
-  const [tableContents, setTableContents] = useState([])
+  const [tableContents, setTableContents] = useState([]);
   // table title returned from the routes with respect to the url path
-  const [tableTitle, setTableTitle] = useState("")
+  const [tableTitle, setTableTitle] = useState("");
   // table details
-  const [tableDetails, setTableDetails] = useState({})
+  const [tableDetails, setTableDetails] = useState({});
   // key for the table row
-  const [tableRowkey, setTableRowKey] = useState("")
+  const [tableRowkey, setTableRowKey] = useState("");
   // checked table row
-  const [selectedRow, setSelectedRow] = useState([])
+  const [selectedRow, setSelectedRow] = useState([]);
   // active api endpoint to fetch table data with respect to the url path
-  const [activeEndPoint, setActiveEndPoint] = useState("")
+  const [activeEndPoint, setActiveEndPoint] = useState("");
   // refresh the table
-  const [refresh, setRefresh] = useState(false)
+  const [refresh, setRefresh] = useState(false);
   // location hook to get the location variables
-  const location = useLocation()
+  const location = useLocation();
 
   useEffect(() => {
     /**
@@ -41,13 +41,21 @@ const Dashboard = () => {
      * we are passing drawer | location | path
      */
 
-    let endpointFromPath = getApiEndpointNameFromRoutes(encsDrawer, location, "environmentcatelogue/")
+    let endpointFromPath = getApiEndpointNameFromRoutes(
+      encsDrawer,
+      location,
+      "environmentcatelogue/"
+    );
     /**
      * in the same way, getting the correct title of the table from routes
      * we are passing drawer | location | path
      */
 
-    let tableTitle = getTableTitleNameFromRoutes(encsDrawer, location, "environmentcatelogue/")
+    let tableTitle = getTableTitleNameFromRoutes(
+      encsDrawer,
+      location,
+      "environmentcatelogue/"
+    );
 
     // get table detail from routes
 
@@ -59,9 +67,13 @@ const Dashboard = () => {
     setTableDetails(tableDetail);
 
     // get the key for the table for crud or any other row level operation
-    let tableKey = getTableKeyNameFromRoutes(encsDrawer, location, "environmentcatelogue/")
+    let tableKey = getTableKeyNameFromRoutes(
+      encsDrawer,
+      location,
+      "environmentcatelogue/"
+    );
 
-    setTableRowKey(tableKey)
+    setTableRowKey(tableKey);
 
     /**
      * getting the actual endpoint if defined else try get from the state
@@ -69,46 +81,48 @@ const Dashboard = () => {
      */
 
     if (endpointFromPath) {
-      getTable(endpointFromPath)
+      getTable(endpointFromPath);
     } else {
-      activeEndPoint.length > 0 && getTable(activeEndPoint)
+      activeEndPoint.length > 0 && getTable(activeEndPoint);
     }
     // set the table title
-    setTableTitle(tableTitle)
+    setTableTitle(tableTitle);
 
     // dependency array
-  }, [refresh, location.pathname])
+  }, [refresh, location.pathname]);
 
   const getTable = async (activeEndPoint) => {
     // get the table data by passsing endpoint and user data
-    const data = await getTableData(activeEndPoint, user)
+    const data = await getTableData(activeEndPoint, user);
     if (data) {
       // map the keys of the response we got from the api into an array
-      const objectKeys = data.map(datum => Object.keys(datum))
+      const objectKeys = data.map((datum) => Object.keys(datum));
       // map the above key array in to an array of objects
       // each object will have title and and the actual key as an id
-      const header = objectKeys?.[0]?.map(item => ({
+      const header = objectKeys?.[0]?.map((item) => ({
         title: getSpacedDisplayName(item),
-        id: item
-      }))
+        id: item,
+      }));
       // set the above mapped array as header details and the actual response as the data
-      setTableContents({ header, data })
+      setTableContents({ header, data });
     }
-  }
+  };
 
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(10);
   // state for the visibility of crud modal
   const [openCRUDModal, setOpenCRUDModal] = useState(false);
 
-  const onRowClick = rowData => {
-    if (selectedRow.find(e => e[tableRowkey] === rowData[tableRowkey])) {
-      const selectedItems = selectedRow.filter(e => e[tableRowkey] !== rowData[tableRowkey])
-      setSelectedRow(selectedItems)
+  const onRowClick = (rowData) => {
+    if (selectedRow.find((e) => e[tableRowkey] === rowData[tableRowkey])) {
+      const selectedItems = selectedRow.filter(
+        (e) => e[tableRowkey] !== rowData[tableRowkey]
+      );
+      setSelectedRow(selectedItems);
     } else {
-      setSelectedRow([rowData])
+      setSelectedRow([rowData]);
     }
-  }
+  };
 
   const layoutProps = {
     setActiveEndPoint: setActiveEndPoint,
@@ -120,6 +134,7 @@ const Dashboard = () => {
     drawer: encsDrawer,
     openCRUDModal,
     setOpenCRUDModal,
+    pageTitle: "Environment Catelogue",
   };
 
   const tableProps = {
@@ -153,6 +168,6 @@ const Dashboard = () => {
       {tableContents.data?.length > 0 && <Table {...tableProps} />}
       <Pagination {...paginationProps} />
     </MetadataLayout>
-  )
-}
-export default Dashboard
+  );
+};
+export default Dashboard;
