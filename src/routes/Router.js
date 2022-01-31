@@ -1,5 +1,4 @@
 import { Route, Switch } from "react-router-dom";
-import Auth from "../pages/authentication/Auth";
 import Login from "../pages/authentication/Login";
 import IAMDashboard from "../pages/iam/Dashboard";
 import ENCSDashboard from "../pages/metadata/environmentCatelogue/Dashboard";
@@ -10,7 +9,7 @@ const AppRouter = () => {
   return (
     <Switch>
       <Route path={"/"} exact>
-        <Auth />
+        <Login />
       </Route>
       <Route path={"/login"}>
         <Login />
