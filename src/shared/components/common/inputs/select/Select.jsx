@@ -61,6 +61,9 @@ const Dropdown = (props) => {
         onChange(
           dropDownData.find((e) => e[dropdown?.displayKey] === selected)
         );
+        console.log(
+          dropDownData?.find((e) => e[dropdown?.displayKey] === selected)
+        );
       }
     } else {
       onChange({ [id]: selected });
