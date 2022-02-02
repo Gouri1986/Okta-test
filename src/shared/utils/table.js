@@ -16,7 +16,23 @@ export const getSanitisedTableData = (tableContents, tableDataDetails) => {
     const visibilitydependency = tableDataDetails.visibilitydependency?.find(
       (el) => el.children?.includes(e.id.trim())
     );
+    const nestedArrayKey = tableDataDetails.dropdown?.find(
+      (el) => el.nestedArrayKey
+    )?.nestedArrayKey;
+    const nestedArrayDependencyKey = tableDataDetails.dropdown?.find(
+      (el) => el.nestedArrayDependencyKey
+    )?.nestedArrayDependencyKey;
     const json = tableDataDetails.json?.find((el) => el.name === e.id.trim());
-    return { ...e, pk, uk, dropdown, checkbox, json, visibilitydependency };
+    return {
+      ...e,
+      pk,
+      uk,
+      dropdown,
+      checkbox,
+      json,
+      visibilitydependency,
+      nestedArrayKey,
+      nestedArrayDependencyKey,
+    };
   });
 };
