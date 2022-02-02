@@ -108,8 +108,10 @@ const Dashboard = () => {
     }
   };
 
-  const [page, setPage] = useState(0);
+  const [page, setPage] = useState(1);
   const [rowsPerPage, setRowsPerPage] = useState(10);
+  const [pageCount, setPageCount] = useState(Math.ceil(tableContents.data?.length / rowsPerPage))
+
   // state for the visibility of crud modal
   const [openCRUDModal, setOpenCRUDModal] = useState(false);
 
@@ -161,8 +163,9 @@ const Dashboard = () => {
     setPage,
     rowsPerPage,
     setRowsPerPage,
+    pageCount 
   };
-
+  
   return (
     <MetadataLayout {...layoutProps}>
       {tableContents.data?.length > 0 && <Table {...tableProps} />}
