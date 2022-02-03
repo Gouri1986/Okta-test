@@ -1,13 +1,16 @@
 // MUI styles override
 
 .MuiBreadcrumbs-li {
-  text-transform: capitalize;
+  text-transform: capitalize !important;
+  &>p{
+    font-family: Inter;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16.403px;
+    line-height: 20px;
+  }
 }
-
-.MuiBreadcrumbs-li a {
-  text-decoration: none;
-}
-
-.MuiBreadcrumbs-li a:hover {
-  color: grey;
+.css-1wuw8dw-MuiBreadcrumbs-separator{
+  margin-right: 15px !important;
+  margin-left: 15px !important;
 }

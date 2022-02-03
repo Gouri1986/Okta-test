@@ -29,9 +29,9 @@ const Layout = props => {
           onClick={getTable}
         />
       </div>
-      <div className="wp-93 hvh-100 flex-1 flex-c">
-        <div className="pt-20 mr-30 ml-30 hvh-12">
-          <Header />
+      <div className='wp-50 hvh-100 flex-1 flex-c'>
+        <div className='mt-33 mr-30 ml-30 hvh-13'>
+          <Header tableTitle={tableTitle} />
         </div>
         <div className="ml-30 mb-10 hvh-3">
           <Breadcrumbs
