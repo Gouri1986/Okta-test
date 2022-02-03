@@ -1,3 +1,18 @@
+/**
+ * routes to iam tables with table details
+ *
+ * description of few main terminologies:
+ * path - url path of page -> this path will be applied whenever the navigation changes form the menu bar
+ * pageName - page name to be displayed in the header section of the page
+ * apiEndpoint - api endpoint for the respective tables to fetch data from the server
+ * whitelist - an array of table keys. These keys will be exluded from modal form
+ * dropdown - an array of objects where each object is an info about dropdown in the modal form
+ * checkbox - an array of objects where each object is an info about checkbox in the modal form
+ * pk/uk - array of keys where the table uses them as the key for crud
+ * visibilityDependenvy - an array objects where an object holds the info about value dependency of one input on another input For eg, one input will be rendered/made visbile based on a value of dropdown
+ *
+ */
+
 const routes = [
   {
     path: "/iam-ctg-cloud-ref",
@@ -14,21 +29,21 @@ const routes = [
     whitelist: ["customerId"],
     visibilitydependency: [
       {
-        parent: "iamType",
-        value: "External IDM",
-        children: ["externalIamClientId", "externalIamName"],
+        parent: "iamType", // parent input's key in which the children inputs' rendering depends
+        value: "External IDM", // actual match of value to render the children(depended) inputs
+        children: ["externalIamClientId", "externalIamName"], // an array of depending inputs
       },
     ],
     dropdown: [
       {
-        name: "customerBusinessName",
-        dynamic: true,
-        displayKey: "customerBusinessName",
-        dropdown: `${process.env.REACT_APP_ENCS_BASE_URL}encs_customer-master-details-list-all-services`,
+        name: "customerBusinessName", // key of the column
+        dynamic: true, // if dynamic, call the api to fetch dropdown data
+        displayKey: "customerBusinessName", // key of the object returned from the api to display in dropdown
+        dropdown: `${process.env.REACT_APP_ENCS_BASE_URL}encs_customer-master-details-list-all-services`, // api to fetch the dropdown if dynamic
       },
       {
-        name: "iamType",
-        dropdown: ["Internal IDM", "External IDM", "Internal Auth"],
+        name: "iamType", // key of column
+        dropdown: ["Internal IDM", "External IDM", "Internal Auth"], // if not dynamic, populate with static dropdown with array of strings(Values)
       },
     ],
   },
@@ -67,9 +82,9 @@ const routes = [
     uk: ["adminRoleName"],
     checkbox: [
       {
-        name: "privilegesAssigned",
-        displayKey: "privilege",
-        api: `${process.env.REACT_APP_IAM_BASE_URL}list-admin-privileges`,
+        name: "privilegesAssigned", // key of column
+        displayKey: "privilege", //key of the object returned from the api to display in checkbox label
+        api: `${process.env.REACT_APP_IAM_BASE_URL}list-admin-privileges`, // api to fetch checkbox values
       },
     ],
   },
@@ -135,20 +150,32 @@ const routes = [
         displayKey: "cloudName",
         dropdown: `${process.env.REACT_APP_ENCS_BASE_URL}list-cloudNames`,
       },
+      /**
+       *
+       * Following two dropdown depends on the value of another dropdwon/input, that will be passed as the paramw to the apis of the following dropdown
+       */
       {
         name: "cloudServiceType",
         dynamic: true,
-        displayKey: "cloudServiceName",
-
+        displayKey: "cloudServiceType",
         dropdown: `${process.env.REACT_APP_ENCS_BASE_URL}encs-cloud-resources`,
-        params: ["cloudName"],
+        params: ["cloudName"], // an array of key where the selected value of the key will be passed the param in the above api to fetch the respective dropdown values
       },
+      /**
+       *
+       * Following dropdown renders in complex way (nested retrieval)
+       * this dropdown is depend on the values of another dropdown (nestedArrayDependencyKey)
+       * from that values, actual dropdown values of the this dropdown can be grabbed with nestedArrayKey
+       *
+       */
       {
         name: "cloudResourceType",
-        displayKey: "cloudResourceName",
+        displayKey: "cloudResourceType",
+        nestedArrayKey: "cloudResource",
+        nestedArrayDependencyKey: "cloudServiceType",
         dynamic: true,
         dropdown: `${process.env.REACT_APP_ENCS_BASE_URL}encs-cloud-resources`,
-        params: ["cloudName"],
+        params: ["cloudName"], // an array of key where the selected value of the key will be passed the param in the above api to fetch the respective dropdown values
       },
     ],
   },
@@ -218,7 +245,6 @@ const routes = [
         dropdown: `${process.env.REACT_APP_IAM_BASE_URL}list-customer-clouds-customer-id`,
       },
     ],
-    json: [{ name: "recsConfig" }],
   },
   {
     path: "/iam-user-roles",
@@ -275,6 +301,8 @@ const routes = [
     ],
   },
 ];
+
+// export all the routes of the iam as a single array of object in the single section with no title
 
 const iamRoutes = [
   {

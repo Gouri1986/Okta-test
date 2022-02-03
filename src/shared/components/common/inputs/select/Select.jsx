@@ -1,7 +1,17 @@
+// React Imports
 import React, { useEffect, useState } from "react";
+// Axios Import
 import axios from "axios";
+// Mui Inputs Imports
 import { Select, MenuItem, InputLabel, FormControl } from "@mui/material";
+// Stylesheet import
 import "./select.scss";
+
+/**
+ * SVG React component
+ * @returns vector image of custom dropdown used the select component
+ *
+ */
 
 const DropDownArrow = () => {
   return (
@@ -20,57 +30,10 @@ const DropDownArrow = () => {
   );
 };
 
-const Dropdown = (props) => {
-  const { item = {}, onChange, value = "", inputs } = props;
+const DynamicDropdown = ({ item, dropDownData, value, setSelected }) => {
   const { title = "", id = "", dropdown = {} } = item;
 
-  const [dropDownData, setDropDownData] = useState([]);
-  const [selected, setSelected] = useState("");
-
-  const getDropDownData = async () => {
-    const response = await axios.get(dropdown?.dropdown);
-    setDropDownData(response.data?.data);
-  };
-
-  const getDropDownDataWidthParams = async (params) => {
-    if (dropdown.params && inputs[dropdown.params]) {
-      const response = await axios.get(
-        dropdown?.dropdown + "?" + params + "=" + inputs[dropdown.params]
-      );
-      setDropDownData(response.data?.data);
-    }
-  };
-
-  useEffect(() => {
-    if (dropdown.dynamic && dropdown.params) {
-      getDropDownDataWidthParams(dropdown.params);
-    }
-  }, [inputs[dropdown.params]]);
-
-  useEffect(() => {
-    if (dropdown.dynamic) {
-      getDropDownData();
-    } else {
-      setDropDownData(dropdown.dropdown);
-    }
-  }, [dropdown]);
-
-  useEffect(() => {
-    if (dropdown.dynamic) {
-      if (selected?.length > 0) {
-        onChange(
-          dropDownData.find((e) => e[dropdown?.displayKey] === selected)
-        );
-        console.log(
-          dropDownData?.find((e) => e[dropdown?.displayKey] === selected)
-        );
-      }
-    } else {
-      onChange({ [id]: selected });
-    }
-  }, [selected]);
-
-  return dropdown.dynamic ? (
+  return (
     <div key={id} className='flex-c'>
       <label className='dropdown-label'>{title}</label>
       <FormControl fullWidth>
@@ -104,7 +67,13 @@ const Dropdown = (props) => {
         </Select>
       </FormControl>
     </div>
-  ) : (
+  );
+};
+
+const StaticDropdown = ({ item, dropDownData, value, setSelected }) => {
+  const { title = "", id = "" } = item;
+
+  return (
     <div key={id} className='flex-c'>
       <label className='dropdown-label'>{title}</label>
       <FormControl fullWidth>
@@ -133,6 +102,116 @@ const Dropdown = (props) => {
         </Select>
       </FormControl>
     </div>
+  );
+};
+
+const Dropdown = (props) => {
+  /**
+   * item - column info
+   * onChange - onChange function in the modal form to set dropdwon value to the form,
+   * inputs - moadal form inputs which will be new after every onChange calls
+   * value - value of a particular input(dropdown)
+   */
+  const { item = {}, onChange, inputs, value } = props;
+  /**
+   * id of the column/dropdown
+   * dropdown info of the column
+   */
+  const { id = "", dropdown = {} } = item;
+
+  const [dropDownData, setDropDownData] = useState([]); // state to set dropdown values
+  const [selected, setSelected] = useState(""); // state to set selected dropdown value
+
+  /**
+   * function to fecth dynamic dropdown
+   */
+  const getDropDownData = async () => {
+    const { dropdown: api } = dropdown; //api url to fetch the dropdown values
+    try {
+      const response = await axios.get(api);
+      const { data } = response;
+      setDropDownData(data.data);
+    } catch (e) {
+      console.error(e);
+    }
+  };
+
+  /**
+   * get the dropdown data by passing the params in the required fields
+   */
+
+  const getDropDownDataWidthParams = async (params) => {
+    if (params && inputs[params]) {
+      try {
+        const response = await axios.get(
+          dropdown?.dropdown + "?" + params + "=" + inputs[dropdown.params]
+        );
+        const { data } = response;
+        setDropDownData(data.data);
+      } catch (e) {
+        console.error(e);
+      }
+    }
+  };
+
+  useEffect(() => {
+    const { dynamic, params } = dropdown;
+    if (dynamic && params) {
+      getDropDownDataWidthParams(params);
+    }
+  }, [inputs[dropdown.params]]);
+
+  useEffect(() => {
+    // destructuring nested dependency keys
+    const { nestedArrayKey, nestedArrayDependencyKey } = dropdown;
+    //check if the inputs and current dropdwon has values dependency
+    if (nestedArrayKey && inputs[nestedArrayDependencyKey]) {
+      setDropDownData(inputs[nestedArrayKey]);
+    }
+  }, [inputs]);
+
+  useEffect(() => {
+    const { dynamic } = dropdown;
+    // destructuring dynamic key to check if the cloumn's dropdown is dynamic
+    dynamic ? getDropDownData() : setDropDownData(dropdown.dropdown);
+  }, [dropdown]);
+
+  useEffect(() => {
+    // this useeffect will be called on every select change
+
+    if (dropdown.dynamic) {
+      /**
+       *
+       * if dynamic set the value with respect to the display key
+       */
+      if (selected?.length > 0) {
+        onChange(
+          dropDownData?.find((e) => e[dropdown?.displayKey] === selected)
+        );
+      }
+    } else {
+    /**
+     * else set the static value directly with id as key
+     *
+     */
+      onChange({ [id]: selected });
+    }
+  }, [selected]);
+
+  return dropdown.dynamic ? (
+    <DynamicDropdown
+      item={item}
+      dropDownData={dropDownData}
+      value={value}
+      setSelected={setSelected}
+    />
+  ) : (
+    <StaticDropdown
+      item={item}
+      dropDownData={dropDownData}
+      value={value}
+      setSelected={setSelected}
+    />
   );
 };
 

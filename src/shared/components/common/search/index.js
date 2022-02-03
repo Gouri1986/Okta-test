@@ -1,1 +1,1 @@
-export { default as TitanSearch } from "./Search";
+export { default as GlobalSearch } from "./Search";
