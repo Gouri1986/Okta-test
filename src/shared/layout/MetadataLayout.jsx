@@ -3,6 +3,8 @@ import './metadataLayout.scss';
 import { Navbar, Header, TableSettings } from '../components/common';
 import Breadcrumbs from '../components/common/breadcumbs/Breadcrumbs';
 import ComplienceIntro from '../../pages/metadata/securityCompliance/ChartsContainer';
+import Accordion from '../components/common/widget/Accordion';
+import Map from '../components/common/widget/map/Map';
 const Layout = (props) => {
   const {
     setActiveEndPoint,
@@ -21,7 +23,7 @@ const Layout = (props) => {
 
   return (
     <div className='flex-r pos-rel'>
-      <div>
+      <div className='pos-sk'>
         <Navbar
           drawer={drawer}
           setActiveEndPoint={setActiveEndPoint}
@@ -30,11 +32,11 @@ const Layout = (props) => {
           onClick={getTable}
         />
       </div>
-      <div className='wp-50 hvh-100 flex-1 flex-c'>
+      <div className='wp-50 flex-1 flex-c '>
         <div className='mt-33 mr-30 ml-30 hvh-13'>
           <Header tableTitle={tableTitle} />
         </div>
-        <ComplienceIntro />
+        {/* <ComplienceIntro /> */}
         <div className='ml-30 mb-10 hvh-3'>
           <Breadcrumbs
             parentTitle='Dashboard'
@@ -43,7 +45,7 @@ const Layout = (props) => {
             tableTitle2={tableTitle}
           />
         </div>
-        <div className='pt-15 mr-30 ml-30 hvh-7 flex-c'>
+        <div className='pt-15 mr-30 ml-30 flex-c'>
           {tableTitle && (
             <>
               <p className='f-40 fw-600 fc-primary lh-1-0'>{tableTitle}</p>
@@ -53,7 +55,14 @@ const Layout = (props) => {
             </>
           )}
         </div>
-        <div className='flex-c ml-30 mr-30 hvh-78 pt-20'>
+        <div
+          style={{ backgroundColor: '#ffffff' }}
+          className=' overflow-y-hide bdr-r-10 mt-50 mb-25 ml-40 mr-40'
+        >
+          <Map />
+        </div>
+
+        <div className='flex-c ml-30 mr-30 hvh-20 pt-20'>
           <div className='flex-c bdr-r-10 bg-white'>
             <div>
               <TableSettings
