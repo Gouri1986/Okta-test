@@ -1,7 +1,8 @@
-import React from "react";
-import "./metadataLayout.scss";
-import { Navbar, Header, TableSettings } from "../components/common";
-import Breadcrumbs from "../components/common/breadcumbs/Breadcrumbs";
+import React from 'react';
+import './metadataLayout.scss';
+import { Navbar, Header, TableSettings } from '../components/common';
+import Breadcrumbs from '../components/common/breadcumbs/Breadcrumbs';
+import ComplienceIntro from '../../pages/metadata/securityCompliance/ChartsContainer';
 const Layout = (props) => {
   const {
     setActiveEndPoint,
@@ -33,6 +34,7 @@ const Layout = (props) => {
         <div className='mt-33 mr-30 ml-30 hvh-13'>
           <Header tableTitle={tableTitle} />
         </div>
+        <ComplienceIntro />
         <div className='ml-30 mb-10 hvh-3'>
           <Breadcrumbs
             parentTitle='Dashboard'
@@ -47,7 +49,7 @@ const Layout = (props) => {
               <TableSettings
                 modalOnClick={() => {
                   setOpenCRUDModal(!openCRUDModal);
-                  setCRUDModalType("add");
+                  setCRUDModalType('add');
                 }}
               />
             </div>
