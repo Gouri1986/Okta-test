@@ -29,7 +29,7 @@ const Layout = (props) => {
           onClick={getTable}
         />
       </div>
-      <div className='wp-93 hvh-100 flex-1 flex-c'>
+      <div className='wp-50 hvh-100 flex-1 flex-c'>
         <div className='mt-33 mr-30 ml-30 hvh-13'>
           <Header tableTitle={tableTitle} />
         </div>

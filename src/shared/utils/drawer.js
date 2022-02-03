@@ -1,5 +1,11 @@
 import { ENCSRoutes, IAMRoutes } from "../../routes/metadataRoutes";
 import { drawerSectionIcons } from "../components/common/drawer/iamNavDrawer/assets";
+import {
+  DTCSIcon,
+  ENCSIcon,
+  RECSIcon,
+  SCOSIcon,
+} from "../components/common/drawer/navDrawer/assets";
 import { getSpacedDisplayName } from "./table";
 
 export const iamDrawer = () => {
@@ -17,6 +23,7 @@ export const iamDrawer = () => {
 export const encsDrawer = () => {
   return ENCSRoutes.map((rt) => ({
     title: rt.section,
+    Icon: drawerSectionIcons.DTSC,
     items: Object.keys(rt.routes).map((key) => ({
       title: getSpacedDisplayName(key),
       Icon: drawerSectionIcons.GCP,
@@ -33,3 +40,15 @@ export const encsDrawer = () => {
     })),
   }));
 };
+
+export const mainDrawer = [
+  {
+    title: "Admin Tools",
+    items: [
+      { title: "Security Compliance", Icon: SCOSIcon },
+      { title: "Environment Catelogue ", Icon: ENCSIcon, drawer: encsDrawer },
+      { title: "Resource Inventory Catelogue", Icon: RECSIcon },
+      { title: "Data Tech Catelogue", Icon: DTCSIcon },
+    ],
+  },
+];
