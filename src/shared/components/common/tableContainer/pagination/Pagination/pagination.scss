@@ -1,4 +1,7 @@
-.rows-per-page-box {
+// common box contianer with bg style for 3 components
+.rows-per-page-box,
+.pagination-box,
+.jump-to-page-box {
   background: #ffffff;
   box-sizing: border-box;
   border-radius: 5px;
@@ -8,15 +11,64 @@
   line-height: 20px;
   color: #1f4173;
 }
-
+//--------------------------------------------------------
 .row-dropdown {
   border: 0px;
   outline: 0px;
 }
+.page-count {
+  border-right: 1px solid grey;
+}
 
-.pagination-box {
-  background: #ffffff;
+//jump to input style
+.jump-to-page-box {
+  input {
+    width: 60px;
+    background: #fcfcfd;
+    border: #fff;
+  }
+}
+.page-count-input:focus {
+  outline: none;
+}
+.page-count-input::placeholder {
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 20px;
+  color: rgba(26, 32, 61, 0.3);
+}
+
+.jumptopage-btn label,
+.page-count {
+  /* single/medium/14px */
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 20px;
+  color: #1f4173;
+}
+.jumptopage-btn label {
+  cursor: pointer;
+}
+/**************************************************
+ *            @mui overrides
+ **************************************************/
+
+.css-w05zow-MuiButtonBase-root-MuiPaginationItem-root {
+  color: #1f4173 !important;
+  font-family: Poppins;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 21px;
+}
+.css-w05zow-MuiButtonBase-root-MuiPaginationItem-root.Mui-selected:hover {
+  background-color: rgba(0, 0, 0, 0.12) !important;
+}
+
+.css-w05zow-MuiButtonBase-root-MuiPaginationItem-root.Mui-selected {
+  background-color: #fff;
+  border: 1px solid #110def;
   box-sizing: border-box;
-  border-radius: 5px;
-  padding: 5px 15px 5px 15px;
+  border-radius: 3px;
 }
