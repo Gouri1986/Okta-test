@@ -5,21 +5,13 @@ import {
   NotificationIcon,
 } from "../../../assets/images/icons/common";
 import User from "../../../assets/images/profile/user.svg";
-import { getTableTitleNameFromRoutes } from "../../../utils/getApiEndpointFromRoutes";
-import { getSpacedDisplayName } from "../../../utils/table";
+import Search from '../search/Search';
 
-function Header({ tableTitle }) {
+function Header() {
   return (
-    <div className='h-100 flex-r-ac flex-jc-sp-btn'>
-      <div className='flex-c'>
-        {tableTitle && (
-          <>
-            <p className='f-40 fw-600 fc-primary lh-1-0'>{tableTitle}</p>
-            <p className='f-14 fw-400 fc-primary ml-3'>
-              Welcome To {tableTitle}
-            </p>
-          </>
-        )}
+    <div className='hp-100 flex-r-ac flex-jc-sp-btn'>
+      <div className="hp-60 wp-55 flex-r-ac">
+        <Search />
       </div>
       <div className='flex-r-ac flex-jc-sp-btn'>
         <div className='flex-r-ac mr-15'>
