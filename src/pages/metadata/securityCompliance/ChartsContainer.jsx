@@ -95,7 +95,7 @@ export default function ComplienceIntro() {
                 <div>
                   <img src={complianceScan} alt='icon'></img>
                 </div>
-                <div className='fc-tertiary pl-20'>
+                <div className='fc-white pl-20'>
                   <div className='fw-700 f-36 lh-10'>1765</div>
                   <div className='fw-400 f-12'>Compliances Scanned</div>
                 </div>
@@ -105,7 +105,7 @@ export default function ComplienceIntro() {
                 <div className='ml-20'>
                   <img src={tempIcon} alt='icon'></img>
                 </div>
-                <div className='fc-tertiary pl-20 pr-200'>
+                <div className='fc-white pl-20 pr-200'>
                   <img alt='line-chart' src={dummyLineChart}></img>
                 </div>
               </div>

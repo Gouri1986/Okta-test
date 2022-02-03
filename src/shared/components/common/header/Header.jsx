@@ -20,7 +20,7 @@ function Header() {
         <div className='pos-rel mr-30 flex-r-ac'>
           <NotificationIcon />
           <div className='pos-ab t--10 l-20 bg-black h-24 w-24 bdr-rp-50 flex-r-jc-ac'>
-            <p className='f-12 fc-tertiary'>2</p>
+            <p className='f-12 fc-white'>2</p>
           </div>
         </div>
         <div className='wp-100 flex-r-ac white-container-br-5 flex-jc-sp-btn p-10'>

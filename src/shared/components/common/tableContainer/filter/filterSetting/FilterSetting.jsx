@@ -1,10 +1,9 @@
 import React from "react";
-import "./filter.scss";
-import { FilterIcon } from "./assets";
-import { FilterDropDown } from "./filterDropDown";
+import "./filterSetting.scss";
+import { FilterIcon } from "../assets";
 import { tableData as tbData } from "../../../db";
 
-const Filter = ({
+const FilterSetting = ({
   tableData,
   showReport,
   setTableContents,
@@ -25,4 +24,4 @@ const Filter = ({
   );
 };
 
-export default Filter;
+export default FilterSetting;

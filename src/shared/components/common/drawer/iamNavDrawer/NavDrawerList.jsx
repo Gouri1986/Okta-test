@@ -15,12 +15,12 @@ const List = ({ sub, collapsed, setActiveEndPoint, setRefresh, refresh }) => {
           setActiveEndPoint(sub.apiEndpoint);
         }}
         ref={lr}
-        className={"cp f-14 fw-400 lh-2-1 fc-tertiary mb-10 p-12 flex-r-ac"}
+        className={"cp f-14 fw-400 lh-2-1 fc-white mb-10 p-12 flex-r-ac"}
         key={sub.title}
       >
         <sub.Icon />
         {!collapsed && (
-          <span className='ml-15 f-16 fw-600 lh-2-1 fc-tertiary icon-name'>
+          <span className='ml-15 f-16 fw-600 lh-2-1 fc-white icon-name'>
             {sub.title}
           </span>
         )}
@@ -41,7 +41,7 @@ const DrawerList = ({
       <div className='mt-20'>
         <div className='drawer-lists'>
           {!collapsed && (
-            <span className={"fw-400 f-16 lh-2-1 fc-tertiary"}>
+            <span className={"fw-400 f-16 lh-2-1 fc-white"}>
               {iamDrawer().title}
             </span>
           )}
