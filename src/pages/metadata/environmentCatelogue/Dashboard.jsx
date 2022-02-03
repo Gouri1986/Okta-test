@@ -147,7 +147,7 @@ const Dashboard = () => {
     setRowsPerPage, //state for the rows per page event
     pageCount, // total number of pages as per the data
     rowsPerPageData: [10, 25, 50, 100], // data for the row per page dropdown
-    jumpPageVisibility: false // show the jump to page option
+    jumpPageVisibility: true // show the jump to page option
   }
   console.log("Current Page = ",page)
 
