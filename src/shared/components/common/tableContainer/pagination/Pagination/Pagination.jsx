@@ -5,7 +5,7 @@ import "./pagination.scss"
 import JumpArrow from "./JumpArrow"
 
 const PaginationComponent = props => {
-  const { dataCount, page, rowsPerPage, setPage, setRowsPerPage, rowsPerPageData, jumpPageVisibility } = props
+  const { dataCount, page, rowsPerPage, setPage, setRowsPerPage, rowsPerPageData, jumpPageVisibility} = props
   const inputRef = useRef()
   const totalPage = Math.ceil(dataCount / rowsPerPage)
   const [jumpPage, setJumpPage] = useState()
@@ -13,9 +13,9 @@ const PaginationComponent = props => {
   const jumpPageEvent = e => {
     e.preventDefault()
     if (jumpPage <= totalPage) {
-      setPage(jumpPage)
+      setPage(parseInt(jumpPage))
     } else {
-      alert(`Please enter page number between 1 to ${totalPage}`)
+     alert(`Please enter page number between 1 to ${totalPage}`)
     }
     inputRef.current.reset()
   }
@@ -51,8 +51,9 @@ const PaginationComponent = props => {
             onChange={(event, val) => setPage(val)}
           />
         </div>
-        {jumpPageVisibility === true && (
-          <div className="jump-to-page-box">
+        {
+          jumpPageVisibility === true && (
+            <div className="jump-to-page-box">
             <form ref={inputRef}>
               {/* <span className="page-count mr-10 pr-10">{`${page} off ${totalPage}`}</span> */}
               <input
@@ -65,9 +66,11 @@ const PaginationComponent = props => {
                 <label className="mr-2">Jump to Page</label>
                 <JumpArrow height={8} width={9} />
               </span>
-            </form>
-          </div>
-        )}
+              </form>
+            </div>
+          )
+        }
+       
       </div>
     </>
   )
