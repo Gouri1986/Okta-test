@@ -292,7 +292,7 @@ const DrawerList = (props) => {
                   <li className='flex-c mb-10'>
                     <div
                       onClick={() => onSecondMenuClick(item)}
-                      className={`flex-r-ac flex-jc-sp-btn cp f-14 fw-400 lh-2-1 fc-tertiary  flex-r-ac pl-15 pr-15 pt-10 pb-10 ${
+                      className={`flex-r-ac flex-jc-sp-btn cp f-14 fw-400 lh-2-1 fc-white  flex-r-ac pl-15 pr-15 pt-10 pb-10 ${
                         secondMenuItemSelected.bool &&
                         secondMenuItemSelected.title === item.title
                           ? "second-menu-route-list-title-selected"
