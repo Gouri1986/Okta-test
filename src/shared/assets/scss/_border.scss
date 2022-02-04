@@ -69,8 +69,10 @@ $sizes:-1,
     .bdr-primary-#{$size}{
         border: #{$size}px solid $border-primary-color;
     }
-
     .bdr-buttom-primary-#{$size}{
         border-bottom: #{$size}px solid $border-primary-color;
+    }
+    .bdr-tertiary-#{$size}{
+        border: #{$size}px solid $border-tertiary-color;
     }
 }

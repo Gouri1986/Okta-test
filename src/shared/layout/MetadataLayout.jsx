@@ -50,7 +50,7 @@ const Layout = props => {
           )}
         </div>
         <div className="flex-c ml-30 mr-30 hvh-78 pt-20">
-          <div className="flex-c bdr-r-10 bg-white">
+          <div className="flex-c bdr-r-10 bg-white pl-15 pr-15">
             <div>
               <TableSettings
                 modalOnClick={() => {

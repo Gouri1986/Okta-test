@@ -72,7 +72,7 @@ const Login = () => {
         >
           Login
         </Button>
-        {/* <button ClassName='bg-tertiary no-bdr p-15 fc-tertiary bdr-r-5'  onClick={authenticate}>Login</button> */}
+        {/* <button ClassName='bg-tertiary no-bdr p-15 fc-white bdr-r-5'  onClick={authenticate}>Login</button> */}
       </div>
     </Box>
   );
