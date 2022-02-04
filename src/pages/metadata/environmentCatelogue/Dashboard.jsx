@@ -77,6 +77,8 @@ const Dashboard = () => {
 
     setTableRowKey(tableKey);
 
+    console.log(tableTitle, endpointFromPath, tableKey, tableDetail);
+
     /**
      * getting the actual endpoint if defined else try get from the state
      * check for undefined - chances for undefined endpoint with wrong sub path

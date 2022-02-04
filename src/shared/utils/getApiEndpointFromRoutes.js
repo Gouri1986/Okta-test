@@ -8,9 +8,12 @@ const getExactPathArray = (routes, location, mainRoute) => {
   return routes().map((e) =>
     e.items?.map((el) => {
       if (el.items) {
-        return el.items?.filter(
-          (it) => it.path === location?.pathname?.replace(mainRoute, "")
-        );
+        return el.items?.filter((it) => {
+          return (
+            it.path.replace(mainRoute, "") ===
+            location?.pathname?.replace(mainRoute, "")
+          );
+        });
       }
       return e.items?.filter(
         (it) => it.path === location?.pathname?.replace(mainRoute, "")
@@ -35,9 +38,11 @@ export const getTableTitleNameFromRoutes = (routes, location, mainRoute) => {
 };
 
 export const getTableKeyNameFromRoutes = (routes, location, mainRoute) => {
-  return weedoutArrays(getExactPathArray(routes, location, mainRoute)).flat(
-    3
-  )?.[0]?.key;
+  {
+    return weedoutArrays(getExactPathArray(routes, location, mainRoute)).flat(
+      3
+    )?.[0]?.key;
+  }
 };
 
 export const getTableDetailFromRoutes = (routes, location, mainRoute) => {
