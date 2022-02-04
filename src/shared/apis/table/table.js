@@ -1,4 +1,6 @@
 import axios from "axios";
+import { setTableContents } from "../../../redux/table/tabelActions";
+import { getSpacedDisplayName } from "../../utils/table";
 
 const requestConfig = (token, data) => ({
   headers: {
@@ -8,10 +10,20 @@ const requestConfig = (token, data) => ({
   ...(data && { data }),
 });
 
-export const getTableData = async (path, token) => {
-  const response = await axios.get(path, requestConfig(token));
-  const { data } = response;
-  return data.data;
+export const getTableData = (path) => {
+  return async (dispatch, getState) => {
+    const { user: token } = getState().userReducer;
+    const response = await axios.get(path, requestConfig(token));
+    const { data } = response;
+
+    const objectKeys = data.data?.map((e) => {
+      return Object.keys(e);
+    });
+    const header = objectKeys?.[0]?.map((el) => {
+      return { title: getSpacedDisplayName(el), id: el };
+    });
+    dispatch(setTableContents({ header, data: data.data }));
+  };
 };
 
 export const addTableData = async (path, token, postData) => {

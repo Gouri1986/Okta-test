@@ -1,3 +1,5 @@
+import { iamDrawer } from "./drawer";
+
 const weedoutArrays = (exPath) => {
   return exPath
     .map((ar) => ar.filter((art) => art.length > 0))
@@ -15,8 +17,17 @@ const getExactPathArray = (routes, location, mainRoute) => {
           );
         });
       }
-      return e.items?.filter(
-        (it) => it.path === location?.pathname?.replace(mainRoute, "")
+      if (e.items) {
+        return e.items?.filter(
+          (it) =>
+            it.path.replace(mainRoute, "") ===
+            location?.pathname?.replace(mainRoute, "")
+        );
+      }
+
+      return (
+        e.path.replace(mainRoute, "") ===
+        location?.pathname?.replace(mainRoute, "")
       );
     })
   );

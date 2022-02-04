@@ -16,7 +16,7 @@ const Login = () => {
     const user = sessionStorage.getItem("user");
     if (user !== null) {
       dispatch(addUser(user));
-      history.push("/environmentcatelogue");
+      history.push("/");
     }
   }, []);
 
@@ -33,7 +33,7 @@ const Login = () => {
     if (token) {
       sessionStorage.setItem("user", token);
       dispatch(addUser(token));
-      history.push("/environmentcatelogue");
+      history.push("/");
     }
   };
 
@@ -44,7 +44,7 @@ const Login = () => {
         "& .MuiTextField-root": { m: 1, width: "25ch" },
       }}
       noValidate
-      className='flex-r-jc-ac mt-200'
+      className='flex-r-jc-ac wp-100'
       autoComplete='off'
     >
       <div className='flex-c '>
