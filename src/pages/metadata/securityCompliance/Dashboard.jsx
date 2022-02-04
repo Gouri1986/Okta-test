@@ -8,7 +8,7 @@ import {
   getTableKeyNameFromRoutes,
   getTableTitleNameFromRoutes,
 } from "../../../shared/utils/getApiEndpointFromRoutes";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { getSpacedDisplayName } from "../../../shared/utils/table";
 import { MetadataLayout } from "../../../shared/layout";
 import "./style.scss";
@@ -17,9 +17,11 @@ import scosRoutes from "../../../routes/metadataRoutes/securityCompliance";
 
 const Dashboard = () => {
   // loggin user details from store
-  const { user } = useSelector((state) => state.userReducer);
-  //table data fetched from api
-  const [tableContents, setTableContents] = useState([]);
+  const dispatch = useDispatch();
+
+  const { activeEndpoint, tableContents } = useSelector(
+    (state) => state.tableReducer
+  );
   // table title returned from the routes with respect to the url path
   const [tableTitle, setTableTitle] = useState("");
   // table details
@@ -28,8 +30,7 @@ const Dashboard = () => {
   const [tableRowkey, setTableRowKey] = useState("");
   // checked table row
   const [selectedRow, setSelectedRow] = useState([]);
-  // active api endpoint to fetch table data with respect to the url path
-  const [activeEndPoint, setActiveEndPoint] = useState("");
+
   // refresh the table
   const [refresh, setRefresh] = useState(false);
   // location hook to get the location variables
@@ -85,32 +86,17 @@ const Dashboard = () => {
     if (endpointFromPath) {
       getTable(endpointFromPath);
     } else {
-      activeEndPoint.length > 0 && getTable(activeEndPoint);
+      activeEndpoint.length > 0 && getTable(activeEndpoint);
     }
     // set the table title
     setTableTitle(tableTitle);
 
     // dependency array
-  }, [refresh, location.pathname]);
+  }, [location.pathname]);
 
   const getTable = async (activeEndPoint) => {
-    // get the table data by passsing endpoint and user data
-
     const path = `${baseUrl}${activeEndPoint}`;
-
-    const data = await getTableData(path, user);
-    if (data) {
-      // map the keys of the response we got from the api into an array
-      const objectKeys = data.map((datum) => Object.keys(datum));
-      // map the above key array in to an array of objects
-      // each object will have title and and the actual key as an id
-      const header = objectKeys?.[0]?.map((item) => ({
-        title: getSpacedDisplayName(item),
-        id: item,
-      }));
-      // set the above mapped array as header details and the actual response as the data
-      setTableContents({ header, data });
-    }
+    dispatch(getTableData(path));
   };
 
   const [page, setPage] = useState(1);
@@ -134,12 +120,8 @@ const Dashboard = () => {
   };
 
   const layoutProps = {
-    setActiveEndPoint: setActiveEndPoint,
-    setRefresh: setRefresh,
-    getTable: getTable,
     tableData: tableContents,
     tableTitle,
-    refresh,
     drawer: scosDrawer,
     openCRUDModal,
     setOpenCRUDModal,
@@ -153,7 +135,6 @@ const Dashboard = () => {
     onRowClick: onRowClick,
     tableData: tableContents,
     tableRowkey,
-    setTableContents: setTableContents,
     showCheckBox: true,
     showAction: true,
     page,
@@ -162,7 +143,7 @@ const Dashboard = () => {
     rowsPerPage,
     openCRUDModal,
     setOpenCRUDModal,
-    activeEndPoint,
+    activeEndpoint,
     getTable,
     baseUrl,
     CRUDModalType,

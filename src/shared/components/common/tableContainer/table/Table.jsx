@@ -3,7 +3,7 @@ import TableBody from "./TableBody";
 import TableHeader from "./TableHeader";
 
 const Table = (props) => {
-  const { tableData, setTableContents, showCheckBox, showAction } = props;
+  const { tableData, showCheckBox, showAction } = props;
   const { header, data: rowData } = tableData;
 
   const checkBoxObj = {
@@ -23,7 +23,6 @@ const Table = (props) => {
   ];
 
   const headerProps = {
-    setTableContents,
     tableData,
     header: finalHeader,
   };

@@ -18,7 +18,6 @@ const DrawerList = (props) => {
   const {
     onClick,
     setActiveEndPoint,
-    setRefresh,
     refresh,
     expanded,
     secondMenu,
@@ -171,7 +170,6 @@ const DrawerList = (props) => {
 
   const SecondNavMenu = () => {
     const history = useHistory();
-    const location = useLocation();
 
     const [secondMenuItemSelected, setSecondMenuItemSelected] = useState({
       title: "",
@@ -183,16 +181,7 @@ const DrawerList = (props) => {
       bool: false,
     });
 
-    useEffect(() => {
-      const { state } = location;
-      console.log(state);
-      if (state?.deep === 3) {
-        setSecondMenuItemSelected(location.state.selectedParent);
-        setSecondSubMenuSelected(location.state.selectedChild);
-      }
-    }, [location]);
-
-    const SecondMenuSubList = ({ item, parentTitle }) => {
+    const SecondMenuSubList = ({ item }) => {
       return (
         <div
           onClick={() => {
@@ -204,19 +193,8 @@ const DrawerList = (props) => {
             );
 
             if (item.path.length > 0) {
-              history.push(item.path, {
-                deep: 3,
-                selectedParent: {
-                  title: parentTitle,
-                  bool: true,
-                },
-                selectedChild: {
-                  title: item.title,
-                  bool: true,
-                },
-              });
+              history.push(item.path);
               setActiveEndPoint(item.apiEndpoint);
-              setRefresh(!refresh);
             }
           }}
           className={` cp flex-r-ac flex-jc-sp-btn ${
@@ -245,7 +223,6 @@ const DrawerList = (props) => {
       ) {
         history.push(item.items[0].path);
         setActiveEndPoint(item.items[0].apiEndpoint);
-        setRefresh(!refresh);
       } else if (
         Array.isArray(item.items) &&
         item.items.length === 1 &&
@@ -277,7 +254,6 @@ const DrawerList = (props) => {
       } else {
         history.push(item.path);
         setActiveEndPoint(item.apiEndpoint);
-        setRefresh(!refresh);
       }
     };
 
@@ -325,10 +301,7 @@ const DrawerList = (props) => {
                         >
                           {Array.isArray(item.items) &&
                             item.items?.map((listItem) => (
-                              <SecondMenuSubList
-                                item={listItem}
-                                parentTitle={item.title}
-                              />
+                              <SecondMenuSubList item={listItem} />
                             ))}
                         </div>
                       )}
@@ -362,8 +335,6 @@ const DrawerList = (props) => {
                 <List
                   setActiveEndPoint={setActiveEndPoint}
                   item={item}
-                  setRefresh={setRefresh}
-                  refresh={refresh}
                   index={index}
                   onClick={onClick}
                   expanded={expanded}

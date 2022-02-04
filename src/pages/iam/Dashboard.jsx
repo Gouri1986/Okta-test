@@ -2,11 +2,12 @@ import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import "./iam.scss";
 import TitanTable from "../../shared/components/common/tableContainer/table/Table";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { getSpacedDisplayName } from "../../shared/utils/table";
 import {
   getApiEndpointNameFromRoutes,
   getTableDetailFromRoutes,
+  getTableKeyNameFromRoutes,
   getTableTitleNameFromRoutes,
 } from "../../shared/utils/getApiEndpointFromRoutes";
 import { MetadataLayout } from "../../shared/layout";
@@ -16,48 +17,84 @@ import { IAMRoutes } from "../../routes/metadataRoutes";
 import { getTableData } from "../../shared/apis/table/table";
 
 const Dashboard = () => {
-  const { user } = useSelector((state) => state.userReducer);
-
-  // Data to be populated with Filtered Columns
-  const [tableContents, setTableContents] = useState([]);
-  // Search Value
-  // Data to be filled with selected Rows(Checked)
-  const [selectedRow, setSelectedRow] = useState([]);
-  const [report, showReport] = useState(false);
-  const [activeEndPoint, setActiveEndPoint] = useState("");
-  const [refresh, setRefresh] = useState(false);
-  const location = useLocation();
-  const [tableDetails, setTableDetails] = useState({});
+  const dispatch = useDispatch();
+  // active api endpoint to fetch table data with respect to the url path
+  const { activeEndpoint, tableContents } = useSelector(
+    (state) => state.tableReducer
+  );
+  //table data fetched from api
+  // table title returned from the routes with respect to the url path
   const [tableTitle, setTableTitle] = useState("");
+  // table details
+  const [tableDetails, setTableDetails] = useState({});
+  // key for the table row
+  const [tableRowkey, setTableRowKey] = useState("");
+  // checked table row
+  const [selectedRow, setSelectedRow] = useState([]);
+  // refresh the table
+  const [refresh, setRefresh] = useState(false);
+  // location hook to get the location variables
+  const location = useLocation();
   const baseUrl = process.env.REACT_APP_IAM_BASE_URL;
 
   useEffect(() => {
+    /**
+     * getting the correct endpoint from routes to fetch table data
+     * we are passing drawer | location | path
+     */
+
     let endpointFromPath = getApiEndpointNameFromRoutes(
       iamDrawer,
       location,
       "iam/"
     );
-    if (endpointFromPath) {
-      getTable(endpointFromPath);
-    } else {
-      activeEndPoint.length > 0 && getTable(activeEndPoint);
-    }
-    setTableTitle(getTableTitleNameFromRoutes(iamDrawer, location, "iam/"));
+    /**
+     * in the same way, getting the correct title of the table from routes
+     * we are passing drawer | location | path
+     */
+
+    let tableTitle = getTableTitleNameFromRoutes(iamDrawer, location, "iam/");
+
+    // get table detail from routes
 
     let tableDetail = getTableDetailFromRoutes(IAMRoutes, location, "iam/");
     setTableDetails(tableDetail);
-  }, [refresh, location.pathname]);
+
+    // get the key for the table for crud or any other row level operation
+    let tableKey = getTableKeyNameFromRoutes(iamDrawer, location, "iam/");
+
+    setTableRowKey(tableKey);
+
+    /**
+     * getting the actual endpoint if defined else try get from the state
+     * check for undefined - chances for undefined endpoint with wrong sub path
+     */
+
+    if (endpointFromPath) {
+      getTable(endpointFromPath);
+    } else {
+      activeEndpoint.length > 0 && getTable(activeEndpoint);
+    }
+    // set the table title
+    setTableTitle(tableTitle);
+
+    // dependency array
+  }, [location.pathname]);
 
   const getTable = async (activeEndPoint) => {
     const path = `${baseUrl}${activeEndPoint}`;
-    const data = await getTableData(path, user);
-    const objectKeys = data?.map((e) => {
-      return Object.keys(e);
-    });
-    const header = objectKeys?.[0]?.map((el) => {
-      return { title: getSpacedDisplayName(el), id: el };
-    });
-    data && setTableContents({ header, data });
+    dispatch(getTableData(path));
+  };
+
+  const onRowClick = (rowData) => {
+    if (selectedRow.find((e) => e[tableRowkey] === rowData[tableRowkey])) {
+      const selectedItems = selectedRow.filter(
+        (e) => e[tableRowkey] !== rowData[tableRowkey]
+      );
+      setSelectedRow(selectedItems);
+    } else {
+      setSelectedRow([rowData]);
+    }
   };
 
   const [page, setPage] = useState(1);
@@ -71,11 +108,6 @@ const Dashboard = () => {
   const [CRUDModalType, setCRUDModalType] = useState("add");
 
   const layoutProps = {
-    setRefresh,
-    refresh,
-    getTable,
-    report,
-    showReport,
     tableData: tableContents,
     tableTitle,
     drawer: iamDrawer,
@@ -83,7 +115,6 @@ const Dashboard = () => {
     setOpenCRUDModal,
     CRUDModalType,
     setCRUDModalType,
-    setActiveEndPoint,
     pageTitle: "IAM",
     baseUrl,
   };
@@ -91,8 +122,8 @@ const Dashboard = () => {
   const tableProps = {
     selectedRow,
     tableData: tableContents,
+    onRowClick,
     tableDetails,
-    setTableContents,
     tableDetails,
     showCheckBox: true,
     tableTitle,
@@ -103,7 +134,7 @@ const Dashboard = () => {
     setOpenCRUDModal,
     CRUDModalType,
     setCRUDModalType,
-    activeEndPoint,
+    activeEndpoint,
     getTable,
     baseUrl,
   };
