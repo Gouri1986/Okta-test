@@ -5,12 +5,12 @@ import {
   NotificationIcon,
 } from "../../../assets/images/icons/common";
 import User from "../../../assets/images/profile/user.svg";
-import Search from '../search/Search';
+import Search from "../search/Search";
 
 function Header() {
   return (
     <div className='hp-100 flex-r-ac flex-jc-sp-btn'>
-      <div className="hp-50 wp-55 flex-r-ac">
+      <div className='hp-50 wp-55 flex-r-ac'>
         <Search />
       </div>
       <div className='flex-r-ac flex-jc-sp-btn'>

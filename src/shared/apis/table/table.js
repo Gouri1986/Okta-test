@@ -1,61 +1,33 @@
 import axios from "axios";
 
+const requestConfig = (token, data) => ({
+  headers: {
+    "Content-Type": "application/json",
+    "access-token": `${token}`,
+  },
+  ...(data && { data }),
+});
+
 export const getTableData = async (path, token) => {
-  const response = await axios.get(
-    `${process.env.REACT_APP_ENCS_BASE_URL}${path}`,
-    {
-      headers: {
-        "Content-Type": "application/json",
-        "access-token": `${token}`,
-      },
-    }
-  );
+  const response = await axios.get(path, requestConfig(token));
   const { data } = response;
   return data.data;
 };
 
 export const addTableData = async (path, token, postData) => {
-  const response = await axios.post(
-    `${process.env.REACT_APP_ENCS_BASE_URL}${path}`,
-
-    postData,
-    {
-      headers: {
-        "Content-Type": "application/json",
-        "access-token": `${token}`,
-      },
-    }
-  );
+  const response = await axios.post(path, postData, requestConfig(token));
   const { data } = response;
   return data.data;
 };
 
 export const updateTableData = async (path, token, putData) => {
-  const response = await axios.put(
-    `${process.env.REACT_APP_ENCS_BASE_URL}${path}`,
-    putData,
-    {
-      headers: {
-        "Content-Type": "application/json",
-        "access-token": `${token}`,
-      },
-    }
-  );
+  const response = await axios.put(path, putData, requestConfig(token));
   const { data } = response;
   return data.data;
 };
 
-export const deleteTableData = async (path, token, putData) => {
-  const response = await axios.delete(
-    `${process.env.REACT_APP_ENCS_BASE_URL}${path}`,
-    {
-      data: putData,
-      headers: {
-        "Content-Type": "application/json",
-        "access-token": `${token}`,
-      },
-    }
-  );
+export const deleteTableData = async (path, token, deleteData) => {
+  const response = await axios.delete(path, requestConfig(token, deleteData));
   const { data } = response;
   return data.data;
 };

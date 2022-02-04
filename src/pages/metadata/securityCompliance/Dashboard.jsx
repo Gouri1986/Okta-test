@@ -1,8 +1,7 @@
 import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import { getTableData } from "../../../shared/apis/table/table";
-import { encsDrawer } from "../../../shared/utils/drawer";
-import { ENCSRoutes } from "../../../routes/metadataRoutes";
+import { scosDrawer } from "../../../shared/utils/drawer";
 import {
   getApiEndpointNameFromRoutes,
   getTableDetailFromRoutes,
@@ -14,6 +13,7 @@ import { getSpacedDisplayName } from "../../../shared/utils/table";
 import { MetadataLayout } from "../../../shared/layout";
 import "./style.scss";
 import { Table, Pagination } from "../../../shared/components/common";
+import scosRoutes from "../../../routes/metadataRoutes/securityCompliance";
 
 const Dashboard = () => {
   // loggin user details from store
@@ -34,8 +34,8 @@ const Dashboard = () => {
   const [refresh, setRefresh] = useState(false);
   // location hook to get the location variables
   const location = useLocation();
-  // Base Url of the API
-  const baseUrl = process.env.REACT_APP_ENCS_BASE_URL;
+  //BASE URL of api
+  const baseUrl = process.env.REACT_APP_SCOS_BASE_URL;
 
   useEffect(() => {
     /**
@@ -44,9 +44,9 @@ const Dashboard = () => {
      */
 
     let endpointFromPath = getApiEndpointNameFromRoutes(
-      encsDrawer,
+      scosDrawer,
       location,
-      "environmentcatelogue/"
+      "securitycompliance/"
     );
     /**
      * in the same way, getting the correct title of the table from routes
@@ -54,25 +54,25 @@ const Dashboard = () => {
      */
 
     let tableTitle = getTableTitleNameFromRoutes(
-      encsDrawer,
+      scosDrawer,
       location,
-      "environmentcatelogue/"
+      "securitycompliance/"
     );
 
     // get table detail from routes
 
     let tableDetail = getTableDetailFromRoutes(
-      ENCSRoutes,
+      scosRoutes,
       location,
-      "environmentcatelogue/"
+      "securitycompliance/"
     );
     setTableDetails(tableDetail);
 
     // get the key for the table for crud or any other row level operation
     let tableKey = getTableKeyNameFromRoutes(
-      encsDrawer,
+      scosDrawer,
       location,
-      "environmentcatelogue/"
+      "securitycompliance/"
     );
 
     setTableRowKey(tableKey);
@@ -94,8 +94,10 @@ const Dashboard = () => {
   }, [refresh, location.pathname]);
 
   const getTable = async (activeEndPoint) => {
-    const path = `${baseUrl}${activeEndPoint}`;
     // get the table data by passsing endpoint and user data
+
+    const path = `${baseUrl}${activeEndPoint}`;
+
     const data = await getTableData(path, user);
     if (data) {
       // map the keys of the response we got from the api into an array
@@ -116,11 +118,6 @@ const Dashboard = () => {
   const [pageCount, setPageCount] = useState(
     Math.ceil(tableContents.data?.length / rowsPerPage)
   );
-
-  useEffect(() => {
-    setPage(1)
-  }, [tableContents])
-  
   // state for the visibility of crud modal
   const [openCRUDModal, setOpenCRUDModal] = useState(false);
   const [CRUDModalType, setCRUDModalType] = useState("add");
@@ -143,13 +140,12 @@ const Dashboard = () => {
     tableData: tableContents,
     tableTitle,
     refresh,
-    drawer: encsDrawer,
+    drawer: scosDrawer,
     openCRUDModal,
     setOpenCRUDModal,
-    pageTitle: "Environment Catelogue",
+    pageTitle: "Security Compliance",
     CRUDModalType,
     setCRUDModalType,
-    baseUrl,
   };
 
   const tableProps = {
@@ -168,9 +164,9 @@ const Dashboard = () => {
     setOpenCRUDModal,
     activeEndPoint,
     getTable,
+    baseUrl,
     CRUDModalType,
     setCRUDModalType,
-    baseUrl,
   };
 
   const paginationProps = {
