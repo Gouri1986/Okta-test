@@ -2,6 +2,7 @@ import { Route, Switch } from "react-router-dom";
 import Login from "../pages/authentication/Login";
 import IAMDashboard from "../pages/iam/Dashboard";
 import ENCSDashboard from "../pages/metadata/environmentCatelogue/Dashboard";
+import SCOSDashboard from "../pages/metadata/securityCompliance/Dashboard";
 
 import { RequireAuth } from "./utils";
 
@@ -22,6 +23,11 @@ const AppRouter = () => {
       <Route path='/environmentcatelogue'>
         <RequireAuth>
           <ENCSDashboard />
+        </RequireAuth>
+      </Route>
+      <Route path='/securitycompliance'>
+        <RequireAuth>
+          <SCOSDashboard />
         </RequireAuth>
       </Route>
     </Switch>

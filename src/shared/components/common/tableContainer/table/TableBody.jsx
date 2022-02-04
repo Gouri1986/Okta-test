@@ -6,9 +6,9 @@ import Modal from "../../modal/center/Modal";
 import ModalForm from "../../forms/ModalForm";
 import { useSelector } from "react-redux";
 import { deleteTableData } from "../../../../apis/table/table";
-import { deleteIAMTableData } from "../../../../apis/iam";
 
 const RowAction = ({
+  baseUrl,
   setOpenCRUDModal,
   setCRUDModalType,
   activeEndPoint,
@@ -21,7 +21,7 @@ const RowAction = ({
   const deleteDataFromTable = async (e) => {
     e.preventDefault();
     e.stopPropagation();
-    await deleteIAMTableData(activeEndPoint, user, datum);
+    await deleteTableData(baseUrl + activeEndPoint, user, datum);
     getTable(activeEndPoint);
   };
 
@@ -77,6 +77,7 @@ const TableBody = (props) => {
     setCRUDModalType,
     activeEndPoint,
     getTable,
+    baseUrl,
   } = props;
 
   //state for the visiblity of right side modal
@@ -130,6 +131,7 @@ const TableBody = (props) => {
             datum={datum}
             setActiveData={setActiveData}
             getTable={getTable}
+            baseUrl={baseUrl}
           />
         ) : /*action buttons column is rendred conditionally
         //if id of the cloumn being rendered matches with "action"*/
@@ -223,6 +225,7 @@ const TableBody = (props) => {
           CRUDModalType={CRUDModalType}
           openCRUDModal={openCRUDModal}
           activeData={activeData}
+          baseUrl={baseUrl}
         />
       </Modal>
     </div>

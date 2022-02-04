@@ -4,6 +4,8 @@ export const getSpacedDisplayName = (s) =>
   });
 
 export const getSanitisedTableData = (tableContents, tableDataDetails) => {
+  console.log(tableDataDetails, tableContents);
+
   return tableContents.header?.map((e) => {
     const pk = tableDataDetails.pk?.includes(e.id);
     const uk = tableDataDetails.uk?.includes(e.id);

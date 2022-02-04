@@ -203,7 +203,7 @@ const DrawerList = (props) => {
             );
 
             if (item.path.length > 0) {
-              history.push("/environmentcatelogue" + item.path, {
+              history.push(item.path, {
                 deep: 3,
                 selectedParent: {
                   title: parentTitle,
@@ -236,6 +236,50 @@ const DrawerList = (props) => {
       );
     };
 
+    const onSecondMenuClick = (item) => {
+      if (
+        Array.isArray(item.items) &&
+        item.items.length === 1 &&
+        !item.items[0].showAsSubMenu
+      ) {
+        history.push(item.items[0].path);
+        setActiveEndPoint(item.items[0].apiEndpoint);
+        setRefresh(!refresh);
+      } else if (
+        Array.isArray(item.items) &&
+        item.items.length === 1 &&
+        item.items[0].showAsSubMenu
+      ) {
+        if (!item.path) {
+          setSecondMenuItemSelected(
+            secondMenuItemSelected.bool &&
+              secondMenuItemSelected.title === item.title
+              ? {
+                  title: item.title,
+                  bool: !secondMenuItemSelected.bool,
+                }
+              : { title: item.title, bool: true }
+          );
+        }
+      } else if (Array.isArray(item.items) && item.items.length > 1) {
+        if (!item.path) {
+          setSecondMenuItemSelected(
+            secondMenuItemSelected.bool &&
+              secondMenuItemSelected.title === item.title
+              ? {
+                  title: item.title,
+                  bool: !secondMenuItemSelected.bool,
+                }
+              : { title: item.title, bool: true }
+          );
+        }
+      } else {
+        history.push(item.path);
+        setActiveEndPoint(item.apiEndpoint);
+        setRefresh(!refresh);
+      }
+    };
+
     return (
       expanded &&
       secondMenu && (
@@ -246,17 +290,7 @@ const DrawerList = (props) => {
                 {secondMenuItems.map((item) => (
                   <li className='flex-c mb-10'>
                     <div
-                      onClick={() => {
-                        setSecondMenuItemSelected(
-                          secondMenuItemSelected.bool &&
-                            secondMenuItemSelected.title === item.title
-                            ? {
-                                title: item.title,
-                                bool: !secondMenuItemSelected.bool,
-                              }
-                            : { title: item.title, bool: true }
-                        );
-                      }}
+                      onClick={() => onSecondMenuClick(item)}
                       className={`flex-r-ac flex-jc-sp-btn cp f-14 fw-400 lh-2-1 fc-tertiary  flex-r-ac pl-15 pr-15 pt-10 pb-10 ${
                         secondMenuItemSelected.bool &&
                         secondMenuItemSelected.title === item.title
@@ -288,12 +322,13 @@ const DrawerList = (props) => {
                             expanded && !secondMenu ? "p-10" : "p-0"
                           }`}
                         >
-                          {item.items?.map((listItem) => (
-                            <SecondMenuSubList
-                              item={listItem}
-                              parentTitle={item.title}
-                            />
-                          ))}
+                          {Array.isArray(item.items) &&
+                            item.items?.map((listItem) => (
+                              <SecondMenuSubList
+                                item={listItem}
+                                parentTitle={item.title}
+                              />
+                            ))}
                         </div>
                       )}
                   </li>

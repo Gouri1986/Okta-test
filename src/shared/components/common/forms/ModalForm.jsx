@@ -5,8 +5,7 @@ import "./ModalForm.scss";
 import { useSelector } from "react-redux";
 import Select from "../inputs/select/Select";
 import Checkbox from "../inputs/checkbox/Checkbox";
-import { addTableData } from "../../../apis/table/table";
-import { addIAMTableData, updateIAMTableData } from "../../../apis/iam";
+import { addTableData, updateTableData } from "../../../apis/table/table";
 
 const ModalForm = (props) => {
   const { user } = useSelector((state) => state.userReducer);
@@ -20,10 +19,13 @@ const ModalForm = (props) => {
     CRUDModalType,
     openCRUDModal,
     activeData,
+    baseUrl,
   } = props;
 
   const [inputs, setInputs] = useState({});
   const inputRef = useRef();
+
+  console.log(CRUDModalType);
 
   useEffect(() => {
     if (CRUDModalType === "update") {
@@ -57,9 +59,9 @@ const ModalForm = (props) => {
 
   const handleSubmit = async () => {
     if (CRUDModalType === "add") {
-      await addIAMTableData(activeEndPoint, user, inputs);
+      await addTableData(baseUrl + activeEndPoint, user, inputs);
     } else {
-      await updateIAMTableData(activeEndPoint, user, inputs);
+      await updateTableData(baseUrl + activeEndPoint, user, inputs);
     }
     getTable(activeEndPoint);
     onCancel();
