@@ -185,6 +185,7 @@ const DrawerList = (props) => {
 
     useEffect(() => {
       const { state } = location;
+      console.log(state);
       if (state?.deep === 3) {
         setSecondMenuItemSelected(location.state.selectedParent);
         setSecondSubMenuSelected(location.state.selectedChild);

@@ -11,7 +11,7 @@ import {
 } from "../../shared/utils/getApiEndpointFromRoutes";
 import { MetadataLayout } from "../../shared/layout";
 import { iamDrawer } from "../../shared/utils/drawer";
-import {PaginationDepricated} from "../../shared/components/common";
+import { PaginationDepricated } from "../../shared/components/common";
 import { IAMRoutes } from "../../routes/metadataRoutes";
 import { getTableData } from "../../shared/apis/table/table";
 
@@ -60,8 +60,11 @@ const Dashboard = () => {
     data && setTableContents({ header, data });
   };
 
-  const [page, setPage] = useState(0);
+  const [page, setPage] = useState(1);
   const [rowsPerPage, setRowsPerPage] = useState(10);
+  const [pageCount, setPageCount] = useState(
+    Math.ceil(tableContents.data?.length / rowsPerPage)
+  );
 
   // state for the visibility of crud modal
   const [openCRUDModal, setOpenCRUDModal] = useState(false);
@@ -106,11 +109,14 @@ const Dashboard = () => {
   };
 
   const paginationProps = {
-    dataCount: tableContents.data?.length,
-    page,
-    setPage,
-    rowsPerPage,
-    setRowsPerPage,
+    dataCount: tableContents.data?.length, // total data count
+    page, // current page
+    setPage, //state for the page number to be set
+    rowsPerPage, // rows per page count
+    setRowsPerPage, //state for the rows per page event
+    pageCount, // total number of pages as per the data
+    rowsPerPageData: [10, 25, 50, 100], // data for the row per page dropdown
+    jumpPageVisibility: true, // show the jump to page option
   };
 
   return (

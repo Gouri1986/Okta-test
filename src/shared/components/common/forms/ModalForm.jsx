@@ -25,8 +25,6 @@ const ModalForm = (props) => {
   const [inputs, setInputs] = useState({});
   const inputRef = useRef();
 
-  console.log(CRUDModalType);
-
   useEffect(() => {
     if (CRUDModalType === "update") {
       setInputs(activeData);
