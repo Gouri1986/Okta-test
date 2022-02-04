@@ -96,6 +96,10 @@ const Dashboard = () => {
   const [rowsPerPage, setRowsPerPage] = useState(10)
   const [pageCount, setPageCount] = useState(Math.ceil(tableContents.data?.length / rowsPerPage))
 
+  useEffect(() => {
+    setPage(1)
+  }, [tableContents])
+  
   // state for the visibility of crud modal
   const [openCRUDModal, setOpenCRUDModal] = useState(false)
 
