@@ -84,18 +84,24 @@ const TableBody = (props) => {
   const [openRightDescModal, setOpenRightDescModal] = useState(false);
   //state to manage data to be displayed in right side modal
   const [activeData, setActiveData] = useState({});
-  /*
-   page count = 0 --->  slice 0 to 4  [ 0 + 5 - 1]
-   page count = 1 --->  slice 5 to 9
+
+  /***************************************************************
+   *          Pagination Data Slicing Logic
+   * *************************************************************
+   ------------------ Logic explained ----------------------------
+        ** 1. Intial page count = 1          
+        page count = 1 --->  slice 0 to 10  [ (1-1 x 10) to (1 * 10)]
+        page count = 2 --->  slice 10 to 20  [ (2-1 x 10) to (2 * 10)]
   */
-  const start = page * rowsPerPage;
-  const end = start + rowsPerPage;
+  const start = (page - 1) * rowsPerPage;
+  const end = page * rowsPerPage;
+  const tableRowData = rowData.slice(start, end);
+  //****************************************************************/
   /**
    * rowData fetched from table api
    * pass an empty array [] incase of undefined
    * slice the data based on the page selected
    */
-  const tableRowData = rowData.slice(start, end);
 
   const TableRowCell = ({ item, datum }) => {
     // destructuring the current cloumn's id and display title

@@ -111,8 +111,12 @@ const Dashboard = () => {
     }
   };
 
-  const [page, setPage] = useState(0);
+  const [page, setPage] = useState(1);
   const [rowsPerPage, setRowsPerPage] = useState(10);
+  const [pageCount, setPageCount] = useState(
+    Math.ceil(tableContents.data?.length / rowsPerPage)
+  );
+
   // state for the visibility of crud modal
   const [openCRUDModal, setOpenCRUDModal] = useState(false);
   const [CRUDModalType, setCRUDModalType] = useState("add");
@@ -166,12 +170,16 @@ const Dashboard = () => {
   };
 
   const paginationProps = {
-    dataCount: tableContents.data?.length,
-    page,
-    setPage,
-    rowsPerPage,
-    setRowsPerPage,
+    dataCount: tableContents.data?.length, // total data count
+    page, // current page
+    setPage, //state for the page number to be set
+    rowsPerPage, // rows per page count
+    setRowsPerPage, //state for the rows per page event
+    pageCount, // total number of pages as per the data
+    rowsPerPageData: [10, 25, 50, 100], // data for the row per page dropdown
+    jumpPageVisibility: true, // show the jump to page option
   };
+  console.log("Current Page = ", page);
 
   return (
     <MetadataLayout {...layoutProps}>

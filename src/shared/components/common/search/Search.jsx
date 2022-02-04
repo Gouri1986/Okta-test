@@ -11,7 +11,7 @@ const Search = (props) => {
           value={searchValue}
           onChange={(e) => setSearchValue(e.target.value)}
           placeholder="Search"
-          className="wp-100 hp-100 f-18 fw-500 fc-tertiary pl-8 lh-1-6 no-bdr no-outline bg-transparent"
+          className="wp-100 hp-100 f-18 fw-500 fc-white pl-8 lh-1-6 no-bdr no-outline bg-transparent"
         />
       </div>
       <div
