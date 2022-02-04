@@ -65,7 +65,9 @@
 .css-w05zow-MuiButtonBase-root-MuiPaginationItem-root.Mui-selected:hover {
   background-color: rgba(0, 0, 0, 0.12) !important;
 }
-
+.css-w05zow-MuiButtonBase-root-MuiPaginationItem-root.Mui-selected {
+  background-color: #ffffff !important;
+}
 .css-w05zow-MuiButtonBase-root-MuiPaginationItem-root.Mui-selected {
   background-color: #fff;
   border: 1px solid #110def;

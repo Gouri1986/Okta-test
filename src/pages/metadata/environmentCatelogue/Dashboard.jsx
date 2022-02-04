@@ -149,7 +149,6 @@ const Dashboard = () => {
     rowsPerPageData: [10, 25, 50, 100], // data for the row per page dropdown
     jumpPageVisibility: true // show the jump to page option
   }
-  console.log("Current Page = ",page)
 
   return (
     <MetadataLayout {...layoutProps}>
