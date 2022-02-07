@@ -107,11 +107,18 @@ $sizes: 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20,
   border-radius: 5px;
   box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.05);
 }
-.lightblue-container{
+.lightblue-container {
   background-color: $tertiary-color;
   border-radius: 5px;
   box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.05);
 }
+.white-container {
+  background-color: $white;
+  border-radius: 10px;
+  box-shadow: 5px -5px 11px rgba(163, 171, 185, 0.1),
+    -5px 5px 11px rgba(163, 171, 185, 0.1);
+}
+
 .new-checked {
   background-color: $secondary-color;
   border-radius: 5px;
@@ -127,4 +134,10 @@ $sizes: 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20,
   color: $secondary-color;
   width: 100%;
   height: 100%;
+}
+
+// list hovers
+.grey-hover:hover {
+  background: rgba(196, 196, 196, 0.24);
+  border-radius: 3px;
 }

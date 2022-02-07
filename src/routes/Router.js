@@ -5,6 +5,7 @@ import HomeDashboard from "../pages/home/Home";
 import IAMDashboard from "../pages/iam/Dashboard";
 import ENCSDashboard from "../pages/metadata/environmentCatelogue/Dashboard";
 import SCOSDashboard from "../pages/metadata/securityCompliance/Dashboard";
+import ComplianceDashboard from "../pages/features/cloud-goverance/complianceDashboard/Dashboard";
 import { Navbar } from "../shared/components/common";
 import { RequireAuth } from "./utils";
 
@@ -32,14 +33,19 @@ const AppRouter = () => {
             <IAMDashboard />
           </RequireAuth>
         </Route>
-        <Route path='/environmentcatelogue'>
+        <Route path='/environment-catalogue'>
           <RequireAuth>
             <ENCSDashboard />
           </RequireAuth>
         </Route>
-        <Route path='/securitycompliance'>
+        <Route path='/security-compliance'>
           <RequireAuth>
             <SCOSDashboard />
+          </RequireAuth>
+        </Route>
+        <Route path='/compliance-dashboard'>
+          <RequireAuth>
+            <ComplianceDashboard />
           </RequireAuth>
         </Route>
       </Switch>

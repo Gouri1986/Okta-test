@@ -1,3 +1,4 @@
+import complianceDashboardRoutes from "../../routes/featureRoutes/complianceDashboard";
 import { ENCSRoutes, IAMRoutes } from "../../routes/metadataRoutes";
 import scosRoutes from "../../routes/metadataRoutes/securityCompliance";
 import {
@@ -36,7 +37,7 @@ export const encsDrawer = () => {
         title:
           route.name ||
           getSpacedDisplayName(route.path.replace(/-/g, " ").replace(/\//, "")),
-        path: "/environmentcatelogue" + route.path,
+        path: "/environment-catalogue" + route.path,
         id: route.path,
         apiEndpoint: route.apiEndpoint,
         expandable: true,
@@ -57,13 +58,41 @@ export const scosDrawer = () => {
         title:
           route.name ||
           getSpacedDisplayName(route.path.replace(/-/g, " ").replace(/\//, "")),
-        path: "/securitycompliance" + route.path,
+        path: "/security-compliance" + route.path,
         id: route.path,
         apiEndpoint: route.apiEndpoint,
         showAsSubMenu: route.showAsSubMenu,
         key: route.pk,
       })),
     })),
+  }));
+};
+
+export const complianceDashboardDrawer = () => {
+  return complianceDashboardRoutes.map((rt) => ({
+    title: rt.section,
+    Icon: drawerSectionIcons.DTSC,
+    path: "/compliance-dashboard" + rt.path,
+    apiEndpoint: rt.apiEndpoint,
+    pk: rt.pk,
+    items:
+      rt.routes &&
+      Object.keys(rt.routes).map((key) => ({
+        title: getSpacedDisplayName(key),
+        Icon: drawerSectionIcons.GCP,
+        items: rt.routes[key].map((route) => ({
+          title:
+            route.name ||
+            getSpacedDisplayName(
+              route.path.replace(/-/g, " ").replace(/\//, "")
+            ),
+          path: "/compliance-dashboard" + route.path,
+          id: route.path,
+          apiEndpoint: route.apiEndpoint,
+          showAsSubMenu: route.showAsSubMenu,
+          key: route.pk,
+        })),
+      })),
   }));
 };
 
@@ -80,6 +109,12 @@ export const mainDrawer = [
   },
   {
     title: "Cloud Governance",
-    items: [{ title: "Compliance Dashboard", Icon: ComplianceDashboardIcon }],
+    items: [
+      {
+        title: "Compliance Dashboard",
+        Icon: ComplianceDashboardIcon,
+        drawer: complianceDashboardDrawer,
+      },
+    ],
   },
 ];

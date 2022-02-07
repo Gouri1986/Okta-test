@@ -47,7 +47,7 @@ const Dashboard = () => {
     let endpointFromPath = getApiEndpointNameFromRoutes(
       scosDrawer,
       location,
-      "securitycompliance/"
+      "security-compliance/"
     );
     /**
      * in the same way, getting the correct title of the table from routes
@@ -57,7 +57,7 @@ const Dashboard = () => {
     let tableTitle = getTableTitleNameFromRoutes(
       scosDrawer,
       location,
-      "securitycompliance/"
+      "security-compliance/"
     );
 
     // get table detail from routes
@@ -65,7 +65,7 @@ const Dashboard = () => {
     let tableDetail = getTableDetailFromRoutes(
       scosRoutes,
       location,
-      "securitycompliance/"
+      "security-compliance/"
     );
     setTableDetails(tableDetail);
 
@@ -73,7 +73,7 @@ const Dashboard = () => {
     let tableKey = getTableKeyNameFromRoutes(
       scosDrawer,
       location,
-      "securitycompliance/"
+      "security-compliance/"
     );
 
     setTableRowKey(tableKey);

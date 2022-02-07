@@ -1,19 +1,18 @@
 import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
-import { getTableData } from "../../../shared/apis/table/table";
-import { encsDrawer } from "../../../shared/utils/drawer";
-import { ENCSRoutes } from "../../../routes/metadataRoutes";
+import { getTableData } from "../../../../shared/apis/table/table";
 import {
   getApiEndpointNameFromRoutes,
   getTableDetailFromRoutes,
   getTableKeyNameFromRoutes,
   getTableTitleNameFromRoutes,
-} from "../../../shared/utils/getApiEndpointFromRoutes";
+} from "../../../../shared/utils/getApiEndpointFromRoutes";
 import { useDispatch, useSelector } from "react-redux";
-import { MetadataLayout } from "../../../shared/layout";
+import { MetadataLayout } from "../../../../shared/layout";
 import "./style.scss";
-import { Table, Pagination } from "../../../shared/components/common";
-
+import { Table, Pagination } from "../../../../shared/components/common";
+import { complianceDashboardDrawer } from "../../../../shared/utils/drawer";
+import complianceDashboardRoutes from "../../../../routes/featureRoutes/complianceDashboard";
 const Dashboard = () => {
   // loggin user details from store
   const dispatch = useDispatch();
@@ -21,7 +20,6 @@ const Dashboard = () => {
   const { activeEndpoint, tableContents } = useSelector(
     (state) => state.tableReducer
   );
-  //table data fetched from api
   // table title returned from the routes with respect to the url path
   const [tableTitle, setTableTitle] = useState("");
   // table details
@@ -30,12 +28,13 @@ const Dashboard = () => {
   const [tableRowkey, setTableRowKey] = useState("");
   // checked table row
   const [selectedRow, setSelectedRow] = useState([]);
+
   // refresh the table
   const [refresh, setRefresh] = useState(false);
   // location hook to get the location variables
   const location = useLocation();
-  // Base Url of the API
-  const baseUrl = process.env.REACT_APP_ENCS_BASE_URL;
+  //BASE URL of api
+  const baseUrl = process.env.REACT_APP_COMPLIANCE_DASHBOARD_BASE_URL;
 
   useEffect(() => {
     /**
@@ -44,9 +43,9 @@ const Dashboard = () => {
      */
 
     let endpointFromPath = getApiEndpointNameFromRoutes(
-      encsDrawer,
+      complianceDashboardDrawer,
       location,
-      "environment-catalogue/"
+      "compliance-dashboard/"
     );
     /**
      * in the same way, getting the correct title of the table from routes
@@ -54,25 +53,25 @@ const Dashboard = () => {
      */
 
     let tableTitle = getTableTitleNameFromRoutes(
-      encsDrawer,
+      complianceDashboardDrawer,
       location,
-      "environment-catalogue/"
+      "compliance-dashboard/"
     );
 
     // get table detail from routes
 
     let tableDetail = getTableDetailFromRoutes(
-      ENCSRoutes,
+      complianceDashboardRoutes,
       location,
-      "environment-catalogue/"
+      "compliance-dashboard/"
     );
     setTableDetails(tableDetail);
 
     // get the key for the table for crud or any other row level operation
     let tableKey = getTableKeyNameFromRoutes(
-      encsDrawer,
+      complianceDashboardDrawer,
       location,
-      "environment-catalogue/"
+      "compliance-dashboard/"
     );
 
     setTableRowKey(tableKey);
@@ -103,7 +102,6 @@ const Dashboard = () => {
   const [pageCount, setPageCount] = useState(
     Math.ceil(tableContents.data?.length / rowsPerPage)
   );
-
   // state for the visibility of crud modal
   const [openCRUDModal, setOpenCRUDModal] = useState(false);
   const [CRUDModalType, setCRUDModalType] = useState("add");
@@ -122,13 +120,12 @@ const Dashboard = () => {
   const layoutProps = {
     tableData: tableContents,
     tableTitle,
-    drawer: encsDrawer,
+    drawer: complianceDashboardDrawer,
     openCRUDModal,
     setOpenCRUDModal,
-    pageTitle: "Environment Catelogue",
+    pageTitle: "Compliance Dashboard",
     CRUDModalType,
     setCRUDModalType,
-    baseUrl,
   };
 
   const tableProps = {
@@ -146,9 +143,9 @@ const Dashboard = () => {
     setOpenCRUDModal,
     activeEndpoint,
     getTable,
+    baseUrl,
     CRUDModalType,
     setCRUDModalType,
-    baseUrl,
   };
 
   const paginationProps = {
@@ -161,7 +158,6 @@ const Dashboard = () => {
     rowsPerPageData: [10, 25, 50, 100], // data for the row per page dropdown
     jumpPageVisibility: true, // show the jump to page option
   };
-  console.log("Current Page = ", page);
 
   return (
     <MetadataLayout {...layoutProps}>

@@ -73,7 +73,9 @@ const DrawerList = (props) => {
     const { item, expanded } = props;
     const { title = "", drawer = () => {}, Icon } = item;
 
-    const SubMenuList = ({ Icon, title, items }) => {
+    const SubMenuList = ({ Icon, title, items, path, apiEndpoint }) => {
+      const history = useHistory();
+
       const onSubMenuClick = () => {
         if (expanded) {
           setSubMenuExpanded(
@@ -102,7 +104,14 @@ const DrawerList = (props) => {
       return (
         <div
           title={title}
-          onClick={onSubMenuClick}
+          onClick={() => {
+            if (path) {
+              history.push(path);
+              setActiveEndPoint(apiEndpoint);
+            } else {
+              onSubMenuClick();
+            }
+          }}
           className={classNameOfSubMenu}
         >
           <div className='flex-r-ac flex-1'>
@@ -158,8 +167,14 @@ const DrawerList = (props) => {
                 expanded && !secondMenu ? "p-10" : "p-0"
               }`}
             >
-              {drawer()?.map(({ Icon, title, items }) => (
-                <SubMenuList Icon={Icon} title={title} items={items} />
+              {drawer()?.map(({ Icon, title, items, path, apiEndpoint }) => (
+                <SubMenuList
+                  Icon={Icon}
+                  title={title}
+                  items={items}
+                  path={path}
+                  apiEndpoint={apiEndpoint}
+                />
               ))}
             </div>
           )}
