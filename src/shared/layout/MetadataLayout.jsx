@@ -39,7 +39,7 @@ const Layout = (props) => {
           </>
         )}
       </div>
-      //Map Div-- Do not Delete
+      {/* Map section */}
       {/* <div
         style={{ backgroundColor: '#ffffff' }}
         className='bdr-r-10 mt-50 mb-25 ml-40 mr-40'
