@@ -29,7 +29,7 @@ const Layout = (props) => {
           tableTitle2={tableTitle}
         />
       </div>
-      <div className='pt-15 mr-30 ml-30 hvh-7 flex-c'>
+      <div className='pt-15 mr-30 ml-30 flex-c'>
         {tableTitle && (
           <>
             <p className='f-40 fw-600 fc-primary lh-1-0'>{tableTitle}</p>
@@ -38,6 +38,12 @@ const Layout = (props) => {
             </p>
           </>
         )}
+      </div>
+      <div
+        style={{ backgroundColor: '#ffffff' }}
+        className='bdr-r-10 mt-50 mb-25 ml-40 mr-40'
+      >
+        <Map />
       </div>
       <div className='flex-c ml-30 mr-30 pt-20'>
         <div className='flex-c bdr-r-10 bg-white pl-15 pr-15'>
