@@ -39,12 +39,13 @@ const Layout = (props) => {
           </>
         )}
       </div>
-      <div
+      //Map Div-- Do not Delete
+      {/* <div
         style={{ backgroundColor: '#ffffff' }}
         className='bdr-r-10 mt-50 mb-25 ml-40 mr-40'
       >
         <Map />
-      </div>
+      </div> */}
       <div className='flex-c ml-30 mr-30 pt-20'>
         <div className='flex-c bdr-r-10 bg-white pl-15 pr-15'>
           <div>
