@@ -1,19 +1,19 @@
-import { useEffect, useState } from "react";
-import { useLocation } from "react-router-dom";
-import { getTableData } from "../../../shared/apis/table/table";
-import { scosDrawer } from "../../../shared/utils/drawer";
+import { useEffect, useState } from 'react';
+import { useLocation } from 'react-router-dom';
+import { getTableData } from '../../../shared/apis/table/table';
+import { scosDrawer } from '../../../shared/utils/drawer';
 import {
   getApiEndpointNameFromRoutes,
   getTableDetailFromRoutes,
   getTableKeyNameFromRoutes,
   getTableTitleNameFromRoutes,
-} from "../../../shared/utils/getApiEndpointFromRoutes";
-import { useDispatch, useSelector } from "react-redux";
-import { getSpacedDisplayName } from "../../../shared/utils/table";
-import { MetadataLayout } from "../../../shared/layout";
-import "./style.scss";
-import { Table, Pagination } from "../../../shared/components/common";
-import scosRoutes from "../../../routes/metadataRoutes/securityCompliance";
+} from '../../../shared/utils/getApiEndpointFromRoutes';
+import { useDispatch, useSelector } from 'react-redux';
+import { getSpacedDisplayName } from '../../../shared/utils/table';
+import { MetadataLayout } from '../../../shared/layout';
+import './style.scss';
+import { Table, Pagination } from '../../../shared/components/common';
+import scosRoutes from '../../../routes/metadataRoutes/securityCompliance';
 
 const Dashboard = () => {
   // loggin user details from store
@@ -23,11 +23,11 @@ const Dashboard = () => {
     (state) => state.tableReducer
   );
   // table title returned from the routes with respect to the url path
-  const [tableTitle, setTableTitle] = useState("");
+  const [tableTitle, setTableTitle] = useState('');
   // table details
   const [tableDetails, setTableDetails] = useState({});
   // key for the table row
-  const [tableRowkey, setTableRowKey] = useState("");
+  const [tableRowkey, setTableRowKey] = useState('');
   // checked table row
   const [selectedRow, setSelectedRow] = useState([]);
 
@@ -47,7 +47,7 @@ const Dashboard = () => {
     let endpointFromPath = getApiEndpointNameFromRoutes(
       scosDrawer,
       location,
-      "securitycompliance/"
+      'securitycompliance/'
     );
     /**
      * in the same way, getting the correct title of the table from routes
@@ -57,7 +57,7 @@ const Dashboard = () => {
     let tableTitle = getTableTitleNameFromRoutes(
       scosDrawer,
       location,
-      "securitycompliance/"
+      'securitycompliance/'
     );
 
     // get table detail from routes
@@ -65,7 +65,7 @@ const Dashboard = () => {
     let tableDetail = getTableDetailFromRoutes(
       scosRoutes,
       location,
-      "securitycompliance/"
+      'securitycompliance/'
     );
     setTableDetails(tableDetail);
 
@@ -73,7 +73,7 @@ const Dashboard = () => {
     let tableKey = getTableKeyNameFromRoutes(
       scosDrawer,
       location,
-      "securitycompliance/"
+      'securitycompliance/'
     );
 
     setTableRowKey(tableKey);
@@ -106,7 +106,7 @@ const Dashboard = () => {
   );
   // state for the visibility of crud modal
   const [openCRUDModal, setOpenCRUDModal] = useState(false);
-  const [CRUDModalType, setCRUDModalType] = useState("add");
+  const [CRUDModalType, setCRUDModalType] = useState('add');
 
   const onRowClick = (rowData) => {
     if (selectedRow.find((e) => e[tableRowkey] === rowData[tableRowkey])) {
@@ -125,7 +125,7 @@ const Dashboard = () => {
     drawer: scosDrawer,
     openCRUDModal,
     setOpenCRUDModal,
-    pageTitle: "Security Compliance",
+    pageTitle: 'Security Compliance',
     CRUDModalType,
     setCRUDModalType,
   };
@@ -158,7 +158,7 @@ const Dashboard = () => {
     setRowsPerPage, //state for the rows per page event
     pageCount, // total number of pages as per the data
     rowsPerPageData: [10, 25, 50, 100], // data for the row per page dropdown
-    jumpPageVisibility: true, // show the jump to page option
+    jumpPageVisibility: false, // show the jump to page option
   };
 
   return (

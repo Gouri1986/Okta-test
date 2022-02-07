@@ -1,18 +1,18 @@
-import { useEffect, useState } from "react";
-import { useLocation } from "react-router-dom";
-import { getTableData } from "../../../shared/apis/table/table";
-import { encsDrawer } from "../../../shared/utils/drawer";
-import { ENCSRoutes } from "../../../routes/metadataRoutes";
+import { useEffect, useState } from 'react';
+import { useLocation } from 'react-router-dom';
+import { getTableData } from '../../../shared/apis/table/table';
+import { encsDrawer } from '../../../shared/utils/drawer';
+import { ENCSRoutes } from '../../../routes/metadataRoutes';
 import {
   getApiEndpointNameFromRoutes,
   getTableDetailFromRoutes,
   getTableKeyNameFromRoutes,
   getTableTitleNameFromRoutes,
-} from "../../../shared/utils/getApiEndpointFromRoutes";
-import { useDispatch, useSelector } from "react-redux";
-import { MetadataLayout } from "../../../shared/layout";
-import "./style.scss";
-import { Table, Pagination } from "../../../shared/components/common";
+} from '../../../shared/utils/getApiEndpointFromRoutes';
+import { useDispatch, useSelector } from 'react-redux';
+import { MetadataLayout } from '../../../shared/layout';
+import './style.scss';
+import { Table, Pagination } from '../../../shared/components/common';
 
 const Dashboard = () => {
   // loggin user details from store
@@ -23,11 +23,11 @@ const Dashboard = () => {
   );
   //table data fetched from api
   // table title returned from the routes with respect to the url path
-  const [tableTitle, setTableTitle] = useState("");
+  const [tableTitle, setTableTitle] = useState('');
   // table details
   const [tableDetails, setTableDetails] = useState({});
   // key for the table row
-  const [tableRowkey, setTableRowKey] = useState("");
+  const [tableRowkey, setTableRowKey] = useState('');
   // checked table row
   const [selectedRow, setSelectedRow] = useState([]);
   // refresh the table
@@ -46,7 +46,7 @@ const Dashboard = () => {
     let endpointFromPath = getApiEndpointNameFromRoutes(
       encsDrawer,
       location,
-      "environmentcatelogue/"
+      'environmentcatelogue/'
     );
     /**
      * in the same way, getting the correct title of the table from routes
@@ -56,7 +56,7 @@ const Dashboard = () => {
     let tableTitle = getTableTitleNameFromRoutes(
       encsDrawer,
       location,
-      "environmentcatelogue/"
+      'environmentcatelogue/'
     );
 
     // get table detail from routes
@@ -64,7 +64,7 @@ const Dashboard = () => {
     let tableDetail = getTableDetailFromRoutes(
       ENCSRoutes,
       location,
-      "environmentcatelogue/"
+      'environmentcatelogue/'
     );
     setTableDetails(tableDetail);
 
@@ -72,7 +72,7 @@ const Dashboard = () => {
     let tableKey = getTableKeyNameFromRoutes(
       encsDrawer,
       location,
-      "environmentcatelogue/"
+      'environmentcatelogue/'
     );
 
     setTableRowKey(tableKey);
@@ -106,7 +106,7 @@ const Dashboard = () => {
 
   // state for the visibility of crud modal
   const [openCRUDModal, setOpenCRUDModal] = useState(false);
-  const [CRUDModalType, setCRUDModalType] = useState("add");
+  const [CRUDModalType, setCRUDModalType] = useState('add');
 
   const onRowClick = (rowData) => {
     if (selectedRow.find((e) => e[tableRowkey] === rowData[tableRowkey])) {
@@ -125,7 +125,7 @@ const Dashboard = () => {
     drawer: encsDrawer,
     openCRUDModal,
     setOpenCRUDModal,
-    pageTitle: "Environment Catelogue",
+    pageTitle: 'Environment Catelogue',
     CRUDModalType,
     setCRUDModalType,
     baseUrl,
@@ -159,9 +159,9 @@ const Dashboard = () => {
     setRowsPerPage, //state for the rows per page event
     pageCount, // total number of pages as per the data
     rowsPerPageData: [10, 25, 50, 100], // data for the row per page dropdown
-    jumpPageVisibility: true, // show the jump to page option
+    jumpPageVisibility: false, // show the jump to page option
   };
-  console.log("Current Page = ", page);
+  console.log('Current Page = ', page);
 
   return (
     <MetadataLayout {...layoutProps}>
