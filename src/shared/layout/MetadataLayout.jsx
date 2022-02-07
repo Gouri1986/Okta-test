@@ -14,11 +14,11 @@ const Layout = (props) => {
   } = props;
 
   return (
-    <div className='overflow-y-scroll flex-r wp-50 hvh-100 flex-1 flex-c'>
-      <div className='mt-33 mr-30 ml-30 hvh-13'>
+    <div className='overflow-y-scroll wp-50 hvh-100 flex-1 flex-c'>
+      <div className='mt-33 mr-30 ml-30 '>
         <Header tableTitle={tableTitle} />
       </div>
-      <div className='ml-30 mb-10 hvh-3'>
+      <div className='ml-30 mb-10 '>
         <Breadcrumbs
           parentTitle='Dashboard'
           parentPath=''
@@ -36,7 +36,7 @@ const Layout = (props) => {
           </>
         )}
       </div>
-      <div className='flex-c ml-30 mr-30 hvh-78 pt-20'>
+      <div className='flex-c ml-30 mr-30 pt-20'>
         <div className='flex-c bdr-r-10 bg-white pl-15 pr-15'>
           <div>
             <TableSettings
@@ -47,7 +47,7 @@ const Layout = (props) => {
               }}
             />
           </div>
-          <div className='overflow-x-scroll metadata-table-container'>
+          <div className='overflow-x-scroll metadata-table-container h-500 mt-15'>
             {tableData.data?.length > 0 ? (
               // table render
               <div>{children[0]}</div>
@@ -59,7 +59,7 @@ const Layout = (props) => {
           </div>
         </div>
         {/* pagination render */}
-        <div className='mt-20'>{children[1]}</div>
+        <div className='mt-20 mb-30'>{children[1]}</div>
       </div>
     </div>
   );

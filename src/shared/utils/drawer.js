@@ -1,6 +1,9 @@
 import { ENCSRoutes, IAMRoutes } from "../../routes/metadataRoutes";
 import scosRoutes from "../../routes/metadataRoutes/securityCompliance";
-import { drawerSectionIcons } from "../components/common/drawer/navDrawer/assets";
+import {
+  ComplianceDashboardIcon,
+  drawerSectionIcons,
+} from "../components/common/drawer/navDrawer/assets";
 import {
   DTCSIcon,
   ENCSIcon,
@@ -74,5 +77,9 @@ export const mainDrawer = [
       { title: "Resource Inventory Catalogue", Icon: RECSIcon },
       { title: "Data Tech Catalogue", Icon: DTCSIcon },
     ],
+  },
+  {
+    title: "Cloud Governance",
+    items: [{ title: "Compliance Dashboard", Icon: ComplianceDashboardIcon }],
   },
 ];
