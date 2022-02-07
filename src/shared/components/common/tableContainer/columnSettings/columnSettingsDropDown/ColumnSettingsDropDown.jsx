@@ -118,7 +118,7 @@ const ColumnSettingsDropDown = ({
       </div>
       {tableData.header?.length > 10 && (
         <div className='flex-r-jc-ac p-15'>
-          <button className='f-12 cp pt-10 pb-10 pl-25 pr-25 bg-DarkDesaturatedBlue fc-tertiary no-bdr'>
+          <button className='f-12 cp pt-10 pb-10 pl-25 pr-25 bg-DarkDesaturatedBlue fc-white no-bdr'>
             + More
           </button>
         </div>

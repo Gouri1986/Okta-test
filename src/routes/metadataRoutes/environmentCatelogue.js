@@ -1,150 +1,141 @@
-const technologyRoutes = [
+const AWS = [
   {
     path: "/tech-category-master",
     apiEndpoint: "encs-tech-category-master",
     pk: "iscTechCategoryName",
+    name: "Regions",
   },
   {
     path: "/os-tech-master",
     apiEndpoint: "encs-os-tech-master",
     pk: "iscOsTechName	",
+    name: "Zones",
   },
   {
     path: "/data-tech-master",
     apiEndpoint: "encs-data-tech-master",
     pk: "iscDataTechName	",
+    name: "Instance Type",
   },
   {
     path: "/application-master",
     apiEndpoint: "encs-app-tech-master",
     pk: "iscAppTechName",
+    name: "Instance Size",
   },
 ];
 
-const customer = [
+const GCP = [
   {
-    path: "/customer-master",
-    apiEndpoint: "encs-customer-master",
-    pk: "customerId",
+    path: "/tech-category-master",
+    apiEndpoint: "encs-tech-category-master",
+    pk: "iscTechCategoryName",
+    name: "Regions",
   },
   {
-    path: "/customer-contact",
-    apiEndpoint: "encs-customer-contact",
-    pk: "customerContactId",
+    path: "/os-tech-master",
+    apiEndpoint: "encs-os-tech-master",
+    pk: "iscOsTechName	",
+    name: "Zones",
   },
   {
-    path: "/customer-location",
-    apiEndpoint: "encs-customer-location-info",
-    pk: "customerLocationId ",
-  },
-  {
-    path: "/business-group",
-    apiEndpoint: "encs-business-group-details",
-    pk: "businessGroupId ",
-  },
-  {
-    path: "/functional-group",
-    apiEndpoint: "encs-functional-group-details",
-    pk: "fgId",
+    path: "/data-tech-master",
+    apiEndpoint: "encs-data-tech-master",
+    pk: "iscDataTechName	",
+    name: "Machine Type",
   },
 ];
 
-const application = [
+const OCI = [
   {
-    path: "/application-details",
-    apiEndpoint: "encs-application-details",
-    pk: "applicationId",
+    path: "/tech-category-master",
+    apiEndpoint: "encs-tech-category-master",
+    pk: "iscTechCategoryName",
+    name: "Regions",
   },
   {
-    path: "/environment-details",
-    apiEndpoint: "encs-app-env-master",
-    pk: "appEnvName",
-  },
-  {
-    path: "/partition-details",
-    apiEndpoint: "encs-app-partition-details",
-    pk: "appPartitionId",
-  },
-  {
-    path: "/sub-partition-details",
-    apiEndpoint: "encs-app-sub-partition-details",
-    pk: "appSubPartitionId",
+    path: "/os-tech-master",
+    apiEndpoint: "encs-os-tech-master",
+    pk: "iscOsTechName	",
+    name: "Zones",
   },
 ];
 
-const resPartition = [
-  { path: "/respartition-master", apiEndpoint: "encs-res-partition-master" },
-  { path: "/dc-providers", apiEndpoint: "encs-dc-providers" },
-  { path: "/dc-master", apiEndpoint: "encs-dc-master" },
-  { path: "/dc-hall", apiEndpoint: "encs-dc-hall" },
-  { path: "/respartition-dc-hall", apiEndpoint: "encs-res-partition-dc-hall" },
+const Azure = [
   {
-    path: "/application-dc-hall",
-    apiEndpoint: "encs-app-res-partition-dc-hall",
+    path: "/tech-category-master",
+    apiEndpoint: "encs-tech-category-master",
+    pk: "iscTechCategoryName",
+    name: "Regions",
+  },
+  {
+    path: "/os-tech-master",
+    apiEndpoint: "encs-os-tech-master",
+    pk: "iscOsTechName	",
+    name: "Zones",
   },
 ];
 
-const dcAssetCatalog = [
-  { path: "/suppliers", apiEndpoint: "encs-dc-asset-suppliers" },
-  { path: "/type-master", apiEndpoint: "encs-dc-asset-type-master" },
-  { path: "/vendors", apiEndpoint: "encs-dc-asset-vendors" },
-  { path: "/model-master", apiEndpoint: "encs-dc-asset-model-master" },
-  { path: "/dc-asset", apiEndpoint: "encs-dc-asset" },
-  { path: "/allocation", apiEndpoint: "encs-dc-asset-allocation" },
-];
-
-/**********************************************************
-                       ENCS Cloud Services
- ***********************************************************/
-
-const cloudMasterDetails = [
-  { path: "/cloud-master-details", apiEndpoint: "encs-cloud-master" },
-];
-
-const oracleCloud = [
-  { path: "/oci-region-details", apiEndpoint: "encs-oci-region-details" },
-  { path: "/oci-cloud-ad-details", apiEndpoint: "encs-oci-ad-details" },
-  { path: "/oci-cloud-fd-details", apiEndpoint: "encs-oci-fd-details" },
-  { path: "/oci-respartition-ad", apiEndpoint: "encs-oci-res-partition-ad" },
+const ServicesAndResource = [
   {
-    path: "/oci-app-respartition-ad",
-    apiEndpoint: "encs-oci-app-res-partition-ad",
+    path: "/tech-category-master",
+    apiEndpoint: "encs-tech-category-master",
+    pk: "iscTechCategoryName",
+    name: "Insatnce Shapes",
+  },
+  {
+    path: "/os-tech-master",
+    apiEndpoint: "encs-os-tech-master",
+    pk: "iscOsTechName	",
+    name: "Service Metadata",
+  },
+  {
+    path: "/data-tech-master",
+    apiEndpoint: "encs-data-tech-master",
+    pk: "iscDataTechName	",
+    name: "Resource Metadata",
+  },
+  {
+    path: "/application-master",
+    apiEndpoint: "encs-app-tech-master",
+    pk: "iscAppTechName",
+    name: "Resource Events",
+  },
+  {
+    path: "/application-master",
+    apiEndpoint: "encs-app-tech-master",
+    pk: "iscAppTechName",
+    name: "Crtical Actions",
   },
 ];
 
-const googleCloud = [
-  { path: "/gcp-region-details", apiEndpoint: "encs-gcp-region-details" },
-  { path: "/gcp-cloud-az-details", apiEndpoint: "encs-gcp-az-details" },
-  { path: "/gcp-respartition-az", apiEndpoint: "encs-gcp-res-partition-az" },
-  {
-    path: "/gcp-app-respartition-az",
-    apiEndpoint: "encs-gcp-app-res-partition-az",
-  },
-];
-
-const awsCloud = [
-  { path: "/aws-region-details", apiEndpoint: "encs-aws-region-details" },
-  { path: "/aws-cloud-az-details", apiEndpoint: "encs-aws-az-details" },
-  { path: "/aws-respartition-az", apiEndpoint: "encs-aws-res-partition-az" },
-  {
-    path: "/aws-app-respartition-az",
-    apiEndpoint: "encs-aws-app-res-partition-az",
-  },
-];
-
-/**********************************************************
-                       ENCS Services and Resources
- ***********************************************************/
-
-const cloudTables = [
-  { path: "/cloud-services", apiEndpoint: "encs-cloud-service-master" },
-  { path: "/onp-services", apiEndpoint: "encs-onp-service-master-details" },
-  { path: "/cloud-resources", apiEndpoint: "encs-cloud-resource-master" },
-  { path: "/onp-resources", apiEndpoint: "encs-onp-resource-master-details" },
-  // { path: "/cloud-action", apiEndpoint: "encs-cloud-critical-actions" },
-  // { path: "service-meta-data" },
-  // { path: "resources-meta-data" },
-];
+// const customer = [
+//   {
+//     path: "/customer-master",
+//     apiEndpoint: "encs-customer-master",
+//     pk: "customerId",
+//   },
+//   {
+//     path: "/customer-contact",
+//     apiEndpoint: "encs-customer-contact",
+//     pk: "customerContactId",
+//   },
+//   {
+//     path: "/customer-location",
+//     apiEndpoint: "encs-customer-location-info",
+//     pk: "customerLocationId ",
+//   },
+//   {
+//     path: "/business-group",
+//     apiEndpoint: "encs-business-group-details",
+//     pk: "businessGroupId ",
+//   },
+//   {
+//     path: "/functional-group",
+//     apiEndpoint: "encs-functional-group-details",
+//     pk: "fgId",
+//   },
+// ];
 
 /**********************************************************
                        Exporting All ENCS Modules
@@ -152,28 +143,13 @@ const cloudTables = [
 
 const encsRoutes = [
   {
-    section: "Environment Services",
+    section: "Cloud Environment",
     routes: {
-      technologyRoutes,
-      customer,
-      application,
-      resPartition,
-      dcAssetCatalog,
-    },
-  },
-  {
-    section: "Cloud Services",
-    routes: {
-      cloudMasterDetails,
-      oracleCloud,
-      googleCloud,
-      awsCloud,
-    },
-  },
-  {
-    section: "Services and Resources",
-    routes: {
-      cloudTables,
+      AWS,
+      GCP,
+      OCI,
+      Azure,
+      ServicesAndResource,
     },
   },
 ];

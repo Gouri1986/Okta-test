@@ -1,0 +1,52 @@
+@import "../../../shared/assets/scss/styles.scss";
+
+.main-ly::-webkit-scrollbar {
+  display: none;
+}
+
+.titan-searchbar-container {
+  transition: all 1s ease-in-out;
+  background-color: transparent;
+  align-self: center;
+}
+.titan-searchbar-container div {
+  background-color: transparent;
+  border: none;
+}
+
+.titan-searchbar-container input {
+  opacity: 0;
+  display: none;
+  transition: all 1s ease-in-out;
+}
+
+.titan-searchbar-container-expanded input {
+  opacity: 1;
+  display: flex;
+}
+
+.titan-searchbar-container-expanded {
+  border-radius: 3px;
+  border: solid 1px #eaeaea;
+  background-color: #fff;
+}
+
+.table-parent::-webkit-scrollbar {
+  width: 1em;
+}
+
+.table-parent::-webkit-scrollbar-track {
+  background-color: #cccccc22;
+}
+
+.table-parent::-webkit-scrollbar-thumb {
+  background-color: darkgrey;
+  outline: 1px solid slategrey;
+  border-radius: 5px;
+}
+
+@media screen and (max-width: 1200px) {
+  .table-filter-wrapper {
+    display: none;
+  }
+}

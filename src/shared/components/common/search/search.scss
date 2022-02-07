@@ -3,10 +3,18 @@
 .search-input-container {
   input {
     transition: all 0.75s ease-out;
+    color: black;
+    font-size: 14px;
+    font-weight: bold;
   }
-  
-  &>input::placeholder{
+
+  & > input::placeholder {
     color: $placeholder-color;
     font-size: 14px;
+    font-weight: bold;
   }
+}
+
+.search-icon-container {
+  justify-content: flex-end;
 }

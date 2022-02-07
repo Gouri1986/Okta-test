@@ -1,35 +1,47 @@
-import React, { useState } from "react"
-import ColumnSettingsIcon from "../columnSettings/ColumnSettings"
-import Refresh from "../refresh/Refresh"
-import Download from "../download/Download"
-import { AddNewIcon, FilterIcon } from "./assets/index"
+import React from "react";
+import ColumnSettingsIcon from "../columnSettings/ColumnSettings";
+import Refresh from "../refresh/Refresh";
+import Download from "../download/Download";
+import { AddNewIcon } from "./assets";
+import {
+  FilterSettingIcon,
+  FilterSearchIcon,
+  FilterCloseIcon,
+} from "../filter/assets";
+import FilterSearch from "../filter/filterSearch/FilterSearch";
 
 function TableSettings(props) {
-  const { modalOnClick } = props
+  const { modalOnClick, tableTitle } = props;
   return (
-    <div className="flex-r-ac flex-jc-sp-btn p-25">
-      <div className="flex-c wp-30">
-        <div className="f-13 fw-500 fc-quaternary">Filter</div>
-        <div className="bdr-buttom-primary-1 wp-100">
-          <FilterIcon />
+    <div className='flex-c'>
+      <div className='flex-r-ac flex-jc-sp-btn pt-10 pb-10'>
+        <div className='fw-600 f-20 fc-primary'>{tableTitle}</div>
+        <div
+          className='lightblue-container flex-r flex-r-ac flex-jc-sp-btn pl-24 pr-24 pb-10 pt-10 cp'
+          onClick={modalOnClick}
+        >
+          <AddNewIcon />
+          <p className='font-16 fw-600 fc-white pl-10'>Add New</p>
         </div>
       </div>
-      <div className="flex-r-ac flex-jc-sp-btn">
-        <div className="table-add-icon mr-30 cp pt-7 pl-7 pr-7 bdr-r-6" onClick={modalOnClick}>
-          <AddNewIcon />
+      <div className='flex-r-ac flex-jc-sp-btn'>
+        <div className='flex-r wp-30 flex-r-ac flex-jc-sp-btn'>
+          <FilterSearch />
         </div>
-        <div className="mr-30">
-          <ColumnSettingsIcon />
-        </div>
-        <div className="mr-30">
-          <Refresh />
-        </div>
-        <div>
-          <Download />
+        <div className='flex-r-ac flex-jc-sp-btn'>
+          <div className='mr-30'>
+            <ColumnSettingsIcon />
+          </div>
+          <div className='mr-30'>
+            <Refresh />
+          </div>
+          <div>
+            <Download />
+          </div>
         </div>
       </div>
     </div>
-  )
+  );
 }
 
-export default TableSettings
+export default TableSettings;

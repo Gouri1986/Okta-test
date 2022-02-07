@@ -1,28 +1,27 @@
 import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
-import "./iam.scss";
-import TitanTable from "../../shared/components/common/tableContainer/table/Table";
-import { useDispatch, useSelector } from "react-redux";
-import { getSpacedDisplayName } from "../../shared/utils/table";
+import { getTableData } from "../../../shared/apis/table/table";
+import { scosDrawer } from "../../../shared/utils/drawer";
 import {
   getApiEndpointNameFromRoutes,
   getTableDetailFromRoutes,
   getTableKeyNameFromRoutes,
   getTableTitleNameFromRoutes,
-} from "../../shared/utils/getApiEndpointFromRoutes";
-import { MetadataLayout } from "../../shared/layout";
-import { iamDrawer } from "../../shared/utils/drawer";
-import { PaginationDepricated } from "../../shared/components/common";
-import { IAMRoutes } from "../../routes/metadataRoutes";
-import { getTableData } from "../../shared/apis/table/table";
+} from "../../../shared/utils/getApiEndpointFromRoutes";
+import { useDispatch, useSelector } from "react-redux";
+import { getSpacedDisplayName } from "../../../shared/utils/table";
+import { MetadataLayout } from "../../../shared/layout";
+import "./style.scss";
+import { Table, Pagination } from "../../../shared/components/common";
+import scosRoutes from "../../../routes/metadataRoutes/securityCompliance";
 
 const Dashboard = () => {
+  // loggin user details from store
   const dispatch = useDispatch();
-  // active api endpoint to fetch table data with respect to the url path
+
   const { activeEndpoint, tableContents } = useSelector(
     (state) => state.tableReducer
   );
-  //table data fetched from api
   // table title returned from the routes with respect to the url path
   const [tableTitle, setTableTitle] = useState("");
   // table details
@@ -31,11 +30,13 @@ const Dashboard = () => {
   const [tableRowkey, setTableRowKey] = useState("");
   // checked table row
   const [selectedRow, setSelectedRow] = useState([]);
+
   // refresh the table
   const [refresh, setRefresh] = useState(false);
   // location hook to get the location variables
   const location = useLocation();
-  const baseUrl = process.env.REACT_APP_IAM_BASE_URL;
+  //BASE URL of api
+  const baseUrl = process.env.REACT_APP_SCOS_BASE_URL;
 
   useEffect(() => {
     /**
@@ -44,24 +45,36 @@ const Dashboard = () => {
      */
 
     let endpointFromPath = getApiEndpointNameFromRoutes(
-      iamDrawer,
+      scosDrawer,
       location,
-      "iam/"
+      "securitycompliance/"
     );
     /**
      * in the same way, getting the correct title of the table from routes
      * we are passing drawer | location | path
      */
 
-    let tableTitle = getTableTitleNameFromRoutes(iamDrawer, location, "iam/");
+    let tableTitle = getTableTitleNameFromRoutes(
+      scosDrawer,
+      location,
+      "securitycompliance/"
+    );
 
     // get table detail from routes
 
-    let tableDetail = getTableDetailFromRoutes(IAMRoutes, location, "iam/");
+    let tableDetail = getTableDetailFromRoutes(
+      scosRoutes,
+      location,
+      "securitycompliance/"
+    );
     setTableDetails(tableDetail);
 
     // get the key for the table for crud or any other row level operation
-    let tableKey = getTableKeyNameFromRoutes(iamDrawer, location, "iam/");
+    let tableKey = getTableKeyNameFromRoutes(
+      scosDrawer,
+      location,
+      "securitycompliance/"
+    );
 
     setTableRowKey(tableKey);
 
@@ -86,6 +99,15 @@ const Dashboard = () => {
     dispatch(getTableData(path));
   };
 
+  const [page, setPage] = useState(1);
+  const [rowsPerPage, setRowsPerPage] = useState(10);
+  const [pageCount, setPageCount] = useState(
+    Math.ceil(tableContents.data?.length / rowsPerPage)
+  );
+  // state for the visibility of crud modal
+  const [openCRUDModal, setOpenCRUDModal] = useState(false);
+  const [CRUDModalType, setCRUDModalType] = useState("add");
+
   const onRowClick = (rowData) => {
     if (selectedRow.find((e) => e[tableRowkey] === rowData[tableRowkey])) {
       const selectedItems = selectedRow.filter(
@@ -97,46 +119,35 @@ const Dashboard = () => {
     }
   };
 
-  const [page, setPage] = useState(1);
-  const [rowsPerPage, setRowsPerPage] = useState(10);
-  const [pageCount, setPageCount] = useState(
-    Math.ceil(tableContents.data?.length / rowsPerPage)
-  );
-
-  // state for the visibility of crud modal
-  const [openCRUDModal, setOpenCRUDModal] = useState(false);
-  const [CRUDModalType, setCRUDModalType] = useState("add");
-
   const layoutProps = {
     tableData: tableContents,
     tableTitle,
-    drawer: iamDrawer,
+    drawer: scosDrawer,
     openCRUDModal,
     setOpenCRUDModal,
+    pageTitle: "Security Compliance",
     CRUDModalType,
     setCRUDModalType,
-    pageTitle: "IAM",
-    baseUrl,
   };
 
   const tableProps = {
-    selectedRow,
+    selectedRow: selectedRow,
+    onRowClick: onRowClick,
     tableData: tableContents,
-    onRowClick,
-    tableDetails,
-    tableDetails,
+    tableRowkey,
     showCheckBox: true,
-    tableTitle,
     showAction: true,
     page,
+    tableTitle,
+    tableDetails,
     rowsPerPage,
     openCRUDModal,
     setOpenCRUDModal,
-    CRUDModalType,
-    setCRUDModalType,
     activeEndpoint,
     getTable,
     baseUrl,
+    CRUDModalType,
+    setCRUDModalType,
   };
 
   const paginationProps = {
@@ -152,10 +163,9 @@ const Dashboard = () => {
 
   return (
     <MetadataLayout {...layoutProps}>
-      <TitanTable {...tableProps} />
-      <PaginationDepricated {...paginationProps} />
+      {tableContents.data?.length > 0 && <Table {...tableProps} />}
+      <Pagination {...paginationProps} />
     </MetadataLayout>
   );
 };
-
 export default Dashboard;

@@ -1,5 +1,9 @@
 import { ENCSRoutes, IAMRoutes } from "../../routes/metadataRoutes";
-import { drawerSectionIcons } from "../components/common/drawer/iamNavDrawer/assets";
+import scosRoutes from "../../routes/metadataRoutes/securityCompliance";
+import {
+  ComplianceDashboardIcon,
+  drawerSectionIcons,
+} from "../components/common/drawer/navDrawer/assets";
 import {
   DTCSIcon,
   ENCSIcon,
@@ -10,10 +14,11 @@ import { getSpacedDisplayName } from "./table";
 
 export const iamDrawer = () => {
   return IAMRoutes.map((rt) => ({
-    title: "",
+    title: "IAM",
+    Icon: drawerSectionIcons.DTSC,
     items: rt.routes.routes.map((route) => ({
       title: route.pageName,
-      path: route.path,
+      path: "/iam" + route.path,
       Icon: drawerSectionIcons.AWS,
       apiEndpoint: route.apiEndpoint,
     })),
@@ -28,13 +33,34 @@ export const encsDrawer = () => {
       title: getSpacedDisplayName(key),
       Icon: drawerSectionIcons.GCP,
       items: rt.routes[key].map((route) => ({
-        title: getSpacedDisplayName(
-          route.path.replace(/-/g, " ").replace(/\//, "")
-        ),
-        path: route.path,
+        title:
+          route.name ||
+          getSpacedDisplayName(route.path.replace(/-/g, " ").replace(/\//, "")),
+        path: "/environmentcatelogue" + route.path,
         id: route.path,
         apiEndpoint: route.apiEndpoint,
         expandable: true,
+        key: route.pk,
+      })),
+    })),
+  }));
+};
+
+export const scosDrawer = () => {
+  return scosRoutes.map((rt) => ({
+    title: rt.section,
+    Icon: drawerSectionIcons.DTSC,
+    items: Object.keys(rt.routes).map((key) => ({
+      title: getSpacedDisplayName(key),
+      Icon: drawerSectionIcons.GCP,
+      items: rt.routes[key].map((route) => ({
+        title:
+          route.name ||
+          getSpacedDisplayName(route.path.replace(/-/g, " ").replace(/\//, "")),
+        path: "/securitycompliance" + route.path,
+        id: route.path,
+        apiEndpoint: route.apiEndpoint,
+        showAsSubMenu: route.showAsSubMenu,
         key: route.pk,
       })),
     })),
@@ -45,10 +71,15 @@ export const mainDrawer = [
   {
     title: "Admin Tools",
     items: [
-      { title: "Security Compliance", Icon: SCOSIcon },
-      { title: "Environment Catelogue ", Icon: ENCSIcon, drawer: encsDrawer },
-      { title: "Resource Inventory Catelogue", Icon: RECSIcon },
-      { title: "Data Tech Catelogue", Icon: DTCSIcon },
+      { title: "IAM", Icon: DTCSIcon, drawer: iamDrawer },
+      { title: "Security Compliance", Icon: SCOSIcon, drawer: scosDrawer },
+      { title: "Environment Catalogue ", Icon: ENCSIcon, drawer: encsDrawer },
+      { title: "Resource Inventory Catalogue", Icon: RECSIcon },
+      { title: "Data Tech Catalogue", Icon: DTCSIcon },
     ],
+  },
+  {
+    title: "Cloud Governance",
+    items: [{ title: "Compliance Dashboard", Icon: ComplianceDashboardIcon }],
   },
 ];
