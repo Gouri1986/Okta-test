@@ -16,25 +16,11 @@ const BreadCrumbs = (props) => {
       <Breadcrumbs
         separator={<BreadcrumbSeperatorIcon />}
         aria-label='breadcrumb'>
-        <Typography key={1}>
-          <Link to={parentPath}>
-            {parentTitle === 'Dashboard' ? <HomeIcon size={16} /> : parentTitle}
-          </Link>
-        </Typography>
-        <Typography key={2}
-          color="#080430"
-          fontSize="16px"
-          fontWeight="500"
-        >
-          {tableTitle1}
-        </Typography>
-        <Typography key={3}
-          color="#6C6C6C"
-          fontSize="16px"
-          fontWeight="500"
-        >
-          {tableTitle2}
-        </Typography>
+        <Link key={1} href="#">
+          {parentTitle === 'Dashboard' ? <HomeIcon size={16} /> : parentTitle}
+        </Link>
+        <Link key={2} href="#" underline="none">{tableTitle1}</Link>
+        <Link key={3} href="#" underline="none">{tableTitle2}</Link>
       </Breadcrumbs>
     </div>
   );
