@@ -17,7 +17,10 @@ const TableHeaderCell = ({ tableData, sort, sortTable, item = {} }) => {
   };
 
   const actionColumnClassName = `${
-    item.id === "action" && "pos-sk r-0 bg-white"
+    (item.id === "action" ||
+      item.id === "resources" ||
+      item.id === "regulationControls") &&
+    `pos-sk ${item.id === "regulationControls" ? "r-200" : "r-0"} bg-white`
   }`;
   const thClassName = `p-15 w-${getWidthOfCell()} table-header-cell ${actionColumnClassName}`;
 

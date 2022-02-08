@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import { getTableData } from "../../../shared/apis/table/table";
 import { encsDrawer } from "../../../shared/utils/drawer";
-import { ENCSRoutes } from "../../../routes/metadataRoutes";
 import {
   getApiEndpointNameFromRoutes,
   getTableDetailFromRoutes,
@@ -161,7 +160,6 @@ const Dashboard = () => {
     rowsPerPageData: [10, 25, 50, 100], // data for the row per page dropdown
     jumpPageVisibility: false, // show the jump to page option
   };
-  console.log("Current Page = ", page);
 
   return (
     <MetadataLayout {...layoutProps}>

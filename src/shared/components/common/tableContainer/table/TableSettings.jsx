@@ -1,24 +1,32 @@
-import React from "react";
+import React, { useEffect } from "react";
 import ColumnSettingsIcon from "../columnSettings/ColumnSettings";
 import Refresh from "../refresh/Refresh";
 import Download from "../download/Download";
 import { AddNewIcon } from "./assets";
-import {
-  FilterSettingIcon,
-  FilterSearchIcon,
-  FilterCloseIcon,
-} from "../filter/assets";
 import FilterSearch from "../filter/filterSearch/FilterSearch";
+import { useHistory } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 
 function TableSettings(props) {
-  const { modalOnClick, tableTitle } = props;
+  const { modalOnClick, tableTitle, tabs } = props;
+  const history = useHistory();
+  const location = useLocation();
+
   return (
     <div className='flex-c pos-rel'>
-      <div className="flex-r-jc-ac pos-ab r-10 t--41">
-        <div className="mr-20 tab">Tab One</div>
-        <div className="mr-20 tab">Tab Two</div>
-        <div className="mr-20 tab">Tab Three</div>
-        <div className="mr-20 tab">Tab Four</div>
+      <div className='flex-r-jc-ac pos-ab r-10 t--41'>
+        {tabs.map((tab) => {
+          return (
+            <div
+              onClick={() => tab.path && history.push(tab.path)}
+              className={`${
+                tab.path === location.pathname ? "bg-white" : "bg-tab"
+              } mr-20 tab cp `}
+            >
+              {tab.title}
+            </div>
+          );
+        })}
       </div>
       <div className='flex-r-ac flex-jc-sp-btn pt-10 pb-10'>
         <div className='fw-600 f-20 fc-primary'>{tableTitle}</div>

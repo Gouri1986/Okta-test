@@ -9,11 +9,9 @@ import {
   getTableTitleNameFromRoutes,
 } from "../../../shared/utils/getApiEndpointFromRoutes";
 import { useDispatch, useSelector } from "react-redux";
-import { getSpacedDisplayName } from "../../../shared/utils/table";
 import { MetadataLayout } from "../../../shared/layout";
 import "./style.scss";
 import { Table, Pagination } from "../../../shared/components/common";
-import scosRoutes from "../../../routes/metadataRoutes/securityCompliance";
 
 const Dashboard = () => {
   // loggin user details from store

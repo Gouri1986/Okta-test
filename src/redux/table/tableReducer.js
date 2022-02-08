@@ -1,8 +1,13 @@
-import { TABLE_ACTIVE_ENDPOINT, TABLE_CONTENTS } from "./tableActionTypes";
+import {
+  TABLE_ACTIVE_ENDPOINT,
+  TABLE_CONTENTS,
+  TABLE_TABS,
+} from "./tableActionTypes";
 
 const initialState = {
   activeEndpoint: "",
   tableContents: {},
+  tabs: [],
 };
 
 const tableReducer = (state = initialState, action) => {
@@ -17,6 +22,12 @@ const tableReducer = (state = initialState, action) => {
       return {
         ...state,
         tableContents: action.payload,
+      };
+    }
+    case TABLE_TABS: {
+      return {
+        ...state,
+        tabs: action.payload,
       };
     }
     default:

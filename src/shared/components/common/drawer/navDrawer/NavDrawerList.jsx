@@ -12,6 +12,8 @@ import { mainDrawer } from "../../../../utils/drawer";
 
 // SVG Icons from the assets
 import { NavBarMenuArrow } from "./assets";
+import { useDispatch } from "react-redux";
+import { setActiveTableTabs } from "../../../../../redux/table/tabelActions";
 
 const DrawerList = (props) => {
   // Properties passed from the parent Drawer component
@@ -75,6 +77,7 @@ const DrawerList = (props) => {
 
     const SubMenuList = ({ Icon, title, items, path, apiEndpoint }) => {
       const history = useHistory();
+      const dispatch = useDispatch();
 
       const onSubMenuClick = () => {
         if (secondMenu) {
@@ -116,6 +119,8 @@ const DrawerList = (props) => {
           onClick={() => {
             showSecondMenu(false);
             if (path) {
+              dispatch(setActiveTableTabs([]));
+
               history.push(path);
               setActiveEndPoint(apiEndpoint);
             } else {
@@ -195,6 +200,7 @@ const DrawerList = (props) => {
 
   const SecondNavMenu = () => {
     const history = useHistory();
+    const dispatch = useDispatch();
 
     const [secondMenuItemSelected, setSecondMenuItemSelected] = useState({
       title: "",
@@ -206,7 +212,7 @@ const DrawerList = (props) => {
       bool: false,
     });
 
-    const SecondMenuSubList = ({ item }) => {
+    const SecondMenuSubList = ({ item, items }) => {
       return (
         <div
           onClick={() => {
@@ -218,6 +224,7 @@ const DrawerList = (props) => {
             );
 
             if (item.path.length > 0) {
+              dispatch(setActiveTableTabs(items));
               history.push(item.path);
               setActiveEndPoint(item.apiEndpoint);
             }
@@ -246,6 +253,7 @@ const DrawerList = (props) => {
         item.items.length === 1 &&
         !item.items[0].showAsSubMenu
       ) {
+        dispatch(setActiveTableTabs([]));
         history.push(item.items[0].path);
         setActiveEndPoint(item.items[0].apiEndpoint);
       } else if (
@@ -277,6 +285,7 @@ const DrawerList = (props) => {
           );
         }
       } else {
+        dispatch(setActiveTableTabs([]));
         history.push(item.path);
         setActiveEndPoint(item.apiEndpoint);
       }
@@ -326,7 +335,10 @@ const DrawerList = (props) => {
                         >
                           {Array.isArray(item.items) &&
                             item.items?.map((listItem) => (
-                              <SecondMenuSubList item={listItem} />
+                              <SecondMenuSubList
+                                item={listItem}
+                                items={item.items}
+                              />
                             ))}
                         </div>
                       )}

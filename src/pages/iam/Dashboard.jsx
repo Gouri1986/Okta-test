@@ -2,8 +2,8 @@ import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import "./iam.scss";
 import TitanTable from "../../shared/components/common/tableContainer/table/Table";
+import { Pagination } from "../../shared/components/common";
 import { useDispatch, useSelector } from "react-redux";
-import { getSpacedDisplayName } from "../../shared/utils/table";
 import {
   getApiEndpointNameFromRoutes,
   getTableDetailFromRoutes,
@@ -12,8 +12,6 @@ import {
 } from "../../shared/utils/getApiEndpointFromRoutes";
 import { MetadataLayout } from "../../shared/layout";
 import { iamDrawer } from "../../shared/utils/drawer";
-import { PaginationDepricated } from "../../shared/components/common";
-import { IAMRoutes } from "../../routes/metadataRoutes";
 import { getTableData } from "../../shared/apis/table/table";
 
 const Dashboard = () => {
@@ -147,13 +145,13 @@ const Dashboard = () => {
     setRowsPerPage, //state for the rows per page event
     pageCount, // total number of pages as per the data
     rowsPerPageData: [10, 25, 50, 100], // data for the row per page dropdown
-    jumpPageVisibility: true, // show the jump to page option
+    jumpPageVisibility: false, // show the jump to page option
   };
 
   return (
     <MetadataLayout {...layoutProps}>
       <TitanTable {...tableProps} />
-      <PaginationDepricated {...paginationProps} />
+      <Pagination {...paginationProps} />
     </MetadataLayout>
   );
 };

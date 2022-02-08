@@ -125,7 +125,10 @@ const TableBody = (props) => {
         : 200;
 
     const rowCellClassName = `bdr-primary table-cell p-15 w-${getRowCellWidth()} ${
-      id === "action" && "pos-sk r-0 bg-white"
+      (item.id === "action" ||
+        item.id === "resources" ||
+        item.id === "regulationControls") &&
+      `pos-sk ${item.id === "regulationControls" ? "r-200" : "r-0"} bg-white`
     }`;
 
     return (
@@ -155,11 +158,12 @@ const TableBody = (props) => {
         ) : id === "descriptiveComplainceStatus" ? (
           <div className='flex-c-ac'>
             <InlineStatusBarChart
-              value1={datum[id]?.Pass}
-              value2={datum[id]?.Fail}
+              value1={datum[id]?.[0]?.Pass}
+              value2={datum[id]?.[0]?.Fail}
             />
             <span className='fw-500 mt-5 f-12 lh-1.8'>
-              {datum[id]?.Pass}/{datum[id]?.Pass + datum[id]?.Fail} Passed
+              {datum[id]?.[0]?.Pass}/
+              {datum[id]?.[0]?.Pass + datum[id]?.[0]?.Fail} Passed
             </span>
           </div>
         ) : id === "lastVerifiedDate" ? (
@@ -183,11 +187,11 @@ const TableBody = (props) => {
       );
       if (!checked) {
         onRowClick(datum);
-        setActiveData(datum);
+        // setActiveData(datum);
         setOpenRightDescModal(true);
       } else {
         onRowClick({});
-        setActiveData({});
+        // setActiveData({});
         setOpenRightDescModal(false);
       }
     };

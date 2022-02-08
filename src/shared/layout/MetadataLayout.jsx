@@ -1,10 +1,11 @@
-import React from 'react';
-import './metadataLayout.scss';
-import { Navbar, Header, TableSettings } from '../components/common';
-import Breadcrumbs from '../components/common/breadcumbs/Breadcrumbs';
-import ComplienceIntro from '../../pages/metadata/securityCompliance/ChartsContainer';
-import Accordion from '../components/common/widget/Accordion';
-import Map from '../components/common/widget/map/Map';
+import React from "react";
+import "./metadataLayout.scss";
+import { Navbar, Header, TableSettings } from "../components/common";
+import Breadcrumbs from "../components/common/breadcumbs/Breadcrumbs";
+import ComplienceIntro from "../../pages/metadata/securityCompliance/ChartsContainer";
+import Accordion from "../components/common/widget/Accordion";
+import Map from "../components/common/widget/map/Map";
+import { useSelector } from "react-redux";
 const Layout = (props) => {
   const {
     children,
@@ -15,6 +16,8 @@ const Layout = (props) => {
     pageTitle,
     setCRUDModalType,
   } = props;
+
+  const { tabs } = useSelector((state) => state.tableReducer);
 
   return (
     <div className='overflow-y-scroll wp-50 hvh-100 flex-1 flex-c'>
@@ -47,10 +50,11 @@ const Layout = (props) => {
         <div className='flex-c bdr-r-10 bg-white pl-15 pr-15'>
           <div>
             <TableSettings
+              tabs={tabs}
               tableTitle={tableTitle}
               modalOnClick={() => {
                 setOpenCRUDModal(!openCRUDModal);
-                setCRUDModalType('add');
+                setCRUDModalType("add");
               }}
             />
           </div>
