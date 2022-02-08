@@ -3,15 +3,15 @@ import { useDispatch } from "react-redux";
 import { setTableContents } from "../../../../../redux/table/tabelActions";
 import { TableHeaderSortDownArrow } from "./assets";
 
-const TableHeaderCell = ({ tableData, sort, sortTable, item }) => {
+const TableHeaderCell = ({ tableData, sort, sortTable, item = {} }) => {
   const getWidthOfCell = () => {
     return tableData.data.find((e) => e[item.id]?.length > 30)
       ? 400
-      : item.title.length > 25
+      : item.title?.length > 25
       ? 400
-      : item.title.length > 20
+      : item.title?.length > 20
       ? 300
-      : item.title.length === 0
+      : item.title?.length === 0
       ? 50
       : 200;
   };

@@ -77,14 +77,23 @@ const DrawerList = (props) => {
       const history = useHistory();
 
       const onSubMenuClick = () => {
-        if (expanded) {
+        if (secondMenu) {
+          showSecondMenu(false);
           setSubMenuExpanded(
             subMenuExpanded.bool && subMenuExpanded.title === title
               ? { title, bool: !subMenuExpanded.bool }
               : { title, bool: true }
           );
-          showSecondMenu(true);
-          setSecondMenuItems(items);
+        } else {
+          if (expanded) {
+            setSubMenuExpanded(
+              subMenuExpanded.bool && subMenuExpanded.title === title
+                ? { title, bool: true }
+                : { title, bool: true }
+            );
+            showSecondMenu(true);
+            setSecondMenuItems(items);
+          }
         }
       };
 
@@ -105,6 +114,7 @@ const DrawerList = (props) => {
         <div
           title={title}
           onClick={() => {
+            showSecondMenu(false);
             if (path) {
               history.push(path);
               setActiveEndPoint(apiEndpoint);

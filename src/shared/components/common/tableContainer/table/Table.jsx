@@ -16,11 +16,11 @@ const Table = (props) => {
     id: "action",
   };
 
-  const finalHeader = header && [
-    showCheckBox && checkBoxObj,
-    ...header,
-    showAction && actionObj,
-  ];
+  const finalHeader =
+    header &&
+    [showCheckBox && checkBoxObj, ...header, showAction && actionObj].filter(
+      (e) => e
+    );
 
   const headerProps = {
     tableData,

@@ -57,7 +57,7 @@ const Dashboard = () => {
 
     // get table detail from routes
 
-    let tableDetail = getTableDetailFromRoutes(IAMRoutes, location, "iam/");
+    let tableDetail = getTableDetailFromRoutes(iamDrawer, location, "iam/");
     setTableDetails(tableDetail);
 
     // get the key for the table for crud or any other row level operation

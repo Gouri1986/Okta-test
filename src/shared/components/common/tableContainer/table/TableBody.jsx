@@ -6,6 +6,9 @@ import Modal from "../../modal/center/Modal";
 import ModalForm from "../../forms/ModalForm";
 import { useSelector } from "react-redux";
 import { deleteTableData } from "../../../../apis/table/table";
+import InlineStatusBarChart from "../../charts/TableInlineBarStatus";
+import { kebabCaseDate } from "../../../../utils/misc";
+import ComplianceViewButton from "./columnButtons/ComplianceViewButton";
 
 const RowAction = ({
   baseUrl,
@@ -103,7 +106,7 @@ const TableBody = (props) => {
    * slice the data based on the page selected
    */
 
-  const TableRowCell = ({ item, datum }) => {
+  const TableRowCell = ({ item = {}, datum }) => {
     // destructuring the current cloumn's id and display title
     const { id, title } = item;
     /**
@@ -149,6 +152,22 @@ const TableBody = (props) => {
             tableRowkey={tableRowkey}
             setActiveData={setActiveData}
           />
+        ) : id === "descriptiveComplainceStatus" ? (
+          <div className='flex-c-ac'>
+            <InlineStatusBarChart
+              value1={datum[id]?.Pass}
+              value2={datum[id]?.Fail}
+            />
+            <span className='fw-500 mt-5 f-12 lh-1.8'>
+              {datum[id]?.Pass}/{datum[id]?.Pass + datum[id]?.Fail} Passed
+            </span>
+          </div>
+        ) : id === "lastVerifiedDate" ? (
+          <span>{kebabCaseDate(datum[id])}</span>
+        ) : id === "resources" ? (
+          <ComplianceViewButton dark />
+        ) : id === "regulationControls" ? (
+          <ComplianceViewButton />
         ) : (
           // else return normal row data
           <span className={"table-data-cell"}>{datum[id]}</span>

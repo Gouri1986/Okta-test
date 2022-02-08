@@ -1,14 +1,24 @@
 import { iamDrawer } from "./drawer";
 
 const weedoutArrays = (exPath) => {
-  return exPath
-    .map((ar) => ar.filter((art) => art.length > 0))
-    .filter((e) => e.length > 0);
+  const finalArrayWithDetails = exPath
+    .map((ar) => {
+      if (Array.isArray(ar)) {
+        return ar.filter((art) => art.length > 0);
+      }
+    })
+    .filter((e) => e?.length > 0);
+
+  if (finalArrayWithDetails.length > 0) {
+    return finalArrayWithDetails;
+  }
+
+  return exPath;
 };
 
 const getExactPathArray = (routes, location, mainRoute) => {
-  return routes().map((e) => {
-    return e.items
+  return routes().map((e) =>
+    e.items
       ? e.items.map((el) => {
           if (el.items) {
             return el.items?.filter((it) => {
@@ -26,10 +36,10 @@ const getExactPathArray = (routes, location, mainRoute) => {
             );
           }
 
-          return [e];
+          return e;
         })
-      : [e];
-  });
+      : e
+  );
 };
 
 // NOTE : Flat(3) is 3 level deep routing (...). 3 is tentative.
@@ -48,36 +58,13 @@ export const getTableTitleNameFromRoutes = (routes, location, mainRoute) => {
 };
 
 export const getTableKeyNameFromRoutes = (routes, location, mainRoute) => {
-  {
-    return weedoutArrays(getExactPathArray(routes, location, mainRoute)).flat(
-      3
-    )?.[0]?.key;
-  }
+  return weedoutArrays(getExactPathArray(routes, location, mainRoute)).flat(
+    3
+  )?.[0]?.key;
 };
 
 export const getTableDetailFromRoutes = (routes, location, mainRoute) => {
-  let mappedRoute = routes.map((e) => {
-    if (e.routes) {
-      return Object.values(e.routes).map((v) =>
-        v.find((vl) => vl.path === location.pathname.replace(mainRoute, ""))
-      );
-    } else {
-      console.log(e);
-      return e;
-    }
-  });
-  console.log(mappedRoute);
-  const returnRoute = mappedRoute.filter((e) => {
-    if (Array.isArray(e)) {
-      return e.filter((el) => el !== undefined).length > 0;
-    }
-    return [e];
-  })?.[0];
-
-  console.log(returnRoute);
-  if (Array.isArray(returnRoute)) {
-    return returnRoute.filter((e) => e !== undefined)[0];
-  } else {
-    return returnRoute;
-  }
+  return weedoutArrays(getExactPathArray(routes, location, mainRoute)).flat(
+    3
+  )?.[0];
 };

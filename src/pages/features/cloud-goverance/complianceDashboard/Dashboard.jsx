@@ -61,7 +61,7 @@ const Dashboard = () => {
     // get table detail from routes
 
     let tableDetail = getTableDetailFromRoutes(
-      complianceDashboardRoutes,
+      complianceDashboardDrawer,
       location,
       "compliance-dashboard/"
     );
@@ -73,6 +73,8 @@ const Dashboard = () => {
       location,
       "compliance-dashboard/"
     );
+
+    console.log(tableTitle, tableKey, tableDetail);
 
     setTableRowKey(tableKey);
 
@@ -133,8 +135,7 @@ const Dashboard = () => {
     onRowClick: onRowClick,
     tableData: tableContents,
     tableRowkey,
-    showCheckBox: true,
-    showAction: true,
+
     page,
     tableTitle,
     tableDetails,
@@ -156,7 +157,7 @@ const Dashboard = () => {
     setRowsPerPage, //state for the rows per page event
     pageCount, // total number of pages as per the data
     rowsPerPageData: [10, 25, 50, 100], // data for the row per page dropdown
-    jumpPageVisibility: true, // show the jump to page option
+    jumpPageVisibility: false, // show the jump to page option
   };
 
   return (
