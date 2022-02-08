@@ -40,10 +40,7 @@ const Layout = (props) => {
         )}
       </div>
       {/* Map section */}
-      {/* <div
-        style={{ backgroundColor: '#ffffff' }}
-        className='bdr-r-10 mt-50 mb-25 ml-40 mr-40'
-      >
+      {/* <div className='bdr-r-10 mt-50 mb-25 ml-40 mr-40 bg-white'>
         <Map />
       </div> */}
       <div className='flex-c ml-30 mr-30 pt-20'>

@@ -77,7 +77,7 @@ export default function ComplienceIntro() {
         </div>
       ) : (
         <div>
-          <div className='grey-container flex-r h-150 wp-100 flex-r'>
+          <div className='bg-secondary flex-r h-150 wp-100 flex-r p-10'>
             <div
               className='flex-r-jc-ac flex-jc-sp-btn'
               style={{ width: '100%' }}
