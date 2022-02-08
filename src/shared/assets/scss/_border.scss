@@ -34,6 +34,20 @@ $sizes:-1,
     }
 }
 
+@each $size1 in $sizes {
+    .bdr-r-tl-#{$size1} {
+        border-top-left-radius: #{$size1}px;
+    }
+    .bdr-r-tr-#{$size1} {
+        border-top-right-radius: #{$size1}px;
+    }
+    .bdr-r-bl-#{$size1} {
+        border-bottom-left-radius: #{$size1}px;
+    }
+    .bdr-r-br-#{$size1} {
+        border-bottom-left-radius: #{$size1}px;
+    }
+}
 
 /**********************************************************
                     Border size

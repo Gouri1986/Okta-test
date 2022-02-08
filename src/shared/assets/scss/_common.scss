@@ -68,8 +68,51 @@ $sizes: 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20,
   }
 }
 
+
 /**********************************************************
-                    Deprecating
+                Tanle Tabs 
+ ***********************************************************/
+.tab{
+  padding: 10px 40px;
+  background-color: $tab-color;
+  border-top-right-radius:6px;
+  border-top-left-radius:6px;
+  font-weight: 500;
+  font-size: 14px;
+  &>.tab:hover{
+    background-color: $white;
+  }
+}
+
+/**********************************************************
+                       rotate-icon 
+ ***********************************************************/
+ .rotate-icon {
+  transform: rotate(180deg);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/**********************************************************
+                   
+                      Deprecating: Dont use below code
+           
  ***********************************************************/
 
 /**********************************************************
@@ -80,28 +123,18 @@ $sizes: 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20,
   border-radius: 5px;
   height: 0px;
 }
-
 .divider-white {
   border: 1px solid $tertiary-color;
   border-radius: 5px;
   height: 0px;
 }
-
-/**********************************************************
-                       rotate-icon 
- ***********************************************************/
-.rotate-icon {
-  transform: rotate(180deg);
-}
-
 /**********************************************************
                 Container & cards Layout 
  ***********************************************************/
-.grey-container {
+ .grey-container {
   background-color: $secondary-color;
   padding: 10px 10px;
 }
-
 .blue-container {
   background-color: $secondary-color;
   border-radius: 5px;
@@ -111,20 +144,4 @@ $sizes: 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20,
   background-color: $tertiary-color;
   border-radius: 5px;
   box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.05);
-}
-.new-checked {
-  background-color: $secondary-color;
-  border-radius: 5px;
-  box-shadow: 0 0 5px 0 rgba(0, 130, 108, 0.05);
-  color: $secondary-color;
-  width: 100%;
-  height: 100%;
-}
-.fixed-error {
-  background-color: $secondary-color;
-  border-radius: 5px;
-  box-shadow: 0 0 5px 0 rgba(144, 0, 38, 0.05);
-  color: $secondary-color;
-  width: 100%;
-  height: 100%;
 }
