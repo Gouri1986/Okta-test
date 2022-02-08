@@ -62,15 +62,25 @@ $sizes: 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20,
   41, 42, 43, 44, 45, 46, 47, 48, 49, 50;
 @each $size in $sizes {
   .white-container-br-#{$size} {
-    background: $white;
+    background-color: $white;
     box-shadow: 0px 4px 90px 12px rgba(163, 171, 185, 0.25);
+    border-radius: #{$size}px;
+  }
+  .blue-container-br-#{$size} {
+    background-color: $secondary-color;
+    box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.05);
+    border-radius:#{$size}px;
+  }
+  .lightblue-container-br-#{$size}{
+    background-color: $tertiary-color;
+    box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.05);
     border-radius: #{$size}px;
   }
 }
 
 
 /**********************************************************
-                Tanle Tabs 
+                Table Tabs 
  ***********************************************************/
 .tab{
   padding: 10px 40px;
@@ -127,21 +137,4 @@ $sizes: 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20,
   border: 1px solid $tertiary-color;
   border-radius: 5px;
   height: 0px;
-}
-/**********************************************************
-                Container & cards Layout 
- ***********************************************************/
- .grey-container {
-  background-color: $secondary-color;
-  padding: 10px 10px;
-}
-.blue-container {
-  background-color: $secondary-color;
-  border-radius: 5px;
-  box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.05);
-}
-.lightblue-container{
-  background-color: $tertiary-color;
-  border-radius: 5px;
-  box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.05);
 }

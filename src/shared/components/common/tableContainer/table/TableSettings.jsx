@@ -23,7 +23,7 @@ function TableSettings(props) {
       <div className='flex-r-ac flex-jc-sp-btn pt-10 pb-10'>
         <div className='fw-600 f-20 fc-primary'>{tableTitle}</div>
         <div
-          className='lightblue-container flex-r flex-r-ac flex-jc-sp-btn pl-24 pr-24 pb-10 pt-10 cp'
+          className='lightblue-container-br-5 flex-r flex-r-ac flex-jc-sp-btn pl-24 pr-24 pb-10 pt-10 cp'
           onClick={modalOnClick}
         >
           <AddNewIcon />
