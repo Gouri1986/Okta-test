@@ -308,7 +308,7 @@ const DrawerList = (props) => {
                         onSecondMenuClick(item);
                       }}
                       className={`flex-r-ac flex-jc-sp-btn cp f-14 fw-400 lh-2-1 fc-white  flex-r-ac pl-15 pr-15 pt-10 pb-10 ${
-                        item.items[0]?.path == location.pathname
+                        item.items?.[0]?.path == location.pathname
                           ? "second-menu-route-list-title-selected"
                           : "second-menu-route-list-title"
                       }`}
