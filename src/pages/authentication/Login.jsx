@@ -5,18 +5,18 @@ import Button from "@mui/material/Button";
 import { loginUser } from "../../shared/apis/login/login";
 import { addUser } from "../../redux/user/userActions";
 import { useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import { useEffect } from "react";
 
 const Login = () => {
   const dispatch = useDispatch();
-  const navigate = useNavigate();
+  const history = useHistory();
 
   useEffect(() => {
     const user = sessionStorage.getItem("user");
     if (user !== null) {
       dispatch(addUser(user));
-      navigate("/environmentcatelogue");
+      history.push("/");
     }
   }, []);
 
@@ -33,7 +33,7 @@ const Login = () => {
     if (token) {
       sessionStorage.setItem("user", token);
       dispatch(addUser(token));
-      navigate("/environmentcatelogue");
+      history.push("/");
     }
   };
 
@@ -44,7 +44,7 @@ const Login = () => {
         "& .MuiTextField-root": { m: 1, width: "25ch" },
       }}
       noValidate
-      className='flex-r-jc-ac mt-200'
+      className='flex-r-jc-ac wp-100'
       autoComplete='off'
     >
       <div className='flex-c '>
@@ -72,7 +72,7 @@ const Login = () => {
         >
           Login
         </Button>
-        {/* <button ClassName='bg-tertiary no-bdr p-15 fc-tertiary bdr-r-5'  onClick={authenticate}>Login</button> */}
+        {/* <button ClassName='bg-tertiary no-bdr p-15 fc-white bdr-r-5'  onClick={authenticate}>Login</button> */}
       </div>
     </Box>
   );

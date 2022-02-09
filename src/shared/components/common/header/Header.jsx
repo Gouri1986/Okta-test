@@ -5,21 +5,13 @@ import {
   NotificationIcon,
 } from "../../../assets/images/icons/common";
 import User from "../../../assets/images/profile/user.svg";
-import { getTableTitleNameFromRoutes } from "../../../utils/getApiEndpointFromRoutes";
-import { getSpacedDisplayName } from "../../../utils/table";
+import Search from "../search/Search";
 
-function Header({ tableTitle }) {
+function Header() {
   return (
-    <div className='h-100 flex-r-ac flex-jc-sp-btn'>
-      <div className='flex-c'>
-        {tableTitle && (
-          <>
-            <p className='f-40 fw-600 fc-primary lh-1-0'>{tableTitle}</p>
-            <p className='f-14 fw-400 fc-primary ml-3'>
-              Welcome To {tableTitle}
-            </p>
-          </>
-        )}
+    <div className='hp-100 flex-r-ac flex-jc-sp-btn'>
+      <div className='hp-50 wp-55 flex-r-ac'>
+        <Search />
       </div>
       <div className='flex-r-ac flex-jc-sp-btn'>
         <div className='flex-r-ac mr-15'>
@@ -28,7 +20,7 @@ function Header({ tableTitle }) {
         <div className='pos-rel mr-30 flex-r-ac'>
           <NotificationIcon />
           <div className='pos-ab t--10 l-20 bg-black h-24 w-24 bdr-rp-50 flex-r-jc-ac'>
-            <p className='f-12 fc-tertiary'>2</p>
+            <p className='f-12 fc-white'>2</p>
           </div>
         </div>
         <div className='wp-100 flex-r-ac white-container-br-5 flex-jc-sp-btn p-10'>

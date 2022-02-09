@@ -5,18 +5,18 @@ import { SearchIcon } from "./assets";
 const Search = (props) => {
   const { searchValue, setSearchValue, isSearchClicked, searchClicked } = props;
   return (
-    <div className="flex-r-ac h-40 pos-rel bg-secondary bdr-lightgrey-1 br-3">
-      <div className="search-input-container wp-100">
+    <div className='flex-r-ac pos-rel bg-white bdr-lightgrey-1 bdr-r-10 wp-100'>
+      <div className='search-input-container wp-100 pl-15 pt-15 pb-15'>
         <input
           value={searchValue}
           onChange={(e) => setSearchValue(e.target.value)}
-          placeholder="Search"
-          className="wp-100 f-18 fw-400 fc-tertiary pl-10 lh-1-6 no-bdr no-outline bg-transparent"
+          placeholder='Search'
+          className='wp-100 hp-100 f-16 fw-500 lh-1-6 no-bdr no-outline bg-transparent'
         />
       </div>
       <div
         onClick={() => isSearchClicked(!searchClicked)}
-        className="search-icon-container mr-5"
+        className='search-icon-container pt-5 flex-r-ac pr-15'
       >
         <SearchIcon />
       </div>

@@ -1,4 +1,4 @@
-@import "../../../../assets/scss/styles.scss";
+@import '../../../../assets/scss/styles.scss';
 
 .drawer-container {
   display: flex;
@@ -6,21 +6,20 @@
   padding-right: 20px;
   flex-direction: column;
   background-color: $primary-color;
-  position: relative;
-  transition: width 0.25s ease-in-out;
   z-index: 100;
-  height: 100vh;
+  height: 100%;
 }
 
-.drawer-container {
-  width: 79px;
-  align-items: center;
+.drawer-container-expanded {
+  display: flex;
+  padding-left: 20px;
+  padding-right: 20px;
+  flex-direction: column;
+  background-color: $primary-color;
+  z-index: 100;
+  height: 100%;
 }
 
-// .drawer-container {
-//   width: 300px;
-//   padding-top: 30px;
-// }
 .drawer-list-container {
   overflow-y: scroll;
 }
@@ -29,13 +28,25 @@
   display: none;
 }
 
+.nav-section-title {
+  font-style: normal;
+  font-weight: 600;
+  font-size: 10px;
+  line-height: 158%;
+  display: flex;
+  align-items: center;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: #ffffff;
+}
+
 .drawer-list-container ul {
   list-style: none;
   padding: 0px;
+  margin: 0px;
 }
 
 .sub-menu-section {
-  position: absolute;
   list-style: none;
   background-color: $primary-color;
   z-index: 2000;
@@ -52,11 +63,106 @@
   white-space: nowrap;
   user-select: none;
   &:hover {
-    background: $tertiary-color;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    .main-route-list-title {
+      background: $tertiary-color;
+      box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+      color: $secondary-color;
+      border-radius: 5px 5px 5px 5px;
+    }
   }
-  &:hover span {
-    color: $secondary-color;
+}
+
+.second-menu-drawer-list-container li {
+  border-radius: 10px;
+  white-space: nowrap;
+  user-select: none;
+  &:hover {
+    .second-menu-route-list-title {
+      background: rgba(15, 86, 179, 0.5);
+      border-radius: 0px 2px 3px 0px;
+      box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+      color: $secondary-color;
+    }
+  }
+}
+
+.second-menu-route-list-title-selected {
+  background: rgba(15, 86, 179, 0.5);
+  border-radius: 0px 2px 3px 0px;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  color: $secondary-color;
+}
+
+.main-route-list-title-selected {
+  background: $tertiary-color;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  color: $secondary-color;
+  border-radius: 5px 5px 0px 0px;
+}
+
+.sub-drawer-list-container {
+  background: rgba(17, 13, 239, 0.21);
+  border-radius: 0px 0px 5px 5px;
+}
+
+.sub-drawer-list-title-selected {
+  background: rgba(196, 196, 196, 0.24);
+  font-style: normal;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 138%;
+  display: flex;
+  align-items: center;
+  text-transform: capitalize;
+  letter-spacing: 0.0075em;
+  color: #ffffff;
+}
+
+.sub-drawer-list-title {
+  font-style: normal;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 138%;
+  display: flex;
+  text-transform: capitalize;
+  align-items: center;
+  letter-spacing: 0.0075em;
+  color: #ffffff;
+  &:hover {
+    background: rgba(196, 196, 196, 0.24);
+  }
+}
+
+.second-sub-drawer-list-container {
+  background: #070808;
+}
+
+.second-sub-drawer-list-title-selected {
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 150%;
+  display: flex;
+  align-items: center;
+  letter-spacing: 0.005em;
+  font-feature-settings: 'tnum' on, 'lnum' on;
+  color: #ffffff;
+  text-transform: capitalize;
+  border-left: 2px solid #0f56b3;
+}
+
+.second-sub-drawer-list-title {
+  border-left: 2px solid #ffffff;
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 150%;
+  text-transform: capitalize;
+  display: flex;
+  align-items: center;
+  letter-spacing: 0.005em;
+  font-feature-settings: 'tnum' on, 'lnum' on;
+  color: #ffffff;
+  &:hover {
+    border-left: 2px solid #0f56b3;
   }
 }
 
@@ -79,8 +185,7 @@
 }
 
 .drawer-lists {
-  border-bottom: 1px solid rgb(163, 157, 157);
-  margin-bottom: 20px;
+  margin-bottom: 30px;
 }
 
 .drawer-arrow-button svg {
@@ -89,10 +194,20 @@
 
 .drawer-right-arrow {
   transform: rotate(180deg);
-  transition: transform 0.8s ease-out;
+  transition: transform 0.3s ease-out;
 }
 
 .drawer-left-arrow {
-  transform: rotate(360deg);
-  transition: transform 0.8s ease-out;
+  transform: rotate(0deg);
+  transition: transform 0.3s ease-out;
+}
+
+.menu-right-arrow {
+  transform: rotate(90deg);
+  transition: transform 0.3s ease-out;
+}
+
+.menu-left-arrow {
+  transform: rotate(0deg);
+  transition: transform 0.3s ease-out;
 }

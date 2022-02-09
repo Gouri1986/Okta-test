@@ -1,82 +1,131 @@
 import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
-import "./style.scss";
-import Table from "../../../shared/components/common/tableContainer/table/Table";
 import { getTableData } from "../../../shared/apis/table/table";
-import { encsDrawer } from "../../../shared/utils/drawer";
-import {
-  getApiEndpointNameFromRoutes,
-  getTableTitleNameFromRoutes,
-} from "../../../shared/utils/getApiEndpointFromRoutes";
-import { useSelector } from "react-redux";
-import { getSpacedDisplayName } from "../../../shared/utils/table";
+import { encsDrawer as drawer } from "../../../shared/utils/drawer";
+import { getTableDetailFromRoutes } from "../../../shared/utils/getApiEndpointFromRoutes";
+import { useDispatch, useSelector } from "react-redux";
 import { MetadataLayout } from "../../../shared/layout";
+import "./style.scss";
+import { Table, Pagination } from "../../../shared/components/common";
+
 const Dashboard = () => {
-  const { user } = useSelector((state) => state.userReducer);
-  const [tableContents, setTableContents] = useState([]);
-  const [selectedRow, setSelectedRow] = useState([]);
-  const [report, showReport] = useState(false);
-  const [activeEndPoint, setActiveEndPoint] = useState("");
-  const [refresh, setRefresh] = useState(false);
-  const location = useLocation();
+  // loggin user details from store
+  const dispatch = useDispatch();
+
+  const { activeEndpoint, tableContents } = useSelector(
+    (state) => state.tableReducer
+  );
+  //table data fetched from api
+  // table title returned from the routes with respect to the url path
   const [tableTitle, setTableTitle] = useState("");
+  // table details
+  const [tableDetails, setTableDetails] = useState({});
+  // key for the table row
+  const [tableRowkey, setTableRowKey] = useState("");
+  // checked table row
+  const [selectedRow, setSelectedRow] = useState([]);
+  // location hook to get the location variables
+  const location = useLocation();
+  // Base Url of the API
+  const baseUrl = process.env.REACT_APP_ENCS_BASE_URL;
+  const paramsToFetchTableDetails = [
+    drawer,
+    location,
+    "environment-catalogue/",
+  ];
+
   useEffect(() => {
-    let endpointFromPath = getApiEndpointNameFromRoutes(
-      encsDrawer,
-      location,
-      "environmentcatelogue/"
-    );
-    if (endpointFromPath) {
-      getTable(endpointFromPath);
+    // get table detail from routes
+    let tableDetail = getTableDetailFromRoutes(...paramsToFetchTableDetails);
+    setTableDetails(tableDetail);
+    setTableRowKey(tableDetail?.key);
+    setTableTitle(tableDetail?.title);
+    const apiEndpoint = tableDetail?.apiEndpoint;
+    if (apiEndpoint) {
+      getTable(apiEndpoint);
     } else {
-      activeEndPoint.length > 0 && getTable(activeEndPoint);
+      activeEndpoint.length > 0 && getTable(activeEndpoint);
     }
-    setTableTitle(
-      getTableTitleNameFromRoutes(encsDrawer, location, "environmentcatelogue/")
-    );
-  }, [refresh, location.pathname]);
+    // dependency array
+  }, [location.pathname]);
+
   const getTable = async (activeEndPoint) => {
-    const data = await getTableData(activeEndPoint, user);
-    const objectKeys = data?.map((e) => {
-      return Object.keys(e);
-    });
-    const header = objectKeys?.[0]?.map((el) => {
-      return { title: getSpacedDisplayName(el), id: el };
-    });
-    data && setTableContents({ header, data });
+    const path = `${baseUrl}${activeEndPoint}`;
+    dispatch(getTableData(path));
   };
+
+   // pagination state init
+   const [page, setPage] = useState(1);
+   const [rowsPerPage, setRowsPerPage] = useState(10);
+   const pageCount = Math.ceil(tableContents.data?.length / rowsPerPage);
+ 
+   // pagination page count state change 
+   useEffect(() => {
+     setPage(1)
+   }, [tableContents])
+   
+  // state for the visibility of crud modal
+  const [openCRUDModal, setOpenCRUDModal] = useState(false);
+  const [CRUDModalType, setCRUDModalType] = useState("add");
+
   const onRowClick = (rowData) => {
-    if (selectedRow.find((e) => e.id === rowData.id)) {
-      const selectedItems = selectedRow.filter((e) => e.id !== rowData.id);
+    if (selectedRow.find((e) => e[tableRowkey] === rowData[tableRowkey])) {
+      const selectedItems = selectedRow.filter(
+        (e) => e[tableRowkey] !== rowData[tableRowkey]
+      );
       setSelectedRow(selectedItems);
-      console.log(rowData);
     } else {
-      setSelectedRow([rowData, ...selectedRow]);
-      console.log(rowData);
+      setSelectedRow([rowData]);
     }
   };
+
+  const layoutProps = {
+    tableData: tableContents,
+    tableTitle,
+    drawer,
+    openCRUDModal,
+    setOpenCRUDModal,
+    pageTitle: "Environment Catelogue",
+    CRUDModalType,
+    setCRUDModalType,
+    baseUrl,
+  };
+
+  const tableProps = {
+    selectedRow: selectedRow,
+    onRowClick: onRowClick,
+    tableData: tableContents,
+    tableRowkey,
+    showCheckBox: true,
+    showAction: true,
+    page,
+    tableTitle,
+    tableDetails,
+    rowsPerPage,
+    openCRUDModal,
+    setOpenCRUDModal,
+    activeEndpoint,
+    getTable,
+    CRUDModalType,
+    setCRUDModalType,
+    baseUrl,
+  };
+
+  const paginationProps = {
+    dataCount: tableContents.data?.length, // total data count
+    page, // current page
+    setPage, //state for the page number to be set
+    rowsPerPage, // rows per page count
+    setRowsPerPage, //state for the rows per page event
+    pageCount, // total number of pages as per the data
+    rowsPerPageData: [10, 25, 50, 100], // data for the row per page dropdown
+    jumpPageVisibility: false, // show the jump to page option
+  };
+
   return (
-    <MetadataLayout
-      setActiveEndPoint={setActiveEndPoint}
-      setRefresh={setRefresh}
-      refresh={refresh}
-      getTable={getTable}
-      report={report}
-      showReport={showReport}
-      tableData={tableContents}
-      tableTitle={tableTitle}
-    >
-      {tableContents.data?.length > 0 && (
-        <Table
-          report={report}
-          selectedRow={selectedRow}
-          onRowClick={onRowClick}
-          tableData={tableContents}
-          setTableContents={setTableContents}
-          showCheckBox
-          showAction
-        />
-      )}
+    <MetadataLayout {...layoutProps}>
+      {tableContents.data?.length > 0 && <Table {...tableProps} />}
+      <Pagination {...paginationProps} />
     </MetadataLayout>
   );
 };

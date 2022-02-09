@@ -1,0 +1,26 @@
+// MUI styles override
+
+.MuiBreadcrumbs-li {
+  text-transform: capitalize !important;
+  &>a{
+    font-family: Poppins;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 20px;
+    color:#080430;
+  }
+}
+
+.MuiBreadcrumbs-ol{
+  li:nth-last-child(1){
+    a{
+    color:#6c6c6c;
+    }
+  }
+}
+
+.css-1wuw8dw-MuiBreadcrumbs-separator{
+  margin-right: 15px !important;
+  margin-left: 15px !important;
+}

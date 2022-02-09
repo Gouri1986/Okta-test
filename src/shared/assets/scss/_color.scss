@@ -1,50 +1,51 @@
-@import 'variables';
+@import "variables";
 
 /**********************************************************
           Transparent & translucent background
  ***********************************************************/
-.bg-transparent{
-    background-color:transparent;
+.bg-transparent {
+  background-color: transparent;
 }
-.bg-translucent{
-    background-color: $translucent-color;
+.bg-translucent {
+  background-color: $translucent-color;
 }
-
 
 /**********************************************************
                     Background Color
 ***********************************************************/
 // theme blue
-.bg-primary{
-    background-color: $primary-color;
+.bg-primary {
+  background-color: $primary-color;
 }
 // theme grey
-.bg-secondary{
-    background-color: $secondary-color;
+.bg-secondary {
+  background-color: $secondary-color;
 }
 // theme navy blue
-.bg-tertiary{
-    background-color: $tertiary-color;
+.bg-tertiary {
+  background-color: $tertiary-color;
 }
-.bg-white{
-    background-color: $white;
+.bg-white {
+  background-color: $white;
 }
-.bg-black{
-    background-color: $black;
+.bg-black {
+  background-color: $black;
 }
-
+.bg-tab {
+  background-color: $tab-color;
+}
 /**********************************************************
                         status color 
  ***********************************************************/
-.bg-success{
-    background-color: $success-color;
+.bg-success {
+  background-color: $success-color;
 }
-.bg-danger{
-    background-color: $danger-color;
+.bg-danger {
+  background-color: $danger-color;
 }
-.bg-warning{
-    background-color: $warning-color;
+.bg-warning {
+  background-color: $warning-color;
 }
-.bg-info{
-    background-color: $info-color;
+.bg-info {
+  background-color: $info-color;
 }

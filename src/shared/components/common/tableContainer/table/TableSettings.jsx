@@ -1,35 +1,61 @@
-import React, { useState } from "react"
-import ColumnSettingsIcon from "../columnSettings/ColumnSettings"
-import Refresh from "../refresh/Refresh"
-import Download from "../download/Download"
-import { AddNewIcon, FilterIcon } from "./assets/index"
+import React, { useEffect } from "react";
+import ColumnSettingsIcon from "../columnSettings/ColumnSettings";
+import Refresh from "../refresh/Refresh";
+import Download from "../download/Download";
+import { AddNewIcon } from "./assets";
+import FilterSearch from "../filter/filterSearch/FilterSearch";
+import { useHistory } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 
 function TableSettings(props) {
-  const { modalOnClick } = props
+  const { modalOnClick, tableTitle, tabs } = props;
+  const history = useHistory();
+  const location = useLocation();
+
   return (
-    <div className="flex-r-ac flex-jc-sp-btn p-25">
-      <div className="flex-c">
-        <div className="f-13 fw-500 fc-quaternary">Filter</div>
-        <div className="bdr-buttom-primary-1 w-600">
-          <FilterIcon />
+    <div className='flex-c pos-rel'>
+      <div className='flex-r-jc-ac pos-ab r-10 t--41'>
+        {tabs.map((tab) => {
+          return (
+            <div
+              onClick={() => tab.path && history.push(tab.path)}
+              className={`${
+                tab.path === location.pathname ? "bg-white" : "bg-tab"
+              } mr-20 tab cp `}
+            >
+              {tab.title}
+            </div>
+          );
+        })}
+      </div>
+      <div className='flex-r-ac flex-jc-sp-btn pt-10'>
+        <div className='fw-600 f-20 fc-primary'>{tableTitle}</div>
+        <div
+          className='lightblue-container-br-5 flex-r flex-r-ac flex-jc-sp-btn pl-24 pr-24 pb-10 pt-10 cp'
+          onClick={modalOnClick}
+        >
+          <AddNewIcon />
+          <p className='font-16 fw-600 fc-white pl-10'>Add New</p>
         </div>
       </div>
-      <div className="flex-r-ac flex-jc-sp-btn">
-        <div className="table-add-icon mr-30 cp pt-7 pl-7 pr-7 bdr-r-6" onClick={modalOnClick}>
-          <AddNewIcon />
+      <div className='flex-r-ac flex-jc-sp-btn mt-30'>
+        <div className='flex-r wp-100 flex-r-ac flex-jc-sp-btn mr-20'>
+          <FilterSearch />
         </div>
-        <div className="mr-30">
-          <ColumnSettingsIcon />
-        </div>
-        <div className="mr-30">
-          <Refresh />
-        </div>
-        <div>
-          <Download />
+        <div className='flex-r-ac flex-jc-sp-btn'>
+          <div className='mr-30'>
+            <ColumnSettingsIcon />
+          </div>
+          <div className='mr-30'>
+            <Refresh />
+          </div>
+          <div>
+            <Download />
+          </div>
         </div>
       </div>
     </div>
-  )
+  );
 }
 
-export default TableSettings
+export default TableSettings;

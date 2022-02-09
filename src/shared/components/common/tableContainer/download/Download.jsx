@@ -1,10 +1,11 @@
 import React from "react";
 import "./download.scss";
 import { DownloadIcon } from "./asset";
-import { tableData } from "../../../db";
+// import { tableData } from "../../../db";
 const { useState } = React;
 
 const Download = ({ selectedRow, tableContents }) => {
+  let tableData = [];
   const [isOpen, setOpen] = useState(false);
   // const [selectedItem, setSelectedItem] = useState(null);
 
@@ -80,7 +81,10 @@ const Download = ({ selectedRow, tableContents }) => {
         ) : */}
 
         {/* ( */}
-        <DownloadIcon onClick={() => handleItemClick(selectedRow, tableData)} />
+        <DownloadIcon
+
+        // onClick={() => handleItemClick(selectedRow, tableData)}
+        />
         {/* )} */}
       </div>
       {/* <div className={`dropdown-body ${isOpen && 'open'}`}>
