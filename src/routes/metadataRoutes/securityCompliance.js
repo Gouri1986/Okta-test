@@ -3,7 +3,6 @@ const controlTypes = [
     path: "/scos-security-control-types",
     apiEndpoint: "scos-security-control-types",
     pk: "scosSecurityControlType",
-    showAsSubMenu: false,
   },
 ];
 
@@ -12,7 +11,6 @@ const securityControls = [
     path: "/scos-security-controls",
     apiEndpoint: "scos-security-controls",
     pk: "scosSecurityControlName",
-    showAsSubMenu: false,
   },
 ];
 const frameworkTypes = [
@@ -20,7 +18,6 @@ const frameworkTypes = [
     path: "/scos-framework-types",
     apiEndpoint: "scos-framework-types",
     pk: "scosFrameworkType",
-    showAsSubMenu: false,
   },
 ];
 
@@ -29,7 +26,6 @@ const controlFramework = [
     path: "/scos-control-frameworks",
     apiEndpoint: "scos-control-frameworks",
     pk: "controlFrameworkName",
-    showAsSubMenu: false,
   },
 ];
 
@@ -38,7 +34,22 @@ const CSI7 = [
     path: "/scos-cis7-control_details",
     apiEndpoint: "scos-cis7-control_details",
     pk: "cisSafeguard",
-    showAsSubMenu: false,
+    visibilitydependency: [
+      {
+        parent: "cis8Deprecated", // parent input's key in which the children inputs' rendering depends
+        value: "NO", // actual match of value to render the children(depended) inputs
+        children: ["cis8Control", "cis8Safeguard"], // an array of depending inputs
+      },
+    ],
+    dropdown: [{ name: "cis8Deprecated", dropdown: ["YES", "NO"] }],
+    dropdown: [
+      {
+        name: "controlFrameworkName",
+        dynamic: true,
+        displayKey: "controlFrameworkName",
+        dropdown: `${process.env.REACT_APP_SCOS_BASE_URL}list-controlFrameworkNames`,
+      },
+    ],
   },
 ];
 
@@ -47,7 +58,14 @@ const CSI8 = [
     path: "/scos-cis8-control_details",
     apiEndpoint: "scos-cis8-control_details",
     pk: "cisSafeguard",
-    showAsSubMenu: false,
+    dropdown: [
+      {
+        name: "controlFrameworkName",
+        dynamic: true,
+        displayKey: "controlFrameworkName",
+        dropdown: `${process.env.REACT_APP_SCOS_BASE_URL}list-controlFrameworkNames`,
+      },
+    ],
   },
 ];
 
@@ -56,7 +74,14 @@ const CSI7And8Mapping = [
     path: "/scos-cis8-regulation-map",
     apiEndpoint: "scos-cis8-regulation-map",
     pk: "cis8RegulationMapId",
-    showAsSubMenu: false,
+    dropdown: [
+      {
+        name: "cis8Safeguard",
+        dynamic: true,
+        displayKey: "CISSafeguard",
+        dropdown: `${process.env.REACT_APP_SCOS_BASE_URL}list-safegurds`,
+      },
+    ],
   },
 ];
 
@@ -65,7 +90,7 @@ const regulationFramework = [
     path: "/scos-regulation-frameworks",
     apiEndpoint: "scos-regulation-frameworks",
     pk: "regulationFrameworkId",
-    showAsSubMenu: false,
+    whitelist: ["regulationFrameworkId"],
   },
 ];
 
@@ -81,6 +106,14 @@ const SOC2 = [
     apiEndpoint: "scos-soc2-regulation-category",
     pk: "regulationCategoryNumber",
     name: "Category",
+    dropdown: [
+      {
+        name: "regulationCriteriaSeries",
+        dynamic: true,
+        displayKey: "regulationCriteriaSeries",
+        dropdown: `${process.env.REACT_APP_SCOS_BASE_URL}list-regulationCriteriaTitle`,
+      },
+    ],
   },
   {
     path: "/scos-soc2-regulation-details",

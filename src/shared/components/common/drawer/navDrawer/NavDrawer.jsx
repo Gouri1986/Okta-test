@@ -1,11 +1,14 @@
 import React, { useState } from "react";
+import { useDispatch } from "react-redux";
+import { setTableActiveEndpoint } from "../../../../../redux/table/tabelActions";
 import { DrawerArrow } from "./assets";
 import "./navdrawer.scss";
 import DrawerHeader from "./NavDrawerHeader";
 import DrawerList from "./NavDrawerList";
 
 const Drawer = (props) => {
-  const { onClick, setActiveEndPoint, setRefresh, refresh, drawer } = props;
+  const { onClick } = props;
+  const dispatch = useDispatch();
 
   const [expanded, setExpanded] = useState(false);
   const [secondMenu, showSecondMenu] = useState(false);
@@ -28,11 +31,8 @@ const Drawer = (props) => {
         <DrawerList
           expanded={expanded}
           setExpanded={setExpanded}
-          setActiveEndPoint={setActiveEndPoint}
-          onClick={onClick}
-          refresh={refresh}
-          setRefresh={setRefresh}
-          drawer={drawer}
+          setActiveEndPoint={(ep) => dispatch(setTableActiveEndpoint(ep))}
+          onClick={() => dispatch()}
           secondMenu={secondMenu}
           showSecondMenu={showSecondMenu}
           secondMenuItems={secondMenuItems}
@@ -41,11 +41,8 @@ const Drawer = (props) => {
         <DrawerList
           expanded={expanded}
           setExpanded={setExpanded}
-          setActiveEndPoint={setActiveEndPoint}
+          setActiveEndPoint={(ep) => dispatch(setTableActiveEndpoint(ep))}
           onClick={onClick}
-          refresh={refresh}
-          setRefresh={setRefresh}
-          drawer={drawer}
           secondMenu={secondMenu}
           isSecondMenu
           showSecondMenu={showSecondMenu}

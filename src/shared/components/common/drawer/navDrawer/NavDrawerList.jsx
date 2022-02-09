@@ -12,19 +12,20 @@ import { mainDrawer } from "../../../../utils/drawer";
 
 // SVG Icons from the assets
 import { NavBarMenuArrow } from "./assets";
+import { useDispatch } from "react-redux";
+import { setActiveTableTabs } from "../../../../../redux/table/tabelActions";
 
 const DrawerList = (props) => {
   // Properties passed from the parent Drawer component
   const {
     onClick,
     setActiveEndPoint,
-    setRefresh,
-    refresh,
     expanded,
     secondMenu,
     showSecondMenu,
     secondMenuItems,
     setSecondMenuItems,
+    setExpanded,
     isSecondMenu,
   } = props;
 
@@ -74,16 +75,28 @@ const DrawerList = (props) => {
     const { item, expanded } = props;
     const { title = "", drawer = () => {}, Icon } = item;
 
-    const SubMenuList = ({ Icon, title, items }) => {
+    const SubMenuList = ({ Icon, title, items, path, apiEndpoint }) => {
+      const history = useHistory();
+      const dispatch = useDispatch();
+
       const onSubMenuClick = () => {
-        if (expanded) {
+        if (secondMenu) {
+          showSecondMenu(false);
           setSubMenuExpanded(
             subMenuExpanded.bool && subMenuExpanded.title === title
               ? { title, bool: !subMenuExpanded.bool }
               : { title, bool: true }
           );
-          showSecondMenu(true);
-          setSecondMenuItems(items);
+        } else {
+          if (expanded) {
+            setSubMenuExpanded(
+              subMenuExpanded.bool && subMenuExpanded.title === title
+                ? { title, bool: true }
+                : { title, bool: true }
+            );
+            showSecondMenu(true);
+            setSecondMenuItems(items);
+          }
         }
       };
 
@@ -103,7 +116,17 @@ const DrawerList = (props) => {
       return (
         <div
           title={title}
-          onClick={onSubMenuClick}
+          onClick={() => {
+            showSecondMenu(false);
+            if (path) {
+              dispatch(setActiveTableTabs([]));
+
+              history.push(path);
+              setActiveEndPoint(apiEndpoint);
+            } else {
+              onSubMenuClick();
+            }
+          }}
           className={classNameOfSubMenu}
         >
           <div className='flex-r-ac flex-1'>
@@ -123,6 +146,8 @@ const DrawerList = (props) => {
             ? { title, bool: !menuExpanded.bool }
             : { title, bool: true }
         );
+      } else {
+        setExpanded(true);
       }
     };
 
@@ -159,8 +184,14 @@ const DrawerList = (props) => {
                 expanded && !secondMenu ? "p-10" : "p-0"
               }`}
             >
-              {drawer()?.map(({ Icon, title, items }) => (
-                <SubMenuList Icon={Icon} title={title} items={items} />
+              {drawer()?.map(({ Icon, title, items, path, apiEndpoint }) => (
+                <SubMenuList
+                  Icon={Icon}
+                  title={title}
+                  items={items}
+                  path={path}
+                  apiEndpoint={apiEndpoint}
+                />
               ))}
             </div>
           )}
@@ -171,6 +202,7 @@ const DrawerList = (props) => {
 
   const SecondNavMenu = () => {
     const history = useHistory();
+    const dispatch = useDispatch();
     const location = useLocation();
 
     const [secondMenuItemSelected, setSecondMenuItemSelected] = useState({
@@ -183,16 +215,7 @@ const DrawerList = (props) => {
       bool: false,
     });
 
-    useEffect(() => {
-      const { state } = location;
-      console.log(state);
-      if (state?.deep === 3) {
-        setSecondMenuItemSelected(location.state.selectedParent);
-        setSecondSubMenuSelected(location.state.selectedChild);
-      }
-    }, [location]);
-
-    const SecondMenuSubList = ({ item, parentTitle }) => {
+    const SecondMenuSubList = ({ item, items }) => {
       return (
         <div
           onClick={() => {
@@ -204,24 +227,13 @@ const DrawerList = (props) => {
             );
 
             if (item.path.length > 0) {
-              history.push(item.path, {
-                deep: 3,
-                selectedParent: {
-                  title: parentTitle,
-                  bool: true,
-                },
-                selectedChild: {
-                  title: item.title,
-                  bool: true,
-                },
-              });
+              dispatch(setActiveTableTabs(items));
+              history.push(item.path);
               setActiveEndPoint(item.apiEndpoint);
-              setRefresh(!refresh);
             }
           }}
           className={` cp flex-r-ac flex-jc-sp-btn ${
-            secondSubMenuSelected.bool &&
-            secondSubMenuSelected.title === item.title
+            item.path === location.pathname
               ? "second-sub-drawer-list-title-selected"
               : "second-sub-drawer-list-title"
           }   ${"ml-25  pl-15 pt-20 pb-15 pr-10"}`}
@@ -243,9 +255,10 @@ const DrawerList = (props) => {
         item.items.length === 1 &&
         !item.items[0].showAsSubMenu
       ) {
+        dispatch(setActiveTableTabs([]));
         history.push(item.items[0].path);
         setActiveEndPoint(item.items[0].apiEndpoint);
-        setRefresh(!refresh);
+        setSecondMenuItemSelected({ title: "", bool: false });
       } else if (
         Array.isArray(item.items) &&
         item.items.length === 1 &&
@@ -275,9 +288,9 @@ const DrawerList = (props) => {
           );
         }
       } else {
+        dispatch(setActiveTableTabs([]));
         history.push(item.path);
         setActiveEndPoint(item.apiEndpoint);
-        setRefresh(!refresh);
       }
     };
 
@@ -291,10 +304,11 @@ const DrawerList = (props) => {
                 {secondMenuItems.map((item) => (
                   <li className='flex-c mb-10'>
                     <div
-                      onClick={() => onSecondMenuClick(item)}
+                      onClick={() => {
+                        onSecondMenuClick(item);
+                      }}
                       className={`flex-r-ac flex-jc-sp-btn cp f-14 fw-400 lh-2-1 fc-white  flex-r-ac pl-15 pr-15 pt-10 pb-10 ${
-                        secondMenuItemSelected.bool &&
-                        secondMenuItemSelected.title === item.title
+                        item.items[0]?.path == location.pathname
                           ? "second-menu-route-list-title-selected"
                           : "second-menu-route-list-title"
                       }`}
@@ -327,7 +341,7 @@ const DrawerList = (props) => {
                             item.items?.map((listItem) => (
                               <SecondMenuSubList
                                 item={listItem}
-                                parentTitle={item.title}
+                                items={item.items}
                               />
                             ))}
                         </div>
@@ -362,8 +376,6 @@ const DrawerList = (props) => {
                 <List
                   setActiveEndPoint={setActiveEndPoint}
                   item={item}
-                  setRefresh={setRefresh}
-                  refresh={refresh}
                   index={index}
                   onClick={onClick}
                   expanded={expanded}

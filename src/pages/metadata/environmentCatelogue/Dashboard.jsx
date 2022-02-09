@@ -1,25 +1,21 @@
 import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import { getTableData } from "../../../shared/apis/table/table";
-import { encsDrawer } from "../../../shared/utils/drawer";
-import { ENCSRoutes } from "../../../routes/metadataRoutes";
-import {
-  getApiEndpointNameFromRoutes,
-  getTableDetailFromRoutes,
-  getTableKeyNameFromRoutes,
-  getTableTitleNameFromRoutes,
-} from "../../../shared/utils/getApiEndpointFromRoutes";
-import { useSelector } from "react-redux";
-import { getSpacedDisplayName } from "../../../shared/utils/table";
+import { encsDrawer as drawer } from "../../../shared/utils/drawer";
+import { getTableDetailFromRoutes } from "../../../shared/utils/getApiEndpointFromRoutes";
+import { useDispatch, useSelector } from "react-redux";
 import { MetadataLayout } from "../../../shared/layout";
 import "./style.scss";
 import { Table, Pagination } from "../../../shared/components/common";
 
 const Dashboard = () => {
   // loggin user details from store
-  const { user } = useSelector((state) => state.userReducer);
+  const dispatch = useDispatch();
+
+  const { activeEndpoint, tableContents } = useSelector(
+    (state) => state.tableReducer
+  );
   //table data fetched from api
-  const [tableContents, setTableContents] = useState([]);
   // table title returned from the routes with respect to the url path
   const [tableTitle, setTableTitle] = useState("");
   // table details
@@ -28,94 +24,39 @@ const Dashboard = () => {
   const [tableRowkey, setTableRowKey] = useState("");
   // checked table row
   const [selectedRow, setSelectedRow] = useState([]);
-  // active api endpoint to fetch table data with respect to the url path
-  const [activeEndPoint, setActiveEndPoint] = useState("");
-  // refresh the table
-  const [refresh, setRefresh] = useState(false);
   // location hook to get the location variables
   const location = useLocation();
   // Base Url of the API
   const baseUrl = process.env.REACT_APP_ENCS_BASE_URL;
+  const paramsToFetchTableDetails = [
+    drawer,
+    location,
+    "environment-catalogue/",
+  ];
 
   useEffect(() => {
-    /**
-     * getting the correct endpoint from routes to fetch table data
-     * we are passing drawer | location | path
-     */
-
-    let endpointFromPath = getApiEndpointNameFromRoutes(
-      encsDrawer,
-      location,
-      "environmentcatelogue/"
-    );
-    /**
-     * in the same way, getting the correct title of the table from routes
-     * we are passing drawer | location | path
-     */
-
-    let tableTitle = getTableTitleNameFromRoutes(
-      encsDrawer,
-      location,
-      "environmentcatelogue/"
-    );
-
     // get table detail from routes
-
-    let tableDetail = getTableDetailFromRoutes(
-      ENCSRoutes,
-      location,
-      "environmentcatelogue/"
-    );
+    let tableDetail = getTableDetailFromRoutes(...paramsToFetchTableDetails);
     setTableDetails(tableDetail);
-
-    // get the key for the table for crud or any other row level operation
-    let tableKey = getTableKeyNameFromRoutes(
-      encsDrawer,
-      location,
-      "environmentcatelogue/"
-    );
-
-    setTableRowKey(tableKey);
-
-    /**
-     * getting the actual endpoint if defined else try get from the state
-     * check for undefined - chances for undefined endpoint with wrong sub path
-     */
-
-    if (endpointFromPath) {
-      getTable(endpointFromPath);
+    setTableRowKey(tableDetail?.key);
+    setTableTitle(tableDetail?.title);
+    const apiEndpoint = tableDetail?.apiEndpoint;
+    if (apiEndpoint) {
+      getTable(apiEndpoint);
     } else {
-      activeEndPoint.length > 0 && getTable(activeEndPoint);
+      activeEndpoint.length > 0 && getTable(activeEndpoint);
     }
-    // set the table title
-    setTableTitle(tableTitle);
-
     // dependency array
-  }, [refresh, location.pathname]);
+  }, [location.pathname]);
 
   const getTable = async (activeEndPoint) => {
     const path = `${baseUrl}${activeEndPoint}`;
-    // get the table data by passsing endpoint and user data
-    const data = await getTableData(path, user);
-    if (data) {
-      // map the keys of the response we got from the api into an array
-      const objectKeys = data.map((datum) => Object.keys(datum));
-      // map the above key array in to an array of objects
-      // each object will have title and and the actual key as an id
-      const header = objectKeys?.[0]?.map((item) => ({
-        title: getSpacedDisplayName(item),
-        id: item,
-      }));
-      // set the above mapped array as header details and the actual response as the data
-      setTableContents({ header, data });
-    }
+    dispatch(getTableData(path));
   };
 
   const [page, setPage] = useState(1);
   const [rowsPerPage, setRowsPerPage] = useState(10);
-  const [pageCount, setPageCount] = useState(
-    Math.ceil(tableContents.data?.length / rowsPerPage)
-  );
+  const pageCount = Math.ceil(tableContents.data?.length / rowsPerPage);
 
   useEffect(() => {
     setPage(1)
@@ -137,13 +78,9 @@ const Dashboard = () => {
   };
 
   const layoutProps = {
-    setActiveEndPoint: setActiveEndPoint,
-    setRefresh: setRefresh,
-    getTable: getTable,
     tableData: tableContents,
     tableTitle,
-    refresh,
-    drawer: encsDrawer,
+    drawer,
     openCRUDModal,
     setOpenCRUDModal,
     pageTitle: "Environment Catelogue",
@@ -157,7 +94,6 @@ const Dashboard = () => {
     onRowClick: onRowClick,
     tableData: tableContents,
     tableRowkey,
-    setTableContents: setTableContents,
     showCheckBox: true,
     showAction: true,
     page,
@@ -166,7 +102,7 @@ const Dashboard = () => {
     rowsPerPage,
     openCRUDModal,
     setOpenCRUDModal,
-    activeEndPoint,
+    activeEndpoint,
     getTable,
     CRUDModalType,
     setCRUDModalType,
@@ -181,7 +117,7 @@ const Dashboard = () => {
     setRowsPerPage, //state for the rows per page event
     pageCount, // total number of pages as per the data
     rowsPerPageData: [10, 25, 50, 100], // data for the row per page dropdown
-    jumpPageVisibility: true, // show the jump to page option
+    jumpPageVisibility: false, // show the jump to page option
   };
 
   return (

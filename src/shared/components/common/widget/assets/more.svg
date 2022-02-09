@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="20.065" height="5.932" viewBox="0 0 20.065 5.932">
+  <g id="Vector_Smart_Object" data-name="Vector Smart Object" transform="translate(0.739 0.738)">
+    <g id="Vector_Smart_Object-2" data-name="Vector Smart Object" transform="translate(0 0.001)">
+      <g id="Group_111" data-name="Group 111">
+        <ellipse id="Ellipse_123" data-name="Ellipse 123" cx="2.037" cy="2.227" rx="2.037" ry="2.227" transform="translate(14.513)" fill="none" stroke="#161615" stroke-linecap="round" stroke-miterlimit="10" stroke-width="1.478"/>
+        <ellipse id="Ellipse_124" data-name="Ellipse 124" cx="2.037" cy="2.227" rx="2.037" ry="2.227" transform="translate(7.257)" fill="none" stroke="#161615" stroke-linecap="round" stroke-miterlimit="10" stroke-width="1.478"/>
+        <ellipse id="Ellipse_125" data-name="Ellipse 125" cx="2.037" cy="2.227" rx="2.037" ry="2.227" fill="none" stroke="#161615" stroke-linecap="round" stroke-miterlimit="10" stroke-width="1.478"/>
+      </g>
+    </g>
+    <path id="Color_Overlay" data-name="Color Overlay" d="M14.513,2.228A2.138,2.138,0,0,1,16.55,0a2.138,2.138,0,0,1,2.037,2.228A2.138,2.138,0,0,1,16.55,4.455,2.138,2.138,0,0,1,14.513,2.228Zm-7.257,0A2.138,2.138,0,0,1,9.293,0,2.138,2.138,0,0,1,11.33,2.228,2.138,2.138,0,0,1,9.293,4.455,2.138,2.138,0,0,1,7.257,2.228ZM0,2.228A2.138,2.138,0,0,1,2.037,0,2.139,2.139,0,0,1,4.074,2.228,2.139,2.139,0,0,1,2.037,4.455,2.138,2.138,0,0,1,0,2.228Z" fill="#ccc"/>
+  </g>
+</svg>

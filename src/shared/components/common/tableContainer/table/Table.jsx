@@ -3,7 +3,7 @@ import TableBody from "./TableBody";
 import TableHeader from "./TableHeader";
 
 const Table = (props) => {
-  const { tableData, setTableContents, showCheckBox, showAction } = props;
+  const { tableData, showCheckBox, showAction } = props;
   const { header, data: rowData } = tableData;
 
   const checkBoxObj = {
@@ -16,14 +16,13 @@ const Table = (props) => {
     id: "action",
   };
 
-  const finalHeader = header && [
-    showCheckBox && checkBoxObj,
-    ...header,
-    showAction && actionObj,
-  ];
+  const finalHeader =
+    header &&
+    [showCheckBox && checkBoxObj, ...header, showAction && actionObj].filter(
+      (e) => e
+    );
 
   const headerProps = {
-    setTableContents,
     tableData,
     header: finalHeader,
   };

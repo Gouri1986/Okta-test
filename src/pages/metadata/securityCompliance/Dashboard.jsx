@@ -1,25 +1,20 @@
 import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import { getTableData } from "../../../shared/apis/table/table";
-import { scosDrawer } from "../../../shared/utils/drawer";
-import {
-  getApiEndpointNameFromRoutes,
-  getTableDetailFromRoutes,
-  getTableKeyNameFromRoutes,
-  getTableTitleNameFromRoutes,
-} from "../../../shared/utils/getApiEndpointFromRoutes";
-import { useSelector } from "react-redux";
-import { getSpacedDisplayName } from "../../../shared/utils/table";
+import { scosDrawer as drawer } from "../../../shared/utils/drawer";
+import { getTableDetailFromRoutes } from "../../../shared/utils/getApiEndpointFromRoutes";
+import { useDispatch, useSelector } from "react-redux";
 import { MetadataLayout } from "../../../shared/layout";
 import "./style.scss";
 import { Table, Pagination } from "../../../shared/components/common";
-import scosRoutes from "../../../routes/metadataRoutes/securityCompliance";
 
 const Dashboard = () => {
   // loggin user details from store
-  const { user } = useSelector((state) => state.userReducer);
-  //table data fetched from api
-  const [tableContents, setTableContents] = useState([]);
+  const dispatch = useDispatch();
+
+  const { activeEndpoint, tableContents } = useSelector(
+    (state) => state.tableReducer
+  );
   // table title returned from the routes with respect to the url path
   const [tableTitle, setTableTitle] = useState("");
   // table details
@@ -28,96 +23,37 @@ const Dashboard = () => {
   const [tableRowkey, setTableRowKey] = useState("");
   // checked table row
   const [selectedRow, setSelectedRow] = useState([]);
-  // active api endpoint to fetch table data with respect to the url path
-  const [activeEndPoint, setActiveEndPoint] = useState("");
-  // refresh the table
-  const [refresh, setRefresh] = useState(false);
   // location hook to get the location variables
   const location = useLocation();
   //BASE URL of api
   const baseUrl = process.env.REACT_APP_SCOS_BASE_URL;
 
+  const paramsToFetchTableDetails = [drawer, location, "security-compliance/"];
+
   useEffect(() => {
-    /**
-     * getting the correct endpoint from routes to fetch table data
-     * we are passing drawer | location | path
-     */
-
-    let endpointFromPath = getApiEndpointNameFromRoutes(
-      scosDrawer,
-      location,
-      "securitycompliance/"
-    );
-    /**
-     * in the same way, getting the correct title of the table from routes
-     * we are passing drawer | location | path
-     */
-
-    let tableTitle = getTableTitleNameFromRoutes(
-      scosDrawer,
-      location,
-      "securitycompliance/"
-    );
-
     // get table detail from routes
-
-    let tableDetail = getTableDetailFromRoutes(
-      scosRoutes,
-      location,
-      "securitycompliance/"
-    );
+    let tableDetail = getTableDetailFromRoutes(...paramsToFetchTableDetails);
     setTableDetails(tableDetail);
-
-    // get the key for the table for crud or any other row level operation
-    let tableKey = getTableKeyNameFromRoutes(
-      scosDrawer,
-      location,
-      "securitycompliance/"
-    );
-
-    setTableRowKey(tableKey);
-
-    /**
-     * getting the actual endpoint if defined else try get from the state
-     * check for undefined - chances for undefined endpoint with wrong sub path
-     */
-
-    if (endpointFromPath) {
-      getTable(endpointFromPath);
+    setTableRowKey(tableDetail?.key);
+    setTableTitle(tableDetail?.title);
+    const apiEndpoint = tableDetail?.apiEndpoint;
+    if (apiEndpoint) {
+      getTable(apiEndpoint);
     } else {
-      activeEndPoint.length > 0 && getTable(activeEndPoint);
+      activeEndpoint.length > 0 && getTable(activeEndpoint);
     }
-    // set the table title
-    setTableTitle(tableTitle);
-
     // dependency array
-  }, [refresh, location.pathname]);
+  }, [location.pathname]);
 
   const getTable = async (activeEndPoint) => {
-    // get the table data by passsing endpoint and user data
-
     const path = `${baseUrl}${activeEndPoint}`;
-
-    const data = await getTableData(path, user);
-    if (data) {
-      // map the keys of the response we got from the api into an array
-      const objectKeys = data.map((datum) => Object.keys(datum));
-      // map the above key array in to an array of objects
-      // each object will have title and and the actual key as an id
-      const header = objectKeys?.[0]?.map((item) => ({
-        title: getSpacedDisplayName(item),
-        id: item,
-      }));
-      // set the above mapped array as header details and the actual response as the data
-      setTableContents({ header, data });
-    }
+    dispatch(getTableData(path));
   };
 
   const [page, setPage] = useState(1);
   const [rowsPerPage, setRowsPerPage] = useState(10);
-  const [pageCount, setPageCount] = useState(
-    Math.ceil(tableContents.data?.length / rowsPerPage)
-  );
+  const pageCount = Math.ceil(tableContents.data?.length / rowsPerPage);
+
   // state for the visibility of crud modal
   const [openCRUDModal, setOpenCRUDModal] = useState(false);
   const [CRUDModalType, setCRUDModalType] = useState("add");
@@ -134,13 +70,9 @@ const Dashboard = () => {
   };
 
   const layoutProps = {
-    setActiveEndPoint: setActiveEndPoint,
-    setRefresh: setRefresh,
-    getTable: getTable,
     tableData: tableContents,
     tableTitle,
-    refresh,
-    drawer: scosDrawer,
+    drawer,
     openCRUDModal,
     setOpenCRUDModal,
     pageTitle: "Security Compliance",
@@ -153,7 +85,6 @@ const Dashboard = () => {
     onRowClick: onRowClick,
     tableData: tableContents,
     tableRowkey,
-    setTableContents: setTableContents,
     showCheckBox: true,
     showAction: true,
     page,
@@ -162,7 +93,7 @@ const Dashboard = () => {
     rowsPerPage,
     openCRUDModal,
     setOpenCRUDModal,
-    activeEndPoint,
+    activeEndpoint,
     getTable,
     baseUrl,
     CRUDModalType,
@@ -177,7 +108,7 @@ const Dashboard = () => {
     setRowsPerPage, //state for the rows per page event
     pageCount, // total number of pages as per the data
     rowsPerPageData: [10, 25, 50, 100], // data for the row per page dropdown
-    jumpPageVisibility: true, // show the jump to page option
+    jumpPageVisibility: false, // show the jump to page option
   };
 
   return (
