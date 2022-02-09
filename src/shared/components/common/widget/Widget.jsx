@@ -38,9 +38,7 @@ export default function Widget() {
                   <img src={more} alt='more'></img>
                 </div>
               </div>
-              <div>
-                <ApexDonutChart />
-              </div>
+              <ApexDonutChart />
             </div>
             <div
               className='white-container ml-22 h-275'

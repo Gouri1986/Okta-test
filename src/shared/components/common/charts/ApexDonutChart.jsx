@@ -1,113 +1,66 @@
-import Chart from "react-apexcharts";
-// Chart Imports
-import { Card, CardHeader, CardContent } from "@mui/material";
+import React, { PureComponent } from 'react';
+import { PieChart, Pie, Sector, Cell, ResponsiveContainer } from 'recharts';
 
-const ApexRadiarChart = () => {
-  const donutColors = {
-    series1: "#6418C3",
-    series2: "#FFAB2D",
-    series3: "#E328AF",
-    series4: "#E328AF",
-    series5: "#5ECFFF",
-  };
-  const options = {
-    legend: {
-      show: true,
-      position: "bottom",
-    },
-    labels: ["Network", "Compute", "IAM", "CLoud"],
+const data = [
+  { name: 'Group A', value: 400 },
+  { name: 'Group B', value: 300 },
+  { name: 'Group C', value: 300 },
+  { name: 'Group D', value: 200 },
+];
 
-    colors: [
-      donutColors.series1,
-      donutColors.series5,
-      donutColors.series3,
-      donutColors.series2,
-    ],
-    dataLabels: {
-      enabled: true,
-      formatter(val, opt) {
-        // return `${parseInt(val)}%`
-      },
-    },
-    plotOptions: {
-      pie: {
-        donut: {
-          labels: {
-            show: false,
-            name: {
-              fontSize: "2rem",
-              fontFamily: "Montserrat",
-            },
-            value: {
-              fontSize: "1rem",
-              fontFamily: "Montserrat",
-              formatter(val) {
-                // return `${parseInt(val)}%`
-              },
-            },
-            total: {
-              show: false,
-              fontSize: "1.5rem",
-              label: "Operational",
-              formatter(w) {
-                return "31%";
-              },
-            },
-          },
-        },
-      },
-    },
-    responsive: [
-      {
-        breakpoint: 992,
-        options: {
-          chart: {
-            height: 380,
-          },
-          legend: {
-            position: "bottom",
-          },
-        },
-      },
-      {
-        breakpoint: 576,
-        options: {
-          chart: {
-            height: 320,
-          },
-          plotOptions: {
-            pie: {
-              donut: {
-                labels: {
-                  show: true,
-                  name: {
-                    fontSize: "1.5rem",
-                  },
-                  value: {
-                    fontSize: "1rem",
-                  },
-                  total: {
-                    fontSize: "1.5rem",
-                  },
-                },
-              },
-            },
-          },
-        },
-      },
-    ],
-  };
+const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042'];
 
-  const series = [85, 16, 50, 50];
+const RADIAN = Math.PI / 180;
+const renderCustomizedLabel = ({
+  cx,
+  cy,
+  midAngle,
+  innerRadius,
+  outerRadius,
+  percent,
+  index,
+}) => {
+  const radius = innerRadius + (outerRadius - innerRadius) * 0.5;
+  const x = cx + radius * Math.cos(-midAngle * RADIAN);
+  const y = cy + radius * Math.sin(-midAngle * RADIAN);
 
   return (
-    <Card style={{ height: "100%" }}>
-      <CardHeader></CardHeader>
-      <CardContent>
-        <Chart options={options} series={series} type="donut" height={180} />
-      </CardContent>
-    </Card>
+    <text
+      x={x}
+      y={y}
+      fill='white'
+      textAnchor={x > cx ? 'start' : 'end'}
+      dominantBaseline='central'
+    >
+      {`${(percent * 100).toFixed(0)}%`}
+    </text>
   );
 };
 
-export default ApexRadiarChart;
+export default class ApexRadiarChart extends PureComponent {
+  render() {
+    return (
+      <ResponsiveContainer width='100%' height='100%'>
+        <PieChart width={400} height={400}>
+          <Pie
+            data={data}
+            cx='50%'
+            cy='50%'
+            labelLine={false}
+            label={renderCustomizedLabel}
+            outerRadius={80}
+            fill='#8884d8'
+            dataKey='value'
+          >
+            {data.map((entry, index) => (
+              <Cell
+                key={`cell-${index}`}
+                fill={COLORS[index % COLORS.length]}
+              />
+            ))}
+          </Pie>
+        </PieChart>
+      </ResponsiveContainer>
+    );
+  }
+}
