@@ -1,11 +1,12 @@
-import React from "react";
-import "./metadataLayout.scss";
-import { Navbar, Header, TableSettings } from "../components/common";
-import Breadcrumbs from "../components/common/breadcumbs/Breadcrumbs";
-import ComplienceIntro from "../../pages/metadata/securityCompliance/ChartsContainer";
-import Accordion from "../components/common/widget/Accordion";
-import Map from "../components/common/widget/map/Map";
-import { useSelector } from "react-redux";
+import React from 'react';
+import './metadataLayout.scss';
+import { Navbar, Header, TableSettings } from '../components/common';
+import Breadcrumbs from '../components/common/breadcumbs/Breadcrumbs';
+import ComplienceIntro from '../../pages/metadata/securityCompliance/ChartsContainer';
+import Accordion from '../components/common/accordion/Accordion';
+import Map from '../components/common/map/Map';
+import Widget from '../components/common/widget/Widget';
+import { useSelector } from 'react-redux';
 const Layout = (props) => {
   const {
     children,
@@ -42,6 +43,9 @@ const Layout = (props) => {
           </>
         )}
       </div>
+      <div className='bdr-r-10 mt-50 mb-25 ml-40 mr-40 bg-white'>
+        <Widget />
+      </div>
       {/* Map section */}
       {/* <div className='bdr-r-10 mt-50 mb-25 ml-40 mr-40 bg-white'>
         <Map />
@@ -54,7 +58,7 @@ const Layout = (props) => {
               tableTitle={tableTitle}
               modalOnClick={() => {
                 setOpenCRUDModal(!openCRUDModal);
-                setCRUDModalType("add");
+                setCRUDModalType('add');
               }}
             />
           </div>
