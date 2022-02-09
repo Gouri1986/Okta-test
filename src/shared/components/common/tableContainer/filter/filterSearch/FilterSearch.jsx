@@ -104,28 +104,36 @@ const FilterSearch = () => {
             <span className='f-16 lh-2.4 fw-500 p-10 bdr-buttom-primary-1 bdr-primary'>
               Properties
             </span>
-            {valueSuggestions.map((item) => (
-              <span
-                onClick={() => {
-                  setFilterValueInput("");
-                  const selectedColumnCopy = [...selectedColumn];
-                  const currentColumn = selectedColumnCopy.find(
-                    (e) =>
-                      e.title ===
-                      header.find((e) => e.title.includes(filterInput))?.title
-                  );
-                  console.log(currentColumn);
-                  currentColumn.value =
-                    item[header.find((e) => e.title.includes(filterInput))?.id];
-                  console.log(selectedColumnCopy);
-                  setSelectedColumn(selectedColumnCopy);
-                  setValueSuggestions([]);
-                }}
-                className=' pl-10 pr- pt-5 pb-5 f-14 lh-2.1 grey-hover cp'
-              >
-                {item[header.find((e) => e.title.includes(filterInput))?.id]}
-              </span>
-            ))}
+            {valueSuggestions.map((item) => {
+              console.log(
+                header.find((e) => e.title.includes(item.title)),
+                item
+              );
+              return (
+                <span
+                  onClick={() => {
+                    setFilterValueInput("");
+                    const selectedColumnCopy = [...selectedColumn];
+                    const currentColumn = selectedColumnCopy.find(
+                      (e) =>
+                        e.title ===
+                        header.find((e) => e.title.includes(filterInput))?.title
+                    );
+                    console.log(currentColumn);
+                    currentColumn.value =
+                      item[
+                        header.find((e) => e.title.includes(filterInput))?.id
+                      ];
+                    console.log(selectedColumnCopy);
+                    setSelectedColumn(selectedColumnCopy);
+                    setValueSuggestions([]);
+                  }}
+                  className=' pl-10 pr- pt-5 pb-5 f-14 lh-2.1 grey-hover cp'
+                >
+                  {item[header.find((e) => e.title.includes(item.title))?.id]}
+                </span>
+              );
+            })}
           </div>
         )}
       </div>
