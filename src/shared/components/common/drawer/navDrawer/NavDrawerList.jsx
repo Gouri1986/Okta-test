@@ -203,6 +203,7 @@ const DrawerList = (props) => {
   const SecondNavMenu = () => {
     const history = useHistory();
     const dispatch = useDispatch();
+    const location = useLocation();
 
     const [secondMenuItemSelected, setSecondMenuItemSelected] = useState({
       title: "",
@@ -232,8 +233,7 @@ const DrawerList = (props) => {
             }
           }}
           className={` cp flex-r-ac flex-jc-sp-btn ${
-            secondSubMenuSelected.bool &&
-            secondSubMenuSelected.title === item.title
+            item.path === location.pathname
               ? "second-sub-drawer-list-title-selected"
               : "second-sub-drawer-list-title"
           }   ${"ml-25  pl-15 pt-20 pb-15 pr-10"}`}
@@ -258,6 +258,7 @@ const DrawerList = (props) => {
         dispatch(setActiveTableTabs([]));
         history.push(item.items[0].path);
         setActiveEndPoint(item.items[0].apiEndpoint);
+        setSecondMenuItemSelected({ title: "", bool: false });
       } else if (
         Array.isArray(item.items) &&
         item.items.length === 1 &&
@@ -303,10 +304,11 @@ const DrawerList = (props) => {
                 {secondMenuItems.map((item) => (
                   <li className='flex-c mb-10'>
                     <div
-                      onClick={() => onSecondMenuClick(item)}
+                      onClick={() => {
+                        onSecondMenuClick(item);
+                      }}
                       className={`flex-r-ac flex-jc-sp-btn cp f-14 fw-400 lh-2-1 fc-white  flex-r-ac pl-15 pr-15 pt-10 pb-10 ${
-                        secondMenuItemSelected.bool &&
-                        secondMenuItemSelected.title === item.title
+                        item.items[0]?.path == location.pathname
                           ? "second-menu-route-list-title-selected"
                           : "second-menu-route-list-title"
                       }`}

@@ -15,6 +15,7 @@ import { getSpacedDisplayName } from "./table";
 
 export const iamDrawer = () => {
   return IAMRoutes.map((rt) => ({
+    ...rt,
     title: "IAM",
     Icon: drawerSectionIcons.DTSC,
     items: rt.routes.routes.map((route) => ({
@@ -28,12 +29,14 @@ export const iamDrawer = () => {
 
 export const encsDrawer = () => {
   return ENCSRoutes.map((rt) => ({
+    ...rt,
     title: rt.section,
     Icon: drawerSectionIcons.DTSC,
     items: Object.keys(rt.routes).map((key) => ({
       title: getSpacedDisplayName(key),
       Icon: drawerSectionIcons.GCP,
       items: rt.routes[key].map((route) => ({
+        ...route,
         title:
           route.name ||
           getSpacedDisplayName(route.path.replace(/-/g, " ").replace(/\//, "")),
@@ -49,16 +52,18 @@ export const encsDrawer = () => {
 
 export const scosDrawer = () => {
   return scosRoutes.map((rt) => ({
+    ...rt,
     title: rt.section,
     Icon: drawerSectionIcons.DTSC,
     items: Object.keys(rt.routes).map((key) => ({
       title: getSpacedDisplayName(key),
       Icon: drawerSectionIcons.GCP,
       items: rt.routes[key].map((route) => ({
+        ...route,
         title:
           route.name ||
           getSpacedDisplayName(route.path.replace(/-/g, " ").replace(/\//, "")),
-        path: "/security-compliance" + route.path,
+        path: `/security-compliance${route.path}`,
         id: route.path,
         apiEndpoint: route.apiEndpoint,
         showAsSubMenu: route.showAsSubMenu,
@@ -70,6 +75,7 @@ export const scosDrawer = () => {
 
 export const complianceDashboardDrawer = () => {
   return complianceDashboardRoutes.map((rt) => ({
+    ...rt,
     title: rt.section,
     Icon: drawerSectionIcons.DTSC,
     path: "/compliance-dashboard" + rt.path,
@@ -81,6 +87,7 @@ export const complianceDashboardDrawer = () => {
         title: getSpacedDisplayName(key),
         Icon: drawerSectionIcons.GCP,
         items: rt.routes[key].map((route) => ({
+          ...route,
           title:
             route.name ||
             getSpacedDisplayName(

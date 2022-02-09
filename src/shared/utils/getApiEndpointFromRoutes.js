@@ -1,5 +1,3 @@
-import { iamDrawer } from "./drawer";
-
 const weedoutArrays = (exPath) => {
   const finalArrayWithDetails = exPath
     .map((ar) => {
@@ -41,28 +39,8 @@ const getExactPathArray = (routes, location, mainRoute) => {
       : e
   );
 };
-
 // NOTE : Flat(3) is 3 level deep routing (...). 3 is tentative.
 // it will change based on available nested routes.
-
-export const getApiEndpointNameFromRoutes = (routes, location, mainRoute) => {
-  return weedoutArrays(getExactPathArray(routes, location, mainRoute)).flat(
-    3
-  )?.[0]?.apiEndpoint;
-};
-
-export const getTableTitleNameFromRoutes = (routes, location, mainRoute) => {
-  return weedoutArrays(getExactPathArray(routes, location, mainRoute)).flat(
-    3
-  )?.[0]?.title;
-};
-
-export const getTableKeyNameFromRoutes = (routes, location, mainRoute) => {
-  return weedoutArrays(getExactPathArray(routes, location, mainRoute)).flat(
-    3
-  )?.[0]?.key;
-};
-
 export const getTableDetailFromRoutes = (routes, location, mainRoute) => {
   return weedoutArrays(getExactPathArray(routes, location, mainRoute)).flat(
     3

@@ -1,18 +1,12 @@
 import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import { getTableData } from "../../../../shared/apis/table/table";
-import {
-  getApiEndpointNameFromRoutes,
-  getTableDetailFromRoutes,
-  getTableKeyNameFromRoutes,
-  getTableTitleNameFromRoutes,
-} from "../../../../shared/utils/getApiEndpointFromRoutes";
+import { getTableDetailFromRoutes } from "../../../../shared/utils/getApiEndpointFromRoutes";
 import { useDispatch, useSelector } from "react-redux";
 import { MetadataLayout } from "../../../../shared/layout";
 import "./style.scss";
 import { Table, Pagination } from "../../../../shared/components/common";
-import { complianceDashboardDrawer } from "../../../../shared/utils/drawer";
-import complianceDashboardRoutes from "../../../../routes/featureRoutes/complianceDashboard";
+import { complianceDashboardDrawer as drawer } from "../../../../shared/utils/drawer";
 const Dashboard = () => {
   // loggin user details from store
   const dispatch = useDispatch();
@@ -28,69 +22,24 @@ const Dashboard = () => {
   const [tableRowkey, setTableRowKey] = useState("");
   // checked table row
   const [selectedRow, setSelectedRow] = useState([]);
-
-  // refresh the table
-  const [refresh, setRefresh] = useState(false);
   // location hook to get the location variables
   const location = useLocation();
   //BASE URL of api
   const baseUrl = process.env.REACT_APP_COMPLIANCE_DASHBOARD_BASE_URL;
+  const paramsToFetchTableDetails = [drawer, location, "compliance-dashboard/"];
 
   useEffect(() => {
-    /**
-     * getting the correct endpoint from routes to fetch table data
-     * we are passing drawer | location | path
-     */
-
-    let endpointFromPath = getApiEndpointNameFromRoutes(
-      complianceDashboardDrawer,
-      location,
-      "compliance-dashboard/"
-    );
-    /**
-     * in the same way, getting the correct title of the table from routes
-     * we are passing drawer | location | path
-     */
-
-    let tableTitle = getTableTitleNameFromRoutes(
-      complianceDashboardDrawer,
-      location,
-      "compliance-dashboard/"
-    );
-
     // get table detail from routes
-
-    let tableDetail = getTableDetailFromRoutes(
-      complianceDashboardDrawer,
-      location,
-      "compliance-dashboard/"
-    );
+    let tableDetail = getTableDetailFromRoutes(...paramsToFetchTableDetails);
     setTableDetails(tableDetail);
-
-    // get the key for the table for crud or any other row level operation
-    let tableKey = getTableKeyNameFromRoutes(
-      complianceDashboardDrawer,
-      location,
-      "compliance-dashboard/"
-    );
-
-    console.log(tableTitle, tableKey, tableDetail);
-
-    setTableRowKey(tableKey);
-
-    /**
-     * getting the actual endpoint if defined else try get from the state
-     * check for undefined - chances for undefined endpoint with wrong sub path
-     */
-
-    if (endpointFromPath) {
-      getTable(endpointFromPath);
+    setTableRowKey(tableDetail?.key);
+    setTableTitle(tableDetail?.title);
+    const apiEndpoint = tableDetail?.apiEndpoint;
+    if (apiEndpoint) {
+      getTable(apiEndpoint);
     } else {
       activeEndpoint.length > 0 && getTable(activeEndpoint);
     }
-    // set the table title
-    setTableTitle(tableTitle);
-
     // dependency array
   }, [location.pathname]);
 
@@ -101,9 +50,8 @@ const Dashboard = () => {
 
   const [page, setPage] = useState(1);
   const [rowsPerPage, setRowsPerPage] = useState(10);
-  const [pageCount, setPageCount] = useState(
-    Math.ceil(tableContents.data?.length / rowsPerPage)
-  );
+  const pageCount = Math.ceil(tableContents.data?.length / rowsPerPage);
+
   // state for the visibility of crud modal
   const [openCRUDModal, setOpenCRUDModal] = useState(false);
   const [CRUDModalType, setCRUDModalType] = useState("add");
@@ -122,7 +70,7 @@ const Dashboard = () => {
   const layoutProps = {
     tableData: tableContents,
     tableTitle,
-    drawer: complianceDashboardDrawer,
+    drawer,
     openCRUDModal,
     setOpenCRUDModal,
     pageTitle: "Compliance Dashboard",
@@ -135,7 +83,6 @@ const Dashboard = () => {
     onRowClick: onRowClick,
     tableData: tableContents,
     tableRowkey,
-
     page,
     tableTitle,
     tableDetails,

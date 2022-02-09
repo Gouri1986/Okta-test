@@ -1,13 +1,8 @@
 import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import { getTableData } from "../../../shared/apis/table/table";
-import { encsDrawer } from "../../../shared/utils/drawer";
-import {
-  getApiEndpointNameFromRoutes,
-  getTableDetailFromRoutes,
-  getTableKeyNameFromRoutes,
-  getTableTitleNameFromRoutes,
-} from "../../../shared/utils/getApiEndpointFromRoutes";
+import { encsDrawer as drawer } from "../../../shared/utils/drawer";
+import { getTableDetailFromRoutes } from "../../../shared/utils/getApiEndpointFromRoutes";
 import { useDispatch, useSelector } from "react-redux";
 import { MetadataLayout } from "../../../shared/layout";
 import "./style.scss";
@@ -29,66 +24,28 @@ const Dashboard = () => {
   const [tableRowkey, setTableRowKey] = useState("");
   // checked table row
   const [selectedRow, setSelectedRow] = useState([]);
-  // refresh the table
-  const [refresh, setRefresh] = useState(false);
   // location hook to get the location variables
   const location = useLocation();
   // Base Url of the API
   const baseUrl = process.env.REACT_APP_ENCS_BASE_URL;
+  const paramsToFetchTableDetails = [
+    drawer,
+    location,
+    "environment-catalogue/",
+  ];
 
   useEffect(() => {
-    /**
-     * getting the correct endpoint from routes to fetch table data
-     * we are passing drawer | location | path
-     */
-
-    let endpointFromPath = getApiEndpointNameFromRoutes(
-      encsDrawer,
-      location,
-      "environment-catalogue/"
-    );
-    /**
-     * in the same way, getting the correct title of the table from routes
-     * we are passing drawer | location | path
-     */
-
-    let tableTitle = getTableTitleNameFromRoutes(
-      encsDrawer,
-      location,
-      "environment-catalogue/"
-    );
-
     // get table detail from routes
-
-    let tableDetail = getTableDetailFromRoutes(
-      encsDrawer,
-      location,
-      "environment-catalogue/"
-    );
+    let tableDetail = getTableDetailFromRoutes(...paramsToFetchTableDetails);
     setTableDetails(tableDetail);
-
-    // get the key for the table for crud or any other row level operation
-    let tableKey = getTableKeyNameFromRoutes(
-      encsDrawer,
-      location,
-      "environment-catalogue/"
-    );
-
-    setTableRowKey(tableKey);
-
-    /**
-     * getting the actual endpoint if defined else try get from the state
-     * check for undefined - chances for undefined endpoint with wrong sub path
-     */
-
-    if (endpointFromPath) {
-      getTable(endpointFromPath);
+    setTableRowKey(tableDetail?.key);
+    setTableTitle(tableDetail?.title);
+    const apiEndpoint = tableDetail?.apiEndpoint;
+    if (apiEndpoint) {
+      getTable(apiEndpoint);
     } else {
       activeEndpoint.length > 0 && getTable(activeEndpoint);
     }
-    // set the table title
-    setTableTitle(tableTitle);
-
     // dependency array
   }, [location.pathname]);
 
@@ -99,9 +56,7 @@ const Dashboard = () => {
 
   const [page, setPage] = useState(1);
   const [rowsPerPage, setRowsPerPage] = useState(10);
-  const [pageCount, setPageCount] = useState(
-    Math.ceil(tableContents.data?.length / rowsPerPage)
-  );
+  const pageCount = Math.ceil(tableContents.data?.length / rowsPerPage);
 
   // state for the visibility of crud modal
   const [openCRUDModal, setOpenCRUDModal] = useState(false);
@@ -121,7 +76,7 @@ const Dashboard = () => {
   const layoutProps = {
     tableData: tableContents,
     tableTitle,
-    drawer: encsDrawer,
+    drawer,
     openCRUDModal,
     setOpenCRUDModal,
     pageTitle: "Environment Catelogue",
