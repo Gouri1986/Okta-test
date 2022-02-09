@@ -20,12 +20,12 @@ const DrawerList = (props) => {
   const {
     onClick,
     setActiveEndPoint,
-    refresh,
     expanded,
     secondMenu,
     showSecondMenu,
     secondMenuItems,
     setSecondMenuItems,
+    setExpanded,
     isSecondMenu,
   } = props;
 
@@ -146,6 +146,8 @@ const DrawerList = (props) => {
             ? { title, bool: !menuExpanded.bool }
             : { title, bool: true }
         );
+      } else {
+        setExpanded(true);
       }
     };
 
