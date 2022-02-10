@@ -61,6 +61,8 @@ const Dashboard = () => {
   // state for the visibility of crud modal
   const [openCRUDModal, setOpenCRUDModal] = useState(false);
   const [CRUDModalType, setCRUDModalType] = useState("add");
+   //state for the visiblity of right side modal
+   const [openRightDescModal, setOpenRightDescModal] = useState(false);
 
   const onRowClick = (rowData) => {
     if (selectedRow.find((e) => e[tableRowkey] === rowData[tableRowkey])) {
@@ -82,11 +84,13 @@ const Dashboard = () => {
     pageTitle: "Compliance Dashboard",
     CRUDModalType,
     setCRUDModalType,
-  };
+    openRightDescModal,
+    };
 
   const tableProps = {
     selectedRow: selectedRow,
     onRowClick: onRowClick,
+    disableRowclick: true,
     tableData: tableContents,
     tableRowkey,
     page,
@@ -100,6 +104,8 @@ const Dashboard = () => {
     baseUrl,
     CRUDModalType,
     setCRUDModalType,
+    openRightDescModal,
+    setOpenRightDescModal,
   };
 
   const paginationProps = {
