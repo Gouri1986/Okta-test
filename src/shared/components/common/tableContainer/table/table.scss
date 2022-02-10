@@ -1,12 +1,11 @@
-/* Parent Container of Table */
-@import "../../../../assets/scss/styles.scss";
+/* Parent Container of Table  */
 
 .titan-table {
-  background: $white;
+  background: white;
   width: fit-content;
   height: auto;
   max-height: 62vh;
-  color: $primary-font-color;
+  color: #1f4173;
 }
 
 /* Table Header  */
@@ -20,7 +19,7 @@
 .table-header-cell {
   font-size: 15px;
   line-height: 28px;
-  color: $primary-font-color;
+  color: #1f4173;
   display: inline-flex;
   align-items: center;
   cursor: pointer;
@@ -41,7 +40,7 @@
 }
 
 .table-cell {
-  color: $primary-font-color;
+  color: #1f4173;
   text-align: center;
 }
 
@@ -52,7 +51,7 @@
   overflow: hidden;
   word-wrap: break-word;
   white-space: pre-wrap;
-  color: $primary-font-color;
+  color: #1f4173;
   padding: 10px;
 }
 
@@ -61,11 +60,11 @@
   line-height: 1em;
   height: 2em;
   overflow: hidden;
-  background: $success-color;
+  background:#00a389;
   border-radius: 100px;
   text-align: center;
   padding: 5px 10px;
-  color: $white;
+  color: white;
 }
 
 .table-data-cell-status-neg {
@@ -73,11 +72,11 @@
   line-height: 1em;
   height: 2em;
   overflow: hidden;
-  background: $danger-color;
+  background: #ff5b5b;
   border-radius: 100px;
   text-align: center;
   padding: 5px 10px;
-  color: $white;
+  color: white;
 }
 
 .table-checkbox-input-container {
@@ -114,7 +113,7 @@
 .table-checkbox-input-container input:checked ~ .checkmark {
   border-radius: 3px;
   border: none;
-  background-color: $success-color;
+  background-color: #00a389;
 }
 
 .checkmark:after {
@@ -150,14 +149,14 @@
 
 .titan-table-fill {
   width: 100%;
-  color: $primary-font-color;
+  color: #1f4173;
 }
 
 .table-add-icon {
   &:hover {
-    background-color: $tertiary-color;
+    background-color: #110def;
     .add-icon-path {
-      fill: $white;
+      fill: white;
     }
   }
 }

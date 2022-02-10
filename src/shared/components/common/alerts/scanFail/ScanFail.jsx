@@ -1,5 +1,4 @@
 import React from 'react';
-import '../../../../assets/scss/styles.scss';
 import fail from '../../../../assets/images/icons/fail.svg';
 
 
