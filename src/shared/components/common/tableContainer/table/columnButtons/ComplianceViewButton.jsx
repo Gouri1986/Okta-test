@@ -17,7 +17,7 @@ const DoubleArrow = () => {
   );
 };
 
-const ComplianceViewButton = ({ dark }) => {
+const ComplianceViewButton = ({ dark, onClick }) => {
   return (
     <div
       className={
@@ -25,6 +25,7 @@ const ComplianceViewButton = ({ dark }) => {
           ? "bg-black flex-r-jc-ac p-8  bdr-r-8"
           : "bg-secondary flex-r-jc-ac p-8  bdr-r-8"
       }
+      onClick={onClick}
     >
       <span
         className={` ${

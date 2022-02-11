@@ -17,10 +17,11 @@ const Layout = (props) => {
     setOpenCRUDModal,
     pageTitle,
     setCRUDModalType,
-  } = props;
+    
+  } = props
 
-  const { tabs } = useSelector((state) => state.tableReducer);
-
+  const { tabs } = useSelector(state => state.tableReducer)
+  const { complianceDrawerExpanded } = useSelector(state => state.commonReducer)
   return (
     <div className='overflow-y-scroll wp-50 hvh-100 flex-1 flex-c pl-30 pr-30'>
       <div className='mt-33'>
@@ -51,7 +52,7 @@ const Layout = (props) => {
           </>
         )}
       </div>
-      <div className='bdr-r-10 mt-50 mb-25 bg-white'>
+      <div className={`bdr-r-10 mt-50 mb-25 bg-white ${complianceDrawerExpanded ? `drawer-toggle` : ``}`}>
         <Widget />
       </div>
       {/* Map section */}
@@ -59,32 +60,32 @@ const Layout = (props) => {
         <Map />
       </div> */}
       <div className='flex-c pt-20'>
-        <div className='flex-c bdr-r-10 bg-white pl-15 pr-15'>
+        <div className={`flex-c bdr-r-10 bg-white pl-15 pr-15 ${complianceDrawerExpanded ? `drawer-toggle` : ``}`}>
           <div>
             <TableSettings
               tabs={tabs}
               tableTitle={tableTitle}
               modalOnClick={() => {
-                setOpenCRUDModal(!openCRUDModal);
-                setCRUDModalType("add");
+                setOpenCRUDModal(!openCRUDModal)
+                setCRUDModalType("add")
               }}
             />
           </div>
-          <div className='overflow-x-scroll metadata-table-container h-500 mt-15'>
+          <div className="overflow-x-scroll metadata-table-container h-500 mt-15">
             {tableData.data?.length > 0 ? (
               // table render
               <div>{children[0]}</div>
             ) : (
-              <div className='wp-100 hp-100 flex-r-jc-ac p-50'>
-                <span className='f-20 fw-500'>No data to display</span>
+              <div className="wp-100 hp-100 flex-r-jc-ac p-50">
+                <span className="f-20 fw-500">No data to display</span>
               </div>
             )}
           </div>
         </div>
         {/* pagination render */}
-        <div className='mt-20 mb-30'>{children[1]}</div>
+        <div className={`mt-20 mb-30 ${complianceDrawerExpanded ? `drawer-toggle` : ``}`}>{children[1]}</div>
       </div>
     </div>
-  );
-};
-export default Layout;
+  )
+}
+export default Layout

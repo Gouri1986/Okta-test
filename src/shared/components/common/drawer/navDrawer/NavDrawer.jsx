@@ -1,37 +1,37 @@
-import React, { useState } from "react";
-import { useDispatch } from "react-redux";
-import { setTableActiveEndpoint } from "../../../../../redux/table/tabelActions";
-import { DrawerArrow } from "./assets";
-import "./navdrawer.scss";
-import DrawerHeader from "./NavDrawerHeader";
-import DrawerList from "./NavDrawerList";
+import React, { useState } from "react"
+import { useDispatch, useSelector } from "react-redux"
+import { setTableActiveEndpoint } from "../../../../../redux/table/tabelActions"
+import { setNavDrawerExpand } from "../../../../../redux/common/commonActions"
+import { DrawerArrow } from "./assets"
+import "./navdrawer.scss"
+import DrawerHeader from "./NavDrawerHeader"
+import DrawerList from "./NavDrawerList"
 
-const Drawer = (props) => {
-  const { onClick } = props;
-  const dispatch = useDispatch();
+const Drawer = props => {
+  const { onClick } = props
+  const dispatch = useDispatch()
 
-  const [expanded, setExpanded] = useState(false);
-  const [secondMenu, showSecondMenu] = useState(false);
-  const [secondMenuItems, setSecondMenuItems] = useState([]);
+  const { navExpanded } = useSelector(state => state.commonReducer)
+  const [expanded, setExpanded] = useState(false)
+  const [secondMenu, showSecondMenu] = useState(false)
+  const [secondMenuItems, setSecondMenuItems] = useState([])
 
   return (
-    <div
-      className={expanded ? "drawer-container-expanded" : "drawer-container"}
-    >
+    <div className={navExpanded ? "drawer-container-expanded" : "drawer-container"}>
       {/*************** Drawer Header ****************/}
       <DrawerHeader
         secondMenu={secondMenu}
         showSecondMenu={showSecondMenu}
         setSecondMenuItems={setSecondMenuItems}
-        expanded={expanded}
-        setExpanded={setExpanded}
+        expanded={navExpanded}
+        setExpanded={v => dispatch(setNavDrawerExpand(v))}
       />
       {/************** Drawer Main Section ***********/}
-      <div className='flex-r'>
+      <div className="flex-r">
         <DrawerList
-          expanded={expanded}
-          setExpanded={setExpanded}
-          setActiveEndPoint={(ep) => dispatch(setTableActiveEndpoint(ep))}
+          expanded={navExpanded}
+          setExpanded={v => dispatch(setNavDrawerExpand(v))}
+          setActiveEndPoint={ep => dispatch(setTableActiveEndpoint(ep))}
           onClick={() => dispatch()}
           secondMenu={secondMenu}
           showSecondMenu={showSecondMenu}
@@ -39,9 +39,9 @@ const Drawer = (props) => {
           setSecondMenuItems={setSecondMenuItems}
         />
         <DrawerList
-          expanded={expanded}
-          setExpanded={setExpanded}
-          setActiveEndPoint={(ep) => dispatch(setTableActiveEndpoint(ep))}
+          expanded={navExpanded}
+          setExpanded={v => dispatch(setNavDrawerExpand(v))}
+          setActiveEndPoint={ep => dispatch(setTableActiveEndpoint(ep))}
           onClick={onClick}
           secondMenu={secondMenu}
           isSecondMenu
@@ -50,7 +50,7 @@ const Drawer = (props) => {
         />
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default Drawer;
+export default Drawer
