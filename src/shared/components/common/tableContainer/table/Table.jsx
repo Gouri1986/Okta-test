@@ -1,10 +1,13 @@
+import { useSelector } from "react-redux";
 import "./table.scss";
 import TableBody from "./TableBody";
 import TableHeader from "./TableHeader";
 
 const Table = (props) => {
+  const { filteredTableContents } = useSelector((state) => state.tableReducer);
   const { tableData, showCheckBox, showAction } = props;
-  const { header, data: rowData } = tableData;
+  const { header, data: rowData } =
+    filteredTableContents.data?.length > 0 ? filteredTableContents : tableData;
 
   const checkBoxObj = {
     title: "",

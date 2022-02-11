@@ -174,7 +174,14 @@ const TableBody = (props) => {
           <ComplianceViewButton />
         ) : (
           // else return normal row data
-          <span className={"table-data-cell"}>{datum[id]}</span>
+          <span
+            title={datum[id].length > 100 && datum[id]}
+            className={"table-data-cell"}
+          >
+            {datum[id].length > 100
+              ? datum[id].substr(0, 100) + "..."
+              : datum[id]}
+          </span>
         )}
       </td>
     );
