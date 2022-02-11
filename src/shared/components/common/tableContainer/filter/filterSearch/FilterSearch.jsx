@@ -9,6 +9,10 @@ import { useSelector } from "react-redux";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { setFilteredTableContents } from "../../../../../../redux/table/tabelActions";
+import {
+  setFilterDrawerExpand,
+  setNavDrawerExpand,
+} from "../../../../../../redux/common/commonActions";
 
 const FilterSearchValueInput = ({ id, onRowValueChange }) => {
   const [value, setValue] = useState("");
@@ -228,7 +232,13 @@ const FilterSearch = () => {
 
   return (
     <div className='titan-filter wp-100'>
-      <div className='flex-r flex-r-ac mr-30'>
+      <div
+        onClick={() => {
+          dispatch(setFilterDrawerExpand(true));
+          dispatch(setNavDrawerExpand(false));
+        }}
+        className='cp flex-r flex-r-ac mr-30'
+      >
         <p className='fc-tertiary f-14 fw-500 pr-10'>Filter</p>
         <FilterSettingIcon />
       </div>
