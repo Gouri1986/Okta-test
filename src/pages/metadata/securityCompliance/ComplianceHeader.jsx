@@ -45,7 +45,7 @@ export default function ComplianceHeader() {
           <button className='no-border fc-white mt-15 bg-DarkDesaturatedBlue pt-15 pb-15 pl-45 pr-45 f-14'>
             New Scan
           </button>
-          <p className='font-10 fc-primary mt-2'>
+          <p className='f-10 fc-primary mt-2'>
             Last Scan: <span>13-11-2021</span>
           </p>
         </div>

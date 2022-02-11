@@ -25,7 +25,7 @@ const TimelineComponent = ({ index, length }) => {
         style={{ borderRadius: "50%" }}
       ></div>
       <div className='flex-c flex-1'>
-        <h2 className='f-16 font-700 lh-1-5 fc-primary'>
+        <h2 className='f-16 f-700 lh-1-5 fc-primary'>
           Compliance ID: GDPR 4.2
         </h2>
         <div>

@@ -1,11 +1,10 @@
-@import '../../../../assets/scss/styles.scss';
 
 .drawer-container {
   display: flex;
   padding-left: 20px;
   padding-right: 20px;
   flex-direction: column;
-  background-color: $primary-color;
+  background-color: #001833;
   z-index: 100;
   height: 100%;
 }
@@ -15,7 +14,7 @@
   padding-left: 20px;
   padding-right: 20px;
   flex-direction: column;
-  background-color: $primary-color;
+  background-color: #001833;
   z-index: 100;
   height: 100%;
 }
@@ -48,13 +47,13 @@
 
 .sub-menu-section {
   list-style: none;
-  background-color: $primary-color;
+  background-color: #001833;
   z-index: 2000;
   border-radius: 10px;
   white-space: nowrap;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   &:hover {
-    color: $secondary-color;
+    color: #f2f2f2;
   }
 }
 
@@ -64,9 +63,9 @@
   user-select: none;
   &:hover {
     .main-route-list-title {
-      background: $tertiary-color;
+      background: #110def;
       box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-      color: $secondary-color;
+      color: #f2f2f2;
       border-radius: 5px 5px 5px 5px;
     }
   }
@@ -81,7 +80,7 @@
       background: rgba(15, 86, 179, 0.5);
       border-radius: 0px 2px 3px 0px;
       box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-      color: $secondary-color;
+      color: #f2f2f2;
     }
   }
 }
@@ -90,13 +89,13 @@
   background: rgba(15, 86, 179, 0.5);
   border-radius: 0px 2px 3px 0px;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-  color: $secondary-color;
+  color: #f2f2f2;
 }
 
 .main-route-list-title-selected {
-  background: $tertiary-color;
+  background: #110def;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-  color: $secondary-color;
+  color: #f2f2f2;
   border-radius: 5px 5px 0px 0px;
 }
 
@@ -167,14 +166,14 @@
 }
 
 .drawer-list-container .icon-name:hover {
-  color: $secondary-color;
+  color: #f2f2f2;
 }
 
 .drawer-arrow-button {
   height: 30px;
   width: 30px;
   border-radius: 25px;
-  background: $tertiary-color;
+  background: #110def;
   cursor: pointer;
   position: absolute;
   right: -15px;

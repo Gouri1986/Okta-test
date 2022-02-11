@@ -1,4 +1,3 @@
-@import "../../../assets/scss/styles.scss";
 
 .search-input-container {
   input {
@@ -9,7 +8,7 @@
   }
 
   & > input::placeholder {
-    color: $placeholder-color;
+    color: #717A8A;
     font-size: 14px;
     font-weight: bold;
   }
