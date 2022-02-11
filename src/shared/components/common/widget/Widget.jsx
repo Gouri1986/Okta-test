@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 
 import NewComplainChecked from './NewComplainChecked';
 import AutoFixxedError from './AutoFixxedError';
@@ -20,50 +20,43 @@ export default function Widget() {
   const toggleContent = () => {
     showContent ? setshowContent(false) : setshowContent(true);
   };
+
   return (
     <>
       {showContent ? (
-        <div className='h-307 wp-100 white-container-br-10 flex-r-jc-ac'>
-          <div className='flex-r' style={{ width: '81%' }}>
+        <div className='wp-100 white-container-br-10 flex-r-jc'>
+          <div className='flex-c' style={{ flex: 2 }}>
             <div
-              className='h-275 flex-c'
-              style={{ width: '18%' }}
+              className='flex-r-ac flex-jc-sp-btn h-50'
+              style={{ backgroundColor: '#f9f9f9' }}
             >
-              <div
-                className='flex-r-ac flex-jc-sp-btn h-50'
-                style={{ backgroundColor: '#f9f9f9' }}
-              >
-                <div className='f-grey font-14 fw-600 ml-10'>Chart Title</div>
-                <div className='mr-10'>
-                  <img src={more} alt='more'></img>
-                </div>
+              <div className='f-grey font-14 fw-600 ml-10'>Chart Title</div>
+              <div className='mr-10'>
+                <img src={more} alt='more'></img>
               </div>
-              <ApexDonutChart />
             </div>
+            <ApexDonutChart />
+          </div>
+          <div className='white-container ml-22' style={{ flex: 3 }}>
             <div
-              className='white-container ml-22 h-275'
-              style={{ width: '80%' }}
+              className='flex-r-ac flex-jc-sp-btn h-50'
+              style={{ backgroundColor: '#f9f9f9' }}
             >
-              <div
-                className='flex-r-ac flex-jc-sp-btn h-50'
-                style={{ backgroundColor: '#f9f9f9' }}
-              >
-                <div className='f-grey font-14 fw-600 ml-10'>Chart Title</div>
-                <div className='mr-10'>
-                  <img src={more} alt='more'></img>
-                </div>
+              <div className='f-grey font-14 fw-600 ml-10'>Chart Title</div>
+              <div className='mr-10'>
+                <img src={more} alt='more'></img>
               </div>
-              <div>
-                <ApexColumnCharts />
-              </div>
+            </div>
+            <div>
+              <ApexColumnCharts />
             </div>
           </div>
-          <div className='flex-r' style={{ width: '19%' }}>
+          <div className='flex-r' style={{ flex: 1 }}>
             <div
-              className='h-275 flex-c-ac flex-jc-sp-btn ml-22'
+              className='flex-c-ac flex-jc-sp-btn ml-22'
               style={{ width: '100%' }}
             >
-              <div className='flex-r flex-jc-sp-btn width100'>
+              <div className='flex-r flex-jc-sp-btn '>
                 <div>
                   <PickerRange />
                 </div>
@@ -75,10 +68,10 @@ export default function Widget() {
                   />
                 </div>
               </div>
-              <div className='h-100 width100'>
+              <div className='h-100 '>
                 <NewComplainChecked />
               </div>
-              <div className='h-100 width100'>
+              <div className='h-100'>
                 <AutoFixxedError />
               </div>
             </div>
@@ -87,7 +80,9 @@ export default function Widget() {
       ) : (
         <div className='wp-100 h-150 white-container-br-10 flex-r flex-r-jc-ac flex-jc-sp-btn'>
           <div className='wp-18 hp-80 ml-20 bg-vilot-widget flex-r-jc-ac flex-jc-sp-btn'>
-            <div><img src={complianceScan} alt='icon'></img></div>
+            <div>
+              <img src={complianceScan} alt='icon'></img>
+            </div>
             <div className='f-white pl-20'>
               <div className='fw-700 f-36 lh-10'>1765</div>
               <div className='fw-400 f-12'>Compliances Scanned</div>
@@ -105,8 +100,12 @@ export default function Widget() {
             <NewComplainChecked />
           </div>
           <div className='wp-4 mt-5 ml-20'>
-            <div className='cp wp-6'onClick={toggleContent}>
-              <img className={showContent ? ' ' : 'rotate-icon'} src={collapse} alt='Collapse'/>
+            <div className='cp wp-6' onClick={toggleContent}>
+              <img
+                className={showContent ? ' ' : 'rotate-icon'}
+                src={collapse}
+                alt='Collapse'
+              />
             </div>
           </div>
         </div>

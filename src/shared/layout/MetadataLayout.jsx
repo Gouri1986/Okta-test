@@ -43,7 +43,7 @@ const Layout = (props) => {
           </>
         )}
       </div>
-      <div className='bdr-r-10 mt-50 mb-25 ml-40 mr-40 bg-white'>
+      <div className='bdr-r-10 mt-50 mb-40 ml-40 mr-40 bg-white'>
         <Widget />
       </div>
       {/* Map section */}
