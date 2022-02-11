@@ -1,13 +1,13 @@
-import React from 'react';
-import './metadataLayout.scss';
-import { Navbar, Header, TableSettings } from '../components/common';
-import Breadcrumbs from '../components/common/breadcumbs/Breadcrumbs';
-import ComplienceIntro from '../../pages/metadata/securityCompliance/ChartsContainer';
-import Accordion from '../components/common/accordion/Accordion';
-import Map from '../components/common/map/Map';
-import Widget from '../components/common/widget/Widget';
-import { useSelector } from 'react-redux';
-import Tenant from '../components/common/tenant/Tenant';
+import React from "react";
+import "./metadataLayout.scss";
+import { Navbar, Header, TableSettings } from "../components/common";
+import Breadcrumbs from "../components/common/breadcumbs/Breadcrumbs";
+import ComplienceIntro from "../../pages/metadata/securityCompliance/ChartsContainer";
+import Accordion from "../components/common/accordion/Accordion";
+import Map from "../components/common/map/Map";
+import Widget from "../components/common/widget/Widget";
+import { useSelector } from "react-redux";
+import Tenant from "../components/common/tenant/Tenant";
 const Layout = (props) => {
   const {
     children,
@@ -66,7 +66,7 @@ const Layout = (props) => {
               tableTitle={tableTitle}
               modalOnClick={() => {
                 setOpenCRUDModal(!openCRUDModal);
-                setCRUDModalType('add');
+                setCRUDModalType("add");
               }}
             />
           </div>
