@@ -1,11 +1,20 @@
-import { NAV_EXPAND, COMPLIANCE_DRAWER_EXPAND } from "./commonActionTypes"
+import {
+  NAV_EXPAND,
+  COMPLIANCE_DRAWER_EXPAND,
+  FILTER_DRAWER_EXPAND,
+} from "./commonActionTypes";
 
-export const setNavDrawerExpand = endpoint => ({
+export const setNavDrawerExpand = (endpoint) => ({
   type: NAV_EXPAND,
-  payload: endpoint
-})
+  payload: endpoint,
+});
 
-export const setComplianceDrawerExpand = endpoint => ({
+export const setComplianceDrawerExpand = (endpoint) => ({
   type: COMPLIANCE_DRAWER_EXPAND,
-  payload: endpoint
-})
+  payload: endpoint,
+});
+
+export const setFilterDrawerExpand = (bool) => ({
+  type: FILTER_DRAWER_EXPAND,
+  payload: bool,
+});

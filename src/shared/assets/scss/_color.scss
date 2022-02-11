@@ -1,4 +1,4 @@
-@import "variables";
+@import 'variables';
 
 /**********************************************************
           Transparent & translucent background
@@ -35,15 +35,22 @@
 .bg-tab {
   background-color: $tab-color;
 }
-// widget
-.bg-vilot-widget{
-  background-color: $vilote-widget;
+
+// conatiner
+.bg-grey-container {
+  background-color: $grey-conatainer;
 }
-.bg-green-widget{
-  background-color: $green-widget;
+.bg-purple-container {
+  background-color: $purple-container;
 }
-.bg-orange-widget{
-  background-color: $orange-widget;
+.bg-orange-container {
+  background-color: $orange-conatainer;
+}
+.bg-green-container {
+  background-color: $green-conatainer;
+}
+.bg-violet-container {
+  background-color: $violet-conatainer;
 }
 
 /**********************************************************
