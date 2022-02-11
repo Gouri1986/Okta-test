@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 
 import NewComplainChecked from './NewComplainChecked';
 import ApexColumnCharts from '../charts/ApexColumnCharts';
@@ -17,58 +17,50 @@ export default function Widget() {
   const toggleContent = () => {
     showContent ? setshowContent(false) : setshowContent(true);
   };
+
   return (
     <>
       {showContent ? (
-        <div className='h-307 wp-100 white-container-br-10 flex-r-jc-ac flex-jc-sp-btn'>
-          <div className='flex-r' style={{ width: '81%' }}>
-            <div
-              className='h-275 flex-c'
-              style={{ width: '18%' }}
-            >
-              <div
-                className='flex-r-ac flex-jc-sp-btn h-50'
-                style={{ backgroundColor: '#f9f9f9' }}
-              >
-                <div className='f-grey f-14 fw-600 ml-10'>Chart Title</div>
+        <div className='wp-100 white-container-br-10 flex-r-jc-ac flex-jc-sp-btn p-10'>
+          <div className='flex-r wp-95'>
+            <div className='flex-c wp-25 bg-secondary bdr-r-br-10 bdr-r-bl-10'>
+              <div className='flex-r-ac flex-jc-sp-btn h-50 bg-primary bdr-r-tl-10 bdr-r-tr-10'>
+                <div className='fc-white f-14 fw-600 ml-10'>Chart Title</div>
                 <div className='mr-10'>
                   <img src={more} alt='more'></img>
                 </div>
               </div>
-              <div>
+              <div className='bg-secondary bdr-r-br-10 bdr-r-bl-10'>
                 <ApexDonutChart />
               </div>
             </div>
-            <div
-              className='white-container ml-22 h-275'
-              style={{ width: '80%' }}
-            >
-              <div
-                className='flex-r-ac flex-jc-sp-btn h-50'
-                style={{ backgroundColor: '#f9f9f9' }}
-              >
-                <div className='f-grey f-14 fw-600 ml-10'>Chart Title</div>
+            <div className='ml-22 wp-75 bg-secondary bdr-r-br-10 bdr-r-bl-10'>
+              <div className='flex-r-ac flex-jc-sp-btn h-50 bg-primary bdr-r-tl-10 bdr-r-tr-10'>
+                <div className='fc-white f-14 fw-600 ml-10'>Chart Title</div>
                 <div className='mr-10'>
                   <img src={more} alt='more'></img>
                 </div>
               </div>
-              <div>
+              <div className='bg-secondary'>
                 <ApexColumnCharts />
               </div>
             </div>
           </div>
-          <div className='wp-4 mt-5 ml-20 mr-20 p-22 bg-primary flex-r-jc-ac bdr-rp-50'>
-            <div className='cp wp-100 hp-100 text-center'onClick={toggleContent}>
-              <img className={'rotate-icon'} src={collapse} alt='Collapse'/>
+          <div className='wp-5 mt-5 ml-20 p-22 bg-primary flex-r-jc-ac bdr-rp-50'>
+            <div
+              className='cp wp-100 hp-100 text-center'
+              onClick={toggleContent}
+            >
+              <img className={'rotate-icon'} src={collapse} alt='Collapse' />
             </div>
           </div>
         </div>
       ) : (
         <div className='wp-100 h-120 white-container-br-10 flex-r flex-r-jc-ac flex-jc-sp-btn'>
-          <div className='wp-18 hp-80 ml-20 p-15 bg-vilot-widget bdr-r-10 flex-r-jc-ac'>
-           <CompliancesScanned />
+          <div className='wp-18 hp-80 ml-10 p-15 purple-container-br-10 flex-r-jc-ac'>
+            <CompliancesScanned />
           </div>
-          <div className='wp-58 hp-80 ml-20 bg-orange-widget flex-r-jc-ac flex-jc-sp-btn bdr-r-10'>
+          <div className='wp-58 hp-80 ml-20 flex-r-jc-ac flex-jc-sp-btn orange-container-br-10'>
             <div className='ml-20'>
               <img src={tempIcon} alt='icon'></img>
             </div>
@@ -76,12 +68,15 @@ export default function Widget() {
               <img alt='line-chart' src={dummyLineChart}></img>
             </div>
           </div>
-          <div className='wp-18 hp-80 ml-20 p-15 bg-green-widget bdr-r-10'>
+          <div className='wp-18 hp-80 ml-20 p-15 green-container-br-10'>
             <NewComplainChecked />
           </div>
-          <div className='wp-4 ml-20 mr-20 p-22 bg-primary flex-r-jc-ac bdr-rp-50'>
-            <div className='cp wp-100 hp-100 text-center'onClick={toggleContent}>
-            <img src={collapse} alt='Collapse'/>
+          <div className='wp-4 ml-20 mr-10 p-22 bg-primary flex-r-jc-ac bdr-rp-50'>
+            <div
+              className='cp wp-100 hp-100 text-center'
+              onClick={toggleContent}
+            >
+              <img src={collapse} alt='Collapse' />
             </div>
           </div>
         </div>

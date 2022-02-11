@@ -1,4 +1,5 @@
 import {
+  FILTERED_TABLE_CONTENTS,
   TABLE_ACTIVE_ENDPOINT,
   TABLE_CONTENTS,
   TABLE_TABS,
@@ -12,6 +13,11 @@ export const setTableActiveEndpoint = (endpoint) => ({
 export const setTableContents = (data) => ({
   type: TABLE_CONTENTS,
   payload: data,
+});
+
+export const setFilteredTableContents = (filteredData) => ({
+  type: FILTERED_TABLE_CONTENTS,
+  payload: filteredData,
 });
 
 export const setActiveTableTabs = (tabs) => ({
