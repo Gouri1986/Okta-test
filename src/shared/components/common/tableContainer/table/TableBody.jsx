@@ -1,7 +1,7 @@
 import React, { useState } from "react"
 import { getSanitisedTableData } from "../../../../utils/table"
 import { PencilIcon, TrashIcon } from "./assets"
-import  RightDrawer  from "../../drawer/rightDrawer/RightDrawer"
+import RightDrawer from "../../drawer/rightDrawer/RightDrawer"
 import Modal from "../../modal/center/Modal"
 import ModalForm from "../../forms/ModalForm"
 import { useSelector, useDispatch } from "react-redux"
@@ -9,8 +9,12 @@ import { deleteTableData } from "../../../../apis/table/table"
 import InlineStatusBarChart from "../../charts/TableInlineBarStatus"
 import { kebabCaseDate } from "../../../../utils/misc"
 import ComplianceViewButton from "./columnButtons/ComplianceViewButton"
-import { setComplianceDrawerExpand, setNavDrawerExpand, setFilterDrawerExpand } from "../../../../../redux/common/commonActions"
-
+import {
+  setComplianceDrawerExpand,
+  setNavDrawerExpand,
+  setFilterDrawerExpand
+} from "../../../../../redux/common/commonActions"
+import { DrawerDataHeader ,DrawerDataBody } from "../../forms/complianceDrawerData"
 const RowAction = ({
   baseUrl,
   setOpenCRUDModal,
@@ -182,13 +186,8 @@ const TableBody = props => {
           />
         ) : (
           // else return normal row data
-          <span
-            title={datum[id]?.length > 100 && datum[id]}
-            className={"table-data-cell"}
-          >
-            {datum[id]?.length > 100
-              ? datum[id]?.substr(0, 100) + "..."
-              : datum[id]}
+          <span title={datum[id]?.length > 100 && datum[id]} className={"table-data-cell"}>
+            {datum[id]?.length > 100 ? datum[id]?.substr(0, 100) + "..." : datum[id]}
           </span>
         )}
       </td>
@@ -237,11 +236,14 @@ const TableBody = props => {
           )} */}
       <RightDrawer
         open={complianceDrawerExpanded}
-        close={() => dispatch(setComplianceDrawerExpand(false))}
         size="sm" // sm, md, lg, xl
         data={activeData}
-        tableTitle={tableTitle}
       >
+        <DrawerDataHeader
+          close={() => dispatch(setComplianceDrawerExpand(false))}
+          tableTitle={`${tableTitle} Report`}
+        />
+        <DrawerDataBody />
       </RightDrawer>
       <Modal
         open={openCRUDModal}
