@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { getSpacedDisplayName } from '../../../../utils/table';
-import TreeView from '../../treeView/TreeView';
-import './ModalRight.scss';
+import './RightDrawer.scss';
 
 const RightDrawer = (props) => {
   const { open, close, size, tableTitle, data } = props;
