@@ -241,8 +241,8 @@ const TableBody = props => {
         size="sm" // sm, md, lg, xl
         data={activeData}
         tableTitle={tableTitle}
-      />
-      
+      >
+      </RightDrawer>
       <Modal
         open={openCRUDModal}
         close={() => setOpenCRUDModal(false)}

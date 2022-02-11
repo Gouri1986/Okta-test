@@ -3,7 +3,7 @@ import { getSpacedDisplayName } from '../../../../utils/table';
 import './RightDrawer.scss';
 
 const RightDrawer = (props) => {
-  const { open, close, size, tableTitle, data } = props;
+  const { open, close, size, tableTitle, data , children} = props;
 
   return (
     <div
