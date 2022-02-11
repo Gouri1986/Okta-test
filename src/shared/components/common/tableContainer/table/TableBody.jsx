@@ -4,11 +4,15 @@ import { PencilIcon, TrashIcon } from "./assets"
 import ModalRight from "../../modal/right/ModalRight"
 import Modal from "../../modal/center/Modal"
 import ModalForm from "../../forms/ModalForm"
-import { useSelector } from "react-redux"
+import { useSelector, useDispatch } from "react-redux"
 import { deleteTableData } from "../../../../apis/table/table"
 import InlineStatusBarChart from "../../charts/TableInlineBarStatus"
 import { kebabCaseDate } from "../../../../utils/misc"
 import ComplianceViewButton from "./columnButtons/ComplianceViewButton"
+import {
+  setComplianceDrawerExpand,
+  setNavDrawerExpand
+} from "../../../../../redux/common/commonActions"
 
 const RowAction = ({
   baseUrl,
@@ -79,10 +83,11 @@ const TableBody = props => {
     activeEndPoint,
     getTable,
     baseUrl,
-    openRightDescModal,
-    setOpenRightDescModal,
+    complianceDrawerExpanded,
     disableRowclick
   } = props
+
+  const dispatch = useDispatch()
 
   //state to manage data to be displayed in right side modal
   const [activeData, setActiveData] = useState({})
@@ -162,9 +167,20 @@ const TableBody = props => {
         ) : id === "lastVerifiedDate" ? (
           <span>{kebabCaseDate(datum[id])}</span>
         ) : id === "resources" ? (
-          <ComplianceViewButton dark onClick={() =>  setOpenRightDescModal(true)} />
+          <ComplianceViewButton
+            dark
+            onClick={() => {
+              dispatch(setComplianceDrawerExpand(true))
+              dispatch(setNavDrawerExpand(false))
+            }}
+          />
         ) : id === "regulationControls" ? (
-          <ComplianceViewButton onClick={() =>  setOpenRightDescModal(true)}/>
+          <ComplianceViewButton
+            onClick={() => {
+              dispatch(setComplianceDrawerExpand(true))
+              dispatch(setNavDrawerExpand(false))
+            }}
+          />
         ) : (
           // else return normal row data
           <span className={"table-data-cell"}>{datum[id]}</span>
@@ -179,12 +195,12 @@ const TableBody = props => {
         const checked = selectedRow.find(e => e[tableRowkey] === datum[tableRowkey])
         if (!checked) {
           onRowClick(datum)
-          // setActiveData(datum);
-          setOpenRightDescModal(true)
+          setActiveData(datum)
+          dispatch(setComplianceDrawerExpand(true))
         } else {
           onRowClick({})
-          // setActiveData({});
-          setOpenRightDescModal(false)
+          setActiveData({})
+          dispatch(setComplianceDrawerExpand(false))
         }
       }
     }
@@ -214,8 +230,8 @@ const TableBody = props => {
             </tr>
           )} */}
       <ModalRight
-        open={openRightDescModal}
-        close={() => setOpenRightDescModal(false)}
+        open={complianceDrawerExpanded}
+        close={() => dispatch(setComplianceDrawerExpand(false))}
         size="sm" // sm, md, lg, xl
         data={activeData}
         tableTitle={tableTitle}

@@ -17,11 +17,11 @@ const Layout = (props) => {
     setOpenCRUDModal,
     pageTitle,
     setCRUDModalType,
-    openRightDescModal
+    
   } = props
 
   const { tabs } = useSelector(state => state.tableReducer)
-  console.log(openRightDescModal)
+  const { complianceDrawerExpanded } = useSelector(state => state.commonReducer)
   return (
     <div className='overflow-y-scroll wp-50 hvh-100 flex-1 flex-c pl-30 pr-30'>
       <div className='mt-33'>
@@ -50,7 +50,7 @@ const Layout = (props) => {
           </>
         )}
       </div>
-      <div className={`bdr-r-10 mt-50 mb-25 bg-white ${openRightDescModal ? `drawer-toggle` : ``}`}>
+      <div className={`bdr-r-10 mt-50 mb-25 bg-white ${complianceDrawerExpanded ? `drawer-toggle` : ``}`}>
         <Widget />
       </div>
       {/* Map section */}
@@ -58,7 +58,7 @@ const Layout = (props) => {
         <Map />
       </div> */}
       <div className='flex-c pt-20'>
-        <div className={`flex-c bdr-r-10 bg-white pl-15 pr-15 ${openRightDescModal ? `drawer-toggle` : ``}`}>
+        <div className={`flex-c bdr-r-10 bg-white pl-15 pr-15 ${complianceDrawerExpanded ? `drawer-toggle` : ``}`}>
           <div>
             <TableSettings
               tabs={tabs}
@@ -81,7 +81,7 @@ const Layout = (props) => {
           </div>
         </div>
         {/* pagination render */}
-        <div className={`mt-20 mb-30 ${openRightDescModal ? `drawer-toggle` : ``}`}>{children[1]}</div>
+        <div className={`mt-20 mb-30 ${complianceDrawerExpanded ? `drawer-toggle` : ``}`}>{children[1]}</div>
       </div>
     </div>
   )
