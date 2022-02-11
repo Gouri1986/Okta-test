@@ -1,0 +1,118 @@
+.side-on-state {
+  display: block;
+}
+.side-off-state {
+  display: none;
+}
+
+.wd-sb-sm {
+  width: 30% !important;
+}
+.wd-sb-md {
+  width: 50% !important;
+}
+.wd-sb-lg {
+  width: 70% !important;
+}
+.wd-sb-xl {
+  width: 100% !important;
+}
+
+.sidebar {
+  border-radius: 10px 10px 0px 0px;
+  top: 0%;
+  right: 23px;
+  height: 100%;
+  background-color: #fff;
+  box-shadow: 0 2px 5px 0 rgba(240, 240, 240, 0.16), 0 2px 10px 0 rgba(139, 139, 139, 0.12);
+  position: fixed !important;
+  z-index: -999;
+  overflow: auto;
+}
+
+.sidebar-btn {
+  position: absolute;
+  top: 35px;
+  right: 5px;
+  // left: 10px;
+  width: 30px;
+  height: 30px;
+  background-color: #ffffff;
+  border-radius: 50%;
+  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+  cursor: pointer;
+  z-index: 2;
+}
+
+.sidebar-body {
+  padding: 15px;
+  overflow: auto;
+  margin-top: 20px;
+  height: 80%;
+}
+
+.sidebar-body::-webkit-scrollbar {
+  width: 0.5em;
+  left: -10px;
+}
+
+.sidebar-body::-webkit-scrollbar-track {
+  background-color: rgb(236, 233, 233);
+}
+
+.sidebar-body::-webkit-scrollbar-thumb {
+  background-color: darkgrey;
+  outline: 1px solid slategrey;
+  border-radius: 15px;
+}
+
+.sidebar-animation {
+  position: relative;
+  animation: animateopen 0.4s;
+}
+.table-title {
+  position: sticky;
+  top: 0;
+  color: #fff;
+  background-color: #001833;
+  height: 100px;
+  padding-top: 40px;
+  padding-left: 5px;
+  //margin-top: 150px;
+}
+
+.column-name {
+  font-style: normal;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 21px;
+  color: #1f4173;
+}
+.column-data {
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 21px;
+  color: #1f4173;
+  padding-bottom: 10px;
+}
+
+@keyframes animateopen {
+  from {
+    right: -300px;
+    opacity: 1;
+  }
+  to {
+    right: 0;
+    opacity: 1;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .wd-sb-sm,
+  .wd-sb-md,
+  .wd-sb-lg,
+  .wd-sb-xl {
+    width: 100%;
+  }
+}

@@ -1,7 +1,7 @@
 import React, { useState } from "react"
 import { getSanitisedTableData } from "../../../../utils/table"
 import { PencilIcon, TrashIcon } from "./assets"
-import ModalRight from "../../modal/right/ModalRight"
+import  RightDrawer  from "../../drawer/rightDrawer/RightDrawer"
 import Modal from "../../modal/center/Modal"
 import ModalForm from "../../forms/ModalForm"
 import { useSelector, useDispatch } from "react-redux"
@@ -9,10 +9,7 @@ import { deleteTableData } from "../../../../apis/table/table"
 import InlineStatusBarChart from "../../charts/TableInlineBarStatus"
 import { kebabCaseDate } from "../../../../utils/misc"
 import ComplianceViewButton from "./columnButtons/ComplianceViewButton"
-import {
-  setComplianceDrawerExpand,
-  setNavDrawerExpand
-} from "../../../../../redux/common/commonActions"
+import { setComplianceDrawerExpand, setNavDrawerExpand } from "../../../../../redux/common/commonActions"
 
 const RowAction = ({
   baseUrl,
@@ -229,7 +226,7 @@ const TableBody = props => {
               <td colSpan={header.length} />
             </tr>
           )} */}
-      <ModalRight
+      <RightDrawer
         open={complianceDrawerExpanded}
         close={() => dispatch(setComplianceDrawerExpand(false))}
         size="sm" // sm, md, lg, xl

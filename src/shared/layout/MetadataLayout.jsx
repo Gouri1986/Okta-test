@@ -22,6 +22,8 @@ const Layout = (props) => {
 
   const { tabs } = useSelector(state => state.tableReducer)
   const { complianceDrawerExpanded } = useSelector(state => state.commonReducer)
+
+  console.log(complianceDrawerExpanded)
   return (
     <div className='overflow-y-scroll wp-50 hvh-100 flex-1 flex-c pl-30 pr-30'>
       <div className='mt-33'>
