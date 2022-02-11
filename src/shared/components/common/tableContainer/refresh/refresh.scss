@@ -1,9 +1,8 @@
-@import "../../../../assets/scss/styles.scss";
 
 .refresh-icon-button {
   background-color: white;
   &:hover {
-    background-color: $tertiary-color;
+    background-color: #110def;
     .refresh-icon-path {
       fill: white;
     }

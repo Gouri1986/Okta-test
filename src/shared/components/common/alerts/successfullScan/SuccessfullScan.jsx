@@ -1,5 +1,4 @@
 import React from 'react';
-import '../../../../assets/scss/styles.scss';
 import success from '../../../../assets/images/icons/success.svg';
 
 export default function SuccessfullScan() {

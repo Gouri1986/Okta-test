@@ -76,6 +76,31 @@ $sizes: 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20,
     box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.05);
     border-radius: #{$size}px;
   }
+  .grey-container-br-#{$size} {
+    background-color: $grey-conatainer;
+    box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.05);
+    border-radius: #{$size}px;
+  }
+  .purple-container-br-#{$size} {
+    background-color: $purple-container;
+    box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.05);
+    border-radius: #{$size}px;
+  }
+  .orange-container-br-#{$size} {
+    background-color: $orange-conatainer;
+    box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.05);
+    border-radius: #{$size}px;
+  }
+  .green-container-br-#{$size} {
+    background-color: $green-conatainer;
+    box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.05);
+    border-radius: #{$size}px;
+  }
+  .violet-container-br-#{$size} {
+    background-color: $violet-conatainer;
+    box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.05);
+    border-radius: #{$size}px;
+  }
 }
 
 /**********************************************************
@@ -100,10 +125,8 @@ $sizes: 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20,
 }
 
 /**********************************************************
-                   
                       Deprecating: Dont use below code
-           
- ***********************************************************/
+ ************************************************************/
 
 /**********************************************************
                        divider  

@@ -39,7 +39,7 @@ const FilterSearch = () => {
   return (
     <div className='titan-filter wp-100'>
       <div className='flex-r flex-r-ac mr-30'>
-        <p className='fc-tertiary font-14 fw-500 pr-10'>Filter</p>
+        <p className='fc-tertiary f-14 fw-500 pr-10'>Filter</p>
         <FilterSettingIcon />
       </div>
       <div className='flex-c wp-100'>

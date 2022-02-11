@@ -93,8 +93,8 @@ const TableBody = (props) => {
    * *************************************************************
    ------------------ Logic explained ----------------------------
         ** 1. Intial page count = 1          
-        page count = 1 --->  slice 0 to 10  [ (1-1 x 10) to (1 * 10)]
-        page count = 2 --->  slice 10 to 20  [ (2-1 x 10) to (2 * 10)]
+        page count = 1 --->  slice 0 to 9  [ (1-1 x 10) to (1 * 10) - 1 ]
+        page count = 2 --->  slice 10 to 19  [ (2-1 x 10) to (2 * 10) - 1 ]
   */
   const start = (page - 1) * rowsPerPage;
   const end = page * rowsPerPage;

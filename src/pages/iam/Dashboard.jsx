@@ -59,10 +59,16 @@ const Dashboard = () => {
     }
   };
 
+  // pagination state init
   const [page, setPage] = useState(1);
   const [rowsPerPage, setRowsPerPage] = useState(10);
   const pageCount = Math.ceil(tableContents.data?.length / rowsPerPage);
 
+  // pagination page count state change 
+  useEffect(() => {
+    setPage(1)
+  }, [tableContents])
+  
   // state for the visibility of crud modal
   const [openCRUDModal, setOpenCRUDModal] = useState(false);
   const [CRUDModalType, setCRUDModalType] = useState("add");
