@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { setTableActiveEndpoint } from "../../../../../redux/table/tabelActions";
 import {
   setFilterDrawerExpand,
+  setComplianceDrawerExpand,
   setNavDrawerExpand,
 } from "../../../../../redux/common/commonActions";
 import { DrawerArrow } from "./assets";
@@ -34,7 +35,7 @@ const Drawer = (props) => {
         expanded={navExpanded}
         setExpanded={(v) => {
           dispatch(setNavDrawerExpand(v));
-          v && dispatch(setFilterDrawerExpand(false));
+          v && dispatch(setFilterDrawerExpand(false)) && dispatch(setComplianceDrawerExpand(false));
         }}
       />
       {/************** Drawer Main Section ***********/}

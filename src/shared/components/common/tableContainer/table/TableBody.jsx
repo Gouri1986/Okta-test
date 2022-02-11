@@ -1,7 +1,7 @@
 import React, { useState } from "react"
 import { getSanitisedTableData } from "../../../../utils/table"
 import { PencilIcon, TrashIcon } from "./assets"
-import  RightDrawer  from "../../drawer/rightDrawer/RightDrawer"
+import RightDrawer from "../../drawer/rightDrawer/RightDrawer"
 import Modal from "../../modal/center/Modal"
 import ModalForm from "../../forms/ModalForm"
 import { useSelector, useDispatch } from "react-redux"
@@ -9,7 +9,11 @@ import { deleteTableData } from "../../../../apis/table/table"
 import InlineStatusBarChart from "../../charts/TableInlineBarStatus"
 import { kebabCaseDate } from "../../../../utils/misc"
 import ComplianceViewButton from "./columnButtons/ComplianceViewButton"
-import { setComplianceDrawerExpand, setNavDrawerExpand } from "../../../../../redux/common/commonActions"
+import {
+  setComplianceDrawerExpand,
+  setNavDrawerExpand,
+  setFilterDrawerExpand
+} from "../../../../../redux/common/commonActions"
 
 const RowAction = ({
   baseUrl,
@@ -169,6 +173,7 @@ const TableBody = props => {
             onClick={() => {
               dispatch(setComplianceDrawerExpand(true))
               dispatch(setNavDrawerExpand(false))
+              dispatch(setFilterDrawerExpand(false))
             }}
           />
         ) : id === "regulationControls" ? (
@@ -176,17 +181,13 @@ const TableBody = props => {
             onClick={() => {
               dispatch(setComplianceDrawerExpand(true))
               dispatch(setNavDrawerExpand(false))
+              dispatch(setFilterDrawerExpand(false))
             }}
           />
         ) : (
           // else return normal row data
-          <span
-            title={datum[id]?.length > 100 && datum[id]}
-            className={"table-data-cell"}
-          >
-            {datum[id]?.length > 100
-              ? datum[id]?.substr(0, 100) + "..."
-              : datum[id]}
+          <span title={datum[id]?.length > 100 && datum[id]} className={"table-data-cell"}>
+            {datum[id]?.length > 100 ? datum[id]?.substr(0, 100) + "..." : datum[id]}
           </span>
         )}
       </td>
@@ -237,9 +238,7 @@ const TableBody = props => {
         open={complianceDrawerExpanded}
         close={() => dispatch(setComplianceDrawerExpand(false))}
         size="sm" // sm, md, lg, xl
-        data={activeData}
-        tableTitle={tableTitle}
-      />
+      ></RightDrawer>
       <Modal
         open={openCRUDModal}
         close={() => setOpenCRUDModal(false)}
