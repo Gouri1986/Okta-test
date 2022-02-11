@@ -21,7 +21,7 @@ export default function Widget() {
   return (
     <>
       {showContent ? (
-        <div className='h-350 wp-100 white-container-br-10 flex-r-jc-ac flex-jc-sp-btn p-10'>
+        <div className='wp-100 white-container-br-10 flex-r-jc-ac flex-jc-sp-btn p-10'>
           <div className='flex-r wp-95'>
             <div className='flex-c wp-25 bg-secondary bdr-r-br-10 bdr-r-bl-10'>
               <div className='flex-r-ac flex-jc-sp-btn h-50 bg-primary bdr-r-tl-10 bdr-r-tr-10'>
@@ -46,7 +46,7 @@ export default function Widget() {
               </div>
             </div>
           </div>
-          <div className='wp-5 mt-5 ml-20 mr-20 p-22 bg-primary flex-r-jc-ac bdr-rp-50'>
+          <div className='wp-5 mt-5 ml-20 p-22 bg-primary flex-r-jc-ac bdr-rp-50'>
             <div
               className='cp wp-100 hp-100 text-center'
               onClick={toggleContent}
@@ -57,7 +57,7 @@ export default function Widget() {
         </div>
       ) : (
         <div className='wp-100 h-120 white-container-br-10 flex-r flex-r-jc-ac flex-jc-sp-btn'>
-          <div className='wp-18 hp-80 ml-20 p-15 purple-container-br-10 flex-r-jc-ac'>
+          <div className='wp-18 hp-80 ml-10 p-15 purple-container-br-10 flex-r-jc-ac'>
             <CompliancesScanned />
           </div>
           <div className='wp-58 hp-80 ml-20 flex-r-jc-ac flex-jc-sp-btn orange-container-br-10'>
@@ -71,7 +71,7 @@ export default function Widget() {
           <div className='wp-18 hp-80 ml-20 p-15 green-container-br-10'>
             <NewComplainChecked />
           </div>
-          <div className='wp-4 ml-20 mr-20 p-22 bg-primary flex-r-jc-ac bdr-rp-50'>
+          <div className='wp-4 ml-20 mr-10 p-22 bg-primary flex-r-jc-ac bdr-rp-50'>
             <div
               className='cp wp-100 hp-100 text-center'
               onClick={toggleContent}
