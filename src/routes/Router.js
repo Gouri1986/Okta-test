@@ -8,6 +8,7 @@ import SCOSDashboard from "../pages/metadata/securityCompliance/Dashboard";
 import ComplianceDashboard from "../pages/features/cloud-goverance/complianceDashboard/Dashboard";
 import { Navbar } from "../shared/components/common";
 import { RequireAuth } from "./utils";
+import { FilterDrawer } from "../shared/components/common/drawer/filterDrawer";
 
 const AppRouter = () => {
   const { user: token } = useSelector((state) => state.userReducer);
@@ -19,6 +20,9 @@ const AppRouter = () => {
           <Navbar />
         </div>
       )}
+      <div>
+        <FilterDrawer />
+      </div>
       <Switch>
         <Route path={"/"} exact>
           <RequireAuth>

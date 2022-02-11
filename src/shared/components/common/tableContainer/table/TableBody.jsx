@@ -175,11 +175,11 @@ const TableBody = (props) => {
         ) : (
           // else return normal row data
           <span
-            title={datum[id].length > 100 && datum[id]}
+            title={datum[id]?.length > 100 && datum[id]}
             className={"table-data-cell"}
           >
-            {datum[id].length > 100
-              ? datum[id].substr(0, 100) + "..."
+            {datum[id]?.length > 100
+              ? datum[id]?.substr(0, 100) + "..."
               : datum[id]}
           </span>
         )}
