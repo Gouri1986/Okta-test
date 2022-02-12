@@ -21,14 +21,9 @@ const RightDrawer = (props) => {
           : ''
       } `}
     >
-    {children}
+    <div className='sidebar-header'>{children[0]}</div>
       <div className='sidebar-body'>
-        {Object.keys(data).map((datum) => (
-          <div className='flex-c mb-10'>
-            <span className='column-name'>{getSpacedDisplayName(datum)}</span>
-            <span className='column-data'>{data[datum]}</span>
-          </div>
-        ))}
+       {children[1]}
       </div>
       {/* <TreeView /> */}
     </div>

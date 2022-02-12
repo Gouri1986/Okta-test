@@ -1,7 +1,9 @@
-import React, { useState } from "react"
+import React, { useState, useEffect } from "react"
 import { getSanitisedTableData } from "../../../../utils/table"
 import { PencilIcon, TrashIcon } from "./assets"
-import RightDrawer from "../../drawer/rightDrawer/RightDrawer"
+import RightDrawer from "../../drawer/complianceDrawer/RightDrawer"
+import { DrawerDataHeader, DrawerDataBody } from "../../drawer/complianceDrawer/complianceDrawerData"
+
 import Modal from "../../modal/center/Modal"
 import ModalForm from "../../forms/ModalForm"
 import { useSelector, useDispatch } from "react-redux"
@@ -14,7 +16,7 @@ import {
   setNavDrawerExpand,
   setFilterDrawerExpand
 } from "../../../../../redux/common/commonActions"
-import { DrawerDataHeader ,DrawerDataBody } from "../../forms/complianceDrawerData"
+import { getDrawerData } from "../../../../apis/drawer/drawer"
 const RowAction = ({
   baseUrl,
   setOpenCRUDModal,
@@ -92,6 +94,11 @@ const TableBody = props => {
 
   //state to manage data to be displayed in right side modal
   const [activeData, setActiveData] = useState({})
+
+  // complaince drawer data
+  const [drawerData, setDrawerData] = useState([])
+  const [resourcesId, setResourcseIds] = useState([])
+  const { complainceDrawerData } = useSelector(state => state.drawerReducer)
 
   /***************************************************************
    *          Pagination Data Slicing Logic
@@ -171,6 +178,13 @@ const TableBody = props => {
           <ComplianceViewButton
             dark
             onClick={() => {
+              dispatch(
+                getDrawerData(
+                  `${process.env.REACT_APP_COMPLIANCE_DASHBOARD_BASE_URL}get-controlId-complaince-details`,
+                  { controlItemId: datum.controlId, resource: datum.ociResourceType }
+                )
+              )
+              setDrawerData(datum)
               dispatch(setComplianceDrawerExpand(true))
               dispatch(setNavDrawerExpand(false))
               dispatch(setFilterDrawerExpand(false))
@@ -224,6 +238,10 @@ const TableBody = props => {
 
   const emptyRows = rowsPerPage - Math.min(rowsPerPage, rowData.length - page * rowsPerPage)
 
+  useEffect(() => {
+    setResourcseIds(complainceDrawerData[0]?.json_agg)
+  }, [complainceDrawerData])
+
   return (
     <div className="flex-c ">
       {tableRowData?.map(datum => (
@@ -240,10 +258,15 @@ const TableBody = props => {
         data={activeData}
       >
         <DrawerDataHeader
-          close={() => dispatch(setComplianceDrawerExpand(false))}
+          close={() => {
+            dispatch(setComplianceDrawerExpand(false))
+            setResourcseIds([])
+            setDrawerData({})
+          }}
           tableTitle={`${tableTitle} Report`}
+          headerData={drawerData}
         />
-        <DrawerDataBody />
+        <DrawerDataBody resourcesId={resourcesId} />
       </RightDrawer>
       <Modal
         open={openCRUDModal}

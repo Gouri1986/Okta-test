@@ -31,17 +31,18 @@
 }
 
 .sidebar-body {
-  padding: 15px;
+  padding: 0px;
   overflow: auto;
-  margin-top: 20px;
   height: 80%;
 }
 
 .sidebar-body::-webkit-scrollbar {
-  width: 0.5em;
+  width: 0.7em;
   left: -10px;
 }
-
+.sidebar-bar::-webkit-scrollbar:focus {
+  width: 0.12em;
+}
 .sidebar-body::-webkit-scrollbar-track {
   background-color: rgb(236, 233, 233);
 }
