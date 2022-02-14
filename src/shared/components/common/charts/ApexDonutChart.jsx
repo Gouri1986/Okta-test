@@ -11,6 +11,15 @@ class PieChart extends React.Component {
         legend: {
           position: 'bottom',
         },
+        // colors: [
+        //   function ({ value, seriesIndex, w }) {
+        //     if (value < 55) {
+        //       return '#E80054';
+        //     } else {
+        //       return '#D9534F';
+        //     }
+        //   },
+        // ],
         theme: {
           monochrome: {
             enabled: false,
@@ -34,6 +43,7 @@ class PieChart extends React.Component {
         <ReactApexChart
           options={this.state.chartOptions}
           series={this.state.series}
+          // colors={this.colors}
           type='pie'
           width='100%'
         />

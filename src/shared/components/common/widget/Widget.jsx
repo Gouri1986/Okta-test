@@ -46,7 +46,7 @@ export default function Widget() {
               </div>
             </div>
           </div>
-          <div className='wp-5 mt-5 ml-20 p-22 bg-primary flex-r-jc-ac bdr-rp-50'>
+          <div className='wp-5 p-22 flex-r-jc-ac bdr-rp-50'>
             <div
               className='cp wp-100 hp-100 text-center'
               onClick={toggleContent}
@@ -57,21 +57,21 @@ export default function Widget() {
         </div>
       ) : (
         <div className='wp-100 h-120 white-container-br-10 flex-r flex-r-jc-ac flex-jc-sp-btn'>
-          <div className='wp-18 hp-80 ml-10 p-15 purple-container-br-10 flex-r-jc-ac'>
+          <div className='wp-16 hp-80 ml-10 pl-15 pr-15 pt-15 pb-15 purple-container-br-10 flex-r-jc-ac'>
             <CompliancesScanned />
           </div>
-          <div className='wp-58 hp-80 ml-20 flex-r-jc-ac flex-jc-sp-btn orange-container-br-10'>
-            <div className='ml-20'>
+          <div className='wp-60 hp-80 ml-20 flex-r-ac orange-container-br-10'>
+            <div className='mr-20 ml-20'>
               <img src={tempIcon} alt='icon'></img>
             </div>
             <div className='pr-50'>
               <img alt='line-chart' src={dummyLineChart}></img>
             </div>
           </div>
-          <div className='wp-18 hp-80 ml-20 p-15 green-container-br-10'>
+          <div className='wp-16 hp-80 ml-20 p-15 green-container-br-10'>
             <NewComplainChecked />
           </div>
-          <div className='wp-4 ml-20 mr-10 p-22 bg-primary flex-r-jc-ac bdr-rp-50'>
+          <div className='mr-10 ml-5 flex-r-jc-ac'>
             <div
               className='cp wp-100 hp-100 text-center'
               onClick={toggleContent}

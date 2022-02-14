@@ -8,8 +8,10 @@ import { red } from '@mui/material/colors';
 
 const ApexColumnCharts = ({ direction }) => {
   const columnColors = {
-    series1: '#E328AF',
-    series2: '#5ECFFF',
+    series1: '#E80054',
+    series2: '#003ECB',
+    series3: '#FFC300',
+    series4: '#667222',
     bg: '#f2f2f2',
   };
 
@@ -25,7 +27,7 @@ const ApexColumnCharts = ({ direction }) => {
     },
     plotOptions: {
       bar: {
-        columnWidth: '50%',
+        columnWidth: '20%',
         colors: {
           backgroundBarColors: [
             columnColors.bg,
@@ -45,7 +47,7 @@ const ApexColumnCharts = ({ direction }) => {
       position: 'top',
       horizontalAlign: 'start',
     },
-    colors: [columnColors.series1, columnColors.series2],
+    colors: [columnColors.series1, columnColors.series2, columnColors.series3],
     stroke: {
       show: true,
       colors: ['transparent'],
@@ -81,12 +83,20 @@ const ApexColumnCharts = ({ direction }) => {
 
   const series = [
     {
-      name: 'Passed',
+      name: 'CTG1',
       data: [90, 120, 55, 100, 80, 125, 175, 70, 88, 180],
     },
     {
-      name: 'Failed',
+      name: 'CTG2',
       data: [85, 100, 30, 40, 95, 90, 30, 110, 62, 20],
+    },
+    {
+      name: 'CTG3',
+      data: [70, 20, 20, 30, 85, 80, 10, 100, 52, 10],
+    },
+    {
+      name: 'CTG4',
+      data: [60, 20, 20, 30, 85, 80, 10, 100, 52, 10],
     },
   ];
 
