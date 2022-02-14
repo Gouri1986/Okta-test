@@ -1,4 +1,3 @@
-
 //Tick mark in the checkbox
 .col-checkbox-input-container .col-checkmark:after {
   left: 6px;
@@ -8,15 +7,6 @@
   border: solid rgb(255, 255, 255);
   transform: rotate(45deg);
   border-width: 0 3px 3px 0;
-}
-
-.column-settings {
-  &:hover {
-    background-color: #110def;
-    .column-setting-path {
-      stroke: white;
-    }
-  }
 }
 
 //Checkbox is checked
