@@ -98,7 +98,7 @@ $sizes: 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20,
   }
   .violet-container-br-#{$size} {
     background-color: $violet-conatainer;
-    box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.05);
+    box-shadow: inset 0px 1.16712px 2.33425px rgba(97, 97, 97, 0.2), inset 0px 2.33425px 4.66849px rgba(97, 97, 97, 0.2);
     border-radius: #{$size}px;
   }
 }
@@ -117,12 +117,25 @@ $sizes: 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20,
   }
 }
 
+
 /**********************************************************
                        rotate-icon 
  ***********************************************************/
 .rotate-icon {
   transform: rotate(180deg);
 }
+
+
+/**********************************************************
+                      Switch
+ ***********************************************************/
+.switch:hover{
+border-radius: 10px;
+background-color: $white;
+box-shadow: 0px 1.16712px 2.33425px rgba(191, 113, 15, 0.2), 0px 2.33425px 4.66849px rgba(191, 113, 15, 0.2);
+padding: 15px 5px;
+}
+
 
 /**********************************************************
                       Deprecating: Dont use below code

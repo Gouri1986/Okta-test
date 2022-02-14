@@ -36,7 +36,7 @@
   background-color: $tab-color;
 }
 
-// conatiner
+// container
 .bg-grey-container {
   background-color: $grey-conatainer;
 }
@@ -67,4 +67,14 @@
 }
 .bg-info {
   background-color: $info-color;
+}
+
+/**********************************************************
+                    Shadow Color
+***********************************************************/
+.shw-white{
+box-shadow: $button-shadow-white;
+}
+.shw-violet{
+  box-shadow: $button-shadow-violet;
 }
