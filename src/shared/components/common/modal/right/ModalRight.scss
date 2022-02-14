@@ -45,9 +45,7 @@
 }
 
 .sidebar-body {
-  padding: 15px;
   overflow: auto;
-  margin-top: 20px;
   height: 80%;
 }
 
@@ -70,14 +68,11 @@
   position: relative;
   animation: animateopen 0.4s;
 }
-.table-title {
+.sidebar-header {
   position: sticky;
   top: 0;
   color: #fff;
-  background-color: #001833;
   height: 100px;
-  padding-top: 40px;
-  padding-left: 5px;
 }
 
 .column-name {

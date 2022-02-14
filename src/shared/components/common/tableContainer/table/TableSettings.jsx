@@ -30,10 +30,10 @@ function TableSettings(props) {
         })}
       </div>
       <div className='flex-r-ac flex-jc-sp-btn pt-10'>
-        {/* <div className='fw-600 f-20 fc-primary'>{tableTitle}</div> */}
-        <div>
+        <div className='fw-600 f-20 fc-primary'>{tableTitle}</div>
+        {/* <div className="flex-r">
           <Views />
-        </div>
+        </div> */}
         {!hideAdd && (
           <div
             className='lightblue-container-br-5 flex-r flex-r-ac flex-jc-sp-btn pl-24 pr-24 pb-10 pt-10 cp'

@@ -4,7 +4,8 @@ const complianceDashboardRoutes = [
     path: "/get-recs-oci-complaince-details",
     apiEndpoint: "get-recs-oci-complaince-details",
     pk: "controlId",
-  },
-];
+    tableWhitelists: ["resources"]
+  }
+]
 
-export default complianceDashboardRoutes;
+export default complianceDashboardRoutes

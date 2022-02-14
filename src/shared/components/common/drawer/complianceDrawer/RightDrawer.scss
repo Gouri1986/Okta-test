@@ -30,32 +30,19 @@
   overflow: auto;
 }
 
-.sidebar-btn {
-  position: absolute;
-  top: 35px;
-  right: 5px;
-  // left: 10px;
-  width: 30px;
-  height: 30px;
-  background-color: #ffffff;
-  border-radius: 50%;
-  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
-  cursor: pointer;
-  z-index: 2;
-}
-
 .sidebar-body {
-  padding: 15px;
+  padding: 0px;
   overflow: auto;
-  margin-top: 20px;
   height: 80%;
 }
 
 .sidebar-body::-webkit-scrollbar {
-  width: 0.5em;
+  width: 0.7em;
   left: -10px;
 }
-
+.sidebar-bar::-webkit-scrollbar:focus {
+  width: 0.12em;
+}
 .sidebar-body::-webkit-scrollbar-track {
   background-color: rgb(236, 233, 233);
 }
@@ -69,16 +56,6 @@
 .sidebar-animation {
   position: relative;
   animation: animateopen 0.2s;
-}
-.table-title {
-  position: sticky;
-  top: 0;
-  color: #fff;
-  background-color: #001833;
-  height: 100px;
-  padding-top: 40px;
-  padding-left: 5px;
-  //margin-top: 150px;
 }
 
 .column-name {

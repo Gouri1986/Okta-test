@@ -7,6 +7,9 @@
 }
 /* modal common width */
 
+.wd-xs {
+  width: 30% !important;
+}
 .wd-sm {
   width: 40% !important;
 }
@@ -52,7 +55,7 @@
 .modal-header {
   padding: 5px 0 5px 0;
   margin-bottom: 20px;
-  border-bottom: 1px solid #e5e5e5;
+  //border-bottom: 1px solid #e5e5e5;
 }
 
 .modal-container {

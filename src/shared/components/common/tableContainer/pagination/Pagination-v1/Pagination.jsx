@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from "react";
 import TablePagination from "@mui/material/TablePagination";
 
-import "./pagination.css";
-
 const Pagination = (props) => {
   const { dataCount, page, rowsPerPage, setPage, setRowsPerPage } = props;
 
