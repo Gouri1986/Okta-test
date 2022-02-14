@@ -1,4 +1,4 @@
-const InlineBarChart = ({ value1, value2 }) => {
+const InlineBarChart = ({ value1, value2, onClick }) => {
   const total = parseInt(value1) + parseInt(value2);
   const p1 = !parseInt(value2) ? 100 : (parseInt(value1) / total) * 100;
   const p2 = !parseInt(value1) ? 100 : (parseInt(value2) / total) * 100;
@@ -10,7 +10,6 @@ const InlineBarChart = ({ value1, value2 }) => {
     },
   ];
 
-  console.log(value1, value2);
   const BarHeight = 20;
   const BarGap = 50;
 
@@ -30,7 +29,7 @@ const InlineBarChart = ({ value1, value2 }) => {
     };
 
     return (
-      <g>
+      <g onClick={onClick}>
         {percentages.map((percentage, index) => (
           <g>
             <rect

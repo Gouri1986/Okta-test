@@ -1,7 +1,9 @@
-import React, { useState } from "react"
+import React, { useState, useEffect } from "react"
 import { getSanitisedTableData } from "../../../../utils/table"
 import { PencilIcon, TrashIcon } from "./assets"
-import ModalRight from "../../modal/right/ModalRight"
+import RightDrawer from "../../drawer/complianceDrawer/RightDrawer"
+import { DrawerDataHeader, DrawerDataBody } from "../../drawer/complianceDrawer/complianceDrawerData"
+
 import Modal from "../../modal/center/Modal"
 import ModalForm from "../../forms/ModalForm"
 import { useSelector, useDispatch } from "react-redux"
@@ -11,9 +13,10 @@ import { kebabCaseDate } from "../../../../utils/misc"
 import ComplianceViewButton from "./columnButtons/ComplianceViewButton"
 import {
   setComplianceDrawerExpand,
-  setNavDrawerExpand
+  setNavDrawerExpand,
+  setFilterDrawerExpand
 } from "../../../../../redux/common/commonActions"
-
+import { getDrawerData } from "../../../../apis/drawer/drawer"
 const RowAction = ({
   baseUrl,
   setOpenCRUDModal,
@@ -92,6 +95,12 @@ const TableBody = props => {
   //state to manage data to be displayed in right side modal
   const [activeData, setActiveData] = useState({})
 
+  // complaince drawer data
+  const [drawerData, setDrawerData] = useState([])
+  const [resourcesId, setResourcseIds] = useState([])
+  const [complainceDrawerType, setcomplainceDrawerType] = useState("")
+  const { complainceDrawerData } = useSelector(state => state.drawerReducer)
+
   /***************************************************************
    *          Pagination Data Slicing Logic
    * *************************************************************
@@ -129,8 +138,7 @@ const TableBody = props => {
         : 200
 
     const rowCellClassName = `bdr-primary table-cell p-15 w-${getRowCellWidth()} ${
-      (item.id === "action" || item.id === "resources" || item.id === "regulationControls") &&
-      `pos-sk ${item.id === "regulationControls" ? "r-200" : "r-0"} bg-white`
+      item.id === "action" || item.id === "resources" || item.id === "regulationControls"
     }`
 
     return (
@@ -159,7 +167,23 @@ const TableBody = props => {
           />
         ) : id === "descriptiveComplainceStatus" ? (
           <div className="flex-c-ac">
-            <InlineStatusBarChart value1={datum[id]?.[0]?.Pass} value2={datum[id]?.[0]?.Fail} />
+            <InlineStatusBarChart
+              value1={datum[id]?.[0]?.Pass}
+              value2={datum[id]?.[0]?.Fail}
+              onClick={() => {
+                dispatch(
+                  getDrawerData(
+                    `${process.env.REACT_APP_COMPLIANCE_DASHBOARD_BASE_URL}get-controlId-complaince-details`,
+                    { controlItemId: datum.controlId, resource: datum.ociResourceType }
+                  )
+                )
+                setDrawerData(datum)
+                dispatch(setComplianceDrawerExpand(true))
+                dispatch(setNavDrawerExpand(false))
+                dispatch(setFilterDrawerExpand(false))
+                setcomplainceDrawerType("Resources")
+              }}
+            />
             <span className="fw-500 mt-5 f-12 lh-1.8">
               {datum[id]?.[0]?.Pass}/{datum[id]?.[0]?.Pass + datum[id]?.[0]?.Fail} Passed
             </span>
@@ -169,27 +193,20 @@ const TableBody = props => {
         ) : id === "resources" ? (
           <ComplianceViewButton
             dark
-            onClick={() => {
-              dispatch(setComplianceDrawerExpand(true))
-              dispatch(setNavDrawerExpand(false))
-            }}
           />
         ) : id === "regulationControls" ? (
           <ComplianceViewButton
             onClick={() => {
               dispatch(setComplianceDrawerExpand(true))
               dispatch(setNavDrawerExpand(false))
+              dispatch(setFilterDrawerExpand(false))
+              setcomplainceDrawerType("Regulation")
             }}
           />
         ) : (
           // else return normal row data
-          <span
-            title={datum[id]?.length > 100 && datum[id]}
-            className={"table-data-cell"}
-          >
-            {datum[id]?.length > 100
-              ? datum[id]?.substr(0, 100) + "..."
-              : datum[id]}
+          <span title={datum[id]?.length > 100 && datum[id]} className={"table-data-cell"}>
+            {datum[id]?.length > 100 ? datum[id]?.substr(0, 100) + "..." : datum[id]}
           </span>
         )}
       </td>
@@ -226,6 +243,10 @@ const TableBody = props => {
 
   const emptyRows = rowsPerPage - Math.min(rowsPerPage, rowData.length - page * rowsPerPage)
 
+  useEffect(() => {
+    setResourcseIds(complainceDrawerData[0]?.json_agg)
+  }, [complainceDrawerData])
+
   return (
     <div className="flex-c ">
       {tableRowData?.map(datum => (
@@ -236,13 +257,22 @@ const TableBody = props => {
               <td colSpan={header.length} />
             </tr>
           )} */}
-      <ModalRight
+      <RightDrawer
         open={complianceDrawerExpanded}
-        close={() => dispatch(setComplianceDrawerExpand(false))}
         size="sm" // sm, md, lg, xl
         data={activeData}
-        tableTitle={tableTitle}
-      />
+      >
+        <DrawerDataHeader
+          close={() => {
+            dispatch(setComplianceDrawerExpand(false))
+            setResourcseIds([])
+            setDrawerData({})
+          }}
+          tableTitle={`${tableTitle} Report`}
+          headerData={drawerData}
+        />
+        <DrawerDataBody type={complainceDrawerType} headerData={drawerData} resourcesId={resourcesId} />
+      </RightDrawer>
       <Modal
         open={openCRUDModal}
         close={() => setOpenCRUDModal(false)}
