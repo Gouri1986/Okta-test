@@ -1,5 +1,4 @@
 import React from "react";
-import "./download.scss";
 import { DownloadIcon } from "./asset";
 // import { tableData } from "../../../db";
 const { useState } = React;
@@ -71,9 +70,9 @@ const Download = ({ selectedRow, tableContents }) => {
     link.click();
   }
   return (
-    <div className='dropdown'>
+    <>
       <div
-        className='dropdown-header cp pt-7 pl-7 pr-7 bdr-r-6'
+        className='icon-hovr bg-white cp pt-7 pl-7 pr-7 bdr-r-6'
         onClick={toggleDropdown}
       >
         {/* {selectedItem ? (
@@ -95,7 +94,7 @@ const Download = ({ selectedRow, tableContents }) => {
           </div>
         ))}
       </div> */}
-    </div>
+    </>
   );
 };
 

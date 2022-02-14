@@ -65,6 +65,9 @@ label.tree_label:before {
   line-height: 0.9em;
 }
 
+.tree_label-checked {
+  content: "–" !important;
+}
 :checked ~ label.tree_label:before {
   content: "–";
 }
@@ -131,4 +134,20 @@ label.label_l2::after {
 
 ::marker {
   color: transparent;
+}
+
+.status-component-fail {
+  background-color: #e80000;
+}
+
+.status-component-success {
+  background-color: #16c35b;
+}
+
+.status-bg-success {
+  background-color: rgba(22, 195, 91, 0.1);
+}
+
+.status-bg-fail {
+  background-color: rgba(232, 0, 0, 0.1);
 }

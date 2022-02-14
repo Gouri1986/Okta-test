@@ -7,10 +7,10 @@ const ColumnSettings = ({ tableData, setTableContents }) => {
   const [columnDropDown, showColumnDropdown] = useState(false);
 
   return (
-    <div className={"pos-rel"}>
+    <>
       <div
         onClick={() => showColumnDropdown(!columnDropDown)}
-        className={`column-settings cp pt-7 pl-7 pr-7 bdr-r-6 ${
+        className={`icon-hovr cp pt-7 pl-7 pr-7 bdr-r-6 ${
           columnDropDown ? "bg-tertiary" : "bg-white"
         }`}
       >
@@ -25,7 +25,7 @@ const ColumnSettings = ({ tableData, setTableContents }) => {
           />
         </div>
       )} */}
-    </div>
+    </>
   );
 };
 

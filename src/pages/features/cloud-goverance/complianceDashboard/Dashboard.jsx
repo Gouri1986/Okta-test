@@ -39,6 +39,7 @@ const Dashboard = () => {
     setTableDetails(tableDetail);
     setTableRowKey(tableDetail?.key);
     setTableTitle(tableDetail?.title);
+    console.log(tableDetail.tableWhitelists)
     const apiEndpoint = tableDetail?.apiEndpoint;
     if (apiEndpoint) {
       getTable(apiEndpoint);
