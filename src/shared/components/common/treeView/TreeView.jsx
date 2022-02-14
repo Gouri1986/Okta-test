@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React from "react"
 import ComplianceViewButton from "../tableContainer/table/columnButtons/ComplianceViewButton"
 import "./treeView.scss"
 
@@ -19,14 +19,13 @@ const StatusComponet = props => {
 const TreeView = props => {
   const { data, status } = props
 
-  const [ expandedL1, setExpandedL1 ] = useState(false)
   return (
     <div>
       {data?.map((item, i) => (
         <ul className="tree" key={i}>
           <li className="li-l1">
-            <input type="checkbox" id={`l1_${i}`} onClick={() => setExpandedL1(true)}/>
-            <label className={`${ expandedL1 ===true ? `tree_label-checked`:`` } tree_label`} for={`l1_${i}`}>
+            <input type="checkbox" id={`l1_${i}`} />
+            <label className="tree_label" for={`l1_${i}`}>
               {item?.l1}
             </label>
             <ul>
@@ -48,11 +47,9 @@ const TreeView = props => {
                   </span>
                   <ul>
                     {item?.l3_data.map((item, i3) => (
-                      
                         <span className="tree_label" id={`l3_${i}_${i2}_${i3}`}>
                           {item?.l3}
                         </span>
-                     
                     ))}
                   </ul>
                 </li>
