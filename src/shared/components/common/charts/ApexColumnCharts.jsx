@@ -30,11 +30,11 @@ const ApexColumnCharts = ({ direction }) => {
   }, []);
 
   const columnColors = {
-    series1: '#E80054',
+    series1: '#FFAE18',
     series2: '#003ECB',
     series3: '#FFC300',
     series4: '#667222',
-    series5: '#bb2e45',
+    series5: '#E80054',
     // bg: '#f2f2f2',
   };
 
@@ -70,15 +70,15 @@ const ApexColumnCharts = ({ direction }) => {
       position: 'top',
       horizontalAlign: 'start',
     },
-    colors: [columnColors.series5],
+    colors: [columnColors.series1],
     stroke: {
-      show: true,
+      show: false,
       colors: ['transparent'],
     },
     grid: {
       xaxis: {
         lines: {
-          show: true,
+          show: false,
         },
       },
     },
