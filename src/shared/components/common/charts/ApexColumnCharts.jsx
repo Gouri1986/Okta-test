@@ -5,14 +5,37 @@ import Card from '@mui/material/Card';
 import CardHeader from '@mui/material/CardHeader';
 import CardContent from '@mui/material/CardContent';
 import { red } from '@mui/material/colors';
+import axios from 'axios';
+import { useSelector } from 'react-redux';
+import { useEffect, useState } from 'react';
 
 const ApexColumnCharts = ({ direction }) => {
+  const { user: token } = useSelector((state) => state.userReducer);
+  const [chartData, setChartData] = useState([]);
+
+  const getChartValues = async () => {
+    const response = await axios.get(
+      `http://172.16.1.240:30596/api/v1/recs-oci-customer-resource-count-details`,
+      {
+        headers: {
+          'access-token': token,
+        },
+      }
+    );
+    setChartData(response.data.data.slice(0, 20));
+  };
+
+  useEffect(() => {
+    getChartValues();
+  }, []);
+
   const columnColors = {
     series1: '#E80054',
     series2: '#003ECB',
     series3: '#FFC300',
     series4: '#667222',
-    bg: '#f2f2f2',
+    series5: '#bb2e45',
+    // bg: '#f2f2f2',
   };
 
   const options = {
@@ -27,7 +50,7 @@ const ApexColumnCharts = ({ direction }) => {
     },
     plotOptions: {
       bar: {
-        columnWidth: '20%',
+        columnWidth: '60%',
         colors: {
           backgroundBarColors: [
             columnColors.bg,
@@ -41,13 +64,13 @@ const ApexColumnCharts = ({ direction }) => {
       },
     },
     dataLabels: {
-      enabled: false,
+      enabled: true,
     },
     legend: {
       position: 'top',
       horizontalAlign: 'start',
     },
-    colors: [columnColors.series1, columnColors.series2, columnColors.series3],
+    colors: [columnColors.series5],
     stroke: {
       show: true,
       colors: ['transparent'],
@@ -60,18 +83,7 @@ const ApexColumnCharts = ({ direction }) => {
       },
     },
     xaxis: {
-      categories: [
-        '7/12',
-        '8/12',
-        '9/12',
-        '10/12',
-        '11/12',
-        '12/12',
-        '13/12',
-        '14/12',
-        '15/12',
-        '16/12',
-      ],
+      categories: chartData.map((datum) => datum.ociResourceType),
     },
     fill: {
       opacity: 1,
@@ -83,22 +95,12 @@ const ApexColumnCharts = ({ direction }) => {
 
   const series = [
     {
-      name: 'CTG1',
-      data: [90, 120, 55, 100, 80, 125, 175, 70, 88, 180],
-    },
-    {
-      name: 'CTG2',
-      data: [85, 100, 30, 40, 95, 90, 30, 110, 62, 20],
-    },
-    {
-      name: 'CTG3',
-      data: [70, 20, 20, 30, 85, 80, 10, 100, 52, 10],
-    },
-    {
-      name: 'CTG4',
-      data: [60, 20, 20, 30, 85, 80, 10, 100, 52, 10],
+      name: 'Count',
+      data: chartData.map((datum) => datum.ociResourceCount),
     },
   ];
+
+  console.log(series);
 
   return (
     <Card>
@@ -120,7 +122,7 @@ const ApexColumnCharts = ({ direction }) => {
           options={options}
           series={series}
           type='bar'
-          height={245}
+          height={270}
           style={{ backgroundColor: '#f2f2f2' }}
         />
       </CardContent>

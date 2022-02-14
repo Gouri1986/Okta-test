@@ -25,7 +25,7 @@ export default function Widget() {
           <div className='flex-r wp-95'>
             <div className='flex-c wp-25 bg-secondary bdr-r-br-10 bdr-r-bl-10'>
               <div className='flex-r-ac flex-jc-sp-btn h-50 bg-primary bdr-r-tl-10 bdr-r-tr-10'>
-                <div className='fc-white f-14 fw-600 ml-10'>Chart Title</div>
+                <div className='fc-white f-18 fw-600 ml-10'>Pie Chart</div>
                 <div className='mr-10'>
                   <img src={more} alt='more'></img>
                 </div>
@@ -36,7 +36,7 @@ export default function Widget() {
             </div>
             <div className='ml-22 wp-75 bg-secondary bdr-r-br-10 bdr-r-bl-10'>
               <div className='flex-r-ac flex-jc-sp-btn h-50 bg-primary bdr-r-tl-10 bdr-r-tr-10'>
-                <div className='fc-white f-14 fw-600 ml-10'>Chart Title</div>
+                <div className='fc-white f-18 fw-600 ml-10'>Line Chart</div>
                 <div className='mr-10'>
                   <img src={more} alt='more'></img>
                 </div>
