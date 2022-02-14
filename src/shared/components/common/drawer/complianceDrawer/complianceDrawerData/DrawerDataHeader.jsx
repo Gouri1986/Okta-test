@@ -4,7 +4,7 @@ import LinkToExternal from "../asset/LinkToExternal"
 const DrawerDataHeader = props => {
   const { close, tableTitle, headerData } = props
   const createdDate = new Date(headerData.lastVerifiedDate * 1000)
-  console.log(createdDate)
+  
   return (
     <div className="complaince-header p-10 pt-20 pb-20">
       <p className="table-title f-24 fw-600">

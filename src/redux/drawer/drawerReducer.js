@@ -1,10 +1,16 @@
-import { COMPLAINCE_DRAWER_DATA } from "./drawerActionTypes"
+import {
+  COMPLAINCE_DRAWER_DATA,
+  COMPLAINCE_DRAWER_JSON_DATA,
+  COMPLAINCE_DRAWER_REGULATION_DATA
+} from "./drawerActionTypes"
 
 const initialState = {
-  complainceDrawerData: []
+  complainceDrawerData: [],
+  complainceDrawerJSONData: [],
+  complainceDrawerRegulationData: []
 }
 
-const tableReducer = (state = initialState, action) => {
+const drawerReducer = (state = initialState, action) => {
   switch (action.type) {
     case COMPLAINCE_DRAWER_DATA: {
       return {
@@ -12,9 +18,21 @@ const tableReducer = (state = initialState, action) => {
         complainceDrawerData: action.payload
       }
     }
+    case COMPLAINCE_DRAWER_JSON_DATA: {
+      return {
+        ...state,
+        complainceDrawerJSONData: action.payload
+      }
+    }
+    case COMPLAINCE_DRAWER_REGULATION_DATA: {
+      return {
+        ...state,
+        complainceDrawerRegulationData: action.payload
+      }
+    }
     default:
       return state
   }
 }
 
-export default tableReducer
+export default drawerReducer

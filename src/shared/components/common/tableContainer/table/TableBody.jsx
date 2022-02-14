@@ -98,6 +98,7 @@ const TableBody = props => {
   // complaince drawer data
   const [drawerData, setDrawerData] = useState([])
   const [resourcesId, setResourcseIds] = useState([])
+  const [complainceDrawerType, setcomplainceDrawerType] = useState("")
   const { complainceDrawerData } = useSelector(state => state.drawerReducer)
 
   /***************************************************************
@@ -137,8 +138,7 @@ const TableBody = props => {
         : 200
 
     const rowCellClassName = `bdr-primary table-cell p-15 w-${getRowCellWidth()} ${
-      (item.id === "action" || item.id === "resources" || item.id === "regulationControls") &&
-      `pos-sk ${item.id === "regulationControls" ? "r-200" : "r-0"} bg-white`
+      item.id === "action" || item.id === "resources" || item.id === "regulationControls"
     }`
 
     return (
@@ -167,7 +167,23 @@ const TableBody = props => {
           />
         ) : id === "descriptiveComplainceStatus" ? (
           <div className="flex-c-ac">
-            <InlineStatusBarChart value1={datum[id]?.[0]?.Pass} value2={datum[id]?.[0]?.Fail} />
+            <InlineStatusBarChart
+              value1={datum[id]?.[0]?.Pass}
+              value2={datum[id]?.[0]?.Fail}
+              onClick={() => {
+                dispatch(
+                  getDrawerData(
+                    `${process.env.REACT_APP_COMPLIANCE_DASHBOARD_BASE_URL}get-controlId-complaince-details`,
+                    { controlItemId: datum.controlId, resource: datum.ociResourceType }
+                  )
+                )
+                setDrawerData(datum)
+                dispatch(setComplianceDrawerExpand(true))
+                dispatch(setNavDrawerExpand(false))
+                dispatch(setFilterDrawerExpand(false))
+                setcomplainceDrawerType("Resources")
+              }}
+            />
             <span className="fw-500 mt-5 f-12 lh-1.8">
               {datum[id]?.[0]?.Pass}/{datum[id]?.[0]?.Pass + datum[id]?.[0]?.Fail} Passed
             </span>
@@ -177,18 +193,6 @@ const TableBody = props => {
         ) : id === "resources" ? (
           <ComplianceViewButton
             dark
-            onClick={() => {
-              dispatch(
-                getDrawerData(
-                  `${process.env.REACT_APP_COMPLIANCE_DASHBOARD_BASE_URL}get-controlId-complaince-details`,
-                  { controlItemId: datum.controlId, resource: datum.ociResourceType }
-                )
-              )
-              setDrawerData(datum)
-              dispatch(setComplianceDrawerExpand(true))
-              dispatch(setNavDrawerExpand(false))
-              dispatch(setFilterDrawerExpand(false))
-            }}
           />
         ) : id === "regulationControls" ? (
           <ComplianceViewButton
@@ -196,6 +200,7 @@ const TableBody = props => {
               dispatch(setComplianceDrawerExpand(true))
               dispatch(setNavDrawerExpand(false))
               dispatch(setFilterDrawerExpand(false))
+              setcomplainceDrawerType("Regulation")
             }}
           />
         ) : (
@@ -266,7 +271,7 @@ const TableBody = props => {
           tableTitle={`${tableTitle} Report`}
           headerData={drawerData}
         />
-        <DrawerDataBody resourcesId={resourcesId} />
+        <DrawerDataBody type={complainceDrawerType} headerData={drawerData} resourcesId={resourcesId} />
       </RightDrawer>
       <Modal
         open={openCRUDModal}

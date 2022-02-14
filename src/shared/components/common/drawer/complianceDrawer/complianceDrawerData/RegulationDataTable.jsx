@@ -4,31 +4,29 @@ import { useSelector, useDispatch } from "react-redux"
 import { getDrawerJSONData } from "../../../../../apis/drawer/drawer"
 import ComplianceViewButton from "../../../tableContainer/table/columnButtons/ComplianceViewButton"
 import Modal from "../../../modal/center/Modal"
+import TreeView from "../../../treeView/TreeView"
 
-const StatusComponet = props => {
-  const { status } = props
-  return (
-    <div
-      className={`w-12 h-12 bdr-r-6 mr-10 status-component-${status === "PASS" ? "success" : "fail"}`}
-    ></div>
-  )
-}
+const treeViewData = [
+  {
+    l1: "GDPR",
+    l2_data: [
+      {
+        l2: "Art. 1 GDPR",
+        l3_data: [{ l3: "TreeView data v1 l3" }]
+      },
+      {
+        l2: "Art. 2 GDPR",
+        l3_data: [{ l3: "TreeView data v1 l3" }]
+      },
+    ]
+  }
+]
 
 const ResourceDataTable = props => {
   const { resourcesId, headerData } = props
   const dispatch = useDispatch()
 
   const { complainceDrawerJSONData } = useSelector(state => state.drawerReducer)
-  const [openComplianceDrawerModal, setOpenComplianceDrawerModal] = useState(false)
-  const [complianceDrawerJSONDataState, setComplianceDrawerJSONDataState] = useState()
-
-  useEffect(() => {
-    try {
-      setComplianceDrawerJSONDataState(complainceDrawerJSONData[0][Object.keys(complainceDrawerJSONData[0])])
-    } catch (error) {
-      console.log(error)
-    }
-  }, [complainceDrawerJSONData])
 
   return (
     <>
@@ -37,10 +35,11 @@ const ResourceDataTable = props => {
           className="flex-r wp-100 pos-sk t-0 bg-white pt-15 pb-15"
           style={{ borderBottomWidth: 1, borderBottomColor: "#e6eaf0", borderBottomStyle: "solid" }}
         >
-          <th className="flex-3">Resources</th>
+          <th className="flex-2">Regulation</th>
+          <th className="flex-3">Compliance Status</th>
           <th className="flex-1">JSON</th>
         </tr>
-        {resourcesId?.map((item, index) => (
+        {/* {resourcesId?.map((item, index) => (
           <tr className="flex-r wp-100 mt-20 mb-20 pl-15 pr-15">
             <td className="flex-3 flex-r-ac">
               <StatusComponet status={item.status} />
@@ -63,27 +62,8 @@ const ResourceDataTable = props => {
               />
             </td>
           </tr>
-        ))}
-        <Modal
-          open={openComplianceDrawerModal}
-          close={() => {
-            setOpenComplianceDrawerModal(false)
-            setComplianceDrawerJSONDataState()
-          }}
-          size={`xs`} // sm, md, lg, xl
-          isHeaderShow={false}
-        >
-          <div className="h-500 bdr-r-6 p-10" style={{ backgroundColor: "rgba(199, 199, 199, 0.37)" }}>
-            <code
-              style={{
-                wordBreak: "break-word",
-                whiteSpace: "pre-line"
-              }}
-            >
-              {JSON.stringify(complianceDrawerJSONDataState, null, 4)}
-            </code>
-          </div>
-        </Modal>
+        ))} */}
+        <TreeView data={treeViewData} status={`PASS`}/>
       </table>
     </>
   )
