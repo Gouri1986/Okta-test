@@ -34,7 +34,7 @@ const ApexColumnCharts = ({ direction }) => {
     series2: '#003ECB',
     series3: '#FFC300',
     series4: '#667222',
-    series5: '#bb2e45',
+    series5: '#E80054',
     // bg: '#f2f2f2',
   };
 
@@ -72,13 +72,13 @@ const ApexColumnCharts = ({ direction }) => {
     },
     colors: [columnColors.series1],
     stroke: {
-      show: true,
+      show: false,
       colors: ['transparent'],
     },
     grid: {
       xaxis: {
         lines: {
-          show: true,
+          show: false,
         },
       },
     },

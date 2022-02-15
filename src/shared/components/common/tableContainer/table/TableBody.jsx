@@ -16,7 +16,7 @@ import {
   setNavDrawerExpand,
   setFilterDrawerExpand
 } from "../../../../../redux/common/commonActions"
-import { getDrawerData } from "../../../../apis/drawer/drawer"
+import { getDrawerData, getDrawerRegulationData } from "../../../../apis/drawer/drawer"
 const RowAction = ({
   baseUrl,
   setOpenCRUDModal,
@@ -191,16 +191,21 @@ const TableBody = props => {
         ) : id === "lastVerifiedDate" ? (
           <span>{kebabCaseDate(datum[id])}</span>
         ) : id === "resources" ? (
-          <ComplianceViewButton
-            dark
-          />
+          <ComplianceViewButton dark />
         ) : id === "regulationControls" ? (
           <ComplianceViewButton
             onClick={() => {
               dispatch(setComplianceDrawerExpand(true))
               dispatch(setNavDrawerExpand(false))
               dispatch(setFilterDrawerExpand(false))
+              setDrawerData(datum)
               setcomplainceDrawerType("Regulation")
+              dispatch(
+                getDrawerRegulationData(
+                  `${process.env.REACT_APP_COMPLIANCE_DASHBOARD_BASE_URL}recs-oci-controls-regulation-map-controlItemId`,
+                  { controlItemId: datum.controlId }
+                )
+              )
             }}
           />
         ) : (
