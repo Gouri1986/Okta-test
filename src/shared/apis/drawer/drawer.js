@@ -36,6 +36,6 @@ export const getDrawerRegulationData = (path, params) => {
     const { user: token } = getState().userReducer
     const response = await axios.get(path, requestConfig({ token, params }))
     const { data } = response
-    dispatch(setDrawerRegulationData(data.data))
+    dispatch(setDrawerRegulationData(data.Regulation))
   }
 }
