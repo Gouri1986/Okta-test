@@ -6,6 +6,7 @@ import IAMDashboard from "../pages/iam/Dashboard";
 import ENCSDashboard from "../pages/metadata/environmentCatelogue/Dashboard";
 import SCOSDashboard from "../pages/metadata/securityCompliance/Dashboard";
 import ComplianceDashboard from "../pages/features/cloud-goverance/complianceDashboard/Dashboard";
+import ResourceAuditLogsDashboard from "../pages/features/cloud-goverance/resourceAuditLogs/Dashboard";
 import { Navbar } from "../shared/components/common";
 import { RequireAuth } from "./utils";
 import { FilterDrawer } from "../shared/components/common/drawer/filterDrawer";
@@ -50,6 +51,11 @@ const AppRouter = () => {
         <Route path='/compliance-dashboard'>
           <RequireAuth>
             <ComplianceDashboard />
+          </RequireAuth>
+        </Route>
+        <Route path='/resource-auditLogs-dashboard'>
+          <RequireAuth>
+            <ResourceAuditLogsDashboard />
           </RequireAuth>
         </Route>
       </Switch>

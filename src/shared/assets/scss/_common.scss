@@ -57,7 +57,7 @@
 /**********************************************************
                 Container & cards Layout 
  ***********************************************************/
-$sizes: 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28,
+$sizes:0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28,
   29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50;
 @each $size in $sizes {
   .white-container-br-#{$size} {
@@ -98,6 +98,11 @@ $sizes: 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 2
   .violet-container-br-#{$size} {
     background-color: $violet-conatainer;
     box-shadow: inset 0px 1.16712px 2.33425px rgba(97, 97, 97, 0.2), inset 0px 2.33425px 4.66849px rgba(97, 97, 97, 0.2);
+    border-radius: #{$size}px;
+  }
+  .sticky-container-br-#{$size} {
+    background-color: $sticky-grey;
+    box-shadow: 0px 4px 9px rgba(163, 171, 185, 0.5);
     border-radius: #{$size}px;
   }
 }

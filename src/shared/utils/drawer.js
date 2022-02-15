@@ -1,17 +1,19 @@
 import complianceDashboardRoutes from "../../routes/featureRoutes/complianceDashboard";
+import resourceAuditLogDashboardRoutes from '../../routes/featureRoutes/resourceAuditLogDashboard';
 import { ENCSRoutes, IAMRoutes } from "../../routes/metadataRoutes";
 import scosRoutes from "../../routes/metadataRoutes/securityCompliance";
+import { getSpacedDisplayName } from "./table";
 import {
   ComplianceDashboardIcon,
   drawerSectionIcons,
-} from "../components/common/drawer/navDrawer/assets";
-import {
+  resourceAuditLogIcon,
   DTCSIcon,
   ENCSIcon,
   RECSIcon,
   SCOSIcon,
 } from "../components/common/drawer/navDrawer/assets";
-import { getSpacedDisplayName } from "./table";
+
+
 
 export const iamDrawer = () => {
   return IAMRoutes.map((rt) => ({
@@ -103,6 +105,36 @@ export const complianceDashboardDrawer = () => {
   }));
 };
 
+export const resourceAuditLogDashboardDrawer = () => {
+  return resourceAuditLogDashboardRoutes.map((rt) => ({
+    ...rt,
+    title: rt.section,
+    Icon: drawerSectionIcons.DTSC,
+    path: "/resource-auditLogs-dashboard" + rt.path,
+    apiEndpoint: rt.apiEndpoint,
+    pk: rt.pk,
+    items:
+      rt.routes &&
+      Object.keys(rt.routes).map((key) => ({
+        title: getSpacedDisplayName(key),
+        Icon: drawerSectionIcons.GCP,
+        items: rt.routes[key].map((route) => ({
+          ...route,
+          title:
+            route.name ||
+            getSpacedDisplayName(
+              route.path.replace(/-/g, " ").replace(/\//, "")
+            ),
+          path: "/resource-auditLogs-dashboard" + route.path,
+          id: route.path,
+          apiEndpoint: route.apiEndpoint,
+          showAsSubMenu: route.showAsSubMenu,
+          key: route.pk,
+        })),
+      })),
+  }));
+};
+
 export const mainDrawer = [
   {
     title: "Admin Tools",
@@ -121,6 +153,11 @@ export const mainDrawer = [
         title: "Compliance Dashboard",
         Icon: ComplianceDashboardIcon,
         drawer: complianceDashboardDrawer,
+      },
+      {
+        title: "Resource Audit Logs",
+        Icon: resourceAuditLogIcon,
+        drawer: resourceAuditLogDashboardDrawer,
       },
     ],
   },

@@ -51,8 +51,8 @@ label.tree_label:hover,
 //parent l1 icon
 label.tree_label:before {
   background: #fff;
-  color: black;
-  border: 2px solid black;
+  color: rgba(105, 200, 114, 1);
+  border: 2px solid rgba(105, 200, 114, 1);
   position: relative;
   z-index: 1;
   float: left;
@@ -65,11 +65,10 @@ label.tree_label:before {
   line-height: 0.9em;
 }
 
-.tree_label-checked {
-  content: "–" !important;
-}
 :checked ~ label.tree_label:before {
   content: "–";
+  border: 2px solid rgba(232, 0, 0, 1);
+  color: rgba(232, 0, 0, 1);
 }
 //Child l2 icon
 label.label_l2:before {

@@ -17,7 +17,8 @@ const Layout = props => {
     setOpenCRUDModal,
     pageTitle,
     setCRUDModalType,
-    hideAdd
+    hideAdd,
+    showMap
   } = props
 
   const { tabs } = useSelector(state => state.tableReducer)
@@ -25,36 +26,40 @@ const Layout = props => {
 
   console.log(complianceDrawerExpanded)
   return (
-    <div className="overflow-y-scroll wp-50 hvh-100 flex-1 flex-c pl-30 pr-30">
-      <div className="mt-33">
-        <Header tableTitle={tableTitle} />
+    <div className="overflow-y-scroll wp-95">
+      <div className="z-100 wp-100 h-82 sticky-container-br-0 flex-r-ac flex-jc-sp-btn">
+        <div className="pl-30 pr-40 wp-100">
+          <Header tableTitle={tableTitle} />
+        </div>
       </div>
-      <div className="mb-10 mt-30">
-        <Breadcrumbs parentTitle="Dashboard" parentPath="" tableTitle1={pageTitle} tableTitle2={tableTitle} />
-      </div>
-      <div className="pt-15 flex-c">
-        {tableTitle && (
-          <>
-            <div className="flex-r flex-r-ac">
-              <div className="flex-c">
-                <p className="f-40 fw-600 fc-primary lh-1-0">{tableTitle}</p>
-                <p className="f-14 fw-400 fc-primary ml-3">Welcome To {tableTitle}</p>
+      <div className="flex-1 flex-c pl-30 pr-30">
+        <div className="mb-10 mt-50">
+          <Breadcrumbs parentTitle="Dashboard" parentPath="" tableTitle1={pageTitle} tableTitle2={tableTitle} />
+        </div>
+        <div className="pt-15 flex-c">
+          {tableTitle && (
+            <>
+              <div className="flex-r flex-r-ac">
+                <div className="flex-c">
+                  <p className="f-40 fw-600 fc-primary lh-1-0">{tableTitle}</p>
+                  <p className="f-14 fw-400 fc-primary ml-3">Welcome To {tableTitle}</p>
+                </div>
+                <div className="ml-10 white-container-br-5 p-5">
+                  <Tenant />
+                </div>
               </div>
-              <div className="ml-10 white-container-br-5 p-5">
-                <Tenant />
-              </div>
-            </div>
-          </>
-        )}
-      </div>
-      <div className={`bdr-r-10 mt-30 mb-45 bg-white ${complianceDrawerExpanded ? `drawer-toggle` : ``}`}>
-        <Widget />
-      </div>
-      {/* Map section */}
-      {/* <div className='bdr-r-10 mt-50 mb-25 ml-40 mr-40 bg-white'>
-        <Map />
-      </div> */}
-      <div className={`flex-c pt-20  ${complianceDrawerExpanded ? `drawer-toggle` : ``}`}>
+            </>
+          )}
+        </div>
+        {!showMap &&
+        <div className={`bdr-r-10 mt-30 mb-45 bg-white ${complianceDrawerExpanded ? `drawer-toggle` : ``}`}>
+          <Widget />
+        </div>}
+        {/* Map section */}
+        {showMap&& <div className='bdr-r-10 mt-50 mb-25 ml-40 mr-40 bg-white'>
+          <Map />
+        </div>}
+        <div className={`flex-c pt-20  ${complianceDrawerExpanded ? `drawer-toggle` : ``}`}>
         <div className={`flex-c bdr-r-10 bg-white pl-15 pr-15`}>
           <div>
             <TableSettings
@@ -81,7 +86,10 @@ const Layout = props => {
         {/* pagination render */}
         <div className={`mt-20 mb-30 ${complianceDrawerExpanded ? `drawer-toggle` : ``}`}>{children[1]}</div>
       </div>
-    </div>
+    
+    
+      </div>
+      </div>
   )
 }
 export default Layout

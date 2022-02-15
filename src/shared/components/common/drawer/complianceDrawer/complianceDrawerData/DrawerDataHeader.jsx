@@ -1,6 +1,7 @@
 import React from "react"
 import "./complainceDrawerData.scss"
 import LinkToExternal from "../asset/LinkToExternal"
+import { kebabCaseDate } from "../../../../../utils/misc"
 const DrawerDataHeader = props => {
   const { close, tableTitle, headerData } = props
   const createdDate = new Date(headerData.lastVerifiedDate * 1000)
@@ -14,7 +15,7 @@ const DrawerDataHeader = props => {
         </button>
       </p>
       <p className="f-14 fw-200">
-        Generated on <span className="fw-500">{`${(createdDate).getDate()}-${(createdDate).getMonth() + 1}-${(createdDate).getFullYear()}`}</span> at{" "}
+        Generated on <span className="fw-500">{kebabCaseDate(headerData.lastVerifiedDate)}</span> at
         <span className="fw-500">{
           `${(createdDate).getHours()}:${(createdDate).getMinutes()}:${(createdDate).getSeconds()}`
         }</span>
