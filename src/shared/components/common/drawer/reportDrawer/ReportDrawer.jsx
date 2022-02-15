@@ -1,6 +1,6 @@
 import React from "react";
 import { CloseIcon, PDFIcon } from "./assets";
-import "./reportDrawer.css";
+import "./reportDrawer.scss";
 import { TimelineComponent } from "./timelineComponent";
 
 const ReportDrawer = ({ report, showReport }) => {

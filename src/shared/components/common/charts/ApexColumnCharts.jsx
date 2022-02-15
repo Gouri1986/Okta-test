@@ -30,7 +30,7 @@ const ApexColumnCharts = ({ direction }) => {
   }, []);
 
   const columnColors = {
-    series1: '#E80054',
+    series1: '#FFAE18',
     series2: '#003ECB',
     series3: '#FFC300',
     series4: '#667222',
@@ -70,7 +70,7 @@ const ApexColumnCharts = ({ direction }) => {
       position: 'top',
       horizontalAlign: 'start',
     },
-    colors: [columnColors.series5],
+    colors: [columnColors.series1],
     stroke: {
       show: true,
       colors: ['transparent'],

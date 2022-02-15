@@ -9,7 +9,7 @@ import Search from "../search/Search";
 
 function Header() {
   return (
-    <div className='hp-100 flex-r-ac flex-jc-sp-btn'>
+    <div className='hp-100 wp-100 flex-r-ac flex-jc-sp-btn'>
       <div className='hp-50 wp-55 flex-r-ac'>
         <Search />
       </div>
@@ -23,14 +23,8 @@ function Header() {
             <p className='f-12 fc-white'>2</p>
           </div>
         </div>
-        <div className='wp-100 flex-r-ac white-container-br-5 flex-jc-sp-btn p-10'>
-          <div className='flex-c fc-secondary mr-30'>
-            <span className='f-16 fw-400 lh-1-5'>Gouri Biswas</span>
-            <span className='f-13 fw-400'>Marketing Administrator</span>
-          </div>
-          <div className='min-w-60 flex-r-ac'>
-            <img src={User} alt='profile-pic' width='100%' height='100%'></img>
-          </div>
+        <div className='min-w-60 flex-r-ac bdr-rp-50 bdr-white-5'>
+          <img src={User} alt='profile-pic' width='100%' height='100%'></img>
         </div>
       </div>
     </div>
