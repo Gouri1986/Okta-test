@@ -1,50 +1,36 @@
-import axios from "axios"
 import React, { useState } from "react"
 import { useSelector, useDispatch } from "react-redux"
 import "./treeView.scss"
-
-const StatusComponet = props => {
-  const { status } = props
-  return (
-    <div className={`flex-r p-5 bdr-r-5 status-bg-${status === "PASS" ? "success" : "fail"}`}>
-      <div
-        className={`w-12 h-12 bdr-r-6 mr-10 mt-1 status-component-${status === "PASS" ? "success" : "fail"}`}
-      ></div>
-      <span className="f-12">
-        Complaint
-        {/* {status} */}
-      </span>
-    </div>
-  )
-}
+import axios from "axios"
 
 const TreeView = props => {
-  const { data, status } = props
-
-  const { complainceDrawerRegulationData } = useSelector(state => state.drawerReducer)
+  const {
+    complainceDrawerRegulationData,
+    regulationMap,
+    regulationMapData = [],
+    setRegulationMapData
+  } = props
   const { user } = useSelector(state => state.userReducer)
-  const [regulationMapData, setRegulationMapData] = useState([])
+  const [regulationMapDataDiscription, setRegulationMapDataDiscription] = useState([])
 
-  const regulationMap = data => {
+  const regulationMapDiscription = data => {
     axios
       .get(
-        `${process.env.REACT_APP_COMPLIANCE_DASHBOARD_BASE_URL}get-regulationId-recs-oci-controls-regulation-map`,
+        `${process.env.REACT_APP_COMPLIANCE_DASHBOARD_BASE_URL}recs-oci-controls-regulation-map_configregulationId`,
         {
           headers: {
             "Content-Type": "application/json",
             "access-token": `${user}`
           },
           params: {
-            regulation: data
+            regulationId: data
           }
         }
       )
       .then(response => {
-        setRegulationMapData([...regulationMapData, { [data]: response.data.data }])
+        setRegulationMapDataDiscription({ ...regulationMapDataDiscription, [data]: response.data.data })
       })
   }
-
-  console.log("regulationMapData", regulationMapData)
 
   return (
     <div>
@@ -55,7 +41,6 @@ const TreeView = props => {
               type="checkbox"
               id={`l1_${i}`}
               onClick={() => {
-                console.log(complainceDrawerRegulationData[i])
                 regulationMap(complainceDrawerRegulationData[i])
               }}
             />
@@ -63,27 +48,38 @@ const TreeView = props => {
               {complainceDrawerRegulationData[i]}
             </label>
             <ul>
-              {[...Array(3)].map((item, i2) => (
-                <li className="li-l2">
-                  <input type="checkbox" id={`l2_${i}_${i2}`} />
-                  <span className="flex-r flex-jc-sp-btn">
-                    <span className="">
-                      <label for={`l2_${i}_${i2}`} className="tree_label label_l2 ">
-                        {item?.l2} data
-                      </label>
-                    </span>
-                  </span>
-                  <ul>
-                    {[...Array(1)].map((item, i3) => (
-                      <span className="tree_label mt-20 pt-20 f-14 bg-tab p-10 bdr-r-5" id={`l3_${i}_${i2}_${i3}`}>
-                        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Perspiciatis, ipsum.
-                        Assumenda atque consequatur cumque excepturi maiores sed ipsa veritatis quae qui ea
-                        amet nostrum maxime sit, totam, magnam, vero itaque!
+              {[regulationMapData[complainceDrawerRegulationData[i]]]?.map((item, i2) =>
+                item?.map((item2, i3) => (
+                  <li className={`${i}-li-l${i3}`}>
+                    <input
+                      type="checkbox"
+                      id={`${i}-li-l${i3}`}
+                      onClick={() => {
+                        regulationMapDiscription(item2[`Control id`])
+                        console.log(item2[`Control id`])
+                      }}
+                    />
+                    <span className="flex-c flex-jc-sp-btn">
+                      <span className="">
+                        <label for={`${i}-li-l${i3}`} className="tree_label label_l2 ">
+                          {item2[`Control id`]}
+                        </label>
                       </span>
-                    ))}
-                  </ul>
-                </li>
-              ))}
+                      <small className="pl-5 pt-2">{item2.description}</small>
+                    </span>
+                    <ul>
+                      {[regulationMapDataDiscription[item2[`Control id`]]]?.map((item3, index3) => (
+                        <span
+                          className="tree_label mt-20 pt-20 f-14 bg-tab p-10 bdr-r-5"
+                          id={`l3_${i3}_${i2}`}
+                        >
+                          {item3?.[0].control_description}
+                        </span>
+                      ))}
+                    </ul>
+                  </li>
+                ))
+              )}
             </ul>
           </li>
         </ul>
