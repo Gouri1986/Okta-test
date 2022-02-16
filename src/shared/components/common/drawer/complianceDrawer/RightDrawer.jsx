@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import { getSpacedDisplayName } from '../../../../utils/table';
 import './RightDrawer.scss';
 
 const RightDrawer = (props) => {
@@ -7,7 +6,7 @@ const RightDrawer = (props) => {
 
   return (
     <div
-      className={`sidebar sidebar-animation ${
+      className={`sidebar sidebar-animation  ${
         open === true ? 'side-on-state' : 'side-off-state'
       } ${
         size === 'sm'
@@ -25,7 +24,6 @@ const RightDrawer = (props) => {
       <div className='sidebar-body'>
        {children[1]}
       </div>
-      {/* <TreeView /> */}
     </div>
   );
 };
