@@ -26,8 +26,8 @@ const Layout = props => {
 
   console.log(complianceDrawerExpanded)
   return (
-    <div className="overflow-y-scroll wp-95">
-      <div className="z-100 wp-100 h-82 sticky-container-br-0 flex-r-ac flex-jc-sp-btn">
+    <div className="overflow-y-scroll wp-95 pos-rel">
+      <div className="z-100 wp-100 h-82 sticky-container-br-0 flex-r-ac flex-jc-sp-btn pos-sk t-0">
         <div className="pl-30 pr-40 wp-100">
           <Header tableTitle={tableTitle} />
         </div>
