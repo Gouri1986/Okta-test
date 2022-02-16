@@ -26,7 +26,7 @@ const DrawerDataHeader = props => {
           {headerData?.controlId}
         </p>
         <p className="fw-200">
-          <span className="fw-500">GCP Project ID: </span>638548674414
+          <span className="fw-500">GCP Project ID: </span>{headerData?.ociTenantDetailsId}
         </p>
       </div>
       <div className="flex-r flex-jc-sp-btn f-14 mt-15">
