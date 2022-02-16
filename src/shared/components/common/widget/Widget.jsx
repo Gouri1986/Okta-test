@@ -51,7 +51,7 @@ export default function Widget() {
               className='cp wp-100 hp-100 text-center'
               onClick={toggleContent}
             >
-              <img className={'rotate-icon'} src={collapse} alt='Collapse' />
+              <img className={'rotate-180'} src={collapse} alt='Collapse' />
             </div>
           </div>
         </div>

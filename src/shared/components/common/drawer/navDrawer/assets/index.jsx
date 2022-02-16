@@ -23,7 +23,7 @@ export const DrawerArrow = ({ right }) => {
       viewBox='0 0 30 31'
       fill='none'
       xmlns='http://www.w3.org/2000/svg'
-      className={right ? "drawer-left-arrow" : "drawer-right-arrow"}
+      className={right ? "drawer-left-arrow rotate-0" : "drawer-right-arrow rotate-180"}
     >
       <rect
         width='30'
@@ -119,7 +119,7 @@ export const NavDoubleArrow = ({ expanded }) => {
       viewBox='0 0 33 32'
       fill='none'
       xmlns='http://www.w3.org/2000/svg'
-      className={!expanded ? "drawer-left-arrow" : "drawer-right-arrow"}
+      className={!expanded ? "drawer-left-arrow rotate-0" : "drawer-right-arrow rotate-180"}
     >
       <rect
         x='32.5'
@@ -157,7 +157,7 @@ export const NavBarMenuArrow = ({ menuExpanded }) => {
       viewBox='0 0 13 19'
       fill='none'
       xmlns='http://www.w3.org/2000/svg'
-      className={!menuExpanded ? "menu-left-arrow" : "menu-right-arrow"}
+      className={!menuExpanded ? "menu-left-arrow rotate-0" : "menu-right-arrow rotate-90"}
     >
       <path
         d='M1.57858 15.6618L1.22502 16.0153L1.57858 16.3689L2.97983 17.7701L3.33338 18.1237L3.68693 17.7701L11.6036 9.85347L11.9572 9.49992L11.6036 9.14637L3.68693 1.2297L3.33338 0.876145L2.97983 1.2297L1.57858 2.63095L1.22502 2.9845L1.57858 3.33806L7.74044 9.49992L1.57858 15.6618Z'

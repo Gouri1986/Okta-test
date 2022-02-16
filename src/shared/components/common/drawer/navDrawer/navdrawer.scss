@@ -191,22 +191,9 @@
   padding-top: 0px;
 }
 
-.drawer-right-arrow {
-  transform: rotate(180deg);
-  transition: transform 0.3s ease-out;
-}
-
-.drawer-left-arrow {
-  transform: rotate(0deg);
-  transition: transform 0.3s ease-out;
-}
-
-.menu-right-arrow {
-  transform: rotate(90deg);
-  transition: transform 0.3s ease-out;
-}
-
-.menu-left-arrow {
-  transform: rotate(0deg);
+.drawer-right-arrow 
+.menu-right-arrow 
+.drawer-left-arrow 
+.menu-left-arrow{
   transition: transform 0.3s ease-out;
 }

@@ -64,7 +64,7 @@ export default function ComplienceIntro() {
                 </div>
                 <div className='cp' onClick={toggleContent}>
                   <img
-                    className={showContent ? ' ' : 'rotate-icon'}
+                    className={showContent ? ' ' : 'rotate-180'}
                     src={collapse}
                     alt='Collapse'
                   />
@@ -116,7 +116,7 @@ export default function ComplienceIntro() {
                   onClick={toggleContent}
                 >
                   <img
-                    className={showContent ? ' ' : 'rotate-icon'}
+                    className={showContent ? ' ' : 'rotate-180'}
                     src={collapse}
                     alt='Collapse'
                   />

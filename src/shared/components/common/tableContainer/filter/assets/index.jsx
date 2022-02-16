@@ -33,7 +33,6 @@ export const FilterDownArrow = () => {
           <path
             id='Path_91'
             data-name='Path 91'
-            className='cls-1'
             d='M46.672,208.505l2.827,3.809,2.827-3.809'
           />
         </g>
@@ -60,7 +59,6 @@ export const FilterUpArrow = () => {
           <path
             id='Path_91'
             data-name='Path 91'
-            className='cls-1'
             d='M46.672,208.505l2.827,3.809,2.827-3.809'
           />
         </g>
