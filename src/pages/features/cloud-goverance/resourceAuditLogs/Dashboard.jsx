@@ -90,9 +90,11 @@ const Dashboard = () => {
     pageTitle: "Rrsource Audit Log Dashboard",
     CRUDModalType,
     setCRUDModalType,
-    openRightDescModal,
+   openRightDescModal,
     hideAdd: true,
-    showMap: true
+    showMap: true,
+    showWidget: false,
+    showTable: false 
   };
 
   const tableProps = {

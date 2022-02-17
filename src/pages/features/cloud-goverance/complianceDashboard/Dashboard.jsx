@@ -93,6 +93,9 @@ const Dashboard = () => {
     setCRUDModalType,
     openRightDescModal,
     hideAdd: true,
+    showMap: false,
+    showWidget: true,
+    showTable: true
   };
 
   const tableProps = {

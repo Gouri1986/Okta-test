@@ -1,13 +1,12 @@
 import React from "react"
 import "./metadataLayout.scss"
-import { Navbar, Header, TableSettings } from "../components/common"
+import { Header, TableSettings } from "../components/common"
 import Breadcrumbs from "../components/common/breadcumbs/Breadcrumbs"
-import ComplienceIntro from "../../pages/metadata/securityCompliance/ChartsContainer"
-import Accordion from "../components/common/accordion/Accordion"
 import Map from "../components/common/map/Map"
 import Widget from "../components/common/widget/Widget"
 import { useSelector } from "react-redux"
 import Tenant from "../components/common/tenant/Tenant"
+
 const Layout = props => {
   const {
     children,
@@ -18,13 +17,14 @@ const Layout = props => {
     pageTitle,
     setCRUDModalType,
     hideAdd,
-    showMap
+    showWidget,
+    showMap,
+    showTable
   } = props
 
   const { tabs } = useSelector(state => state.tableReducer)
   const { complianceDrawerExpanded } = useSelector(state => state.commonReducer)
 
-  console.log(complianceDrawerExpanded)
   return (
     <div className="overflow-y-scroll wp-95 pos-rel">
       <div className="z-100 wp-100 h-82 sticky-container-br-0 flex-r-ac flex-jc-sp-btn pos-sk t-0">
@@ -51,45 +51,47 @@ const Layout = props => {
             </>
           )}
         </div>
-        {!showMap &&
-        <div className={`bdr-r-10 mt-30 mb-45 bg-white ${complianceDrawerExpanded ? `drawer-toggle` : ``}`}>
-          <Widget />
-        </div>}
-        {/* Map section */}
-        {showMap&& <div className='bdr-r-10 mt-50 mb-25 ml-40 mr-40 bg-white'>
-          <Map />
-        </div>}
+        {showWidget &&
+          <div className={`bdr-r-10 mt-30 mb-45 bg-white ${complianceDrawerExpanded ? `drawer-toggle` : ``}`}>
+            <Widget />
+          </div>
+        }
+        {showMap && 
+          <div className='bdr-r-10 mt-50 mb-25 bg-white h-600'>
+            <Map />
+          </div>
+        }
+        {showTable &&
         <div className={`flex-c pt-20  ${complianceDrawerExpanded ? `drawer-toggle` : ``}`}>
-        <div className={`flex-c bdr-r-10 bg-white pl-15 pr-15`}>
-          <div>
-            <TableSettings
-              tabs={tabs}
-              tableTitle={tableTitle}
-              hideAdd={hideAdd}
-              modalOnClick={() => {
-                setOpenCRUDModal(!openCRUDModal)
-                setCRUDModalType("add")
-              }}
-            />
+          <div className={`flex-c bdr-r-10 bg-white pl-15 pr-15`}>
+            <div>
+              <TableSettings
+                tabs={tabs}
+                tableTitle={tableTitle}
+                hideAdd={hideAdd}
+                modalOnClick={() => {
+                  setOpenCRUDModal(!openCRUDModal)
+                  setCRUDModalType("add")
+                }}
+              />
+            </div>
+            <div className="overflow-x-scroll metadata-table-container h-500 mt-15">
+              {tableData.data?.length > 0 ? (
+                // table render
+                <div>{children[0]}</div>
+              ) : (
+                <div className="wp-100 hp-100 flex-r-jc-ac p-50">
+                  <span className="f-20 fw-500">No data to display</span>
+                </div>
+              )}
+            </div>
           </div>
-          <div className="overflow-x-scroll metadata-table-container h-500 mt-15">
-            {tableData.data?.length > 0 ? (
-              // table render
-              <div>{children[0]}</div>
-            ) : (
-              <div className="wp-100 hp-100 flex-r-jc-ac p-50">
-                <span className="f-20 fw-500">No data to display</span>
-              </div>
-            )}
-          </div>
+          {/* pagination render */}
+          <div className={`mt-20 mb-30 ${complianceDrawerExpanded ? `drawer-toggle` : ``}`}>{children[1]}</div>      
         </div>
-        {/* pagination render */}
-        <div className={`mt-20 mb-30 ${complianceDrawerExpanded ? `drawer-toggle` : ``}`}>{children[1]}</div>
+        }
       </div>
-    
-    
-      </div>
-      </div>
+    </div>
   )
 }
 export default Layout

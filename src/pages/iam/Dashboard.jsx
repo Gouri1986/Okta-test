@@ -81,6 +81,10 @@ const Dashboard = () => {
     setOpenCRUDModal,
     CRUDModalType,
     setCRUDModalType,
+    hideAdd: true,
+    showMap: false,
+    showWidget: false,
+    showTable: true,
     pageTitle: "IAM",
     baseUrl,
   };

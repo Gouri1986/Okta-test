@@ -89,6 +89,9 @@ const Dashboard = () => {
     CRUDModalType,
     setCRUDModalType,
     baseUrl,
+    showMap: false,
+    showWidget: false,
+    showTable: true
   };
 
   const tableProps = {

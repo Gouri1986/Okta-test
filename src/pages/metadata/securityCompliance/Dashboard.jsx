@@ -84,6 +84,9 @@ const Dashboard = () => {
     pageTitle: "Security Compliance",
     CRUDModalType,
     setCRUDModalType,
+    showMap: false,
+    showWidget: false,
+    showTable: true
   };
 
   const tableProps = {
