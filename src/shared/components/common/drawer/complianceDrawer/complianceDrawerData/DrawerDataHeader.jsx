@@ -15,10 +15,8 @@ const DrawerDataHeader = props => {
         </button>
       </p>
       <p className="f-14 fw-200">
-        Generated on <span className="fw-500">{kebabCaseDate(headerData.lastVerifiedDate)}</span> at
-        <span className="fw-500">{
-          `${(createdDate).getHours()}:${(createdDate).getMinutes()}:${(createdDate).getSeconds()}`
-        }</span>
+        Generated on <span className="fw-500">{kebabCaseDate(headerData.lastVerifiedDate)}</span> at {''}
+        <span className="fw-500"> {createdDate.toLocaleTimeString()}</span>
       </p>
       <div className="flex-r flex-jc-sp-btn f-14 mt-15">
         <p className="fw-200">

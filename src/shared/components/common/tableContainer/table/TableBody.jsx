@@ -1,22 +1,40 @@
 import React, { useState, useEffect } from "react"
+import { useSelector, useDispatch } from "react-redux"
+
+/**
+ * ? Miscillaneous  resusable function $ assets imports
+ * TODO: Add all the above metioned here
+ **/
 import { getSanitisedTableData } from "../../../../utils/table"
 import { PencilIcon, TrashIcon } from "./assets"
-import RightDrawer from "../../drawer/complianceDrawer/RightDrawer"
-import { DrawerDataHeader, DrawerDataBody } from "../../drawer/complianceDrawer/complianceDrawerData"
+import { kebabCaseDate } from "../../../../utils/misc"
 
+/**
+ * ? Resusable component for rendering table row
+ **/
+import RightDrawer from "../../drawer/complianceDrawer/RightDrawer"
 import Modal from "../../modal/center/Modal"
 import ModalForm from "../../forms/ModalForm"
-import { useSelector, useDispatch } from "react-redux"
-import { deleteTableData } from "../../../../apis/table/table"
 import InlineStatusBarChart from "../../charts/TableInlineBarStatus"
-import { kebabCaseDate } from "../../../../utils/misc"
 import ComplianceViewButton from "./columnButtons/ComplianceViewButton"
+
+/**
+ * ? API Calls
+ **/
+import { getDrawerData, getDrawerRegulationData } from "../../../../apis/drawer/drawer"
+import { deleteTableData } from "../../../../apis/table/table"
+
+/**
+ * ? Global redux state
+ **/
+import { DrawerDataHeader, DrawerDataBody } from "../../drawer/complianceDrawer/complianceDrawerData"
 import {
   setComplianceDrawerExpand,
   setNavDrawerExpand,
   setFilterDrawerExpand
 } from "../../../../../redux/common/commonActions"
-import { getDrawerData, getDrawerRegulationData } from "../../../../apis/drawer/drawer"
+import { setDrawerRegulationData } from "../../../../../redux/drawer/drawerActions"
+
 const RowAction = ({
   baseUrl,
   setOpenCRUDModal,
@@ -270,8 +288,10 @@ const TableBody = props => {
         <DrawerDataHeader
           close={() => {
             dispatch(setComplianceDrawerExpand(false))
+            dispatch(setDrawerRegulationData([]))
             setResourcseIds([])
             setDrawerData({})
+            setDrawerRegulationData([])
           }}
           tableTitle={`${tableTitle} Report`}
           headerData={drawerData}

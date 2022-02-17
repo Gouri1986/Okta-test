@@ -5,6 +5,13 @@ const complianceDashboardRoutes = [
     apiEndpoint: "get-recs-oci-complaince-details",
     pk: "controlId",
     tableWhitelists: ["resources"]
+  },
+  {
+    section: "GCP Compliance",
+    path: "/get-recs-gcp-complaince-details",
+    apiEndpoint: "get-recs-gcp-complaince-details",
+    pk: "controlId",
+    tableWhitelists: ["resources"]
   }
 ]
 

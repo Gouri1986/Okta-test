@@ -8,7 +8,6 @@ const TreeView = props => {
     complainceDrawerRegulationData,
     regulationMap,
     regulationMapData = [],
-    setRegulationMapData
   } = props
   const { user } = useSelector(state => state.userReducer)
   const [regulationMapDataDiscription, setRegulationMapDataDiscription] = useState([])

@@ -2,7 +2,8 @@ import axios from "axios"
 import {
   setDrawerData,
   setDrawerJSONData,
-  setDrawerRegulationData
+  setDrawerRegulationData,
+  setDrawerRegulationMap
 } from "../../../redux/drawer/drawerActions"
 
 const requestConfig = ({ token, params }) => ({
@@ -39,3 +40,12 @@ export const getDrawerRegulationData = (path, params) => {
     dispatch(setDrawerRegulationData(data.Regulation))
   }
 }
+
+// export const getDrawerRegulationMap = (path, params) => {
+//   return async (dispatch, getState) => {
+//     const { user: token } = getState().userReducer
+//     const response = await axios.get(path, requestConfig({ token, params }))
+//     const { data } = response
+//     dispatch(setDrawerRegulationMap(data.Regulation))
+//   }
+// }

@@ -4,6 +4,7 @@ import TreeView from "../../../treeView/TreeView"
 import axios from "axios"
 
 const ResourceDataTable = props => {
+  const dispatch = useDispatch()
   const { complainceDrawerRegulationData } = useSelector(state => state.drawerReducer)
   const { user } = useSelector(state => state.userReducer)
   const [regulationMapData, setRegulationMapData] = useState([])
@@ -25,6 +26,9 @@ const ResourceDataTable = props => {
       .then(response => {
         setRegulationMapData({ ...regulationMapData, [data]: response.data.data })
       })
+      .catch(error => {
+        console.log(error)
+      })
   }
 
   return (
@@ -41,7 +45,6 @@ const ResourceDataTable = props => {
             complainceDrawerRegulationData={complainceDrawerRegulationData}
             regulationMap={regulationMap}
             regulationMapData={regulationMapData}
-            setRegulationMapData={setRegulationMapData}
           />
         </div>
       </table>
