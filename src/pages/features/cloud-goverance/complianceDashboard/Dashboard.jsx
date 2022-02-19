@@ -98,6 +98,7 @@ const Dashboard = () => {
     showTable: true
   };
 
+  
   const tableProps = {
     selectedRow: selectedRow,
     onRowClick: onRowClick,

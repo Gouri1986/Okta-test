@@ -112,7 +112,7 @@ const TableBody = props => {
 
   //state to manage data to be displayed in right side modal
   const [activeData, setActiveData] = useState({})
-
+  const [rowDataToDisplay, setRowDataToDisplay] = useState({})
   // complaince drawer data
   const [drawerData, setDrawerData] = useState([])
   const [resourcesId, setResourcseIds] = useState([])
@@ -189,10 +189,14 @@ const TableBody = props => {
               value1={datum[id]?.[0]?.Pass}
               value2={datum[id]?.[0]?.Fail}
               onClick={() => {
+                let paramsKey = {}
+                tableDetails?.complainceDetails?.params?.paramKey?.forEach((v, i) => {
+                  paramsKey[v] = datum[tableDetails?.complainceDetails?.params?.tableKey?.[i]]
+                })
                 dispatch(
                   getDrawerData(
-                    `${process.env.REACT_APP_COMPLIANCE_DASHBOARD_BASE_URL}get-controlId-complaince-details`,
-                    { controlItemId: datum.controlId, resource: datum.ociResourceType }
+                    `${process.env.REACT_APP_COMPLIANCE_DASHBOARD_BASE_URL}${tableDetails?.complainceDetails?.apiEndpoint}`,
+                    paramsKey
                   )
                 )
                 setDrawerData(datum)
@@ -270,6 +274,7 @@ const TableBody = props => {
     setResourcseIds(complainceDrawerData[0]?.json_agg)
   }, [complainceDrawerData])
 
+  console.log("activeData", activeData)
   return (
     <div className="flex-c ">
       {tableRowData?.map(datum => (
@@ -286,6 +291,10 @@ const TableBody = props => {
         data={activeData}
       >
         <DrawerDataHeader
+          serviceType={tableDetails?.sectionType}
+          tableTitle={`${tableTitle} Report`}
+          headerColoumn={tableDetails?.complainceDetails?.dawerHeaderColoumn}
+          headerData={drawerData}
           close={() => {
             dispatch(setComplianceDrawerExpand(false))
             dispatch(setDrawerRegulationData([]))
@@ -293,10 +302,14 @@ const TableBody = props => {
             setDrawerData({})
             setDrawerRegulationData([])
           }}
-          tableTitle={`${tableTitle} Report`}
-          headerData={drawerData}
         />
-        <DrawerDataBody type={complainceDrawerType} headerData={drawerData} resourcesId={resourcesId} />
+        <DrawerDataBody
+          data={drawerData}
+          type={complainceDrawerType}
+          headerData={drawerData}
+          resourcesId={resourcesId}
+          tableDetails={tableDetails}
+        />
       </RightDrawer>
       <Modal
         open={openCRUDModal}
