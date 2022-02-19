@@ -94,7 +94,7 @@ const Dashboard = () => {
     hideAdd: true,
     showMap: true,
     showWidget: false,
-    showTable: false 
+    showTable: true 
   };
 
   const tableProps = {
