@@ -87,7 +87,7 @@ const Dashboard = () => {
     drawer,
     openCRUDModal,
     setOpenCRUDModal,
-    pageTitle: "Rrsource Audit Log Dashboard",
+    pageTitle: "Resource Audit Log Dashboard",
     CRUDModalType,
     setCRUDModalType,
    openRightDescModal,

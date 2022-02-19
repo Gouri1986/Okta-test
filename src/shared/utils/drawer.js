@@ -141,7 +141,7 @@ export const testDashboardDrawer = () => {
     ...rt,
     title: rt.section,
     Icon: drawerSectionIcons.DTSC,
-    path: "/resource-auditLogs-dashboard" + rt.path,
+    path: "/oci-dashboard" + rt.path,
     apiEndpoint: rt.apiEndpoint,
     pk: rt.pk,
     items:
@@ -156,7 +156,7 @@ export const testDashboardDrawer = () => {
             getSpacedDisplayName(
               route.path.replace(/-/g, " ").replace(/\//, "")
             ),
-          path: "/resource-auditLogs-dashboard" + route.path,
+          path: "/oci-dashboard" + route.path,
           id: route.path,
           apiEndpoint: route.apiEndpoint,
           showAsSubMenu: route.showAsSubMenu,
@@ -189,6 +189,11 @@ export const mainDrawer = [
         title: "Resource Audit Logs",
         Icon: resourceAuditLogIcon,
         drawer: resourceAuditLogDashboardDrawer,
+      },
+      {
+        title: "OCI compliance",
+        Icon: resourceAuditLogIcon,
+        drawer: testDashboardDrawer,
       },
     ],
   },
