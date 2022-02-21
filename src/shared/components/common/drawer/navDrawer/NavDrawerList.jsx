@@ -168,7 +168,12 @@ const DrawerList = (props) => {
             <div className='flex-r-ac flex-1'>
               <Icon />
               {expanded && !secondMenu && (
-                <span className='ml-10 mr-25 f-16'>{title}</span>
+                <span
+                  style={{ whiteSpace: "break-spaces" }}
+                  className='ml-10 mr-25 f-15'
+                >
+                  {title}
+                </span>
               )}
             </div>
             {expanded && !secondMenu && (
