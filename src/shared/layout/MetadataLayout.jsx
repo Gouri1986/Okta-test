@@ -26,7 +26,7 @@ const Layout = props => {
   const { complianceDrawerExpanded } = useSelector(state => state.commonReducer)
 
   return (
-    <div className="overflow-y-scroll wp-95 pos-rel">
+    <div className="overflow-y-scroll wp-100 pos-rel">
       <div className="z-100 wp-100 h-82 sticky-container-br-0 flex-r-ac flex-jc-sp-btn pos-sk t-0">
         <div className="pl-30 pr-40 wp-100">
           <Header tableTitle={tableTitle} />

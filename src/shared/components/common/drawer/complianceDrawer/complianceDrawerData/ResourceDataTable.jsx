@@ -52,22 +52,17 @@ const ResourceDataTable = props => {
               <ComplianceViewButton
                 dark
                 onClick={() => {
-                  Math.round((num + Number.EPSILON) * 100) / 100
-                  // let paramsKey = {
-                  //   resource: data[tableDetails?.complainceDetails?.jsonView?.params?.tableKey?.[1]],
-                  //   resourceId: item.resourceId
-                  // }
-                  // tableDetails?.complainceDetails?.jsonView?.params?.paramKey?.forEach((v, i) => {
-                  //   paramsKey[v] = data[tableDetails?.complainceDetails?.jsonView?.params?.tableKey?.[i]]
-                  // })
-                   console.log(paramsKey)
+                  let paramsKey = {
+                    resource: data[tableDetails?.complainceDetails?.jsonView?.params?.tableKey?.[1]],
+                    resourceId: item.resourceId
+                  }
                   dispatch(
                     getDrawerJSONData(
                       `${process.env.REACT_APP_COMPLIANCE_DASHBOARD_BASE_URL}${tableDetails?.complainceDetails?.jsonView?.apiEndpoint}`,
                       paramsKey
                     )
                   )
-                   setOpenComplianceDrawerModal(true)
+                  setOpenComplianceDrawerModal(true)
                 }}
               />
             </td>

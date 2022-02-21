@@ -20,14 +20,9 @@
   font-size: 15px;
   line-height: 28px;
   color: #1f4173;
-  display: inline-flex;
-  align-items: center;
   cursor: pointer;
-  display: flex;
-  text-align: center;
-  justify-content: center;
-  width: fit-content;
-  white-space: nowrap;
+  text-align: left;
+  align-items: center;
 }
 
 /* Table Rows */
@@ -41,7 +36,7 @@
 
 .table-cell {
   color: #1f4173;
-  text-align: center;
+  text-align: left;
 }
 
 .table-data-cell {
@@ -50,9 +45,7 @@
   height: 2em;
   overflow: hidden;
   word-wrap: break-word;
-  white-space: pre-wrap;
   color: #1f4173;
-  padding: 10px;
 }
 
 .table-data-cell-status {
@@ -60,7 +53,7 @@
   line-height: 1em;
   height: 2em;
   overflow: hidden;
-  background:#00a389;
+  background: #00a389;
   border-radius: 100px;
   text-align: center;
   padding: 5px 10px;

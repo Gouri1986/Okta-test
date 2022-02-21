@@ -1,35 +1,8 @@
-import { useState, useEffect } from "react"
-import { useSelector, useDispatch } from "react-redux"
+import { useSelector } from "react-redux"
 import TreeView from "../../../treeView/TreeView"
-import axios from "axios"
 
 const ResourceDataTable = props => {
-  const dispatch = useDispatch()
   const { complainceDrawerRegulationData } = useSelector(state => state.drawerReducer)
-  const { user } = useSelector(state => state.userReducer)
-  const [regulationMapData, setRegulationMapData] = useState([])
-
-  const regulationMap = data => {
-    axios
-      .get(
-        `${process.env.REACT_APP_COMPLIANCE_DASHBOARD_BASE_URL}get-regulationId-recs-oci-controls-regulation-map`,
-        {
-          headers: {
-            "Content-Type": "application/json",
-            "access-token": `${user}`
-          },
-          params: {
-            regulation: data
-          }
-        }
-      )
-      .then(response => {
-        setRegulationMapData({ ...regulationMapData, [data]: response.data.data })
-      })
-      .catch(error => {
-        console.log(error)
-      })
-  }
 
   return (
     <>
@@ -41,11 +14,7 @@ const ResourceDataTable = props => {
           <th className="flex-jc-fs pl-20">Regulation</th>
         </tr>
         <div className="p-10 pl-20">
-          <TreeView
-            complainceDrawerRegulationData={complainceDrawerRegulationData}
-            regulationMap={regulationMap}
-            regulationMapData={regulationMapData}
-          />
+          <TreeView complainceDrawerRegulationData={complainceDrawerRegulationData} />
         </div>
       </table>
     </>

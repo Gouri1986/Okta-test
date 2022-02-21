@@ -105,7 +105,8 @@ const TableBody = props => {
     getTable,
     baseUrl,
     complianceDrawerExpanded,
-    disableRowclick
+    disableRowclick,
+    headerStaticVisbility
   } = props
 
   const dispatch = useDispatch()
@@ -139,13 +140,16 @@ const TableBody = props => {
 
   const TableRowCell = ({ item = {}, datum }) => {
     // destructuring the current cloumn's id and display title
-    const { id, title } = item
+    const { id, title, width } = item
     /**
      * width of the column
      * @returns static width conditionally depends on the length of column's display name's length
      */
+    // console.log(width)
     const getRowCellWidth = () =>
-      rowData.find(e => e[id]?.length > 30)
+      headerStaticVisbility
+        ? width
+        : rowData.find(e => e[id]?.length > 30)
         ? 400
         : title?.length > 25
         ? 400
@@ -155,9 +159,9 @@ const TableBody = props => {
         ? 50
         : 200
 
-    const rowCellClassName = `bdr-primary table-cell p-15 w-${getRowCellWidth()} ${
+    const rowCellClassName = `pl-0 pr-0 pt-15 pb-15 bdr-primary table-cell  w-${getRowCellWidth()} ${
       item.id === "action" || item.id === "resources" || item.id === "regulationControls"
-    }`
+    } ${ item?.mr ? `mr-${item.mr}` : '0'}` 
 
     return (
       <td className={rowCellClassName}>
@@ -215,6 +219,7 @@ const TableBody = props => {
         ) : id === "resources" ? (
           <ComplianceViewButton dark />
         ) : id === "regulationControls" ? (
+          <div className="flex-r-jc">
           <ComplianceViewButton
             onClick={() => {
               dispatch(setComplianceDrawerExpand(true))
@@ -224,12 +229,15 @@ const TableBody = props => {
               setcomplainceDrawerType("Regulation")
               dispatch(
                 getDrawerRegulationData(
-                  `${process.env.REACT_APP_COMPLIANCE_DASHBOARD_BASE_URL}recs-oci-controls-regulation-map-controlItemId`,
-                  { controlItemId: datum.controlId }
+                  `${process.env.REACT_APP_COMPLIANCE_DASHBOARD_BASE_URL}${tableDetails?.regulationControls?.apiEndpoint}`,
+                  {
+                    [`${tableDetails?.regulationControls?.params?.paramKey?.[0]}`]:
+                      datum[tableDetails?.regulationControls?.params?.tableKey?.[0]]
+                  }
                 )
               )
             }}
-          />
+          /></div>
         ) : (
           // else return normal row data
           <span title={datum[id]?.length > 100 && datum[id]} className={"table-data-cell"}>
@@ -274,7 +282,6 @@ const TableBody = props => {
     setResourcseIds(complainceDrawerData[0]?.json_agg)
   }, [complainceDrawerData])
 
-  console.log("activeData", activeData)
   return (
     <div className="flex-c ">
       {tableRowData?.map(datum => (
