@@ -1,4 +1,5 @@
 const weedoutArrays = (exPath) => {
+  console.log(exPath);
   const finalArrayWithDetails = exPath
     .map((ar) => {
       if (Array.isArray(ar)) {
@@ -15,28 +16,39 @@ const weedoutArrays = (exPath) => {
 };
 
 const getExactPathArray = (routes, location, mainRoute) => {
-  return routes().map((e) =>
-    e.items
-      ? e.items.map((el) => {
-          if (el.items) {
-            return el.items?.filter((it) => {
-              return (
-                it.path.replace(mainRoute, "") ===
-                location?.pathname?.replace(mainRoute, "")
-              );
-            });
-          }
-          if (e.items) {
-            return e.items?.filter(
-              (it) =>
-                it.path.replace(mainRoute, "") ===
-                location?.pathname?.replace(mainRoute, "")
+  const mappedArrays = routes().map((e) => {
+    return (
+      e.items &&
+      e.items.map((el) => {
+        if (el.items) {
+          return el.items?.filter((it) => {
+            return (
+              it.path.replace(mainRoute, "") ===
+              location?.pathname?.replace(mainRoute, "")
             );
-          }
+          });
+        }
+        if (e.items) {
+          return e.items?.filter(
+            (it) =>
+              it.path.replace(mainRoute, "") ===
+              location?.pathname?.replace(mainRoute, "")
+          );
+        }
 
-          return e;
-        })
-      : e
+        return e;
+      })
+    );
+  });
+
+  if (mappedArrays.some((e) => e)) {
+    return mappedArrays;
+  }
+
+  return routes().filter(
+    (e) =>
+      e.path.replace(mainRoute, "") ===
+      location?.pathname?.replace(mainRoute, "")
   );
 };
 // NOTE : Flat(3) is 3 level deep routing (...). 3 is tentative.

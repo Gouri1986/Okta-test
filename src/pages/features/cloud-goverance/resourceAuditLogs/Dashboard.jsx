@@ -30,15 +30,20 @@ const Dashboard = () => {
   const location = useLocation();
   //BASE URL of api
   const baseUrl = process.env.REACT_APP_COMPLIANCE_DASHBOARD_BASE_URL;
-  const paramsToFetchTableDetails = [drawer, location, "resource-auditLogs-dashboard/"];
+  const paramsToFetchTableDetails = [
+    drawer,
+    location,
+    "resource-auditLogs-dashboard/",
+  ];
 
   useEffect(() => {
     // get table detail from routes
     let tableDetail = getTableDetailFromRoutes(...paramsToFetchTableDetails);
+    console.log(tableDetail);
     setTableDetails(tableDetail);
     setTableRowKey(tableDetail?.key);
     setTableTitle(tableDetail?.title);
-    console.log(tableDetail.tableWhitelists)
+    console.log(tableDetail.tableWhitelists);
     const apiEndpoint = tableDetail?.apiEndpoint;
     if (apiEndpoint) {
       getTable(apiEndpoint);
@@ -90,11 +95,11 @@ const Dashboard = () => {
     pageTitle: "Resource Audit Log Dashboard",
     CRUDModalType,
     setCRUDModalType,
-   openRightDescModal,
+    openRightDescModal,
     hideAdd: true,
     showMap: true,
     showWidget: false,
-    showTable: true 
+    showTable: true,
   };
 
   const tableProps = {
