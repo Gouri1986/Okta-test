@@ -6,7 +6,7 @@ import { useSelector, useDispatch } from "react-redux";
  * TODO: Add all the above metioned here
  **/
 import { getSanitisedTableData } from "../../../../utils/table";
-import { PencilIcon, TrashIcon } from "./assets";
+import { PencilIcon, RowRightArrow, TrashIcon } from "./assets";
 import { kebabCaseDate } from "../../../../utils/misc";
 
 /**

@@ -52,7 +52,7 @@ const Table = (props) => {
       {/* start of the table */}
       <table className={tableClassName}>
         <TableHeader {...headerProps} />
-        {/* <TableBody {...bodyProps} /> */}
+        <TableBody {...bodyProps} />
       </table>
       {/* end of the table */}
     </>
