@@ -1,14 +1,33 @@
 .metadata-table-container {
   &::-webkit-scrollbar {
-    width: 15px;
+    width: 10px;
+    height: 10px;
   }
   &::-webkit-scrollbar-track {
-    background-color: white;
+    background-color: #c4c4c400;
     border-radius: 10px;
+    transition: background-color 1s ease-in-out;
   }
   &::-webkit-scrollbar-thumb {
-    background-color: grey;
+    background-color: #10101000;
     border-radius: 10px;
+    transition: background-color 1s ease-in-out;
+  }
+  &:hover {
+    &::-webkit-scrollbar {
+      width: 10px;
+      height: 10px;
+    }
+    &::-webkit-scrollbar-track {
+      background-color: #c4c4c4;
+      border-radius: 10px;
+      transition: background-color 1s ease-in-out;
+    }
+    &::-webkit-scrollbar-thumb {
+      background-color: #101010;
+      border-radius: 10px;
+      transition: background-color 1s ease-in-out;
+    }
   }
 }
 

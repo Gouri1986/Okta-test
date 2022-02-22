@@ -97,7 +97,10 @@ const complianceDashboardRoutes = [
       },
       jsonView: {
         apiEndpoint: "get-resourceid-complaince-details",
-        params: { paramKey: ["resourceId", "resource"], tableKey: ["resourceId", "gcpResourceType"] }
+        params: {
+          paramKey: ["resourceId", "resource"],
+          tableKey: ["resourceId", "gcpResourceType"]
+        }
       }
     },
     /**

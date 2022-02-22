@@ -5,8 +5,9 @@ import { getTableDetailFromRoutes } from "../../../../shared/utils/getApiEndpoin
 import { useDispatch, useSelector } from "react-redux";
 import { MetadataLayout } from "../../../../shared/layout";
 import { Table, Pagination } from "../../../../shared/components/common";
-import { resourceAuditLogDashboardDrawer as drawer } from "../../../../shared/utils/drawer";
-const Dashboard = () => {
+import { testDashboardDrawer as drawer } from "../../../../shared/utils/drawer";
+
+const TestDashboard = () => {
   // loggin user details from store
   const dispatch = useDispatch();
 
@@ -29,21 +30,16 @@ const Dashboard = () => {
   // location hook to get the location variables
   const location = useLocation();
   //BASE URL of api
-  const baseUrl = process.env.REACT_APP_COMPLIANCE_DASHBOARD_BASE_URL;
-  const paramsToFetchTableDetails = [
-    drawer,
-    location,
-    "resource-auditLogs-dashboard/",
-  ];
+  const baseUrl = process.env.REACT_APP_OCI_COMPLIANCE_DASHBOARD_BASE_URL;
+  const paramsToFetchTableDetails = [drawer, location, "oci-dashboard/"];
 
   useEffect(() => {
     // get table detail from routes
     let tableDetail = getTableDetailFromRoutes(...paramsToFetchTableDetails);
-    console.log(tableDetail);
     setTableDetails(tableDetail);
     setTableRowKey(tableDetail?.key);
     setTableTitle(tableDetail?.title);
-    console.log(tableDetail.tableWhitelists);
+    console.log(tableDetail.tableWhitelists)
     const apiEndpoint = tableDetail?.apiEndpoint;
     if (apiEndpoint) {
       getTable(apiEndpoint);
@@ -92,14 +88,14 @@ const Dashboard = () => {
     drawer,
     openCRUDModal,
     setOpenCRUDModal,
-    pageTitle: "Resource Audit Log Dashboard",
+    pageTitle: "OCI Dashboard",
     CRUDModalType,
     setCRUDModalType,
     openRightDescModal,
     hideAdd: true,
-    showMap: true,
+    showMap: false,
     showWidget: false,
-    showTable: true,
+    showTable: true 
   };
 
   const tableProps = {
@@ -140,4 +136,4 @@ const Dashboard = () => {
     </MetadataLayout>
   );
 };
-export default Dashboard;
+export default TestDashboard;

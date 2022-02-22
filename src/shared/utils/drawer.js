@@ -1,5 +1,6 @@
 import complianceDashboardRoutes from "../../routes/featureRoutes/complianceDashboard";
 import resourceAuditLogDashboardRoutes from '../../routes/featureRoutes/resourceAuditLogDashboard';
+import testDashboardRoutes from '../../routes/featureRoutes/testDashboard';
 import { ENCSRoutes, IAMRoutes } from "../../routes/metadataRoutes";
 import scosRoutes from "../../routes/metadataRoutes/securityCompliance";
 import { getSpacedDisplayName } from "./table";
@@ -135,6 +136,36 @@ export const resourceAuditLogDashboardDrawer = () => {
   }));
 };
 
+export const testDashboardDrawer = () => {
+  return testDashboardRoutes.map((rt) => ({
+    ...rt,
+    title: rt.section,
+    Icon: drawerSectionIcons.DTSC,
+    path: "/oci-dashboard" + rt.path,
+    apiEndpoint: rt.apiEndpoint,
+    pk: rt.pk,
+    items:
+      rt.routes &&
+      Object.keys(rt.routes).map((key) => ({
+        title: getSpacedDisplayName(key),
+        Icon: drawerSectionIcons.GCP,
+        items: rt.routes[key].map((route) => ({
+          ...route,
+          title:
+            route.name ||
+            getSpacedDisplayName(
+              route.path.replace(/-/g, " ").replace(/\//, "")
+            ),
+          path: "/oci-dashboard" + route.path,
+          id: route.path,
+          apiEndpoint: route.apiEndpoint,
+          showAsSubMenu: route.showAsSubMenu,
+          key: route.pk,
+        })),
+      })),
+  }));
+};
+
 export const mainDrawer = [
   {
     title: "Admin Tools",
@@ -158,6 +189,11 @@ export const mainDrawer = [
         title: "Resource Audit Logs",
         Icon: resourceAuditLogIcon,
         drawer: resourceAuditLogDashboardDrawer,
+      },
+      {
+        title: "OCI compliance",
+        Icon: resourceAuditLogIcon,
+        drawer: testDashboardDrawer,
       },
     ],
   },
