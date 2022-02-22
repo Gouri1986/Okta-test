@@ -20,18 +20,18 @@ const TableHeaderCell = ({ tableData, sort, sortTable, item = {} }) => {
     (item.id === "action" ||
       item.id === "resources" ||
       item.id === "regulationControls") &&
-   ` bg-white`
+    ` bg-white`
   }`;
-  const thClassName = `p-15 w-${getWidthOfCell()} table-header-cell ${actionColumnClassName}`;
+  const thClassName = ` p-15 w-${getWidthOfCell()} table-header-cell ${actionColumnClassName}`;
 
   return (
     <th className={thClassName} onClick={() => sortTable(item.id)}>
-      <span>{item.title}</span>
       {item.id !== "cb" && item.id !== "action" && (
         <TableHeaderSortDownArrow
           up={sort.id === item.id && sort.dir === "asc"}
         />
       )}
+      <span className='ml-5'>{item.title}</span>
     </th>
   );
 };
