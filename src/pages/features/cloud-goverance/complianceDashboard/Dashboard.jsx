@@ -39,7 +39,7 @@ const Dashboard = () => {
     setTableDetails(tableDetail);
     setTableRowKey(tableDetail?.key);
     setTableTitle(tableDetail?.title);
-    console.log(tableDetail.tableWhitelists)
+    //console.log(tableDetail)
     const apiEndpoint = tableDetail?.apiEndpoint;
     if (apiEndpoint) {
       getTable(apiEndpoint);
@@ -98,6 +98,7 @@ const Dashboard = () => {
     showTable: true
   };
 
+  
   const tableProps = {
     selectedRow: selectedRow,
     onRowClick: onRowClick,

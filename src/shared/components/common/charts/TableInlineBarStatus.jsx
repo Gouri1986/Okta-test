@@ -57,7 +57,7 @@ const InlineBarChart = ({ value1, value2, onClick }) => {
   return (
     <svg
       viewBox={`0 0 ${500} ${40}`}
-      width={"50%"}
+      width={"70%"}
       preserveAspectRatio='slice'
       height={"100%"}
       className='bdr-r-10'

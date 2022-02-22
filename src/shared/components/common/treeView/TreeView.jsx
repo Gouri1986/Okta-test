@@ -4,50 +4,29 @@ import "./treeView.scss"
 import axios from "axios"
 
 const TreeView = props => {
-  const {
-    complainceDrawerRegulationData,
-    regulationMap,
-    regulationMapData = [],
-    setRegulationMapData
-  } = props
-  const { user } = useSelector(state => state.userReducer)
-  const [regulationMapDataDiscription, setRegulationMapDataDiscription] = useState([])
+  const { complainceDrawerRegulationData } = props
 
-  const regulationMapDiscription = data => {
-    axios
-      .get(
-        `${process.env.REACT_APP_COMPLIANCE_DASHBOARD_BASE_URL}recs-oci-controls-regulation-map_configregulationId`,
-        {
-          headers: {
-            "Content-Type": "application/json",
-            "access-token": `${user}`
-          },
-          params: {
-            regulationId: data
-          }
-        }
-      )
-      .then(response => {
-        setRegulationMapDataDiscription({ ...regulationMapDataDiscription, [data]: response.data.data })
-      })
-  }
+  // console.log(complainceDrawerRegulationData[0]?.regulationControls[0]?.Regulation)
+  const regulation = complainceDrawerRegulationData[0]?.regulationControls[0]?.Regulation
 
   return (
     <div>
-      {[...Array(complainceDrawerRegulationData.length)]?.map((item, i) => (
+      {[...Array(regulation?.length)]?.map((item, i) => (
         <ul className="tree" key={i}>
           <li className="li-l1">
             <input
               type="checkbox"
               id={`l1_${i}`}
-              onClick={() => {
-                regulationMap(complainceDrawerRegulationData[i])
-              }}
+              // onClick={() => {
+              //   regulationMap(complainceDrawerRegulationData[i])
+              // }}
             />
             <label className="tree_label" for={`l1_${i}`}>
-              {complainceDrawerRegulationData[i]}
+              {
+              console.log(i)
+              }
             </label>
-            <ul>
+            {/* <ul>
               {[regulationMapData[complainceDrawerRegulationData[i]]]?.map((item, i2) =>
                 item?.map((item2, i3) => (
                   <li className={`${i}-li-l${i3}`}>
@@ -80,7 +59,7 @@ const TreeView = props => {
                   </li>
                 ))
               )}
-            </ul>
+            </ul> */}
           </li>
         </ul>
       ))}

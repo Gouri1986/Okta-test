@@ -23,7 +23,7 @@ const ComplianceViewButton = ({ dark, onClick }) => {
       className={
         dark
           ? "bg-black flex-r-jc-ac p-8  bdr-r-8"
-          : "bg-secondary flex-r-jc-ac p-8  bdr-r-8"
+          : "bg-secondary flex-r-jc-ac p-8  bdr-r-8 w-100"
       }
       onClick={onClick}
     >

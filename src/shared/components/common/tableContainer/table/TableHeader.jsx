@@ -3,9 +3,17 @@ import { useDispatch } from "react-redux";
 import { setTableContents } from "../../../../../redux/table/tabelActions";
 import { TableHeaderSortDownArrow } from "./assets";
 
-const TableHeaderCell = ({ tableData, sort, sortTable, item = {} }) => {
+const TableHeaderCell = ({
+  tableData,
+  headerStaticVisbility,
+  sort,
+  sortTable,
+  item = {},
+}) => {
   const getWidthOfCell = () => {
-    return tableData.data.find((e) => e[item.id]?.length > 30)
+    return headerStaticVisbility
+      ? item?.width
+      : tableData.data.find((e) => e[item.id]?.length > 30)
       ? 400
       : item.title?.length > 25
       ? 400
@@ -20,11 +28,12 @@ const TableHeaderCell = ({ tableData, sort, sortTable, item = {} }) => {
     (item.id === "action" ||
       item.id === "resources" ||
       item.id === "regulationControls") &&
-    ` bg-white`
+    `bg-white`
   }`;
-  const thClassName = `${
-    item.id === "action" ? "pos-ab r-0" : ""
-  } p-15 table-header-cell ${actionColumnClassName}`;
+
+  const thClassName = `pl-0 pr-0 pt-15 pb-15 w-${getWidthOfCell()} flex-r table-header-cell ${actionColumnClassName} ${
+    item?.mr ? `mr-${item.mr}` : "0"
+  }`;
 
   return (
     <th className={thClassName} onClick={() => sortTable(item.id)}>
@@ -38,7 +47,7 @@ const TableHeaderCell = ({ tableData, sort, sortTable, item = {} }) => {
   );
 };
 
-const TableHeader = ({ header, tableData }) => {
+const TableHeader = ({ header, tableData, headerStaticVisbility }) => {
   const [sort, setSort] = useState({ id: "", dir: "" });
   const dispatch = useDispatch();
 
@@ -63,7 +72,7 @@ const TableHeader = ({ header, tableData }) => {
   return (
     <tr
       className={
-        "pl-25 pb-0 pos-sk t-0 z-1 flex-r-ac titan-table-header bdr-buttom-primary-1 bg-white"
+        "pb-0 pos-sk t-0 z-1 flex-r-ac titan-table-header bdr-buttom-primary-1 flex-jc-sp-evn bg-white"
       }
     >
       {header?.map((item) => (
@@ -73,6 +82,7 @@ const TableHeader = ({ header, tableData }) => {
           item={item}
           sortTable={sortTable}
           tableData={tableData}
+          headerStaticVisbility={headerStaticVisbility}
         />
       ))}
     </tr>

@@ -1,28 +1,46 @@
 import React, { useState, useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
+
+/**
+ * ? Miscillaneous  resusable function $ assets imports
+ * TODO: Add all the above metioned here
+ **/
 import { getSanitisedTableData } from "../../../../utils/table";
-import { PencilIcon, RowRightArrow, TrashIcon } from "./assets";
+import { PencilIcon, TrashIcon } from "./assets";
+import { kebabCaseDate } from "../../../../utils/misc";
+
+/**
+ * ? Resusable component for rendering table row
+ **/
 import RightDrawer from "../../drawer/complianceDrawer/RightDrawer";
+import Modal from "../../modal/center/Modal";
+import ModalForm from "../../forms/ModalForm";
+import InlineStatusBarChart from "../../charts/TableInlineBarStatus";
+import ComplianceViewButton from "./columnButtons/ComplianceViewButton";
+
+/**
+ * ? API Calls
+ **/
+import {
+  getDrawerData,
+  getDrawerRegulationData,
+} from "../../../../apis/drawer/drawer";
+import { deleteTableData } from "../../../../apis/table/table";
+
+/**
+ * ? Global redux state
+ **/
 import {
   DrawerDataHeader,
   DrawerDataBody,
 } from "../../drawer/complianceDrawer/complianceDrawerData";
-
-import Modal from "../../modal/center/Modal";
-import ModalForm from "../../forms/ModalForm";
-import { useSelector, useDispatch } from "react-redux";
-import { deleteTableData } from "../../../../apis/table/table";
-import InlineStatusBarChart from "../../charts/TableInlineBarStatus";
-import { kebabCaseDate } from "../../../../utils/misc";
-import ComplianceViewButton from "./columnButtons/ComplianceViewButton";
 import {
   setComplianceDrawerExpand,
   setNavDrawerExpand,
   setFilterDrawerExpand,
 } from "../../../../../redux/common/commonActions";
-import {
-  getDrawerData,
-  getDrawerRegulationData,
-} from "../../../../apis/drawer/drawer";
+import { setDrawerRegulationData } from "../../../../../redux/drawer/drawerActions";
+
 const RowAction = ({
   baseUrl,
   setOpenCRUDModal,
@@ -96,13 +114,14 @@ const TableBody = (props) => {
     baseUrl,
     complianceDrawerExpanded,
     disableRowclick,
+    headerStaticVisbility,
   } = props;
 
   const dispatch = useDispatch();
 
   //state to manage data to be displayed in right side modal
   const [activeData, setActiveData] = useState({});
-
+  const [rowDataToDisplay, setRowDataToDisplay] = useState({});
   // complaince drawer data
   const [drawerData, setDrawerData] = useState([]);
   const [resourcesId, setResourcseIds] = useState([]);
@@ -129,13 +148,16 @@ const TableBody = (props) => {
 
   const TableRowCell = ({ item = {}, datum }) => {
     // destructuring the current cloumn's id and display title
-    const { id, title } = item;
+    const { id, title, width } = item;
     /**
      * width of the column
      * @returns static width conditionally depends on the length of column's display name's length
      */
+    // console.log(width)
     const getRowCellWidth = () =>
-      rowData.find((e) => e[id]?.length > 30)
+      headerStaticVisbility
+        ? width
+        : rowData.find((e) => e[id]?.length > 30)
         ? 400
         : title?.length > 25
         ? 400
@@ -145,11 +167,11 @@ const TableBody = (props) => {
         ? 50
         : 200;
 
-    const rowCellClassName = `bdr-primary table-cell p-15 w-${getRowCellWidth()} ${
+    const rowCellClassName = `pl-0 pr-0 pt-15 pb-15 bdr-primary table-cell  w-${getRowCellWidth()} ${
       item.id === "action" ||
       item.id === "resources" ||
       item.id === "regulationControls"
-    }`;
+    } ${item?.mr ? `mr-${item.mr}` : "0"}`;
 
     return (
       <td className={rowCellClassName}>
@@ -183,13 +205,19 @@ const TableBody = (props) => {
               value1={datum[id]?.[0]?.Pass}
               value2={datum[id]?.[0]?.Fail}
               onClick={() => {
+                let paramsKey = {};
+                tableDetails?.complainceDetails?.params?.paramKey?.forEach(
+                  (v, i) => {
+                    paramsKey[v] =
+                      datum[
+                        tableDetails?.complainceDetails?.params?.tableKey?.[i]
+                      ];
+                  }
+                );
                 dispatch(
                   getDrawerData(
-                    `${process.env.REACT_APP_COMPLIANCE_DASHBOARD_BASE_URL}get-controlId-complaince-details`,
-                    {
-                      controlItemId: datum.controlId,
-                      resource: datum.ociResourceType,
-                    }
+                    `${process.env.REACT_APP_COMPLIANCE_DASHBOARD_BASE_URL}${tableDetails?.complainceDetails?.apiEndpoint}`,
+                    paramsKey
                   )
                 );
                 setDrawerData(datum);
@@ -209,21 +237,29 @@ const TableBody = (props) => {
         ) : id === "resources" ? (
           <ComplianceViewButton dark />
         ) : id === "regulationControls" ? (
-          <ComplianceViewButton
-            onClick={() => {
-              dispatch(setComplianceDrawerExpand(true));
-              dispatch(setNavDrawerExpand(false));
-              dispatch(setFilterDrawerExpand(false));
-              setDrawerData(datum);
-              setcomplainceDrawerType("Regulation");
-              dispatch(
-                getDrawerRegulationData(
-                  `${process.env.REACT_APP_COMPLIANCE_DASHBOARD_BASE_URL}recs-oci-controls-regulation-map-controlItemId`,
-                  { controlItemId: datum.controlId }
-                )
-              );
-            }}
-          />
+          <div className='flex-r-jc'>
+            <ComplianceViewButton
+              onClick={() => {
+                dispatch(setComplianceDrawerExpand(true));
+                dispatch(setNavDrawerExpand(false));
+                dispatch(setFilterDrawerExpand(false));
+                setDrawerData(datum);
+                setcomplainceDrawerType("Regulation");
+                dispatch(
+                  getDrawerRegulationData(
+                    `${process.env.REACT_APP_COMPLIANCE_DASHBOARD_BASE_URL}${tableDetails?.regulationControls?.apiEndpoint}`,
+                    {
+                      [`${tableDetails?.regulationControls?.params?.paramKey?.[0]}`]:
+                        datum[
+                          tableDetails?.regulationControls?.params
+                            ?.tableKey?.[0]
+                        ],
+                    }
+                  )
+                );
+              }}
+            />
+          </div>
         ) : (
           // else return normal row data
           <span
@@ -292,18 +328,24 @@ const TableBody = (props) => {
         data={activeData}
       >
         <DrawerDataHeader
+          serviceType={tableDetails?.sectionType}
+          tableTitle={`${tableTitle} Report`}
+          headerColoumn={tableDetails?.complainceDetails?.dawerHeaderColoumn}
+          headerData={drawerData}
           close={() => {
             dispatch(setComplianceDrawerExpand(false));
+            dispatch(setDrawerRegulationData([]));
             setResourcseIds([]);
             setDrawerData({});
+            setDrawerRegulationData([]);
           }}
-          tableTitle={`${tableTitle} Report`}
-          headerData={drawerData}
         />
         <DrawerDataBody
+          data={drawerData}
           type={complainceDrawerType}
           headerData={drawerData}
           resourcesId={resourcesId}
+          tableDetails={tableDetails}
         />
       </RightDrawer>
       <Modal
