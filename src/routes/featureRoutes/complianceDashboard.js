@@ -52,28 +52,28 @@ const complianceDashboardRoutes = [
         id: "regulationControls",
         width: 100,
         mr: 20
-      }
-      // {
-      //   title: "Bc Control",
-      //   id: "bcGcpControl",
-      //   width: 150
-      // },
-      // {
-      //   title: "Project Id",
-      //   id: "gcpProjectId",
-      //   width: 180
-      // },
-      // {
-      //   title: "Multi Security Check",
-      //   id: "multiSecurityCheck",
-      //   width: 250
-      // },
+      },
+      {
+        title: "Bc Control",
+        id: "bcGcpControl",
+        width: 150
+      },
+      {
+        title: "Project Id",
+        id: "gcpProjectId",
+        width: 180
+      },
+      {
+        title: "Multi Security Check",
+        id: "multiSecurityCheck",
+        width: 250
+      },
 
-      // {
-      //   title: "Security Check Category",
-      //   id: "securityCheckCategory",
-      //   width: 250
-      // },
+      {
+        title: "Security Check Category",
+        id: "securityCheckCategory",
+        width: 250
+      }
     ],
     /**
      * ! Drawer Functionality API Config

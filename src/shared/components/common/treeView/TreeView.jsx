@@ -5,7 +5,7 @@ import axios from "axios"
 import { getSpacedDisplayName } from "../../../utils/table"
 
 const TreeView = props => {
-  const { complainceDrawerRegulationData, tableDetails } = props
+  const { complainceDrawerRegulationData, tableDetails, ExpandIcon } = props
   const discriptionData = tableDetails?.regulationControls?.discription
   const regulation = complainceDrawerRegulationData?.regulationControls
 
@@ -63,14 +63,24 @@ const TreeView = props => {
                     <small className="pl-5 pt-2">{item2.description}</small>
                   </span>
                   <ul>
-                    <span className="tree_label mt-20 pt-20 f-14 bg-tab p-10 bdr-r-5" id={`l3_${i}_${i2}`}>
-                      { colKey.map((item3, i3) => (
-                       <>
-                        <h4 className="pb-6">{getSpacedDisplayName(item3)}</h4>
-                        <p className="pb-15">{regulationMapDataDiscription[item2[discriptionData?.params?.tableKey?.[0]]]?.[0]?.[item3]}</p>
-                       </>
+                    <div className="tree_label mt-20 pt-20 f-14 bg-tab p-10 bdr-r-5 flex-c" id={`l3_${i}_${i2}`}>
+                      {colKey.map((item3, i3) => (
+                        <>
+                          <h4 className="pb-6">{getSpacedDisplayName(item3)}</h4>
+                          <p className="pb-15">
+                            {
+                              regulationMapDataDiscription[
+                                item2[discriptionData?.params?.tableKey?.[0]]
+                              ]?.[0]?.[item3]
+                            }
+                          </p>
+                        </>
                       ))}
-                    </span>
+                      <div className="flex-align-items-end cp">
+                        <p>test</p>
+                        <ExpandIcon height="20" width="20" />
+                      </div>
+                    </div>
                   </ul>
                 </li>
               ))}
