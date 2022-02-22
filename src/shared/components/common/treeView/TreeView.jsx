@@ -3,15 +3,16 @@ import { useSelector, useDispatch } from "react-redux"
 import "./treeView.scss"
 import axios from "axios"
 import { getSpacedDisplayName } from "../../../utils/table"
+import Modal from "../modal/center/Modal"
 
 const TreeView = props => {
-  const { complainceDrawerRegulationData, tableDetails, ExpandIcon } = props
+  const { complainceDrawerRegulationData, tableDetails, ExpandIcon, CollapseIcon } = props
   const discriptionData = tableDetails?.regulationControls?.discription
   const regulation = complainceDrawerRegulationData?.regulationControls
 
   const { user } = useSelector(state => state.userReducer)
   const [regulationMapDataDiscription, setRegulationMapDataDiscription] = useState([])
-
+  const [openComplianceDrawerModal, setOpenComplianceDrawerModal] = useState(false)
   const [colKey, setColKey] = useState([])
 
   const regulationMapDiscription = (data, controlId) => {
@@ -63,7 +64,10 @@ const TreeView = props => {
                     <small className="pl-5 pt-2">{item2.description}</small>
                   </span>
                   <ul>
-                    <div className="tree_label mt-20 pt-20 f-14 bg-tab p-10 bdr-r-5 flex-c" id={`l3_${i}_${i2}`}>
+                    <div
+                      className="tree_label mt-20 pt-20 f-14 bg-tab p-10 bdr-r-5"
+                      id={`l3_${i}_${i2}`}
+                    >
                       {colKey.map((item3, i3) => (
                         <>
                           <h4 className="pb-6">{getSpacedDisplayName(item3)}</h4>
@@ -76,10 +80,49 @@ const TreeView = props => {
                           </p>
                         </>
                       ))}
-                      <div className="flex-align-items-end cp">
-                        <p>test</p>
-                        <ExpandIcon height="20" width="20" />
+                      <div
+                        className="flex-r-ac flex-j-end cp"
+                        onClick={() => {
+                          setOpenComplianceDrawerModal(true)
+                        }}
+                      >
+                        <ExpandIcon height="15" width="15" />
                       </div>
+                      <Modal
+                        open={openComplianceDrawerModal}
+                        close={() => {
+                          setOpenComplianceDrawerModal(false)
+                        }}
+                        size={`lg`} // sm, md, lg, xl
+                        modalTitle={item2?.[`Control id`]}
+                        isHeaderHide={true}
+                        isCloseIconShow={false}
+                        footer={
+                          <div
+                            className="flex-r-ac flex-j-end cp pt-10"
+                            onClick={() => {
+                              setOpenComplianceDrawerModal(false)
+                            }}
+                          >
+                            <CollapseIcon height="20" width="20" />
+                          </div>
+                        }
+                      >
+                        <div className="h-500 bdr-r-6 p-10" style={{ backgroundColor: "rgba(199, 199, 199, 0.37)" }}>
+                          {colKey.map((item3, i3) => (
+                            <>
+                              <h4 className="pb-6">{getSpacedDisplayName(item3)}</h4>
+                              <p className="pb-15">
+                                {
+                                  regulationMapDataDiscription[
+                                    item2[discriptionData?.params?.tableKey?.[0]]
+                                  ]?.[0]?.[item3]
+                                }
+                              </p>
+                            </>
+                          ))}
+                        </div>
+                      </Modal>
                     </div>
                   </ul>
                 </li>

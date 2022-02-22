@@ -1,6 +1,7 @@
 import { useSelector } from "react-redux"
 import TreeView from "../../../treeView/TreeView"
 import Expand from '../asset/Expand'
+import Collapse from '../asset/Collapse'
 
 const ResourceDataTable = props => {
   const { complainceDrawerRegulationData } = useSelector(state => state.drawerReducer)
@@ -16,7 +17,7 @@ const ResourceDataTable = props => {
           <th className="flex-jc-fs pl-20">Regulation</th>
         </tr>
         <div className="p-10 pl-20">
-          <TreeView complainceDrawerRegulationData={complainceDrawerRegulationData} ExpandIcon={Expand} {...props}/>
+          <TreeView complainceDrawerRegulationData={complainceDrawerRegulationData} ExpandIcon={Expand} CollapseIcon={Collapse} {...props}/>
         </div>
       </table>
     </>

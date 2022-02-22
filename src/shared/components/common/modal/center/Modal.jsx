@@ -2,7 +2,8 @@ import React, { Children } from "react"
 import "./Modal.scss"
 
 const Modal = props => {
-  const { open, close, size, columnCount, modalTitle, isHeaderShow, children } = props
+  const { open, close, size, columnCount, modalTitle, isHeaderShow, isCloseIconShow = true, footer, children } =
+    props
   return (
     <div className={`modal ${open === true ? "side-on-state" : "side-off-state"}`}>
       <div
@@ -21,16 +22,17 @@ const Modal = props => {
         }`}
       >
         <div className="modal-header">
-          <button onClick={() => close()} className="modal-btn-close">
-            &times;
-          </button>
-          <h3 className="mb-5">{modalTitle}</h3>
+          {isCloseIconShow && (
+            <>
+              <button onClick={() => close()} className="modal-btn-close">
+                &times;
+              </button>
+            </>
+          )}
+
+          <h3 className="mb-2 ml-10">{modalTitle}</h3>
         </div>
-        {
-          isHeaderShow && (
-            <div className="divider-grey mb-10"></div>
-          )
-        }
+        {isHeaderShow && <div className="divider-grey mb-10"></div>}
         <div
           className={`modal-container ${
             columnCount <= 10 ? "" : columnCount > 11 ? "modal-container-h-75" : ""
@@ -38,6 +40,7 @@ const Modal = props => {
         >
           {children}
         </div>
+        {footer}
       </div>
     </div>
   )
