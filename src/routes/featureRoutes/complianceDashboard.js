@@ -10,70 +10,70 @@ const complianceDashboardRoutes = [
       {
         title: "Control Domain",
         id: "securityControlDomain",
-        width: 150
+        width: 150,
       },
       {
         title: "Service Type",
         id: "gcpServiceType",
-        width: 130
+        width: 130,
       },
       {
         title: "Resource Type",
         id: "gcpResourceType",
-        width: 140
+        width: 140,
       },
       {
         title: "Control ID",
         id: "bcGcpControlItemId",
-        width: 110
+        width: 110,
       },
       {
         title: "Control",
         id: "bcGcpControlDescription",
-        width: 350
+        width: 350,
       },
       {
         title: "Compliance Status",
         id: "descriptiveComplainceStatus",
-        width: 180
+        width: 180,
       },
       {
         title: "Region",
         id: "gcpRegion",
-        width: 120
+        width: 120,
       },
       {
         title: "Severity",
         id: "Severity",
-        width: 120
+        width: 120,
       },
       {
         title: "Regulation",
         id: "regulationControls",
         width: 100,
-        mr: 20
-      }
-      // {
-      //   title: "Bc Control",
-      //   id: "bcGcpControl",
-      //   width: 150
-      // },
-      // {
-      //   title: "Project Id",
-      //   id: "gcpProjectId",
-      //   width: 180
-      // },
-      // {
-      //   title: "Multi Security Check",
-      //   id: "multiSecurityCheck",
-      //   width: 250
-      // },
+        mr: 20,
+      },
+      {
+        title: "Bc Control",
+        id: "bcGcpControl",
+        width: 150,
+      },
+      {
+        title: "Project Id",
+        id: "gcpProjectId",
+        width: 180,
+      },
+      {
+        title: "Multi Security Check",
+        id: "multiSecurityCheck",
+        width: 250,
+      },
 
-      // {
-      //   title: "Security Check Category",
-      //   id: "securityCheckCategory",
-      //   width: 250
-      // },
+      {
+        title: "Security Check Category",
+        id: "securityCheckCategory",
+        width: 250,
+      },
     ],
     /**
      * ! Drawer Functionality API Config
@@ -87,18 +87,21 @@ const complianceDashboardRoutes = [
       apiEndpoint: "get-bcControlId-complaince-details",
       params: {
         paramKey: ["resource", "bcControlItemId"],
-        tableKey: ["gcpResourceType", "bcGcpControlItemId"]
+        tableKey: ["gcpResourceType", "bcGcpControlItemId"],
       },
       dawerHeaderColoumn: {
         controlId: "Control ID",
         projectId: "GCP Project ID",
         resourceType: "Resource Type",
-        serviceType: "Service Type"
+        serviceType: "Service Type",
       },
       jsonView: {
         apiEndpoint: "get-resourceid-complaince-details",
-        params: { paramKey: ["resourceId", "resource"], tableKey: ["resourceId", "gcpResourceType"] }
-      }
+        params: {
+          paramKey: ["resourceId", "resource"],
+          tableKey: ["resourceId", "gcpResourceType"],
+        },
+      },
     },
     /**
      *
@@ -108,10 +111,10 @@ const complianceDashboardRoutes = [
       apiEndpoint: "recs-gcp-controls-regulation-map-controlItemId",
       params: {
         paramKey: ["controlItemId"],
-        tableKey: ["bcGcpControlItemId"]
-      }
-    }
-  }
-]
+        tableKey: ["bcGcpControlItemId"],
+      },
+    },
+  },
+];
 
-export default complianceDashboardRoutes
+export default complianceDashboardRoutes;
