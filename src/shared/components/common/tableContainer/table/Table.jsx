@@ -5,7 +5,7 @@ import TableHeader from "./TableHeader";
 
 const Table = (props) => {
   const { filteredTableContents } = useSelector((state) => state.tableReducer);
-  const { tableData, showCheckBox, showAction,tableDetails } = props;
+  const { tableData, showCheckBox, showAction, tableDetails } = props;
   const { header, data: rowData } =
     filteredTableContents.data?.length > 0 ? filteredTableContents : tableData;
 
@@ -22,11 +22,10 @@ const Table = (props) => {
   const finalHeader =
     header &&
     [showCheckBox && checkBoxObj, ...header, showAction && actionObj].filter(
-      (e) => e &&!tableDetails.tableWhitelists?.includes(e?.id)
+      (e) => e && !tableDetails.tableWhitelists?.includes(e?.id)
     );
-    
 
-    console.log(finalHeader)
+  console.log(finalHeader);
   const headerProps = {
     tableData,
     header: finalHeader,
@@ -47,7 +46,7 @@ const Table = (props) => {
       {/* start of the table */}
       <table className={tableClassName}>
         <TableHeader {...headerProps} />
-        <TableBody {...bodyProps} />
+        {/* <TableBody {...bodyProps} /> */}
       </table>
       {/* end of the table */}
     </>

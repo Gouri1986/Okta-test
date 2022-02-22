@@ -22,7 +22,9 @@ const TableHeaderCell = ({ tableData, sort, sortTable, item = {} }) => {
       item.id === "regulationControls") &&
     ` bg-white`
   }`;
-  const thClassName = ` p-15 w-${getWidthOfCell()} table-header-cell ${actionColumnClassName}`;
+  const thClassName = `${
+    item.id === "action" ? "pos-ab r-0" : ""
+  } p-15 table-header-cell ${actionColumnClassName}`;
 
   return (
     <th className={thClassName} onClick={() => sortTable(item.id)}>
@@ -61,7 +63,7 @@ const TableHeader = ({ header, tableData }) => {
   return (
     <tr
       className={
-        "pl-25 pb-0 pos-sk t-0 z-1 flex-r-ac titan-table-header bdr-buttom-primary-1 flex-jc-sp-evn bg-white"
+        "pl-25 pb-0 pos-sk t-0 z-1 flex-r-ac titan-table-header bdr-buttom-primary-1 bg-white"
       }
     >
       {header?.map((item) => (
