@@ -109,6 +109,13 @@ const complianceDashboardRoutes = [
       params: {
         paramKey: ["controlItemId"],
         tableKey: ["bcGcpControlItemId"]
+      },
+      discription: {
+        apiEndpoint: "recs-gcp-controls-regulation-map_configregulationId",
+        params: {
+          paramKey: ["regulationId", "regulation"],
+          tableKey: ["Control id", "Regulation"]
+        }
       }
     }
   }

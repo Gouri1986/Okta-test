@@ -4,6 +4,7 @@ import TreeView from "../../../treeView/TreeView"
 const ResourceDataTable = props => {
   const { complainceDrawerRegulationData } = useSelector(state => state.drawerReducer)
 
+ 
   return (
     <>
       <table className="compliance-resource-table wp-100 ">
@@ -14,7 +15,7 @@ const ResourceDataTable = props => {
           <th className="flex-jc-fs pl-20">Regulation</th>
         </tr>
         <div className="p-10 pl-20">
-          <TreeView complainceDrawerRegulationData={complainceDrawerRegulationData} />
+          <TreeView complainceDrawerRegulationData={complainceDrawerRegulationData} {...props}/>
         </div>
       </table>
     </>
