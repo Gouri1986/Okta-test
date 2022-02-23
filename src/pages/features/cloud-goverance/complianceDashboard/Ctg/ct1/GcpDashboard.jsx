@@ -4,8 +4,9 @@ import { getTableData } from "../../../../shared/apis/table/table";
 import { getTableDetailFromRoutes } from "../../../../shared/utils/getApiEndpointFromRoutes";
 import { useDispatch, useSelector } from "react-redux";
 import { MetadataLayout } from "../../../../shared/layout";
+import "../../style.scss";
 import { Table, Pagination } from "../../../../shared/components/common";
-import { resourceAuditLogDashboardDrawer as drawer } from "../../../../shared/utils/drawer";
+import { complianceDashboardDrawer as drawer } from "../../../../shared/utils/drawer";
 const Dashboard = () => {
   // loggin user details from store
   const dispatch = useDispatch();
@@ -30,20 +31,15 @@ const Dashboard = () => {
   const location = useLocation();
   //BASE URL of api
   const baseUrl = process.env.REACT_APP_COMPLIANCE_DASHBOARD_BASE_URL;
-  const paramsToFetchTableDetails = [
-    drawer,
-    location,
-    "resource-auditLogs-dashboard/",
-  ];
+  const paramsToFetchTableDetails = [drawer, location, "compliance-dashboard/"];
 
   useEffect(() => {
     // get table detail from routes
     let tableDetail = getTableDetailFromRoutes(...paramsToFetchTableDetails);
-    console.log(tableDetail);
     setTableDetails(tableDetail);
     setTableRowKey(tableDetail?.key);
     setTableTitle(tableDetail?.title);
-    console.log(tableDetail.tableWhitelists);
+    //console.log(tableDetail)
     const apiEndpoint = tableDetail?.apiEndpoint;
     if (apiEndpoint) {
       getTable(apiEndpoint);
@@ -92,16 +88,17 @@ const Dashboard = () => {
     drawer,
     openCRUDModal,
     setOpenCRUDModal,
-    pageTitle: "Resource Audit Log Dashboard",
+    pageTitle: "Compliance Dashboard",
     CRUDModalType,
     setCRUDModalType,
     openRightDescModal,
     hideAdd: true,
-    showMap: true,
-    showWidget: false,
-    showTable: false,
+    showMap: false,
+    showWidget: true,
+    showTable: true
   };
 
+  
   const tableProps = {
     selectedRow: selectedRow,
     onRowClick: onRowClick,

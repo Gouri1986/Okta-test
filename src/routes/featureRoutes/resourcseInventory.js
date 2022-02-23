@@ -3,86 +3,6 @@ const GCP = [
     path: "/recs-gcp-complaince-details-control-id",
     apiEndpoint: "recs-gcp-complaince-details-control-id",
     name: "GCP Compliance",
-    tableWhitelists: ["resources"],
-    headerStatic: [
-      {
-        title: "CT Group",
-        id: " ",
-        width: 120,
-      },
-      {
-        title: "Cloud Tenant",
-        id: " ",
-        width: 150,
-      },
-      {
-        title: "Control Domain",
-        id: "securityControlDomain",
-        width: 160,
-      },
-      {
-        title: "Service Type",
-        id: "gcpServiceType",
-        width: 130,
-      },
-      {
-        title: "Resource Type",
-        id: "gcpResourceType",
-        width: 150,
-      },
-      {
-        title: "Control ID",
-        id: "bcGcpControlItemId",
-        width: 110,
-      },
-      {
-        title: "Control",
-        id: "bcGcpControlDescription",
-        width: 350,
-      },
-      {
-        title: "Compliance Status",
-        id: "descriptiveComplainceStatus",
-        width: 180,
-      },
-      {
-        title: "Region",
-        id: "gcpRegion",
-        width: 120,
-      },
-      {
-        title: "Severity",
-        id: "Severity",
-        width: 120,
-      },
-      {
-        title: "Regulation",
-        id: "regulationControls",
-        width: 100,
-        mr: 20,
-      },
-      // {
-      //   title: "Bc Control",
-      //   id: "bcGcpControl",
-      //   width: 150
-      // },
-      // {
-      //   title: "Project Id",
-      //   id: "gcpProjectId",
-      //   width: 180
-      // },
-      // {
-      //   title: "Multi Security Check",
-      //   id: "multiSecurityCheck",
-      //   width: 250
-      // },
-
-      // {
-      //   title: "Security Check Category",
-      //   id: "securityCheckCategory",
-      //   width: 250
-      // }
-    ],
     // pk: "scosSecurityControlType",
   },
 ];
@@ -113,26 +33,15 @@ const routes = [
   {
     section: "Dashboard",
     sectionType: "gcp",
-    path: "/recs-gcp-complaince-details-control-id",
+    path: "/get-recs-gcp-complaince-details",
     apiEndpoint: "recs-gcp-complaince-details-control-id",
-    name: "GCP Compliance",
     pk: "controlId",
     tableWhitelists: ["resources"],
     headerStatic: [
       {
-        title: "CT Group",
-        id: " ",
-        width: 120,
-      },
-      {
-        title: "Cloud Tenant",
-        id: " ",
-        width: 150,
-      },
-      {
         title: "Control Domain",
         id: "securityControlDomain",
-        width: 160,
+        width: 150,
       },
       {
         title: "Service Type",
@@ -142,7 +51,7 @@ const routes = [
       {
         title: "Resource Type",
         id: "gcpResourceType",
-        width: 150,
+        width: 140,
       },
       {
         title: "Control ID",
