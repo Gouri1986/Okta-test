@@ -99,7 +99,7 @@ const Dashboard = () => {
     hideAdd: true,
     showMap: true,
     showWidget: false,
-    showTable: true,
+    showTable: false,
   };
 
   const tableProps = {
