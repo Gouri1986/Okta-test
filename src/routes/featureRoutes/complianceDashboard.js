@@ -8,9 +8,19 @@ const complianceDashboardRoutes = [
     tableWhitelists: ["resources"],
     headerStatic: [
       {
+        title: "CT Group",
+        id: " ",
+        width: 120
+      },
+      {
+        title: "Cloud Tenant",
+        id: " ",
+        width: 150
+      },
+      {
         title: "Control Domain",
         id: "securityControlDomain",
-        width: 150
+        width: 160
       },
       {
         title: "Service Type",
@@ -20,7 +30,7 @@ const complianceDashboardRoutes = [
       {
         title: "Resource Type",
         id: "gcpResourceType",
-        width: 140
+        width: 150
       },
       {
         title: "Control ID",
