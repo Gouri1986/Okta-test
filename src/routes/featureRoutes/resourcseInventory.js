@@ -29,7 +29,7 @@ const AZURE = [
   },
 ];
 
-const routes = [
+const resourceInventoryRoutes = [
   {
     section: "Dashboard",
     sectionType: "gcp",
@@ -173,4 +173,4 @@ const routes = [
   },
 ];
 
-export default routes;
+export default resourceInventoryRoutes;
