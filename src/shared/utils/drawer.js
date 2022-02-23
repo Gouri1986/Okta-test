@@ -1,6 +1,6 @@
 import complianceDashboardRoutes from "../../routes/featureRoutes/complianceDashboard";
-import resourceAuditLogDashboardRoutes from '../../routes/featureRoutes/resourceAuditLogDashboard';
-import testDashboardRoutes from '../../routes/featureRoutes/testDashboard';
+import resourceAuditLogDashboardRoutes from "../../routes/featureRoutes/resourceAuditLogDashboard";
+import testDashboardRoutes from "../../routes/featureRoutes/testDashboard";
 import { ENCSRoutes, IAMRoutes } from "../../routes/metadataRoutes";
 import scosRoutes from "../../routes/metadataRoutes/securityCompliance";
 import { getSpacedDisplayName } from "./table";
@@ -13,8 +13,6 @@ import {
   RECSIcon,
   SCOSIcon,
 } from "../components/common/drawer/navDrawer/assets";
-
-
 
 export const iamDrawer = () => {
   return IAMRoutes.map((rt) => ({
@@ -81,7 +79,7 @@ export const complianceDashboardDrawer = () => {
     ...rt,
     title: rt.section,
     Icon: drawerSectionIcons.DTSC,
-    path: "/compliance-dashboard" + rt.path,
+    path: rt.path && "/compliance-dashboard" + rt.path,
     apiEndpoint: rt.apiEndpoint,
     pk: rt.pk,
     items:
@@ -96,7 +94,7 @@ export const complianceDashboardDrawer = () => {
             getSpacedDisplayName(
               route.path.replace(/-/g, " ").replace(/\//, "")
             ),
-          path: "/compliance-dashboard" + route.path,
+          path: route.path && "/compliance-dashboard" + route.path,
           id: route.path,
           apiEndpoint: route.apiEndpoint,
           showAsSubMenu: route.showAsSubMenu,

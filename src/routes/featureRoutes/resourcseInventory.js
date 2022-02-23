@@ -33,9 +33,8 @@ const routes = [
   {
     section: "Dashboard",
     sectionType: "gcp",
-    path: "/recs-gcp-complaince-details-control-id",
+    path: "/get-recs-gcp-complaince-details",
     apiEndpoint: "recs-gcp-complaince-details-control-id",
-    name: "GCP Compliance",
     pk: "controlId",
     tableWhitelists: ["resources"],
     headerStatic: [
