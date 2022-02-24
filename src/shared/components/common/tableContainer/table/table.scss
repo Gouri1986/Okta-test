@@ -9,12 +9,9 @@
 }
 
 /* Table Header  */
-// .titan-table-header {
-//   display: flex;
-//   flex-direction: row;
-//   background-color: $white;
-//   justify-content: space-evenly;
-// }
+.titan-table-header {
+  background: #fcfcfc;
+}
 
 .table-header-cell {
   font-size: 15px;
@@ -23,6 +20,11 @@
   cursor: pointer;
   text-align: left;
   align-items: center;
+}
+
+.severity-sb-header {
+  border-width: 1px 0px 0px 0px;
+  border-style: solid;
 }
 
 /* Table Rows */

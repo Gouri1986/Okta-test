@@ -77,6 +77,11 @@ const resourceInventoryRoutes = [
         title: "Severity",
         id: "Severity",
         width: 120,
+        levels: {
+          c: "confidentialityRisk",
+          i: "integrityRisk",
+          a: "availabilityRisk",
+        },
       },
       {
         title: "Regulation",
@@ -157,18 +162,18 @@ const resourceInventoryRoutes = [
     section: "CTG1",
     routes: {
       GCP,
-      OCI,
-      AWS,
-      AZURE,
+      // OCI,
+      // AWS,
+      // AZURE,
     },
   },
   {
     section: "CTG2",
     routes: {
       GCP,
-      OCI,
-      AWS,
-      AZURE,
+      // OCI,
+      // AWS,
+      // AZURE,
     },
   },
 ];

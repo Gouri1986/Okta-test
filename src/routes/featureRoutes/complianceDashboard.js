@@ -54,6 +54,11 @@ const GCP = [
         title: "Severity",
         id: "Severity",
         width: 120,
+        levels: {
+          c: "confidentialityRisk",
+          i: "integrityRisk",
+          a: "availabilityRisk",
+        },
       },
       {
         title: "Regulation",
@@ -84,6 +89,44 @@ const GCP = [
       // }
     ],
     // pk: "scosSecurityControlType",
+    complainceDetails: {
+      apiEndpoint: "get-bcControlId-complaince-details",
+      params: {
+        paramKey: ["resource", "bcControlItemId"],
+        tableKey: ["gcpResourceType", "bcGcpControlItemId"],
+      },
+      dawerHeaderColoumn: {
+        controlId: "Control ID",
+        projectId: "GCP Project ID",
+        resourceType: "Resource Type",
+        serviceType: "Service Type",
+      },
+      jsonView: {
+        apiEndpoint: "get-resourceid-complaince-details",
+        params: {
+          paramKey: ["resourceId", "resource"],
+          tableKey: ["resourceId", "gcpResourceType"],
+        },
+      },
+    },
+    /**
+     *
+     * ? 2) Regualation Drawer Functionality config
+     */
+    regulationControls: {
+      apiEndpoint: "recs-gcp-controls-regulation-map-controlItemId",
+      params: {
+        paramKey: ["controlItemId"],
+        tableKey: ["bcGcpControlItemId"],
+      },
+      discription: {
+        apiEndpoint: "recs-gcp-controls-regulation-map_configregulationId",
+        params: {
+          paramKey: ["regulationId", "regulation"],
+          tableKey: ["Control id", "Regulation"],
+        },
+      },
+    },
   },
 ];
 
@@ -168,6 +211,11 @@ const routes = [
         title: "Severity",
         id: "Severity",
         width: 120,
+        levels: {
+          c: "confidentialityRisk",
+          i: "integrityRisk",
+          a: "availabilityRisk",
+        },
       },
       {
         title: "Regulation",

@@ -25,24 +25,58 @@ const TableHeaderCell = ({
   };
 
   const actionColumnClassName = `${
-    (item.id === "action" ||
-      item.id === "resources" ||
-      item.id === "regulationControls") &&
-    `bg-white`
+    item.id === "action" ||
+    item.id === "resources" ||
+    item.id === "regulationControls"
   }`;
 
-  const thClassName = `pl-0 pr-0 pt-15 pb-15 w-${getWidthOfCell()} flex-r table-header-cell ${actionColumnClassName} ${
+  const thClassName = `pl-0 pr-0 pt-5 pb-5 w-${getWidthOfCell()} flex-c-jc table-header-cell ${actionColumnClassName} ${
     item?.mr ? `mr-${item.mr}` : "0"
   }`;
 
   return (
-    <th className={thClassName} onClick={() => sortTable(item.id)}>
-      {item.id !== "cb" && item.id !== "action" && (
-        <TableHeaderSortDownArrow
-          up={sort.id === item.id && sort.dir === "asc"}
-        />
-      )}
-      <span className='ml-5'>{item.title}</span>
+    <th
+      style={{
+        backgroundColor: item.id === "Severity" ? "#efefef" : "",
+      }}
+      className={thClassName}
+      onClick={() => sortTable(item.id)}
+    >
+      <div className='wp-100'>
+        <div className='flex-r-jc-ac'>
+          {item.id !== "cb" &&
+            item.id !== "action" &&
+            item.id !== "Severity" && (
+              <TableHeaderSortDownArrow
+                up={sort.id === item.id && sort.dir === "asc"}
+              />
+            )}
+          <span className='ml-5'>{item.title}</span>
+        </div>
+
+        {item.id === "Severity" && (
+          <div className='flex-r-jc-ac severity-sb-header'>
+            <div>
+              <TableHeaderSortDownArrow
+                up={sort.id === item.id && sort.dir === "asc"}
+              />
+              <span className='ml-5 mr-10'>C</span>
+            </div>
+            <div>
+              <TableHeaderSortDownArrow
+                up={sort.id === item.id && sort.dir === "asc"}
+              />
+              <span className='ml-5 mr-10'>I</span>
+            </div>
+            <div>
+              <TableHeaderSortDownArrow
+                up={sort.id === item.id && sort.dir === "asc"}
+              />
+              <span className='ml-5 mr-5'>A</span>
+            </div>
+          </div>
+        )}
+      </div>
     </th>
   );
 };
@@ -72,7 +106,7 @@ const TableHeader = ({ header, tableData, headerStaticVisbility }) => {
   return (
     <tr
       className={
-        "pb-0 pos-sk t-0 z-1 flex-r-ac titan-table-header bdr-buttom-primary-1 flex-jc-sp-evn bg-white"
+        "pb-0 pos-sk t-0 z-1 flex-r-ac titan-table-header  flex-jc-sp-evn "
       }
     >
       {header?.map((item) => (
