@@ -11,6 +11,7 @@ const requestConfig = (token, data) => ({
 });
 
 export const getTableData = (path) => {
+  console.log(path);
   return async (dispatch, getState) => {
     const { user: token } = getState().userReducer;
     const response = await axios.get(path, requestConfig(token));

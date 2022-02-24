@@ -1,5 +1,6 @@
 const GCP = [
   {
+    baseURL: process.env.REACT_APP_COMPLIANCE_DASHBOARD_BASE_URL,
     path: "/recs-gcp-complaince-details-control-id",
     apiEndpoint: "recs-gcp-complaince-details-control-id",
     name: "GCP Compliance",
@@ -307,7 +308,6 @@ const OCI = [
     // pk: "scosSecurityControlType",
   },
 ];
-
 
 // const AZURE = [
 //   {
