@@ -4,7 +4,7 @@ import { getTableData } from "../../../../shared/apis/table/table";
 import { getTableDetailFromRoutes } from "../../../../shared/utils/getApiEndpointFromRoutes";
 import { useDispatch, useSelector } from "react-redux";
 import { MetadataLayout } from "../../../../shared/layout";
-import "../../style.scss";
+import "./style.scss";
 import { Table, Pagination } from "../../../../shared/components/common";
 import { complianceDashboardDrawer as drawer } from "../../../../shared/utils/drawer";
 const Dashboard = () => {
@@ -95,10 +95,9 @@ const Dashboard = () => {
     hideAdd: true,
     showMap: false,
     showWidget: true,
-    showTable: true
+    showTable: true,
   };
 
-  
   const tableProps = {
     selectedRow: selectedRow,
     onRowClick: onRowClick,
