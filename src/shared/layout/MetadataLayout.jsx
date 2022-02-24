@@ -20,6 +20,7 @@ const Layout = (props) => {
     showWidget,
     showMap,
     showTable,
+    showViewByOptions,
   } = props;
 
   const { tabs } = useSelector((state) => state.tableReducer);
@@ -67,7 +68,7 @@ const Layout = (props) => {
               complianceDrawerExpanded ? `drawer-toggle` : ``
             }`}
           >
-            <Widget />
+            <Widget showViewByOptions={showViewByOptions} />
           </div>
         )}
         {showMap && (

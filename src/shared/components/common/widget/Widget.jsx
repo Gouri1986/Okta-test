@@ -13,7 +13,7 @@ import collapse from "./assets/collapse.svg";
 import Views from "../tableContainer/views/Views";
 import DatePicker from "react-date-picker";
 
-export default function Widget() {
+export default function Widget({ showViewByOptions }) {
   const [showContent, setshowContent] = useState(false);
   const [selectedViewType, setSelectedViewType] = useState(0);
   const [selectedApplicableType, setSelectedApplicableType] = useState(1);
@@ -29,32 +29,34 @@ export default function Widget() {
     <>
       {showContent ? (
         <div className='wp-100 white-container-br-10 p-10'>
-          <div className='flex-r-ac flex-jc-sp-btn mt-5 mb-20 mr-80'>
-            <div>
-              <Views
-                type={"Resources"}
-                selectedViewType={selectedViewType}
-                setSelectedViewType={setSelectedViewType}
-                viewTypes={viewTypes}
-                applicableType={applicableType}
-              />
-            </div>
-            <div className='flex-r-ac'>
-              <Views
-                selectedViewType={selectedApplicableType}
-                setSelectedViewType={setSelectedApplicableType}
-                viewTypes={applicableType}
-                applicableType={applicableType}
-              />
-              <div className='ml-30'>
-                <DatePicker
-                  className={"bdr-r-10"}
-                  value={value}
-                  onChange={onChange}
+          {showViewByOptions && (
+            <div className='flex-r-ac flex-jc-sp-btn mt-5 mb-20 mr-80'>
+              <div>
+                <Views
+                  type={"Resources"}
+                  selectedViewType={selectedViewType}
+                  setSelectedViewType={setSelectedViewType}
+                  viewTypes={viewTypes}
+                  applicableType={applicableType}
                 />
               </div>
+              <div className='flex-r-ac'>
+                <Views
+                  selectedViewType={selectedApplicableType}
+                  setSelectedViewType={setSelectedApplicableType}
+                  viewTypes={applicableType}
+                  applicableType={applicableType}
+                />
+                <div className='ml-30'>
+                  <DatePicker
+                    className={"bdr-r-10"}
+                    value={value}
+                    onChange={onChange}
+                  />
+                </div>
+              </div>
             </div>
-          </div>
+          )}
           <div className=' flex-r-jc-ac flex-jc-sp-btn'>
             <div className='flex-r wp-95'>
               <div className='flex-c wp-25 bg-secondary bdr-r-br-10 bdr-r-bl-10'>
