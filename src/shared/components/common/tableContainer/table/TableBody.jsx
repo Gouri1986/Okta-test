@@ -6,7 +6,7 @@ import { useSelector, useDispatch } from "react-redux";
  * TODO: Add all the above metioned here
  **/
 import { getSanitisedTableData } from "../../../../utils/table";
-import { PencilIcon, RowRightArrow, TrashIcon } from "./assets";
+import { PencilIcon, RowRightArrow, SeverityIcon, TrashIcon } from "./assets";
 import { kebabCaseDate } from "../../../../utils/misc";
 
 /**
@@ -41,6 +41,16 @@ import {
 } from "../../../../../redux/common/commonActions";
 import { setDrawerRegulationData } from "../../../../../redux/drawer/drawerActions";
 
+const SeverityCell = ({ levels }) => {
+  return (
+    <div className='flex-r-jc-ac flex-jc-sp-btn'>
+      <SeverityIcon level={levels.c} />
+      <SeverityIcon level={levels.i} />
+      <SeverityIcon level={levels.a} />
+    </div>
+  );
+};
+
 const RowAction = ({
   baseUrl,
   setOpenCRUDModal,
@@ -60,7 +70,7 @@ const RowAction = ({
   };
 
   return (
-    <div className='flex-r-jc-ac t-20'>
+    <div className='flex-r-ac t-20'>
       <div className='cp' onClick={deleteDataFromTable}>
         <TrashIcon />
       </div>
@@ -148,7 +158,8 @@ const TableBody = (props) => {
 
   const TableRowCell = ({ item = {}, datum }) => {
     // destructuring the current cloumn's id and display title
-    const { id, title, width } = item;
+    const { id, title, width, levels } = item;
+
     /**
      * width of the column
      * @returns static width conditionally depends on the length of column's display name's length
@@ -186,6 +197,14 @@ const TableBody = (props) => {
             setActiveData={setActiveData}
             getTable={getTable}
             baseUrl={baseUrl}
+          />
+        ) : id === "Severity" ? (
+          <SeverityCell
+            levels={{
+              c: datum[levels.c],
+              i: datum[levels.i],
+              a: datum[levels.a],
+            }}
           />
         ) : /*action buttons column is rendred conditionally
         //if id of the cloumn being rendered matches with "action"*/

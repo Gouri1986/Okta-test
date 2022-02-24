@@ -1,6 +1,6 @@
 import complianceDashboardRoutes from "../../routes/featureRoutes/complianceDashboard";
-import resourceAuditLogDashboardRoutes from '../../routes/featureRoutes/resourceAuditLogDashboard';
-import testDashboardRoutes from '../../routes/featureRoutes/testDashboard';
+import resourceAuditLogDashboardRoutes from "../../routes/featureRoutes/resourceAuditLogDashboard";
+import testDashboardRoutes from "../../routes/featureRoutes/testDashboard";
 import { ENCSRoutes, IAMRoutes } from "../../routes/metadataRoutes";
 import scosRoutes from "../../routes/metadataRoutes/securityCompliance";
 import { getSpacedDisplayName } from "./table";
@@ -13,8 +13,7 @@ import {
   RECSIcon,
   SCOSIcon,
 } from "../components/common/drawer/navDrawer/assets";
-
-
+import resourceInventoryRoutes from "../../routes/featureRoutes/resourcseInventory";
 
 export const iamDrawer = () => {
   return IAMRoutes.map((rt) => ({
@@ -81,7 +80,7 @@ export const complianceDashboardDrawer = () => {
     ...rt,
     title: rt.section,
     Icon: drawerSectionIcons.DTSC,
-    path: "/compliance-dashboard" + rt.path,
+    path: rt.path && "/compliance-dashboard" + rt.path,
     apiEndpoint: rt.apiEndpoint,
     pk: rt.pk,
     items:
@@ -96,7 +95,7 @@ export const complianceDashboardDrawer = () => {
             getSpacedDisplayName(
               route.path.replace(/-/g, " ").replace(/\//, "")
             ),
-          path: "/compliance-dashboard" + route.path,
+          path: route.path && "/compliance-dashboard" + route.path,
           id: route.path,
           apiEndpoint: route.apiEndpoint,
           showAsSubMenu: route.showAsSubMenu,
@@ -166,6 +165,36 @@ export const testDashboardDrawer = () => {
   }));
 };
 
+export const resourceInventoryDrawer = () => {
+  return resourceInventoryRoutes.map((rt) => ({
+    ...rt,
+    title: rt.section,
+    Icon: drawerSectionIcons.DTSC,
+    path: rt.path && "/resource-inventory" + rt.path,
+    apiEndpoint: rt.apiEndpoint,
+    pk: rt.pk,
+    items:
+      rt.routes &&
+      Object.keys(rt.routes).map((key) => ({
+        title: getSpacedDisplayName(key),
+        Icon: drawerSectionIcons.GCP,
+        items: rt.routes[key].map((route) => ({
+          ...route,
+          title:
+            route.name ||
+            getSpacedDisplayName(
+              route.path.replace(/-/g, " ").replace(/\//, "")
+            ),
+          path: "/resource-inventory" + route.path,
+          id: route.path,
+          apiEndpoint: route.apiEndpoint,
+          showAsSubMenu: route.showAsSubMenu,
+          key: route.pk,
+        })),
+      })),
+  }));
+};
+
 export const mainDrawer = [
   {
     title: "Admin Tools",
@@ -194,6 +223,11 @@ export const mainDrawer = [
         title: "OCI compliance",
         Icon: resourceAuditLogIcon,
         drawer: testDashboardDrawer,
+      },
+      {
+        title: "Resource Inventory",
+        Icon: resourceAuditLogIcon,
+        drawer: resourceInventoryDrawer,
       },
     ],
   },

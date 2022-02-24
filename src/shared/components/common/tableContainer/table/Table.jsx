@@ -10,6 +10,8 @@ const Table = (props) => {
     filteredTableContents.data?.length > 0 ? filteredTableContents : tableData;
 
   const { headerStatic } = tableDetails;
+
+  console.log(tableDetails);
   const checkBoxObj = {
     title: "",
     id: "cb",

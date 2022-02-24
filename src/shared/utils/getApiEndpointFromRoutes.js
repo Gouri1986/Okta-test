@@ -1,5 +1,4 @@
 const weedoutArrays = (exPath) => {
-  console.log(exPath);
   const finalArrayWithDetails = exPath
     .map((ar) => {
       if (Array.isArray(ar)) {
@@ -41,13 +40,13 @@ const getExactPathArray = (routes, location, mainRoute) => {
     );
   });
 
-  if (mappedArrays.some((e) => e)) {
+  if (mappedArrays.flat(3).some((e) => e)) {
     return mappedArrays;
   }
 
   return routes().filter(
     (e) =>
-      e.path.replace(mainRoute, "") ===
+      e.path?.replace(mainRoute, "") ===
       location?.pathname?.replace(mainRoute, "")
   );
 };

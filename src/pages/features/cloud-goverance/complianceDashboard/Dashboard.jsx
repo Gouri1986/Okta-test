@@ -95,10 +95,9 @@ const Dashboard = () => {
     hideAdd: true,
     showMap: false,
     showWidget: true,
-    showTable: true
+    showTable: true,
   };
 
-  
   const tableProps = {
     selectedRow: selectedRow,
     onRowClick: onRowClick,

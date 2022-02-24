@@ -6,13 +6,6 @@ const resourceAuditLogDashboard = [
     pk: "controlId",
     tableWhitelists: ["resources"],
   },
-  {
-    section: "Dashboard2",
-    path: "/get-recs-oci-complaince-details2",
-    apiEndpoint: "get-recs-oci-complaince-details",
-    pk: "controlId",
-    tableWhitelists: ["resources"],
-  },
 ];
 
 export default resourceAuditLogDashboard;

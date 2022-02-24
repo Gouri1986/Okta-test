@@ -119,6 +119,7 @@ const DrawerList = (props) => {
           onClick={() => {
             showSecondMenu(false);
             if (path) {
+              console.log(path);
               dispatch(setActiveTableTabs([]));
 
               history.push(path);
@@ -168,12 +169,7 @@ const DrawerList = (props) => {
             <div className='flex-r-ac flex-1'>
               <Icon />
               {expanded && !secondMenu && (
-                <span
-                  style={{ whiteSpace: "break-spaces" }}
-                  className='ml-10 mr-25 f-15'
-                >
-                  {title}
-                </span>
+                <span className='ml-10 mr-25 f-15'>{title}</span>
               )}
             </div>
             {expanded && !secondMenu && (
