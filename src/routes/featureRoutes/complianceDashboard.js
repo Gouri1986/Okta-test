@@ -89,25 +89,190 @@ const GCP = [
 
 const AWS = [
   {
-    path: "/scos-security-control-types",
-    apiEndpoint: "scos-security-control-types",
-    pk: "scosSecurityControlType",
+    path: "/recs-aws-complaince-details-control-id",
+    apiEndpoint: "recs-gcp-complaince-details-control-id",
+    name: "AWS Compliance",
+    tableWhitelists: ["resources"],
+    headerStatic: [
+      {
+        title: "CT Group",
+        id: " ",
+        width: 120,
+      },
+      {
+        title: "Cloud Tenant",
+        id: " ",
+        width: 150,
+      },
+      {
+        title: "Control Domain",
+        id: "securityControlDomain",
+        width: 160,
+      },
+      {
+        title: "Service Type",
+        id: "gcpServiceType",
+        width: 130,
+      },
+      {
+        title: "Resource Type",
+        id: "gcpResourceType",
+        width: 150,
+      },
+      {
+        title: "Control ID",
+        id: "bcGcpControlItemId",
+        width: 110,
+      },
+      {
+        title: "Control",
+        id: "bcGcpControlDescription",
+        width: 350,
+      },
+      {
+        title: "Compliance Status",
+        id: "descriptiveComplainceStatus",
+        width: 180,
+      },
+      {
+        title: "Region",
+        id: "gcpRegion",
+        width: 120,
+      },
+      {
+        title: "Severity",
+        id: "Severity",
+        width: 120,
+      },
+      {
+        title: "Regulation",
+        id: "regulationControls",
+        width: 100,
+        mr: 20,
+      },
+      // {
+      //   title: "Bc Control",
+      //   id: "bcGcpControl",
+      //   width: 150
+      // },
+      // {
+      //   title: "Project Id",
+      //   id: "gcpProjectId",
+      //   width: 180
+      // },
+      // {
+      //   title: "Multi Security Check",
+      //   id: "multiSecurityCheck",
+      //   width: 250
+      // },
+
+      // {
+      //   title: "Security Check Category",
+      //   id: "securityCheckCategory",
+      //   width: 250
+      // }
+    ],
+    // pk: "scosSecurityControlType",
   },
 ];
+
 const OCI = [
   {
-    path: "/scos-security-control-types",
-    apiEndpoint: "scos-security-control-types",
-    pk: "scosSecurityControlType",
+    path: "/get-recs-oci-complaince-details",
+    apiEndpoint: "get-recs-oci-complaince-details",
+    name: "OCI Compliance",
+    tableWhitelists: ["resources"],
+    headerStatic: [
+      {
+        title: "CT Group",
+        id: " ",
+        width: 120,
+      },
+      {
+        title: "Cloud Tenant",
+        id: " ",
+        width: 150,
+      },
+      {
+        title: "Control Domain",
+        id: "securityControlDomain",
+        width: 160,
+      },
+      {
+        title: "Service Type",
+        id: "gcpServiceType",
+        width: 130,
+      },
+      {
+        title: "Resource Type",
+        id: "gcpResourceType",
+        width: 150,
+      },
+      {
+        title: "Control ID",
+        id: "bcGcpControlItemId",
+        width: 110,
+      },
+      {
+        title: "Control",
+        id: "bcGcpControlDescription",
+        width: 350,
+      },
+      {
+        title: "Compliance Status",
+        id: "descriptiveComplainceStatus",
+        width: 180,
+      },
+      {
+        title: "Region",
+        id: "gcpRegion",
+        width: 120,
+      },
+      {
+        title: "Severity",
+        id: "Severity",
+        width: 120,
+      },
+      {
+        title: "Regulation",
+        id: "regulationControls",
+        width: 100,
+        mr: 20,
+      },
+      // {
+      //   title: "Bc Control",
+      //   id: "bcGcpControl",
+      //   width: 150
+      // },
+      // {
+      //   title: "Project Id",
+      //   id: "gcpProjectId",
+      //   width: 180
+      // },
+      // {
+      //   title: "Multi Security Check",
+      //   id: "multiSecurityCheck",
+      //   width: 250
+      // },
+
+      // {
+      //   title: "Security Check Category",
+      //   id: "securityCheckCategory",
+      //   width: 250
+      // }
+    ],
+    // pk: "scosSecurityControlType",
   },
 ];
-const AZURE = [
-  {
-    path: "/scos-security-control-types",
-    apiEndpoint: "scos-security-control-types",
-    pk: "scosSecurityControlType",
-  },
-];
+
+
+// const AZURE = [
+//   {
+//     path: "/scos-security-control-types",
+//     apiEndpoint: "scos-security-control-types",
+//     pk: "scosSecurityControlType",
+//   },
+// ];
 
 const routes = [
   {
@@ -152,12 +317,12 @@ const routes = [
       {
         title: "Control",
         id: "bcGcpControlDescription",
-        width: 350,
+        width: 360,
       },
       {
         title: "Compliance Status",
         id: "descriptiveComplainceStatus",
-        width: 180,
+        width: 200,
       },
       {
         title: "Region",
@@ -250,7 +415,7 @@ const routes = [
       GCP,
       OCI,
       AWS,
-      AZURE,
+      // AZURE,
     },
   },
   {
@@ -259,7 +424,7 @@ const routes = [
       GCP,
       OCI,
       AWS,
-      AZURE,
+      // AZURE,
     },
   },
 ];

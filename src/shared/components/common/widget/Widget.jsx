@@ -95,7 +95,7 @@ export default function Widget() {
           <div className='wp-16 hp-80 ml-10 pl-15 pr-15 pt-15 pb-15 purple-container-br-10 flex-r-jc-ac'>
             <CompliancesScanned />
           </div>
-          <div className='wp-60 hp-80 ml-20 flex-r-ac orange-container-br-10'>
+          <div className='wp-57 hp-80 ml-20 flex-r-ac orange-container-br-10'>
             <div className='mr-20 ml-20'>
               <img src={tempIcon} alt='icon'></img>
             </div>
@@ -103,7 +103,7 @@ export default function Widget() {
               <img alt='line-chart' src={dummyLineChart}></img>
             </div>
           </div>
-          <div className='wp-16 hp-80 ml-20 p-15 green-container-br-10'>
+          <div className='wp-18 hp-80 ml-20 p-15 green-container-br-10'>
             <NewComplainChecked />
           </div>
           <div className='mr-10 ml-5 flex-r-jc-ac'>
