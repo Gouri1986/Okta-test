@@ -295,7 +295,6 @@ const TableBody = (props) => {
           <span
             title={datum[id]?.length > 100 && datum[id]}
             className={"table-data-cell cp"}
-            onClick={}
           >
             {datum[id]?.length > 100
               ? datum[id]?.substr(0, 100) + "..."
