@@ -185,14 +185,17 @@ const TableBody = (props) => {
         ? 50
         : 200;
 
-    const rowCellClassName = `pl-0 pr-0 pt-15 pb-15 bdr-primary table-cell  w-${getRowCellWidth()} ${
+    const rowCellClassName = `pl-10 pr-10 pt-15 pb-15 bdr-primary table-cell  w-${getRowCellWidth()} ${
       item.id === "action" ||
       item.id === "resources" ||
       item.id === "regulationControls"
     } ${item?.mr ? `mr-${item.mr}` : "0"}`;
 
     return (
-      <td className={rowCellClassName}>
+      <td
+        style={{ textAlign: id === "bcGcpControl" ? "left" : "center" }}
+        className={rowCellClassName}
+      >
         {/* action buttons column is rendred conditionally 
         if id of the cloumn being rendered matches with "action" */}
         {id === "action" ? (

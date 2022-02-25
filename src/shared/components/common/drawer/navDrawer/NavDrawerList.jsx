@@ -121,8 +121,8 @@ const DrawerList = (props) => {
             if (path) {
               console.log(path);
               dispatch(setActiveTableTabs([]));
-
               history.push(path);
+              setExpanded(false);
               setActiveEndPoint(apiEndpoint);
             } else {
               onSubMenuClick();
@@ -230,6 +230,8 @@ const DrawerList = (props) => {
             if (item.path.length > 0) {
               dispatch(setActiveTableTabs(items));
               history.push(item.path);
+              setExpanded(false);
+
               setActiveEndPoint(item.apiEndpoint);
             }
           }}
@@ -258,6 +260,7 @@ const DrawerList = (props) => {
       ) {
         dispatch(setActiveTableTabs([]));
         history.push(item.items[0].path);
+        setExpanded(false);
         setActiveEndPoint(item.items[0].apiEndpoint);
         setSecondMenuItemSelected({ title: "", bool: false });
       } else if (
@@ -291,6 +294,7 @@ const DrawerList = (props) => {
       } else {
         dispatch(setActiveTableTabs([]));
         history.push(item.path);
+        setExpanded(false);
         setActiveEndPoint(item.apiEndpoint);
       }
     };

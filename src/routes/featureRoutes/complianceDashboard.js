@@ -245,13 +245,13 @@ const AWS = [
      * ? 2) Regualation Drawer Functionality config
      */
     regulationControls: {
-      apiEndpoint: "recs-aws-controls-regulation-map-controlItemId",
+      apiEndpoint: "recs-aws-controls-regulation-map-control-item-id",
       params: {
         paramKey: ["controlItemId"],
         tableKey: ["bcGcpControlItemId"],
       },
       discription: {
-        apiEndpoint: "recs-aws-controls-regulation-map_configregulationId",
+        apiEndpoint: "recs-aws-controls-regulation-map-config-regulation-id",
         params: {
           paramKey: ["regulationId", "regulation"],
           tableKey: ["Control id", "Regulation"],
