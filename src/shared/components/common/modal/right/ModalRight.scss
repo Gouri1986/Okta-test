@@ -18,13 +18,21 @@
   width: 100% !important;
 }
 
+.table-title {
+  background: #001833;
+  border-radius: 10px 10px 0px 0px;
+  height: 100px;
+  padding: 10px;
+}
+
 .sidebar {
   border-radius: 10px 10px 0px 0px;
-  top: 20%;
-  right: 0;
-  height: 80%;
+  top: 9%;
+  right: 1%;
+  height: 100%;
   background-color: #fff;
-  box-shadow: 0 2px 5px 0 rgba(240, 240, 240, 0.16), 0 2px 10px 0 rgba(139, 139, 139, 0.12);
+  box-shadow: 0 2px 5px 0 rgba(240, 240, 240, 0.16),
+    0 2px 10px 0 rgba(139, 139, 139, 0.12);
   position: fixed !important;
   z-index: 999;
   overflow: auto;
@@ -47,6 +55,7 @@
 .sidebar-body {
   overflow: auto;
   height: 80%;
+  padding: 10px;
 }
 
 .sidebar-body::-webkit-scrollbar {

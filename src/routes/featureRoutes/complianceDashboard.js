@@ -38,7 +38,7 @@ const GCP = [
       },
       {
         title: "Control",
-        id: "bcGcpControlDescription",
+        id: "bcGcpControl",
         width: 350
       },
       {
@@ -54,7 +54,7 @@ const GCP = [
       {
         title: "Severity",
         id: "Severity",
-        width: 120,
+        width: 150,
         levels: {
           c: "confidentialityRisk",
           i: "integrityRisk",
@@ -255,6 +255,135 @@ const AWS = [
       },
       discription: {
         apiEndpoint: "recs-gcp-controls-regulation-map_configregulationId",
+        params: {
+          paramKey: ["regulationId", "regulation"],
+          tableKey: ["Control id", "Regulation"]
+        }
+      }
+    }
+  }
+]
+
+const AWS = [
+  {
+    baseURL: process.env.REACT_APP_AWS_COMPLIANCE_DASHBOARD_BASE_URL,
+    path: "/recs-aws-compliance-details-control-id",
+    apiEndpoint: "recs-aws-compliance-details-control-id",
+    name: "AWS Compliance",
+    tableWhitelists: ["resources"],
+    headerStatic: [
+      {
+        title: "CT Group",
+        id: "bcCtgName",
+        width: 120
+      },
+      {
+        title: "Cloud Tenant",
+        id: "bcCtName",
+        width: 150
+      },
+      {
+        title: "Control Domain",
+        id: "securityControlDomain",
+        width: 160
+      },
+      {
+        title: "Service Type",
+        id: "gcpServiceType",
+        width: 130
+      },
+      {
+        title: "Resource Type",
+        id: "gcpResourceType",
+        width: 150
+      },
+      {
+        title: "Control ID",
+        id: "bcGcpControlItemId",
+        width: 110
+      },
+      {
+        title: "Control",
+        id: "bcGcpControl",
+        width: 350
+      },
+      {
+        title: "Compliance Status",
+        id: "descriptiveComplainceStatus",
+        width: 180
+      },
+      {
+        title: "Region",
+        id: "gcpRegion",
+        width: 120
+      },
+      {
+        title: "Severity",
+        id: "Severity",
+        width: 120
+      },
+      {
+        title: "Regulation",
+        id: "regulationControls",
+        width: 100,
+        mr: 20
+      }
+      // {
+      //   title: "Bc Control",
+      //   id: "bcGcpControl",
+      //   width: 150
+      // },
+      // {
+      //   title: "Project Id",
+      //   id: "gcpProjectId",
+      //   width: 180
+      // },
+      // {
+      //   title: "Multi Security Check",
+      //   id: "multiSecurityCheck",
+      //   width: 250
+      // },
+
+      // {
+      //   title: "Security Check Category",
+      //   id: "securityCheckCategory",
+      //   width: 250
+      // }
+    ],
+    // pk: "scosSecurityControlType",
+    complainceDetails: {
+      baseURL: process.env.REACT_APP_AWS_COMPLIANCE_DASHBOARD_BASE_URL,
+      apiEndpoint: "get-bc-control-id-compliance-details",
+      params: {
+        paramKey: ["resource", "bcControlItemId"],
+        tableKey: ["awsResourceType", "bcGcpControlItemId"]
+      },
+      dawerHeaderColoumn: {
+        controlId: "Control ID",
+        projectId: "GCP Project ID",
+        resourceType: "Resource Type",
+        serviceType: "Service Type"
+      },
+      jsonView: {
+        apiEndpoint: "get-resourceid-complaince-details",
+        params: {
+          paramKey: ["resourceId", "resource"],
+          tableKey: ["resourceId", "gcpResourceType"]
+        }
+      }
+    },
+    /**
+     *
+     * ? 2) Regualation Drawer Functionality config
+     */
+    regulationControls: {
+      apiEndpoint: "recs-aws-controls-regulation-map-controlItemId",
+      params: {
+        paramKey: ["controlItemId"],
+        tableKey: ["bcGcpControlItemId"]
+      },
+      discription: {
+        apiEndpoint: "recs-aws-controls-regulation-map_configregulationId",
         params: {
           paramKey: ["regulationId", "regulation"],
           tableKey: ["Control id", "Regulation"]
