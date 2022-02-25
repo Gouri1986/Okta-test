@@ -30,7 +30,7 @@ const TableHeaderCell = ({
     item.id === "regulationControls"
   }`;
 
-  const thClassName = `pl-0 pr-0 pt-5 pb-5 w-${getWidthOfCell()} flex-c-jc table-header-cell ${actionColumnClassName} ${
+  const thClassName = `ml-5 mr-5 pl-0 pr-0 pt-5 pb-5 w-${getWidthOfCell()} flex-c-jc table-header-cell ${actionColumnClassName} ${
     item?.mr ? `mr-${item.mr}` : "0"
   }`;
 
