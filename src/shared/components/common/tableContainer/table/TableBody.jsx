@@ -229,7 +229,6 @@ const TableBody = props => {
                       paramsKey
                     )
                   )
-                  setDrawerData(datum)
                   dispatch(setComplianceDrawerExpand(true))
                   dispatch(setNavDrawerExpand(false))
                   dispatch(setFilterDrawerExpand(false))
