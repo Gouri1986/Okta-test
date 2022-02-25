@@ -39,11 +39,9 @@ const Dashboard = () => {
   useEffect(() => {
     // get table detail from routes
     let tableDetail = getTableDetailFromRoutes(...paramsToFetchTableDetails);
-    console.log(tableDetail);
     setTableDetails(tableDetail);
     setTableRowKey(tableDetail?.key);
     setTableTitle(tableDetail?.title);
-    console.log(tableDetail.tableWhitelists);
     const apiEndpoint = tableDetail?.apiEndpoint;
     if (apiEndpoint) {
       getTable(apiEndpoint);

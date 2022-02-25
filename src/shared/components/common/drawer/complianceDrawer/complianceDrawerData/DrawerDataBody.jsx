@@ -11,7 +11,10 @@ const DrawerDataBody = props => {
         <ResourceDataTable {...props} />
       ) : type === "Regulation" ? (
         <RegulationDataTable {...props} />
-      ) : null}
+      ) : type === "ControlDescription" ? 
+        document.write('ControlDescription')
+      : null
+      }
     </div>
   )
 }

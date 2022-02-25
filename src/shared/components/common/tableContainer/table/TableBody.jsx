@@ -128,7 +128,6 @@ const TableBody = (props) => {
     headerStaticVisbility,
   } = props;
 
-  console.log(tableDetails);
 
   const dispatch = useDispatch();
   const { complianceDrawerExpanded } = useSelector(
@@ -171,7 +170,7 @@ const TableBody = (props) => {
      * width of the column
      * @returns static width conditionally depends on the length of column's display name's length
      */
-    // console.log(width)
+    
     const getRowCellWidth = () =>
       headerStaticVisbility
         ? width
@@ -327,6 +326,7 @@ const TableBody = (props) => {
         if (!checked) {
           onRowClick(datum);
           setActiveData(datum);
+          setcomplainceDrawerType("ControlDescription");
           dispatch(setNavDrawerExpand(false));
           dispatch(setComplianceDrawerExpand(true));
         } else {
@@ -369,13 +369,6 @@ const TableBody = (props) => {
             </tr>
           )} */}
 
-      <ModalRight
-        open={complianceDrawerExpanded}
-        close={() => dispatch(setComplianceDrawerExpand(false))}
-        size={"sm"}
-        tableTitle={tableTitle}
-        data={activeData}
-      />
       {compliance && (
         <RightDrawer
           open={complianceDrawerExpanded}
