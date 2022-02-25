@@ -8,7 +8,7 @@ const DrawerDataHeader = props => {
   const createdDate = new Date(headerData.lastVerifiedDate * 1000)
 
   const serviceTypeUppercase = serviceType?.charAt(0)?.toUpperCase() + serviceType?.slice(1)
-  console.log(serviceType)
+  
   return (
     <div className="complaince-header p-10 pt-20 pb-20">
       <p className="table-title f-24 fw-600">

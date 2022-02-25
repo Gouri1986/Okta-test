@@ -14,7 +14,7 @@ const GCP = [
       {
         title: "Cloud Tenant",
         id: "bcCtName",
-        width: 150
+        width: 180
       },
       {
         title: "Control Domain",
@@ -34,7 +34,7 @@ const GCP = [
       {
         title: "Control ID",
         id: "bcGcpControlItemId",
-        width: 110
+        width: 140
       },
       {
         title: "Control",
@@ -44,7 +44,7 @@ const GCP = [
       {
         title: "Compliance Status",
         id: "descriptiveComplainceStatus",
-        width: 180
+        width: 200
       },
       {
         title: "Region",
@@ -54,7 +54,7 @@ const GCP = [
       {
         title: "Severity",
         id: "Severity",
-        width: 150,
+        width: 180,
         levels: {
           c: "confidentialityRisk",
           i: "integrityRisk",

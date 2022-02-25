@@ -232,7 +232,8 @@ const TableBody = (props) => {
             <InlineStatusBarChart
               value1={datum[id]?.[0]?.Pass}
               value2={datum[id]?.[0]?.Fail}
-              onClick={() => {
+              onClick={(e) => {
+                e.stopPropagation()
                 let paramsKey = {};
                 tableDetails?.complainceDetails?.params?.paramKey?.forEach(
                   (v, i) => {
@@ -267,7 +268,8 @@ const TableBody = (props) => {
         ) : id === "regulationControls" ? (
           <div className='flex-r-jc'>
             <ComplianceViewButton
-              onClick={() => {
+              onClick={(e) => {
+                e.stopPropagation()
                 dispatch(setComplianceDrawerExpand(true));
                 dispatch(setNavDrawerExpand(false));
                 dispatch(setFilterDrawerExpand(false));
@@ -326,10 +328,13 @@ const TableBody = (props) => {
         if (!checked) {
           onRowClick(datum);
           setActiveData(datum);
-          setcomplainceDrawerType("ControlDescription");
+          setcomplainceDrawerType("ConsolidatedData");
           dispatch(setNavDrawerExpand(false));
           dispatch(setComplianceDrawerExpand(true));
-        } else {
+        } 
+        // else if() 
+        // {}
+        else {
           onRowClick({});
           setActiveData({});
           dispatch(setComplianceDrawerExpand(false));
@@ -339,10 +344,10 @@ const TableBody = (props) => {
 
     return (
       <tr
-        onClick={rowClick}
-        className={`pos-rel flex-jc-sp-evn titan-table-rows bdr-buttom-primary-1 pt-10 pb-10 ${
-          compliance ? "" : "cp"
-        }`}
+        onClick={(e) => {
+          rowClick()
+        }}
+        className={`pos-rel flex-jc-sp-evn titan-table-rows bdr-buttom-primary-1 pt-10 pb-10 cp`}
       >
         {header?.map((item) => (
           <TableRowCell item={item} datum={datum} />
