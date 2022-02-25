@@ -17,6 +17,7 @@ import Modal from "../../modal/center/Modal";
 import ModalForm from "../../forms/ModalForm";
 import InlineStatusBarChart from "../../charts/TableInlineBarStatus";
 import ComplianceViewButton from "./columnButtons/ComplianceViewButton";
+import {DoubleArrow} from './assets'
 
 /**
  * ? API Calls
@@ -260,6 +261,7 @@ const TableBody = (props) => {
               {datum[id]?.[0]?.Pass}/
               {datum[id]?.[0]?.Pass + datum[id]?.[0]?.Fail} Passed
             </span>
+            <div><DoubleArrow /></div>
           </div>
         ) : id === "lastVerifiedDate" ? (
           <span>{kebabCaseDate(datum[id])}</span>
