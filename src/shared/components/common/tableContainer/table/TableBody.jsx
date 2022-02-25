@@ -42,7 +42,7 @@ import {
 import { setDrawerRegulationData } from "../../../../../redux/drawer/drawerActions";
 import ModalRight from "../../modal/right/ModalRight";
 
-const SeverityCell = ({ levels }) => {
+const SeverityCell = ({ levels={} }) => {
   return (
     <div className='flex-r-jc-ac flex-jc-sp-btn'>
       <SeverityIcon level={levels.c} />
@@ -161,7 +161,7 @@ const TableBody = (props) => {
 
   const TableRowCell = ({ item = {}, datum }) => {
     // destructuring the current cloumn's id and display title
-    const { id, title, width, levels } = item;
+    const { id, title, width, levels={} } = item;
 
     /**
      * width of the column
@@ -238,7 +238,7 @@ const TableBody = (props) => {
                 );
                 dispatch(
                   getDrawerData(
-                    `${process.env.REACT_APP_COMPLIANCE_DASHBOARD_BASE_URL}${tableDetails?.complainceDetails?.apiEndpoint}`,
+                    `${tableDetails?.complainceDetails?.baseURL}${tableDetails?.complainceDetails?.apiEndpoint}`,
                     paramsKey
                   )
                 );
