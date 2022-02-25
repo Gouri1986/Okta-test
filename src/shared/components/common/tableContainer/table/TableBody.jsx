@@ -40,8 +40,9 @@ import {
   setFilterDrawerExpand,
 } from "../../../../../redux/common/commonActions";
 import { setDrawerRegulationData } from "../../../../../redux/drawer/drawerActions";
+import ModalRight from "../../modal/right/ModalRight";
 
-const SeverityCell = ({ levels }) => {
+const SeverityCell = ({ levels = {} }) => {
   return (
     <div className='flex-r-jc-ac flex-jc-sp-btn'>
       <SeverityIcon level={levels.c} />
@@ -122,12 +123,17 @@ const TableBody = (props) => {
     activeEndPoint,
     getTable,
     baseUrl,
-    complianceDrawerExpanded,
     disableRowclick,
+    compliance,
     headerStaticVisbility,
   } = props;
 
+  console.log(tableDetails);
+
   const dispatch = useDispatch();
+  const { complianceDrawerExpanded } = useSelector(
+    (state) => state.commonReducer
+  );
 
   //state to manage data to be displayed in right side modal
   const [activeData, setActiveData] = useState({});
@@ -137,6 +143,7 @@ const TableBody = (props) => {
   const [resourcesId, setResourcseIds] = useState([]);
   const [complainceDrawerType, setcomplainceDrawerType] = useState("");
   const { complainceDrawerData } = useSelector((state) => state.drawerReducer);
+  const [rowDrawer, showRowDrawer] = useState(false);
 
   /***************************************************************
    *          Pagination Data Slicing Logic
@@ -158,7 +165,7 @@ const TableBody = (props) => {
 
   const TableRowCell = ({ item = {}, datum }) => {
     // destructuring the current cloumn's id and display title
-    const { id, title, width, levels } = item;
+    const { id, title, width, levels = {} } = item;
 
     /**
      * width of the column
@@ -178,14 +185,17 @@ const TableBody = (props) => {
         ? 50
         : 200;
 
-    const rowCellClassName = `pl-0 pr-0 pt-15 pb-15 bdr-primary table-cell  w-${getRowCellWidth()} ${
+    const rowCellClassName = `pl-10 pr-10 pt-15 pb-15 bdr-primary table-cell  w-${getRowCellWidth()} ${
       item.id === "action" ||
       item.id === "resources" ||
       item.id === "regulationControls"
     } ${item?.mr ? `mr-${item.mr}` : "0"}`;
 
     return (
-      <td className={rowCellClassName}>
+      <td
+        style={{ textAlign: id === "bcGcpControl" ? "left" : "center" }}
+        className={rowCellClassName}
+      >
         {/* action buttons column is rendred conditionally 
         if id of the cloumn being rendered matches with "action" */}
         {id === "action" ? (
@@ -235,7 +245,7 @@ const TableBody = (props) => {
                 );
                 dispatch(
                   getDrawerData(
-                    `${process.env.REACT_APP_COMPLIANCE_DASHBOARD_BASE_URL}${tableDetails?.complainceDetails?.apiEndpoint}`,
+                    `${tableDetails?.complainceDetails?.baseURL}${tableDetails?.complainceDetails?.apiEndpoint}`,
                     paramsKey
                   )
                 );
@@ -264,21 +274,35 @@ const TableBody = (props) => {
                 dispatch(setFilterDrawerExpand(false));
                 setDrawerData(datum);
                 setcomplainceDrawerType("Regulation");
+
+                let paramsKey = {};
+                tableDetails?.regulationControls?.params?.paramKey?.forEach(
+                  (v, i) => {
+                    paramsKey[v] =
+                      datum[
+                        tableDetails?.regulationControls?.params?.tableKey?.[i]
+                      ];
+                  }
+                );
                 dispatch(
                   getDrawerRegulationData(
-                    `${process.env.REACT_APP_COMPLIANCE_DASHBOARD_BASE_URL}${tableDetails?.regulationControls?.apiEndpoint}`,
-                    {
-                      [`${tableDetails?.regulationControls?.params?.paramKey?.[0]}`]:
-                        datum[
-                          tableDetails?.regulationControls?.params
-                            ?.tableKey?.[0]
-                        ],
-                    }
+                    `${tableDetails?.complainceDetails?.baseURL}${tableDetails?.regulationControls?.apiEndpoint}`,
+                    paramsKey
                   )
                 );
               }}
             />
           </div>
+        ) : id === "bcGcpControl" ? (
+          // else return normal row data
+          <span
+            title={datum[id]?.length > 100 && datum[id]}
+            className={"table-data-cell cp"}
+          >
+            {datum[id]?.length > 100
+              ? datum[id]?.substr(0, 100) + "..."
+              : datum[id]}
+          </span>
         ) : (
           // else return normal row data
           <span
@@ -303,6 +327,7 @@ const TableBody = (props) => {
         if (!checked) {
           onRowClick(datum);
           setActiveData(datum);
+          dispatch(setNavDrawerExpand(false));
           dispatch(setComplianceDrawerExpand(true));
         } else {
           onRowClick({});
@@ -315,7 +340,9 @@ const TableBody = (props) => {
     return (
       <tr
         onClick={rowClick}
-        className={`pos-rel flex-jc-sp-evn titan-table-rows bdr-buttom-primary-1 pt-10 pb-10 cp`}
+        className={`pos-rel flex-jc-sp-evn titan-table-rows bdr-buttom-primary-1 pt-10 pb-10 ${
+          compliance ? "" : "cp"
+        }`}
       >
         {header?.map((item) => (
           <TableRowCell item={item} datum={datum} />
@@ -341,32 +368,41 @@ const TableBody = (props) => {
               <td colSpan={header.length} />
             </tr>
           )} */}
-      <RightDrawer
+
+      <ModalRight
         open={complianceDrawerExpanded}
-        size='sm' // sm, md, lg, xl
+        close={() => dispatch(setComplianceDrawerExpand(false))}
+        size={"sm"}
+        tableTitle={tableTitle}
         data={activeData}
-      >
-        <DrawerDataHeader
-          serviceType={tableDetails?.sectionType}
-          tableTitle={`${tableTitle} Report`}
-          headerColoumn={tableDetails?.complainceDetails?.dawerHeaderColoumn}
-          headerData={drawerData}
-          close={() => {
-            dispatch(setComplianceDrawerExpand(false));
-            dispatch(setDrawerRegulationData([]));
-            setResourcseIds([]);
-            setDrawerData({});
-            setDrawerRegulationData([]);
-          }}
-        />
-        <DrawerDataBody
-          data={drawerData}
-          type={complainceDrawerType}
-          headerData={drawerData}
-          resourcesId={resourcesId}
-          tableDetails={tableDetails}
-        />
-      </RightDrawer>
+      />
+      {compliance && (
+        <RightDrawer
+          open={complianceDrawerExpanded}
+          size='sm' // sm, md, lg, xl
+        >
+          <DrawerDataHeader
+            serviceType={tableDetails?.sectionType}
+            tableTitle={`${tableTitle} Report`}
+            headerColoumn={tableDetails?.complainceDetails?.dawerHeaderColoumn}
+            headerData={drawerData}
+            close={() => {
+              dispatch(setComplianceDrawerExpand(false));
+              dispatch(setDrawerRegulationData([]));
+              setResourcseIds([]);
+              setDrawerData({});
+              setDrawerRegulationData([]);
+            }}
+          />
+          <DrawerDataBody
+            data={drawerData}
+            type={complainceDrawerType}
+            headerData={drawerData}
+            resourcesId={resourcesId}
+            tableDetails={tableDetails}
+          />
+        </RightDrawer>
+      )}
       <Modal
         open={openCRUDModal}
         close={() => setOpenCRUDModal(false)}
