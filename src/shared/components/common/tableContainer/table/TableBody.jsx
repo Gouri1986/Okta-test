@@ -40,6 +40,7 @@ import {
   setFilterDrawerExpand,
 } from "../../../../../redux/common/commonActions";
 import { setDrawerRegulationData } from "../../../../../redux/drawer/drawerActions";
+import ModalRight from "../../modal/right/ModalRight";
 
 const SeverityCell = ({ levels }) => {
   return (
@@ -122,12 +123,14 @@ const TableBody = (props) => {
     activeEndPoint,
     getTable,
     baseUrl,
-    complianceDrawerExpanded,
     disableRowclick,
     headerStaticVisbility,
   } = props;
 
   const dispatch = useDispatch();
+  const { complianceDrawerExpanded } = useSelector(
+    (state) => state.commonReducer
+  );
 
   //state to manage data to be displayed in right side modal
   const [activeData, setActiveData] = useState({});
@@ -303,11 +306,9 @@ const TableBody = (props) => {
         if (!checked) {
           onRowClick(datum);
           setActiveData(datum);
-          dispatch(setComplianceDrawerExpand(true));
         } else {
           onRowClick({});
           setActiveData({});
-          dispatch(setComplianceDrawerExpand(false));
         }
       }
     };
@@ -341,6 +342,8 @@ const TableBody = (props) => {
               <td colSpan={header.length} />
             </tr>
           )} */}
+
+      <ModalRight />
       <RightDrawer
         open={complianceDrawerExpanded}
         size='sm' // sm, md, lg, xl
