@@ -229,7 +229,7 @@ const TableBody = (props) => {
 
           <RowRightArrow />
         ) : id === "descriptiveComplainceStatus" ? (
-          <div className='flex-r-jc-ac bg-secondary bdr-r-25 p-5 wp-90'>
+          <div className='flex-r-jc-ac bg-secondary bdr-r-25 pt-5 pb-5 pr-5 wp-90'>
             <div>
               <InlineStatusBarChart
                 value1={datum[id]?.[0]?.Pass}
@@ -259,8 +259,9 @@ const TableBody = (props) => {
                 }}
               />
             </div>
-            <div className='fw-500 f-12'>{datum[id]?.[0]?.Pass}/{datum[id]?.[0]?.Pass + datum[id]?.[0]?.Fail}%</div>
-            <div><DoubleArrow /></div>
+            {/* <div className='fw-500 f-12'>{datum[id]?.[0]?.Pass}/{datum[id]?.[0]?.Pass + datum[id]?.[0]?.Fail}%</div> */}
+            <div className='fw-600 f-14'>{parseInt(datum[id]?.[0]?.Pass/(datum[id]?.[0]?.Pass + datum[id]?.[0]?.Fail)*100)}%</div>
+            <div className="pl-5 pr-5"><DoubleArrow /></div>
           </div>
         ) : id === "lastVerifiedDate" ? (
           <span>{kebabCaseDate(datum[id])}</span>
