@@ -111,6 +111,7 @@ const Dashboard = () => {
     openCRUDModal,
     setOpenCRUDModal,
     activeEndpoint,
+    compliance: true,
     getTable,
     baseUrl: tableDetails.baseURL,
     CRUDModalType,

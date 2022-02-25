@@ -60,7 +60,7 @@ const resourceInventoryRoutes = [
       },
       {
         title: "Control",
-        id: "bcGcpControlDescription",
+        id: "bcGcpControl",
         width: 350,
       },
       {
