@@ -8,12 +8,12 @@ const GCP = [
     headerStatic: [
       {
         title: "CT Group",
-        id: " ",
+        id: "bcCtgName",
         width: 120,
       },
       {
         title: "Cloud Tenant",
-        id: " ",
+        id: "bcCtName",
         width: 150,
       },
       {
@@ -142,12 +142,12 @@ const AWS = [
     headerStatic: [
       {
         title: "CT Group",
-        id: " ",
+        id: "bcCtgName",
         width: 120,
       },
       {
         title: "Cloud Tenant",
-        id: " ",
+        id: "bcCtName",
         width: 150,
       },
       {
