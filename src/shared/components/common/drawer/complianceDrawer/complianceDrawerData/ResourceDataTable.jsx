@@ -15,7 +15,7 @@ const StatusComponet = props => {
 }
 
 const ResourceDataTable = props => {
-  const { resourcesId, headerData, datum, tableDetails, data } = props
+  const { resourcesId, tableDetails, data } = props
   const dispatch = useDispatch()
 
   const { complainceDrawerJSONData } = useSelector(state => state.drawerReducer)
@@ -53,12 +53,12 @@ const ResourceDataTable = props => {
                 dark
                 onClick={() => {
                   let paramsKey = {
-                    resource: data[tableDetails?.complainceDetails?.jsonView?.params?.tableKey?.[1]],
+                    resource: data[tableDetails?.complainceStatus?.jsonView?.params?.tableKey?.[1]],
                     resourceId: item.resourceId
                   }
                   dispatch(
                     getDrawerJSONData(
-                      `${process.env.REACT_APP_COMPLIANCE_DASHBOARD_BASE_URL}${tableDetails?.complainceDetails?.jsonView?.apiEndpoint}`,
+                      `${process.env.REACT_APP_COMPLIANCE_DASHBOARD_BASE_URL}${tableDetails?.complainceStatus?.jsonView?.apiEndpoint}`,
                       paramsKey
                     )
                   )
