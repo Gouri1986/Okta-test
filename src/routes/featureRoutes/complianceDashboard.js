@@ -44,7 +44,7 @@ const GCP = [
       {
         title: "Compliance Status",
         id: "descriptiveComplainceStatus",
-        width: 200
+        width: 220
       },
       {
         title: "Region",
@@ -181,7 +181,7 @@ const AWS = [
       {
         title: "Compliance Status",
         id: "descriptiveComplainceStatus",
-        width: 180
+        width: 220
       },
       {
         title: "Region",
@@ -309,7 +309,7 @@ const OCI = [
       {
         title: "Compliance Status",
         id: "descriptiveComplainceStatus",
-        width: 180
+        width: 220
       },
       {
         title: "Region",
