@@ -1,14 +1,13 @@
-import { useSelector } from "react-redux";
-import { Redirect } from "react-router-dom";
+import { useSelector } from "react-redux"
+import { Redirect } from "react-router-dom"
 
 const RequireAuth = ({ children }) => {
-  const { user } = useSelector((state) => state.userReducer);
-  console.log(user);
+  const { user } = useSelector(state => state.userReducer)
   if (user) {
-    return children;
+    return children
   }
 
-  return <Redirect to='/login' />;
-};
+  return <Redirect to="/login" />
+}
 
-export default RequireAuth;
+export default RequireAuth

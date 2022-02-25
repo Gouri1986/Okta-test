@@ -13,7 +13,6 @@ const FormCheckbox = (props) => {
   const getDropDownData = async () => {
     const response = await axios.get(checkbox.api);
     setCheckboxData(response.data?.data);
-    console.log(response.data?.data);
   };
 
   useEffect(() => {

@@ -101,7 +101,6 @@ const Dashboard = () => {
   const tableProps = {
     selectedRow: selectedRow,
     onRowClick: onRowClick,
-    disableRowclick: true,
     tableData: tableContents,
     tableRowkey,
     page,

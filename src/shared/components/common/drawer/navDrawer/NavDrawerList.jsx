@@ -119,7 +119,6 @@ const DrawerList = (props) => {
           onClick={() => {
             showSecondMenu(false);
             if (path) {
-              console.log(path);
               dispatch(setActiveTableTabs([]));
               history.push(path);
               setExpanded(false);

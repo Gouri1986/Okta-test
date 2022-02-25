@@ -6,7 +6,7 @@ const RightDrawer = (props) => {
 
   return (
     <div
-      className={`sidebar sidebar-animation  ${
+      className={`complaince-sidebar complaince-sidebar-animation  ${
         open === true ? 'side-on-state' : 'side-off-state'
       } ${
         size === 'sm'
@@ -20,8 +20,8 @@ const RightDrawer = (props) => {
           : ''
       } `}
     >
-    <div className='sidebar-header'>{children[0]}</div>
-      <div className='sidebar-body'>
+    <div className='complaince-sidebar-header'>{children[0]}</div>
+      <div className='complaince-sidebar-body'>
        {children[1]}
       </div>
     </div>
