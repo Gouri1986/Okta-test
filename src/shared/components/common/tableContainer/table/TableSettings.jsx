@@ -30,7 +30,29 @@ function TableSettings(props) {
         })}
       </div>
       <div className='flex-r-ac flex-jc-sp-btn pt-10'>
-        <div className='fw-600 f-20 fc-primary'>{tableTitle}</div>
+        <div className='flex-r'>
+          <div className="bdr-r-10 bg-violet-container shw-violet p-5 flex-r mr-10">
+            <p className='ml-5 fc-quaternary fw-400'>CT Group:</p>
+            <span className='ml-5 fc-quaternary fw-500'>All</span>
+          </div>
+          <div className="bdr-r-10 bg-violet-container shw-violet p-5 flex-r mr-10">
+            <p className='ml-5 fc-quaternary fw-400'>Cloud Tenant:</p>
+            <span className='ml-5 fc-quaternary fw-500'>All</span>
+          </div>
+          <div className="bdr-r-10 bg-violet-container shw-violet p-5 flex-r mr-10">
+            <p className='ml-5 fc-quaternary fw-400'>Cloud:</p>
+            <span className='ml-5 fc-quaternary fw-500'>All</span>
+          </div>
+          <div className="bdr-r-10 bg-violet-container shw-violet p-5 flex-r mr-10">
+            <p className='ml-5 fc-quaternary fw-400'>Service Type:</p>
+            <span className='ml-5 fc-quaternary fw-500'>All</span>
+          </div>
+          <div className="bdr-r-10 bg-violet-container shw-violet p-5 flex-r mr-10">
+            <p className='ml-5 fc-quaternary fw-400'>Region:</p>
+            <span className='ml-5 fc-quaternary fw-500'>All</span>
+          </div>
+        </div>
+        {/* <div className='fw-600 f-20 fc-primary'>{tableTitle}</div> */}
         {/* <div className='flex-r'>
           <Views />
         </div> */}
@@ -44,7 +66,7 @@ function TableSettings(props) {
           </div>
         )}
       </div>
-      <div className='flex-r-ac flex-jc-sp-btn mt-30'>
+      <div className='flex-r-ac flex-jc-sp-btn mt-10'>
         <div className='flex-r wp-100 flex-r-ac flex-jc-sp-btn mr-20'>
           <FilterSearch />
         </div>
