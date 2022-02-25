@@ -34,6 +34,8 @@ const TableHeaderCell = ({
     item?.mr ? `mr-${item.mr}` : "0"
   }`;
 
+  console.log(sort);
+
   return (
     <th
       style={{
@@ -55,22 +57,37 @@ const TableHeaderCell = ({
         </div>
 
         {item.id === "Severity" && (
-          <div className='flex-r-jc-ac severity-sb-header'>
-            <div>
+          <div className='flex-r-ac flex-jc-sp-btn pl-10 pr-10 severity-sb-header'>
+            <div
+              onClick={(e) => {
+                sortTable("confidentialityRisk");
+                e.stopPropagation();
+              }}
+            >
               <TableHeaderSortDownArrow
-                up={sort.id === item.id && sort.dir === "asc"}
+                up={sort.id === "confidentialityRisk" && sort.dir === "asc"}
               />
               <span className='ml-5 mr-10'>C</span>
             </div>
-            <div>
+            <div
+              onClick={(e) => {
+                sortTable("integrityRisk");
+                e.stopPropagation();
+              }}
+            >
               <TableHeaderSortDownArrow
-                up={sort.id === item.id && sort.dir === "asc"}
+                up={sort.id === "integrityRisk" && sort.dir === "asc"}
               />
               <span className='ml-5 mr-10'>I</span>
             </div>
-            <div>
+            <div
+              onClick={(e) => {
+                sortTable("availabilityRisk");
+                e.stopPropagation();
+              }}
+            >
               <TableHeaderSortDownArrow
-                up={sort.id === item.id && sort.dir === "asc"}
+                up={sort.id === "availabilityRisk" && sort.dir === "asc"}
               />
               <span className='ml-5 mr-5'>A</span>
             </div>
@@ -88,7 +105,7 @@ const TableHeader = ({ header, tableData, headerStaticVisbility }) => {
   const sortTable = (id) => {
     if (sort.dir === "asc") {
       const sortedData = tableData.data.sort((a, b) =>
-        a[id].localeCompare(b[id])
+        a[id]?.localeCompare(b[id])
       );
 
       dispatch(setTableContents({ ...tableData, data: sortedData }));
@@ -96,7 +113,7 @@ const TableHeader = ({ header, tableData, headerStaticVisbility }) => {
       setSort({ id, dir: "desc" });
     } else {
       const sortedData = tableData.data.sort((a, b) =>
-        b[id].localeCompare(a[id])
+        b[id]?.localeCompare(a[id])
       );
       dispatch(setTableContents({ ...tableData, data: sortedData }));
       setSort({ id, dir: "asc" });

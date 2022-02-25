@@ -129,7 +129,6 @@ export const RowRightArrow = () => {
 };
 
 export const SeverityIcon = (level) => {
-
   return level.level == 3 ? (
     <svg
       width='28'
