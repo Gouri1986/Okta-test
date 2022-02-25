@@ -91,6 +91,7 @@ const GCP = [
     ],
     // pk: "scosSecurityControlType",
     complainceDetails: {
+      baseURL: process.env.REACT_APP_COMPLIANCE_DASHBOARD_BASE_URL,
       apiEndpoint: "get-bcControlId-complaince-details",
       params: {
         paramKey: ["resource", "bcControlItemId"],
@@ -133,8 +134,9 @@ const GCP = [
 
 const AWS = [
   {
-    path: "/recs-aws-complaince-details-control-id",
-    apiEndpoint: "recs-gcp-complaince-details-control-id",
+    baseURL: process.env.REACT_APP_AWS_COMPLIANCE_DASHBOARD_BASE_URL,
+    path: "/recs-aws-compliance-details-control-id",
+    apiEndpoint: "recs-aws-compliance-details-control-id",
     name: "AWS Compliance",
     tableWhitelists: ["resources"],
     headerStatic: [
@@ -216,7 +218,46 @@ const AWS = [
       //   width: 250
       // }
     ],
-    // pk: "scosSecurityControlType",
+       // pk: "scosSecurityControlType",
+       complainceDetails: {
+        baseURL: process.env.REACT_APP_AWS_COMPLIANCE_DASHBOARD_BASE_URL,
+        apiEndpoint: "get-bc-control-id-compliance-details",
+        params: {
+          paramKey: ["resource", "bcControlItemId"],
+          tableKey: ["gcpResourceType", "bcGcpControlItemId"],
+        },
+        dawerHeaderColoumn: {
+          controlId: "Control ID",
+          projectId: "GCP Project ID",
+          resourceType: "Resource Type",
+          serviceType: "Service Type",
+        },
+        jsonView: {
+          apiEndpoint: "get-resourceid-complaince-details",
+          params: {
+            paramKey: ["resourceId", "resource"],
+            tableKey: ["resourceId", "gcpResourceType"],
+          },
+        },
+      },
+      /**
+       *
+       * ? 2) Regualation Drawer Functionality config
+       */
+      regulationControls: {
+        apiEndpoint: "recs-gcp-controls-regulation-map-controlItemId",
+        params: {
+          paramKey: ["controlItemId"],
+          tableKey: ["bcGcpControlItemId"],
+        },
+        discription: {
+          apiEndpoint: "recs-gcp-controls-regulation-map_configregulationId",
+          params: {
+            paramKey: ["regulationId", "regulation"],
+            tableKey: ["Control id", "Regulation"],
+          },
+        },
+      },
   },
 ];
 
