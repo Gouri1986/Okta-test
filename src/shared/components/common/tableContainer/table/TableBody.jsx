@@ -128,6 +128,8 @@ const TableBody = (props) => {
     headerStaticVisbility,
   } = props;
 
+  console.log(tableDetails);
+
   const dispatch = useDispatch();
   const { complianceDrawerExpanded } = useSelector(
     (state) => state.commonReducer
@@ -269,16 +271,20 @@ const TableBody = (props) => {
                 dispatch(setFilterDrawerExpand(false));
                 setDrawerData(datum);
                 setcomplainceDrawerType("Regulation");
+
+                let paramsKey = {};
+                tableDetails?.regulationControls?.params?.paramKey?.forEach(
+                  (v, i) => {
+                    paramsKey[v] =
+                      datum[
+                        tableDetails?.regulationControls?.params?.tableKey?.[i]
+                      ];
+                  }
+                );
                 dispatch(
                   getDrawerRegulationData(
-                    `${process.env.REACT_APP_COMPLIANCE_DASHBOARD_BASE_URL}${tableDetails?.regulationControls?.apiEndpoint}`,
-                    {
-                      [`${tableDetails?.regulationControls?.params?.paramKey?.[0]}`]:
-                        datum[
-                          tableDetails?.regulationControls?.params
-                            ?.tableKey?.[0]
-                        ],
-                    }
+                    `${tableDetails?.complainceDetails?.baseURL}${tableDetails?.regulationControls?.apiEndpoint}`,
+                    paramsKey
                   )
                 );
               }}
@@ -289,6 +295,7 @@ const TableBody = (props) => {
           <span
             title={datum[id]?.length > 100 && datum[id]}
             className={"table-data-cell cp"}
+            onClick={}
           >
             {datum[id]?.length > 100
               ? datum[id]?.substr(0, 100) + "..."

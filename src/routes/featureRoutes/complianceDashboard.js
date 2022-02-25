@@ -224,7 +224,7 @@ const AWS = [
       apiEndpoint: "get-bc-control-id-compliance-details",
       params: {
         paramKey: ["resource", "bcControlItemId"],
-        tableKey: ["gcpResourceType", "bcGcpControlItemId"],
+        tableKey: ["awsResourceType", "bcGcpControlItemId"],
       },
       dawerHeaderColoumn: {
         controlId: "Control ID",
@@ -245,13 +245,13 @@ const AWS = [
      * ? 2) Regualation Drawer Functionality config
      */
     regulationControls: {
-      apiEndpoint: "recs-gcp-controls-regulation-map-controlItemId",
+      apiEndpoint: "recs-aws-controls-regulation-map-controlItemId",
       params: {
         paramKey: ["controlItemId"],
         tableKey: ["bcGcpControlItemId"],
       },
       discription: {
-        apiEndpoint: "recs-gcp-controls-regulation-map_configregulationId",
+        apiEndpoint: "recs-aws-controls-regulation-map_configregulationId",
         params: {
           paramKey: ["regulationId", "regulation"],
           tableKey: ["Control id", "Regulation"],
