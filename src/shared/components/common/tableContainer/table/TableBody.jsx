@@ -42,7 +42,7 @@ import {
 import { setDrawerRegulationData } from "../../../../../redux/drawer/drawerActions";
 import ModalRight from "../../modal/right/ModalRight";
 
-const SeverityCell = ({ levels={} }) => {
+const SeverityCell = ({ levels = {} }) => {
   return (
     <div className='flex-r-jc-ac flex-jc-sp-btn'>
       <SeverityIcon level={levels.c} />
@@ -124,6 +124,7 @@ const TableBody = (props) => {
     getTable,
     baseUrl,
     disableRowclick,
+    compliance,
     headerStaticVisbility,
   } = props;
 
@@ -140,6 +141,7 @@ const TableBody = (props) => {
   const [resourcesId, setResourcseIds] = useState([]);
   const [complainceDrawerType, setcomplainceDrawerType] = useState("");
   const { complainceDrawerData } = useSelector((state) => state.drawerReducer);
+  const [rowDrawer, showRowDrawer] = useState(false);
 
   /***************************************************************
    *          Pagination Data Slicing Logic
@@ -161,7 +163,7 @@ const TableBody = (props) => {
 
   const TableRowCell = ({ item = {}, datum }) => {
     // destructuring the current cloumn's id and display title
-    const { id, title, width, levels={} } = item;
+    const { id, title, width, levels = {} } = item;
 
     /**
      * width of the column
@@ -282,6 +284,16 @@ const TableBody = (props) => {
               }}
             />
           </div>
+        ) : id === "bcGcpControl" ? (
+          // else return normal row data
+          <span
+            title={datum[id]?.length > 100 && datum[id]}
+            className={"table-data-cell cp"}
+          >
+            {datum[id]?.length > 100
+              ? datum[id]?.substr(0, 100) + "..."
+              : datum[id]}
+          </span>
         ) : (
           // else return normal row data
           <span
@@ -306,9 +318,12 @@ const TableBody = (props) => {
         if (!checked) {
           onRowClick(datum);
           setActiveData(datum);
+          dispatch(setNavDrawerExpand(false));
+          dispatch(setComplianceDrawerExpand(true));
         } else {
           onRowClick({});
           setActiveData({});
+          dispatch(setComplianceDrawerExpand(false));
         }
       }
     };
@@ -316,7 +331,9 @@ const TableBody = (props) => {
     return (
       <tr
         onClick={rowClick}
-        className={`pos-rel flex-jc-sp-evn titan-table-rows bdr-buttom-primary-1 pt-10 pb-10 cp`}
+        className={`pos-rel flex-jc-sp-evn titan-table-rows bdr-buttom-primary-1 pt-10 pb-10 ${
+          compliance ? "" : "cp"
+        }`}
       >
         {header?.map((item) => (
           <TableRowCell item={item} datum={datum} />
@@ -343,33 +360,40 @@ const TableBody = (props) => {
             </tr>
           )} */}
 
-      <ModalRight />
-      <RightDrawer
+      <ModalRight
         open={complianceDrawerExpanded}
-        size='sm' // sm, md, lg, xl
+        close={() => dispatch(setComplianceDrawerExpand(false))}
+        size={"sm"}
+        tableTitle={tableTitle}
         data={activeData}
-      >
-        <DrawerDataHeader
-          serviceType={tableDetails?.sectionType}
-          tableTitle={`${tableTitle} Report`}
-          headerColoumn={tableDetails?.complainceDetails?.dawerHeaderColoumn}
-          headerData={drawerData}
-          close={() => {
-            dispatch(setComplianceDrawerExpand(false));
-            dispatch(setDrawerRegulationData([]));
-            setResourcseIds([]);
-            setDrawerData({});
-            setDrawerRegulationData([]);
-          }}
-        />
-        <DrawerDataBody
-          data={drawerData}
-          type={complainceDrawerType}
-          headerData={drawerData}
-          resourcesId={resourcesId}
-          tableDetails={tableDetails}
-        />
-      </RightDrawer>
+      />
+      {compliance && (
+        <RightDrawer
+          open={complianceDrawerExpanded}
+          size='sm' // sm, md, lg, xl
+        >
+          <DrawerDataHeader
+            serviceType={tableDetails?.sectionType}
+            tableTitle={`${tableTitle} Report`}
+            headerColoumn={tableDetails?.complainceDetails?.dawerHeaderColoumn}
+            headerData={drawerData}
+            close={() => {
+              dispatch(setComplianceDrawerExpand(false));
+              dispatch(setDrawerRegulationData([]));
+              setResourcseIds([]);
+              setDrawerData({});
+              setDrawerRegulationData([]);
+            }}
+          />
+          <DrawerDataBody
+            data={drawerData}
+            type={complainceDrawerType}
+            headerData={drawerData}
+            resourcesId={resourcesId}
+            tableDetails={tableDetails}
+          />
+        </RightDrawer>
+      )}
       <Modal
         open={openCRUDModal}
         close={() => setOpenCRUDModal(false)}
