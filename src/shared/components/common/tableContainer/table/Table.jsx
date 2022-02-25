@@ -11,7 +11,6 @@ const Table = (props) => {
 
   const { headerStatic } = tableDetails;
 
-  console.log(tableDetails);
   const checkBoxObj = {
     title: "",
     id: "cb",

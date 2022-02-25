@@ -128,8 +128,6 @@ const TableBody = (props) => {
     headerStaticVisbility,
   } = props;
 
-  console.log(tableDetails);
-
   const dispatch = useDispatch();
   const { complianceDrawerExpanded } = useSelector(
     (state) => state.commonReducer
