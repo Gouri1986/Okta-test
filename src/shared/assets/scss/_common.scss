@@ -77,7 +77,7 @@ $sizes: 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20
     border-radius: #{$size}px;
   }
   .grey-container-br-#{$size} {
-    background-color: $grey-conatainer;
+    background-color: $grey-container;
     box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.05);
     border-radius: #{$size}px;
   }
@@ -87,17 +87,17 @@ $sizes: 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20
     border-radius: #{$size}px;
   }
   .orange-container-br-#{$size} {
-    background-color: $orange-conatainer;
+    background-color: $orange-container;
     box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.05);
     border-radius: #{$size}px;
   }
   .green-container-br-#{$size} {
-    background-color: $green-conatainer;
+    background-color: $green-container;
     box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.05);
     border-radius: #{$size}px;
   }
   .violet-container-br-#{$size} {
-    background-color: $violet-conatainer;
+    background-color: $violet-container;
     box-shadow: inset 0px 1.16712px 2.33425px rgba(97, 97, 97, 0.2),
       inset 0px 2.33425px 4.66849px rgba(97, 97, 97, 0.2);
     border-radius: #{$size}px;

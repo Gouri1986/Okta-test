@@ -17,6 +17,7 @@ import Modal from "../../modal/center/Modal"
 import ModalForm from "../../forms/ModalForm"
 import InlineStatusBarChart from "../../charts/TableInlineBarStatus"
 import ComplianceViewButton from "./columnButtons/ComplianceViewButton"
+import { DoubleArrow } from "./assets"
 
 /**
  * ? API Calls
@@ -211,32 +212,38 @@ const TableBody = props => {
 
           <RowRightArrow />
         ) : id === "descriptiveComplainceStatus" ? (
-          <div className="flex-c-ac">
-            <InlineStatusBarChart
-              value1={datum[id]?.[0]?.Pass}
-              value2={datum[id]?.[0]?.Fail}
-              onClick={e => {
-                e.stopPropagation()
-                let paramsKey = {}
-                tableDetails?.complainceStatus?.params?.paramKey?.forEach((v, i) => {
-                  paramsKey[v] = datum[tableDetails?.complainceStatus?.params?.tableKey?.[i]]
-                })
-                dispatch(
-                  getDrawerData(
-                    `${tableDetails?.complainceStatus?.baseURL}${tableDetails?.complainceStatus?.apiEndpoint}`,
-                    paramsKey
+          <div className="flex-r-jc-ac bg-secondary bdr-r-25 pt-5 pb-5 pr-5 wp-90">
+            <div>
+              <InlineStatusBarChart
+                value1={datum[id]?.[0]?.Pass}
+                value2={datum[id]?.[0]?.Fail}
+                onClick={e => {
+                  e.stopPropagation()
+                  let paramsKey = {}
+                  tableDetails?.complainceDetails?.params?.paramKey?.forEach((v, i) => {
+                    paramsKey[v] = datum[tableDetails?.complainceDetails?.params?.tableKey?.[i]]
+                  })
+                  dispatch(
+                    getDrawerData(
+                      `${tableDetails?.complainceDetails?.baseURL}${tableDetails?.complainceDetails?.apiEndpoint}`,
+                      paramsKey
+                    )
                   )
-                )
-                setActiveData(datum)
-                dispatch(setComplianceDrawerExpand(true))
-                dispatch(setNavDrawerExpand(false))
-                dispatch(setFilterDrawerExpand(false))
-                setcomplainceDrawerType("Resources")
-              }}
-            />
-            <span className="fw-500 mt-5 f-12 lh-1.8">
-              {datum[id]?.[0]?.Pass}/{datum[id]?.[0]?.Pass + datum[id]?.[0]?.Fail} Passed
-            </span>
+                  setDrawerData(datum)
+                  dispatch(setComplianceDrawerExpand(true))
+                  dispatch(setNavDrawerExpand(false))
+                  dispatch(setFilterDrawerExpand(false))
+                  setcomplainceDrawerType("Resources")
+                }}
+              />
+            </div>
+            {/* <div className='fw-500 f-12'>{datum[id]?.[0]?.Pass}/{datum[id]?.[0]?.Pass + datum[id]?.[0]?.Fail}%</div> */}
+            <div className="fw-600 f-14">
+              {parseInt((datum[id]?.[0]?.Pass / (datum[id]?.[0]?.Pass + datum[id]?.[0]?.Fail)) * 100)}%
+            </div>
+            <div className="pl-5 pr-5">
+              <DoubleArrow />
+            </div>
           </div>
         ) : id === "lastVerifiedDate" ? (
           <span>{kebabCaseDate(datum[id])}</span>
