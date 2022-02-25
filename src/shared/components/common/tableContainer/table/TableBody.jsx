@@ -178,7 +178,7 @@ const TableBody = (props) => {
         ? 50
         : 200;
 
-    const rowCellClassName = `pl-0 pr-0 pt-15 pb-15 bdr-primary table-cell  w-${getRowCellWidth()} ${
+    const rowCellClassName = ` f-20 pl-20 pr-0 pt-15 pb-15 bdr-primary table-cell  w-${getRowCellWidth()} ${
       item.id === "action" ||
       item.id === "resources" ||
       item.id === "regulationControls"
