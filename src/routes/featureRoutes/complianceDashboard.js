@@ -238,18 +238,38 @@ const AWS = [
       // }
     ],
     // pk: "scosSecurityControlType",
+
+    /**********************************************************
+     *          !Complaice drawer data config
+     **********************************************************/
+    //? Drawer header common data
+    dawerHeader: {
+      coloumnName: ["Control ID", "GCP Project ID", "Resource Type", "Service Type"],
+      coloumnKey: ["bcGcpControlItemId", "gcpProjectId", "gcpResourceType", "gcpServiceType"]
+    },
     complainceDetails: {
-      baseURL: process.env.REACT_APP_AWS_COMPLIANCE_DASHBOARD_BASE_URL,
-      apiEndpoint: "get-bc-control-id-compliance-details",
+      containerElement: {
+        coloumnName: ["Control ID", "Control Title", "Control Description"],
+        coloumnKey: ["bcGcpControlItemId", "bcGcpControl", "bcGcpControlDescription"]
+      },
+      outerElement: {
+        Severity: {
+          coloumnName: ["Confidentiality", "Integrity", "Availability"],
+          coloumnKey: ["confidentialityRisk", "integrityRisk", "availabilityRisk"]
+        },
+        region: {
+          coloumnName: "Region",
+          coloumnKey: "gcpRegion"
+        },
+        time: {}
+      }
+    },
+    complainceStatus: {
+      baseURL: process.env.REACT_APP_COMPLIANCE_DASHBOARD_BASE_URL,
+      apiEndpoint: "get-bcControlId-complaince-details",
       params: {
         paramKey: ["resource", "bcControlItemId"],
         tableKey: ["gcpResourceType", "bcGcpControlItemId"]
-      },
-      dawerHeaderColoumn: {
-        controlId: "Control ID",
-        projectId: "GCP Project ID",
-        resourceType: "Resource Type",
-        serviceType: "Service Type"
       },
       jsonView: {
         apiEndpoint: "get-resourceid-complaince-details",
