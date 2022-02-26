@@ -89,17 +89,33 @@ const GCP = [
       //   width: 250
       // }
     ],
-    // pk: "scosSecurityControlType",
+
+    /**********************************************************
+     *          !Complaice drawer data config
+     **********************************************************/
+    //? Drawer header common data
     dawerHeader: {
-      coloumn: {
-        controlId: "Control ID",
-        projectId: "GCP Project ID",
-        resourceType: "Resource Type",
-        serviceType: "Service Type"
-      },
-      coloumnKey: []
+      coloumnName: ["Control ID", "GCP Project ID", "Resource Type", "Service Type"],
+      coloumnKey: ["bcGcpControlItemId", "gcpProjectId", "gcpResourceType", "gcpServiceType"]
     },
     complainceDetails: {
+      containerElement: {
+        coloumnName: ["Control ID", "Control Title", "Control Description"],
+        coloumnKey: ["bcGcpControlItemId", "bcGcpControl", "bcGcpControlDescription"]
+      },
+      outerElement: {
+        Severity: {
+          coloumnName: ["Confidentiality", "Integrity", "Availability"],
+          coloumnKey: ["confidentialityRisk", "integrityRisk", "availabilityRisk"]
+        },
+        region: {
+          coloumnName: "Region",
+          coloumnKey: "gcpRegion"
+        },
+        time: {}
+      }
+    },
+    complainceStatus: {
       baseURL: process.env.REACT_APP_COMPLIANCE_DASHBOARD_BASE_URL,
       apiEndpoint: "get-bcControlId-complaince-details",
       params: {

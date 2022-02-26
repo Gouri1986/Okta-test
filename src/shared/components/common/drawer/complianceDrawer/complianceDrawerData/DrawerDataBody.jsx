@@ -1,7 +1,7 @@
 import React from "react"
 import ResourceDataTable from "./ResourceDataTable"
 import RegulationDataTable from "./RegulationDataTable"
-import ConsolidatedData from "./ConsolidatedData"
+import ComplainceDetails from "./complainceDetails"
 
 const DrawerDataBody = props => {
   const { type } = props
@@ -12,10 +12,9 @@ const DrawerDataBody = props => {
         <ResourceDataTable {...props} />
       ) : type === "Regulation" ? (
         <RegulationDataTable {...props} />
-      ) : type === "ConsolidatedData" ? 
-        <ConsolidatedData />
-      : null
-      }
+      ) : type === "complainceDetails" ? (
+        <ComplainceDetails {...props} />
+      ) : null}
     </div>
   )
 }

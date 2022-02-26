@@ -1,4 +1,4 @@
-@import 'variables';
+@import "variables";
 
 /**********************************************************
           Transparent & translucent background
@@ -52,7 +52,9 @@
 .bg-violet-container {
   background-color: $violet-container;
 }
-
+.bg-blue-light-container {
+  background-color: $blue-light-container;
+}
 /**********************************************************
                         status color 
  ***********************************************************/
@@ -72,9 +74,9 @@
 /**********************************************************
                     Shadow Color
 ***********************************************************/
-.shw-white{
-box-shadow: $button-shadow-white;
+.shw-white {
+  box-shadow: $button-shadow-white;
 }
-.shw-violet{
+.shw-violet {
   box-shadow: $button-shadow-violet;
 }
