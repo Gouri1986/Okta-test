@@ -84,7 +84,7 @@ const Dashboard = () => {
 
   const layoutProps = {
     tableData: tableContents,
-    tableTitle,
+    tableTitle: "Resource Inventory",
     drawer,
     openCRUDModal,
     setOpenCRUDModal,

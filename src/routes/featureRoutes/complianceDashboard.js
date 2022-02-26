@@ -192,7 +192,7 @@ const AWS = [
       {
         title: "Control",
         id: "bcGcpControlDescription",
-        width: 350
+        width: 370
       },
       {
         title: "Compliance Status",
@@ -381,12 +381,12 @@ const routes = [
     headerStatic: [
       {
         title: "CT Group",
-        id: " ",
+        id: "bcCtgName",
         width: 120
       },
       {
         title: "Cloud Tenant",
-        id: " ",
+        id: "bcCtName",
         width: 150
       },
       {
