@@ -89,7 +89,11 @@ const GCP = [
       //   width: 250
       // }
     ],
-    // pk: "scosSecurityControlType",
+
+    /**********************************************************
+     *          !Complaice drawer data config
+     **********************************************************/
+    //? Drawer header common data
     dawerHeader: {
       coloumnName: ["Control ID", "GCP Project ID", "Resource Type", "Service Type"],
       coloumnKey: ["bcGcpControlItemId", "gcpProjectId", "gcpResourceType", "gcpServiceType"]
@@ -98,6 +102,17 @@ const GCP = [
       containerElement: {
         coloumnName: ["Control ID", "Control Title", "Control Description"],
         coloumnKey: ["bcGcpControlItemId", "bcGcpControl", "bcGcpControlDescription"]
+      },
+      outerElement: {
+        Severity: {
+          coloumnName: ["Confidentiality", "Integrity", "Availability"],
+          coloumnKey: ["confidentialityRisk", "integrityRisk", "availabilityRisk"]
+        },
+        region: {
+          coloumnName: "Region",
+          coloumnKey: "gcpRegion"
+        },
+        time: {}
       }
     },
     complainceStatus: {

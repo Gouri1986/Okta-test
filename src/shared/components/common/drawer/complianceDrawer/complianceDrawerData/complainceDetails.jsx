@@ -1,13 +1,31 @@
 import React from "react"
 import InlineStatusBarChart from "../../../charts/TableInlineBarStatus"
 import ComplianceViewButton from "../../../tableContainer/table/columnButtons/ComplianceViewButton"
+import { SeverityIcon } from "../../../tableContainer/table/assets/index"
+
+const SeverityCell = props => {
+  const { label, labelKey, data } = props
+
+  return (
+    <div className="flex-r-jc-ac flex-jc-sp-btn">
+      {label?.map((item, i) => (
+        <div className="flex-r flex-jc-fs">
+          <p className="fw-600">{item}</p>
+          <div className="pl-5">
+            <SeverityIcon level={data?.[labelKey[i]]} />
+          </div>
+        </div>
+      ))}
+    </div>
+  )
+}
 
 const ComplainceDetails = props => {
   const { data, tableDetails } = props
 
   const containerElement = tableDetails?.complainceDetails?.containerElement
-
-  console.log(data?.descriptiveComplainceStatus?.[0].Fail)
+  const outerElement = tableDetails?.complainceDetails?.outerElement
+  console.log(outerElement?.Severity?.coloumnKey)
   return (
     <div className="p-10">
       <div className="bg-blue-light-container bdr-r-10 pt-20 pl-10 pr-10 mt-25">
@@ -18,7 +36,7 @@ const ComplainceDetails = props => {
           </div>
         ))}
       </div>
-      <div className="pl-20 pr-20 mt-20 flex-r flex-jc-sp-btn">
+      <div className="pl-20 pr-20 mt-40 flex-r flex-jc-sp-btn">
         <div className="cp flex-r-jc-ac bg-secondary bdr-r-25 pt-5 pb-5 pr-5 wp-60">
           <InlineStatusBarChart
             value1={data?.descriptiveComplainceStatus?.[0].Pass}
@@ -27,6 +45,19 @@ const ComplainceDetails = props => {
         </div>
         <div className="cp">
           <ComplianceViewButton />
+        </div>
+      </div>
+      <div className="mt-40 p-10">
+        <h4>Severity:</h4>
+        <SeverityCell
+          label={outerElement?.Severity?.coloumnName}
+          labelKey={outerElement?.Severity?.coloumnKey}
+          data={data}
+        />
+      </div>
+      <div className="mt-40 p-10">
+        <div className="flex-r flex-jc-fs">
+          <h4>{outerElement?.region?.coloumnName}: </h4> {data?.[outerElement?.region?.coloumnKey]}
         </div>
       </div>
     </div>
