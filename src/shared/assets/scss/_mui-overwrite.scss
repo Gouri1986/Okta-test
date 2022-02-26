@@ -2,43 +2,51 @@
                        Charts- 
 ***********************************************************/
 
- /********************Pi charts***************/
-.css-bhp9pd-MuiPaper-root-MuiCard-root{
-    box-shadow: none !important;
+/********************Pi charts***************/
+.css-bhp9pd-MuiPaper-root-MuiCard-root {
+  box-shadow: none !important;
 }
 
- /********************line charts***************/
-.css-46bh2p-MuiCardContent-root{
-    padding:0px !important;
+/********************line charts***************/
+.css-46bh2p-MuiCardContent-root {
+  padding: 0px !important;
 }
 
-.css-46bh2p-MuiCardContent-root:last-child{
-    padding-bottom: 0px !important;
+.css-46bh2p-MuiCardContent-root:last-child {
+  padding-bottom: 0px !important;
 }
 
-
- /**************************************************
+/**************************************************
  *            paginationoverrides
  **************************************************/
 
 .css-w05zow-MuiButtonBase-root-MuiPaginationItem-root {
-    color: #1f4173 !important;
-    font-family: Poppins;
-    font-style: normal;
-    font-weight: 600;
-    font-size: 14px;
-    line-height: 21px;
-  }
-  .css-w05zow-MuiButtonBase-root-MuiPaginationItem-root.Mui-selected:hover {
-    background-color: rgba(0, 0, 0, 0.12) !important;
-  }
-  .css-w05zow-MuiButtonBase-root-MuiPaginationItem-root.Mui-selected {
-    background-color: #ffffff !important;
-  }
-  .css-w05zow-MuiButtonBase-root-MuiPaginationItem-root.Mui-selected {
-    background-color: #fff;
-    border: 1px solid #110def;
-    box-sizing: border-box;
-    border-radius: 3px;
-    color: #110def !important;
-  }
+  color: #1f4173 !important;
+  font-family: Poppins;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 21px;
+}
+.css-w05zow-MuiButtonBase-root-MuiPaginationItem-root.Mui-selected:hover {
+  background-color: rgba(0, 0, 0, 0.12) !important;
+}
+.css-w05zow-MuiButtonBase-root-MuiPaginationItem-root.Mui-selected {
+  background-color: #ffffff !important;
+}
+.css-w05zow-MuiButtonBase-root-MuiPaginationItem-root.Mui-selected {
+  background-color: #fff;
+  border: 1px solid #110def;
+  border-radius: 3px;
+  color: #110def !important;
+}
+
+/**************************************************
+                  Date Picker
+ **************************************************/
+.react-date-picker__wrapper {
+  background-color: #dddcff;
+  padding: 8px 10px;
+  border-radius: 10px;
+  border: thin solid #d5d0d0 !important;
+}

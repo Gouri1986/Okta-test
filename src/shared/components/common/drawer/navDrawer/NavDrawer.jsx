@@ -24,9 +24,7 @@ const Drawer = (props) => {
   }, [navExpanded]);
 
   return (
-    <div
-      className={navExpanded ? "drawer-container-expanded" : "drawer-container"}
-    >
+    <div className={"drawer-container"}>
       {/*************** Drawer Header ****************/}
       <DrawerHeader
         secondMenu={secondMenu}
@@ -35,7 +33,9 @@ const Drawer = (props) => {
         expanded={navExpanded}
         setExpanded={(v) => {
           dispatch(setNavDrawerExpand(v));
-          v && dispatch(setFilterDrawerExpand(false)) && dispatch(setComplianceDrawerExpand(false));
+          v &&
+            dispatch(setFilterDrawerExpand(false)) &&
+            dispatch(setComplianceDrawerExpand(false));
         }}
       />
       {/************** Drawer Main Section ***********/}

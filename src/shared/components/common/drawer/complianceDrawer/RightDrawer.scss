@@ -18,9 +18,9 @@
   width: 100% !important;
 }
 
-.sidebar {
+.complaince-sidebar {
   border-radius: 10px 10px 0px 0px;
-  top: 0%;
+  top: 8%;
   right: 23px;
   height: 100%;
   background-color: #fff;
@@ -28,33 +28,33 @@
   position: fixed !important;
   z-index: 1;
   overflow: auto;
-  margin-top: 82px;
+  //margin-top: 82px;
 }
 
-.sidebar-body {
+.complaince-sidebar-body {
   padding: 0px;
   overflow: auto;
   height: 80%;
 }
 
-.sidebar-body::-webkit-scrollbar {
+.complaince-sidebar-body::-webkit-scrollbar {
   width: 0.7em;
   left: -10px;
 }
-.sidebar-bar::-webkit-scrollbar:focus {
+.complaince-sidebar-bar::-webkit-scrollbar:focus {
   width: 0.12em;
 }
-.sidebar-body::-webkit-scrollbar-track {
+.complaince-sidebar-body::-webkit-scrollbar-track {
   background-color: rgb(236, 233, 233);
 }
 
-.sidebar-body::-webkit-scrollbar-thumb {
+.complaince-sidebar-body::-webkit-scrollbar-thumb {
   background-color: darkgrey;
   outline: 1px solid slategrey;
   border-radius: 15px;
 }
 
-.sidebar-animation {
+.complaince-sidebar-animation {
   position: relative;
   animation: animateopen 0.2s;
 }

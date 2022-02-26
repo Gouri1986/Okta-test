@@ -2,7 +2,8 @@ import axios from "axios"
 import {
   setDrawerData,
   setDrawerJSONData,
-  setDrawerRegulationData
+  setDrawerRegulationData,
+  setDrawerRegulationMap
 } from "../../../redux/drawer/drawerActions"
 
 const requestConfig = ({ token, params }) => ({
@@ -18,7 +19,7 @@ export const getDrawerData = (path, params) => {
     const { user: token } = getState().userReducer
     const response = await axios.get(path, requestConfig({ token, params }))
     const { data } = response
-    dispatch(setDrawerData(data.data))
+    dispatch(setDrawerData(data?.data))
   }
 }
 
@@ -27,7 +28,7 @@ export const getDrawerJSONData = (path, params) => {
     const { user: token } = getState().userReducer
     const response = await axios.get(path, requestConfig({ token, params }))
     const { data } = response
-    dispatch(setDrawerJSONData(data.data))
+    dispatch(setDrawerJSONData(data?.data))
   }
 }
 
@@ -36,6 +37,16 @@ export const getDrawerRegulationData = (path, params) => {
     const { user: token } = getState().userReducer
     const response = await axios.get(path, requestConfig({ token, params }))
     const { data } = response
-    dispatch(setDrawerRegulationData(data.Regulation))
+    //console.log("getDrawerRegulationData", data?.data)
+    dispatch(setDrawerRegulationData(data?.data))
   }
 }
+
+// export const getDrawerRegulationMap = (path, params) => {
+//   return async (dispatch, getState) => {
+//     const { user: token } = getState().userReducer
+//     const response = await axios.get(path, requestConfig({ token, params }))
+//     const { data } = response
+//     dispatch(setDrawerRegulationMap(data.Regulation))
+//   }
+// }

@@ -6,7 +6,9 @@ import IAMDashboard from "../pages/iam/Dashboard";
 import ENCSDashboard from "../pages/metadata/environmentCatelogue/Dashboard";
 import SCOSDashboard from "../pages/metadata/securityCompliance/Dashboard";
 import ComplianceDashboard from "../pages/features/cloud-goverance/complianceDashboard/Dashboard";
+import ResourceInventoryDashboard from "../pages/features/cloud-goverance/resourceInventory/Dashboard";
 import ResourceAuditLogsDashboard from "../pages/features/cloud-goverance/resourceAuditLogs/Dashboard";
+import TestDashboard from "../pages/features/cloud-goverance/test/Dashboard";
 import { Navbar } from "../shared/components/common";
 import { RequireAuth } from "./utils";
 import { FilterDrawer } from "../shared/components/common/drawer/filterDrawer";
@@ -56,6 +58,16 @@ const AppRouter = () => {
         <Route path='/resource-auditLogs-dashboard'>
           <RequireAuth>
             <ResourceAuditLogsDashboard />
+          </RequireAuth>
+        </Route>
+        <Route path='/oci-dashboard'>
+          <RequireAuth>
+            <TestDashboard />
+          </RequireAuth>
+        </Route>
+        <Route path='/resource-inventory'>
+          <RequireAuth>
+            <ResourceInventoryDashboard />
           </RequireAuth>
         </Route>
       </Switch>

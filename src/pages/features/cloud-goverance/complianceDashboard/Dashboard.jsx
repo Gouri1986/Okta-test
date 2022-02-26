@@ -30,7 +30,6 @@ const Dashboard = () => {
   // location hook to get the location variables
   const location = useLocation();
   //BASE URL of api
-  const baseUrl = process.env.REACT_APP_COMPLIANCE_DASHBOARD_BASE_URL;
   const paramsToFetchTableDetails = [drawer, location, "compliance-dashboard/"];
 
   useEffect(() => {
@@ -39,7 +38,7 @@ const Dashboard = () => {
     setTableDetails(tableDetail);
     setTableRowKey(tableDetail?.key);
     setTableTitle(tableDetail?.title);
-    console.log(tableDetail.tableWhitelists)
+    //console.log(tableDetail)
     const apiEndpoint = tableDetail?.apiEndpoint;
     if (apiEndpoint) {
       getTable(apiEndpoint);
@@ -50,7 +49,8 @@ const Dashboard = () => {
   }, [location.pathname]);
 
   const getTable = async (activeEndPoint) => {
-    const path = `${baseUrl}${activeEndPoint}`;
+    let tableDetail = getTableDetailFromRoutes(...paramsToFetchTableDetails);
+    const path = `${tableDetail.baseURL}${activeEndPoint}`;
     dispatch(getTableData(path));
   };
 
@@ -95,13 +95,12 @@ const Dashboard = () => {
     hideAdd: true,
     showMap: false,
     showWidget: true,
-    showTable: true
+    showTable: true,
   };
 
   const tableProps = {
     selectedRow: selectedRow,
     onRowClick: onRowClick,
-    disableRowclick: true,
     tableData: tableContents,
     tableRowkey,
     page,
@@ -111,8 +110,9 @@ const Dashboard = () => {
     openCRUDModal,
     setOpenCRUDModal,
     activeEndpoint,
+    compliance: true,
     getTable,
-    baseUrl,
+    baseUrl: tableDetails.baseURL,
     CRUDModalType,
     setCRUDModalType,
     complianceDrawerExpanded,

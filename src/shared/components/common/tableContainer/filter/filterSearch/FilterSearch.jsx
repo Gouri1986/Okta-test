@@ -151,12 +151,9 @@ const FilterSearch = () => {
           }
           return false;
         });
-
-        console.log(filteredData);
         filteredData?.length > 0 &&
           dispatch(setFilteredTableContents({ header, data: filteredData }));
       } else {
-        console.log("jdk");
         let filteredData = data?.filter((e) => {
           return selectedColumn?.find((el) => el.value === e[el.id]);
         });

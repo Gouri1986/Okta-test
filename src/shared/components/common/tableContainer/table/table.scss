@@ -2,32 +2,29 @@
 
 .titan-table {
   background: white;
-  width: fit-content;
+  //width: fit-content;
   height: auto;
   max-height: 62vh;
   color: #1f4173;
 }
 
 /* Table Header  */
-// .titan-table-header {
-//   display: flex;
-//   flex-direction: row;
-//   background-color: $white;
-//   justify-content: space-evenly;
-// }
+.titan-table-header {
+  background: #fcfcfc;
+}
 
 .table-header-cell {
   font-size: 15px;
   line-height: 28px;
   color: #1f4173;
-  display: inline-flex;
-  align-items: center;
   cursor: pointer;
-  display: flex;
-  text-align: center;
-  justify-content: center;
-  width: fit-content;
-  white-space: nowrap;
+  text-align: left;
+  align-items: center;
+}
+
+.severity-sb-header {
+  border-width: 1px 0px 0px 0px;
+  border-style: solid;
 }
 
 /* Table Rows */
@@ -50,9 +47,7 @@
   height: 2em;
   overflow: hidden;
   word-wrap: break-word;
-  white-space: pre-wrap;
   color: #1f4173;
-  padding: 10px;
 }
 
 .table-data-cell-status {
@@ -60,7 +55,7 @@
   line-height: 1em;
   height: 2em;
   overflow: hidden;
-  background:#00a389;
+  background: #00a389;
   border-radius: 100px;
   text-align: center;
   padding: 5px 10px;

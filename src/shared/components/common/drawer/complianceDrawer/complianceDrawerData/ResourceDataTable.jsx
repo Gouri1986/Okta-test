@@ -15,7 +15,7 @@ const StatusComponet = props => {
 }
 
 const ResourceDataTable = props => {
-  const { resourcesId, headerData } = props
+  const { resourcesId, headerData, datum, tableDetails, data } = props
   const dispatch = useDispatch()
 
   const { complainceDrawerJSONData } = useSelector(state => state.drawerReducer)
@@ -52,10 +52,14 @@ const ResourceDataTable = props => {
               <ComplianceViewButton
                 dark
                 onClick={() => {
+                  let paramsKey = {
+                    resource: data[tableDetails?.complainceDetails?.jsonView?.params?.tableKey?.[1]],
+                    resourceId: item.resourceId
+                  }
                   dispatch(
                     getDrawerJSONData(
-                      `${process.env.REACT_APP_COMPLIANCE_DASHBOARD_BASE_URL}get-resourceid-complaince-details`,
-                      { resourceId: item?.resourceId, resource: headerData?.ociResourceType }
+                      `${process.env.REACT_APP_COMPLIANCE_DASHBOARD_BASE_URL}${tableDetails?.complainceDetails?.jsonView?.apiEndpoint}`,
+                      paramsKey
                     )
                   )
                   setOpenComplianceDrawerModal(true)

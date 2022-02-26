@@ -100,7 +100,6 @@ const ApexColumnCharts = ({ direction }) => {
     },
   ];
 
-  console.log(series);
 
   return (
     <Card>

@@ -42,19 +42,6 @@ $border-tertiary-color: #110def;
 $translucent-color: rgba(196, 196, 196, 0.24);
 
 /**********************************************************
-                       Button colors 
- ***********************************************************/
-$button-bg-color: #101010;
-
-/**********************************************************
-                       Box/card colors 
- ***********************************************************/
-$button-shadow-color: #a3abb9;
-$button-shadow-white: 0px 1.16712px 2.33425px rgba(191, 113, 15, 0.2), 0px 2.33425px 4.66849px rgba(191, 113, 15, 0.2);
-$button-shadow-violet: inset 0px 1.16712px 2.33425px rgba(97, 97, 97, 0.2), inset 0px 2.33425px 4.66849px rgba(97, 97, 97, 0.2);
-$checkbox-border-color: #c4c4c4;
-
-/**********************************************************
                        Pagination colors 
  ***********************************************************/
 $pagination-selected-color: rgba(17, 13, 239, 0.27);
@@ -73,17 +60,29 @@ $tab-color: #e3e1e1;
 /**********************************************************
                        Container Colors
  ***********************************************************/
-$grey-conatainer: #f5f5f5;
+$grey-container: #f5f5f5;
 $purple-container: #f0d6ff;
-$green-conatainer: rgba(22, 195, 91, 0.3);
-$orange-conatainer: #fbf2e4;
-$violet-conatainer: #dddcff;
+$green-container: rgba(22, 195, 91, 0.3);
+$orange-container: #fbf2e4;
+$violet-container: #dddcff;
+
+/**********************************************************
+                      Button/checkbox colors 
+ ***********************************************************/
+ $button-shadow-color: #a3abb9;
+ $button-shadow-white: 0px 1.16712px 2.33425px rgba(191, 113, 15, 0.2), 0px 2.33425px 4.66849px rgba(191, 113, 15, 0.2);
+ $button-shadow-violet: inset 0px 1.16712px 2.33425px rgba(97, 97, 97, 0.2), inset 0px 2.33425px 4.66849px rgba(97, 97, 97, 0.2);
+ $checkbox-border-color: #c4c4c4;
+ 
+/**********************************************************
+                       Button colors 
+ ***********************************************************/
+ $button-bg-color: #101010;
 
 /**********************************************************
                        Divider Colors
  ***********************************************************/
 $divider-grey: #e5e5e5;
-
 
 /**********************************************************
                        sticky Colors

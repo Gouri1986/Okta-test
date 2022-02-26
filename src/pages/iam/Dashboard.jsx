@@ -64,11 +64,11 @@ const Dashboard = () => {
   const [rowsPerPage, setRowsPerPage] = useState(10);
   const pageCount = Math.ceil(tableContents.data?.length / rowsPerPage);
 
-  // pagination page count state change 
+  // pagination page count state change
   useEffect(() => {
-    setPage(1)
-  }, [tableContents])
-  
+    setPage(1);
+  }, [tableContents]);
+
   // state for the visibility of crud modal
   const [openCRUDModal, setOpenCRUDModal] = useState(false);
   const [CRUDModalType, setCRUDModalType] = useState("add");
@@ -81,7 +81,6 @@ const Dashboard = () => {
     setOpenCRUDModal,
     CRUDModalType,
     setCRUDModalType,
-    hideAdd: true,
     showMap: false,
     showWidget: false,
     showTable: true,

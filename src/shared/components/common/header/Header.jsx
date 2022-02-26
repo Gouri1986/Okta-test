@@ -1,10 +1,9 @@
-import React, { useEffect } from "react";
-import { useLocation } from "react-router-dom";
+import React from "react";
 import {
   HelpIcon,
   NotificationIcon,
 } from "../../../assets/images/icons/common";
-import User from "../../../assets/images/profile/user.svg";
+import "./header.scss";
 import Search from "../search/Search";
 
 function Header() {
@@ -23,8 +22,14 @@ function Header() {
             <p className='f-12 fc-white'>2</p>
           </div>
         </div>
-        <div className='min-w-60 flex-r-ac bdr-rp-50 bdr-white-5'>
-          <img src={User} alt='profile-pic' width='100%' height='100%'></img>
+        <div className='w-50 h-50 flex-r-ac bdr-r-25 bdr-white-5'>
+          <img
+            src={
+              "https://images.pexels.com/photos/3201630/pexels-photo-3201630.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260"
+            }
+            alt='profile-pic'
+            className='user-profile'
+          ></img>
         </div>
       </div>
     </div>

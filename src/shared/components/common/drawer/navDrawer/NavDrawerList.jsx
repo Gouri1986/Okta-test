@@ -120,8 +120,8 @@ const DrawerList = (props) => {
             showSecondMenu(false);
             if (path) {
               dispatch(setActiveTableTabs([]));
-
               history.push(path);
+              setExpanded(false);
               setActiveEndPoint(apiEndpoint);
             } else {
               onSubMenuClick();
@@ -168,7 +168,7 @@ const DrawerList = (props) => {
             <div className='flex-r-ac flex-1'>
               <Icon />
               {expanded && !secondMenu && (
-                <span className='ml-10 mr-25 f-16'>{title}</span>
+                <span className='ml-10 mr-25 f-15'>{title}</span>
               )}
             </div>
             {expanded && !secondMenu && (
@@ -229,6 +229,8 @@ const DrawerList = (props) => {
             if (item.path.length > 0) {
               dispatch(setActiveTableTabs(items));
               history.push(item.path);
+              setExpanded(false);
+
               setActiveEndPoint(item.apiEndpoint);
             }
           }}
@@ -257,6 +259,7 @@ const DrawerList = (props) => {
       ) {
         dispatch(setActiveTableTabs([]));
         history.push(item.items[0].path);
+        setExpanded(false);
         setActiveEndPoint(item.items[0].apiEndpoint);
         setSecondMenuItemSelected({ title: "", bool: false });
       } else if (
@@ -290,6 +293,7 @@ const DrawerList = (props) => {
       } else {
         dispatch(setActiveTableTabs([]));
         history.push(item.path);
+        setExpanded(false);
         setActiveEndPoint(item.apiEndpoint);
       }
     };

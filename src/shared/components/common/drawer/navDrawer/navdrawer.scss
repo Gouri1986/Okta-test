@@ -1,8 +1,7 @@
-
 .drawer-container {
   display: flex;
-  padding-left: 20px;
-  padding-right: 20px;
+  padding-left: 10px;
+  padding-right: 10px;
   flex-direction: column;
   background-color: #001833;
   z-index: 100;
@@ -143,7 +142,7 @@
   display: flex;
   align-items: center;
   letter-spacing: 0.005em;
-  font-feature-settings: 'tnum' on, 'lnum' on;
+  font-feature-settings: "tnum" on, "lnum" on;
   color: #ffffff;
   text-transform: capitalize;
   border-left: 2px solid #0f56b3;
@@ -158,7 +157,7 @@
   display: flex;
   align-items: center;
   letter-spacing: 0.005em;
-  font-feature-settings: 'tnum' on, 'lnum' on;
+  font-feature-settings: "tnum" on, "lnum" on;
   color: #ffffff;
   &:hover {
     border-left: 2px solid #0f56b3;
@@ -191,9 +190,6 @@
   padding-top: 0px;
 }
 
-.drawer-right-arrow 
-.menu-right-arrow 
-.drawer-left-arrow 
-.menu-left-arrow{
+.drawer-right-arrow .menu-right-arrow .drawer-left-arrow .menu-left-arrow {
   transition: transform 0.3s ease-out;
 }
