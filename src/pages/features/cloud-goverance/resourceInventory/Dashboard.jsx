@@ -97,6 +97,7 @@ const Dashboard = () => {
     showWidget: true,
     showViewByOptions: true,
     showTable: true,
+    showDefaultSelectedFilter: true
   };
 
   const tableProps = {

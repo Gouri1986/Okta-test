@@ -95,7 +95,8 @@ const Dashboard = () => {
     hideAdd: true,
     showMap: false,
     showWidget: true,
-    showTable: true
+    showTable: true,
+    showDefaultSelectedFilter: false
   };
 
   

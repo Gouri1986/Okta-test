@@ -87,7 +87,8 @@ const Dashboard = () => {
     hideAdd: true,
     showMap: true,
     showWidget: false,
-    showTable: false
+    showTable: false,
+    showDefaultSelectedFilter: false
   }
 
   const tableProps = {
