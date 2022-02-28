@@ -48,7 +48,7 @@ const ResourceDataTable = props => {
                 {item.resourceId}
               </span>
             </td>
-            <td className="flex-1" style={{ textAlign: "center" }}>
+            <td className="flex-1 cp" style={{ textAlign: "center" }}>
               <ComplianceViewButton
                 dark
                 label="View JSON"
@@ -78,7 +78,7 @@ const ResourceDataTable = props => {
           size={`xs`} // sm, md, lg, xl
           isHeaderShow={false}
         >
-          <div className="h-500 bdr-r-6 p-10" style={{ backgroundColor: "rgba(199, 199, 199, 0.37)" }}>
+          <div className="h-500 bdr-r-6 p-10">
             <code
               style={{
                 wordBreak: "break-word",

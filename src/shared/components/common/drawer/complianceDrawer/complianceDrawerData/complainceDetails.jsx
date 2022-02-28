@@ -26,7 +26,7 @@ const ComplainceDetails = props => {
 
   const containerElement = tableDetails?.complainceDetails?.containerElement
   const outerElement = tableDetails?.complainceDetails?.outerElement
-  //console.log(outerElement?.Severity?.coloumnKey)
+
   return (
     <div className="p-10 mb-70">
       <div className="bg-blue-light-container bdr-r-10 pt-20 pl-10 pr-10 mt-25">
@@ -47,9 +47,13 @@ const ComplainceDetails = props => {
             value2={data?.descriptiveComplainceStatus?.[0].Fail}
           />
           <div className="ml-10 fw-600 f-14">
-            {" "}
-            46%
-            {/* {parseInt((data?.[0]?.Pass / (data?.[0]?.Pass + data?.[0]?.Fail)) * 100)}% */}
+            {parseInt(
+              (data?.descriptiveComplainceStatus?.[0]?.Pass /
+                (data?.descriptiveComplainceStatus?.[0]?.Pass +
+                  data?.descriptiveComplainceStatus?.[0]?.Fail)) *
+                100
+            )}
+            %
           </div>
           <div className="pl-5 pr-5">
             <DoubleArrow />

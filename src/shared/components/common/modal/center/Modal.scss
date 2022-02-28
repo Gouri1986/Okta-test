@@ -60,12 +60,11 @@
 
 .modal-container {
   overflow: auto;
-  height: 75vh;
-  background-color:rgba(199, 199, 199, 0.37);
+  background-color: rgba(199, 199, 199, 0.37);
 }
-// .modal-container-h-75 {
-//   height: 75vh;
-// }
+.modal-container-h-75 {
+  height: 75vh;
+}
 
 .modal-container::-webkit-scrollbar {
   width: 0.5em;
