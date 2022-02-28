@@ -38,10 +38,7 @@ const ComplainceDetails = props => {
         ))}
       </div>
       <div className="pl-20 pr-20 mt-40 flex-r flex-jc-sp-btn">
-        <div
-          className="cp flex-r-jc-ac bg-secondary pt-5 pb-5 pr-5 wp-60 bdr-r-25"
-          onClick={complainceStatusViewEvent}
-        >
+        <div className="cp flex-r-jc-ac bg-secondary wp-60  bdr-r-25" onClick={complainceStatusViewEvent}>
           <InlineStatusBarChart
             value1={data?.descriptiveComplainceStatus?.[0].Pass}
             value2={data?.descriptiveComplainceStatus?.[0].Fail}

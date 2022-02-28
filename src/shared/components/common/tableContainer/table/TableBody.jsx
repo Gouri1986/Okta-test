@@ -176,23 +176,6 @@ const TableBody = props => {
       item.id === "action" || item.id === "resources" || item.id === "regulationControls"
     } ${item?.mr ? `mr-${item.mr}` : "0"}`
 
-    const regulationViewEvent = e => {
-      e.stopPropagation()
-      let paramsKey = {}
-      tableDetails?.complainceStatus?.params?.paramKey?.forEach((v, i) => {
-        paramsKey[v] = datum[tableDetails?.complainceStatus?.params?.tableKey?.[i]]
-      })
-      dispatch(
-        getDrawerData(
-          `${tableDetails?.complainceStatus?.baseURL}${tableDetails?.complainceStatus?.apiEndpoint}`,
-          paramsKey
-        )
-      )
-      dispatch(setComplianceDrawerExpand(true))
-      dispatch(setNavDrawerExpand(false))
-      dispatch(setFilterDrawerExpand(false))
-      setcomplainceDrawerType("Resources")
-    }
     return (
       <td style={{ textAlign: id === "bcGcpControl" ? "left" : "center" }} className={rowCellClassName}>
         {/* action buttons column is rendred conditionally 
