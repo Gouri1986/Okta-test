@@ -273,8 +273,6 @@ const TableBody = props => {
                 dispatch(setNavDrawerExpand(false))
                 dispatch(setFilterDrawerExpand(false))
                 setActiveData(datum)
-                setcomplainceDrawerType("Regulation")
-
                 let paramsKey = {}
                 tableDetails?.regulationControls?.params?.paramKey?.forEach((v, i) => {
                   paramsKey[v] = datum[tableDetails?.regulationControls?.params?.tableKey?.[i]]
@@ -285,6 +283,7 @@ const TableBody = props => {
                     paramsKey
                   )
                 )
+                setcomplainceDrawerType("Regulation")
               }}
             />
           </div>
@@ -347,11 +346,32 @@ const TableBody = props => {
   /******************************************************
    *         Compliace status & Regulation view onClick event
    *****************************************************/
-  const complainceStatusViewEvent = () => {
+  const complainceStatusViewEvent = e => {
+    e.stopPropagation()
+    let paramsKey = {}
+    tableDetails?.complainceStatus?.params?.paramKey?.forEach((v, i) => {
+      paramsKey[v] = activeData[tableDetails?.complainceStatus?.params?.tableKey?.[i]]
+    })
+    dispatch(
+      getDrawerData(
+        `${tableDetails?.complainceStatus?.baseURL}${tableDetails?.complainceStatus?.apiEndpoint}`,
+        paramsKey
+      )
+    )
     setcomplainceDrawerType("Resources")
   }
 
   const regulationViewEvent = () => {
+    let paramsKey = {}
+    tableDetails?.regulationControls?.params?.paramKey?.forEach((v, i) => {
+      paramsKey[v] = activeData[tableDetails?.regulationControls?.params?.tableKey?.[i]]
+    })
+    dispatch(
+      getDrawerRegulationData(
+        `${tableDetails?.complainceStatus?.baseURL}${tableDetails?.regulationControls?.apiEndpoint}`,
+        paramsKey
+      )
+    )
     setcomplainceDrawerType("Regulation")
   }
   //******************************************************
@@ -397,8 +417,8 @@ const TableBody = props => {
             data={activeData}
             resourcesId={resourcesId}
             tableDetails={tableDetails}
-            complainceStatusViewEvent={() => complainceStatusViewEvent()}
-            regulationViewEvent={() => regulationViewEvent()}
+            complainceStatusViewEvent={e => complainceStatusViewEvent(e)}
+            regulationViewEvent={e => regulationViewEvent(e)}
           />
         </RightDrawer>
       )}
