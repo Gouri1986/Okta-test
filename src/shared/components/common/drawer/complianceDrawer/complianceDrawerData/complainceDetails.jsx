@@ -4,7 +4,7 @@ import ComplianceViewButton from "../../../tableContainer/table/columnButtons/Co
 import { SeverityIcon } from "../../../tableContainer/table/assets/index"
 
 const SeverityCell = props => {
-  const { label, labelKey, data, regulationViewEvent } = props
+  const { label, labelKey, data } = props
 
   return (
     <div className="flex-r-jc-ac flex-jc-sp-btn">
@@ -21,11 +21,11 @@ const SeverityCell = props => {
 }
 
 const ComplainceDetails = props => {
-  const { data, tableDetails } = props
+  const { data, tableDetails, complainceStatusViewEvent, regulationViewEvent } = props
 
   const containerElement = tableDetails?.complainceDetails?.containerElement
   const outerElement = tableDetails?.complainceDetails?.outerElement
-  console.log(outerElement?.Severity?.coloumnKey)
+  //console.log(outerElement?.Severity?.coloumnKey)
   return (
     <div className="p-10 mb-70">
       <div className="bg-blue-light-container bdr-r-10 pt-20 pl-10 pr-10 mt-25">
@@ -37,19 +37,17 @@ const ComplainceDetails = props => {
         ))}
       </div>
       <div className="pl-20 pr-20 mt-40 flex-r flex-jc-sp-btn">
-        <div className="cp flex-r-jc-ac bg-secondary pt-5 pb-5 pr-5 wp-60">
+        <div
+          className="cp flex-r-jc-ac bg-secondary pt-5 pb-5 pr-5 wp-60"
+          onClick={complainceStatusViewEvent}
+        >
           <InlineStatusBarChart
             value1={data?.descriptiveComplainceStatus?.[0].Pass}
             value2={data?.descriptiveComplainceStatus?.[0].Fail}
           />
         </div>
         <div className="cp">
-          <ComplianceViewButton
-            label="View Regulation"
-            onClick={e => {
-              regulationViewEvent(e)
-            }}
-          />
+          <ComplianceViewButton label="View Regulation" onClick={regulationViewEvent} />
         </div>
       </div>
       <div className="mt-40 p-10">

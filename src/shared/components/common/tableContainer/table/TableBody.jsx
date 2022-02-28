@@ -176,9 +176,6 @@ const TableBody = props => {
       item.id === "action" || item.id === "resources" || item.id === "regulationControls"
     } ${item?.mr ? `mr-${item.mr}` : "0"}`
 
-    /******************************************************
-     *          Regulation view onClick event
-     *****************************************************/
     const regulationViewEvent = e => {
       e.stopPropagation()
       let paramsKey = {}
@@ -196,7 +193,6 @@ const TableBody = props => {
       dispatch(setFilterDrawerExpand(false))
       setcomplainceDrawerType("Resources")
     }
-    //******************************************************
     return (
       <td style={{ textAlign: id === "bcGcpControl" ? "left" : "center" }} className={rowCellClassName}>
         {/* action buttons column is rendred conditionally 
@@ -233,7 +229,11 @@ const TableBody = props => {
           <RowRightArrow />
         ) : id === "descriptiveComplainceStatus" ? (
           <div className="flex-r-jc-ac bg-secondary bdr-r-25 pt-5 pb-5 pr-5 wp-90">
-            <div onClick={e => {}}>
+            <div
+              onClick={e => {
+                setcomplainceDrawerType("Resources")
+              }}
+            >
               <InlineStatusBarChart value1={datum[id]?.[0]?.Pass} value2={datum[id]?.[0]?.Fail} />
             </div>
             {/* <div className='fw-500 f-12'>{datum[id]?.[0]?.Pass}/{datum[id]?.[0]?.Pass + datum[id]?.[0]?.Fail}%</div> */}
@@ -250,7 +250,28 @@ const TableBody = props => {
           <ComplianceViewButton dark />
         ) : id === "regulationControls" ? (
           <div className="flex-r-jc">
-            <ComplianceViewButton label="View" onClick={e => regulationViewEvent(e)} />
+            <ComplianceViewButton
+              label="View"
+              onClick={e => {
+                e.stopPropagation()
+                dispatch(setComplianceDrawerExpand(true))
+                dispatch(setNavDrawerExpand(false))
+                dispatch(setFilterDrawerExpand(false))
+                setActiveData(datum)
+                setcomplainceDrawerType("Regulation")
+
+                let paramsKey = {}
+                tableDetails?.regulationControls?.params?.paramKey?.forEach((v, i) => {
+                  paramsKey[v] = datum[tableDetails?.regulationControls?.params?.tableKey?.[i]]
+                })
+                dispatch(
+                  getDrawerRegulationData(
+                    `${tableDetails?.complainceStatus?.baseURL}${tableDetails?.regulationControls?.apiEndpoint}`,
+                    paramsKey
+                  )
+                )
+              }}
+            />
           </div>
         ) : id === "bcGcpControl" ? (
           // else return normal row data
@@ -308,6 +329,17 @@ const TableBody = props => {
     setResourcseIds(complainceDrawerData[0]?.json_agg)
   }, [complainceDrawerData])
 
+  /******************************************************
+   *         Compliace status & Regulation view onClick event
+   *****************************************************/
+  const complainceStatusViewEvent = () => {
+    setcomplainceDrawerType("Resources")
+  }
+
+  const regulationViewEvent = () => {
+    setcomplainceDrawerType("Resources")
+  }
+  //******************************************************
   return (
     <div className="flex-c ">
       {tableRowData?.map(datum => (
@@ -350,7 +382,8 @@ const TableBody = props => {
             data={activeData}
             resourcesId={resourcesId}
             tableDetails={tableDetails}
-            regulationViewEvent={regulationViewEvent()}
+            complainceStatusViewEvent={() => complainceStatusViewEvent()}
+            regulationViewEvent={() => regulationViewEvent()}
           />
         </RightDrawer>
       )}
