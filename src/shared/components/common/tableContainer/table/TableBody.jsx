@@ -234,7 +234,9 @@ const TableBody = props => {
                 setcomplainceDrawerType("Resources")
               }}
             >
-              <InlineStatusBarChart value1={datum[id]?.[0]?.Pass} value2={datum[id]?.[0]?.Fail} />
+              <InlineStatusBarChart 
+              value1={datum[id]?.[0]?.Pass} 
+              value2={datum[id]?.[0]?.Fail} />
             </div>
             {/* <div className='fw-500 f-12'>{datum[id]?.[0]?.Pass}/{datum[id]?.[0]?.Pass + datum[id]?.[0]?.Fail}%</div> */}
             <div className="fw-600 f-14">
