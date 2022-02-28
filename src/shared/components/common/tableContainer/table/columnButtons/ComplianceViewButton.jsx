@@ -1,26 +1,18 @@
-import React from "react";
-import {DoubleArrow} from '../assets'
+import React from "react"
+import { DoubleArrow } from "../assets"
 
-const ComplianceViewButton = ({ dark, onClick }) => {
+const ComplianceViewButton = ({ label, dark, onClick }) => {
   return (
     <div
       className={
-        dark
-          ? "bg-black flex-r-jc-ac p-8  bdr-r-8"
-          : "bg-secondary flex-r-jc-ac p-8  bdr-r-8 w-100"
+        dark ? "bg-black flex-r-jc-ac p-8  bdr-r-8" : "bg-secondary flex-r-jc-ac p-8  bdr-r-8 wp-100"
       }
       onClick={onClick}
     >
-      <span
-        className={` ${
-          dark ? "fc-white" : "fc-secondary"
-        } f-14 lh-2.1 fw-500 mr-10`}
-      >
-        View
-      </span>
+      <span className={` ${dark ? "fc-white" : "fc-secondary"} f-14 lh-2.1 fw-500 mr-10`}>{label}</span>
       <DoubleArrow />
     </div>
-  );
-};
+  )
+}
 
-export default ComplianceViewButton;
+export default ComplianceViewButton

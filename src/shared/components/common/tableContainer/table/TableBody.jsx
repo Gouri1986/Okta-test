@@ -35,7 +35,6 @@ import {
   setFilterDrawerExpand
 } from "../../../../../redux/common/commonActions"
 import { setDrawerRegulationData } from "../../../../../redux/drawer/drawerActions"
-import ModalRight from "../../modal/right/ModalRight"
 
 const SeverityCell = ({ levels = {} }) => {
   return (
@@ -177,6 +176,27 @@ const TableBody = props => {
       item.id === "action" || item.id === "resources" || item.id === "regulationControls"
     } ${item?.mr ? `mr-${item.mr}` : "0"}`
 
+    /******************************************************
+     *          Regulation view onClick event
+     *****************************************************/
+    const regulationViewEvent = e => {
+      e.stopPropagation()
+      let paramsKey = {}
+      tableDetails?.complainceStatus?.params?.paramKey?.forEach((v, i) => {
+        paramsKey[v] = datum[tableDetails?.complainceStatus?.params?.tableKey?.[i]]
+      })
+      dispatch(
+        getDrawerData(
+          `${tableDetails?.complainceStatus?.baseURL}${tableDetails?.complainceStatus?.apiEndpoint}`,
+          paramsKey
+        )
+      )
+      dispatch(setComplianceDrawerExpand(true))
+      dispatch(setNavDrawerExpand(false))
+      dispatch(setFilterDrawerExpand(false))
+      setcomplainceDrawerType("Resources")
+    }
+    //******************************************************
     return (
       <td style={{ textAlign: id === "bcGcpControl" ? "left" : "center" }} className={rowCellClassName}>
         {/* action buttons column is rendred conditionally 
@@ -213,25 +233,7 @@ const TableBody = props => {
           <RowRightArrow />
         ) : id === "descriptiveComplainceStatus" ? (
           <div className="flex-r-jc-ac bg-secondary bdr-r-25 pt-5 pb-5 pr-5 wp-90">
-            <div
-              onClick={e => {
-                e.stopPropagation()
-                let paramsKey = {}
-                tableDetails?.complainceStatus?.params?.paramKey?.forEach((v, i) => {
-                  paramsKey[v] = datum[tableDetails?.complainceStatus?.params?.tableKey?.[i]]
-                })
-                dispatch(
-                  getDrawerData(
-                    `${tableDetails?.complainceStatus?.baseURL}${tableDetails?.complainceStatus?.apiEndpoint}`,
-                    paramsKey
-                  )
-                )
-                dispatch(setComplianceDrawerExpand(true))
-                dispatch(setNavDrawerExpand(false))
-                dispatch(setFilterDrawerExpand(false))
-                setcomplainceDrawerType("Resources")
-              }}
-            >
+            <div onClick={e => {}}>
               <InlineStatusBarChart value1={datum[id]?.[0]?.Pass} value2={datum[id]?.[0]?.Fail} />
             </div>
             {/* <div className='fw-500 f-12'>{datum[id]?.[0]?.Pass}/{datum[id]?.[0]?.Pass + datum[id]?.[0]?.Fail}%</div> */}
@@ -248,27 +250,7 @@ const TableBody = props => {
           <ComplianceViewButton dark />
         ) : id === "regulationControls" ? (
           <div className="flex-r-jc">
-            <ComplianceViewButton
-              onClick={e => {
-                e.stopPropagation()
-                dispatch(setComplianceDrawerExpand(true))
-                dispatch(setNavDrawerExpand(false))
-                dispatch(setFilterDrawerExpand(false))
-                setActiveData(datum)
-                setcomplainceDrawerType("Regulation")
-
-                let paramsKey = {}
-                tableDetails?.regulationControls?.params?.paramKey?.forEach((v, i) => {
-                  paramsKey[v] = datum[tableDetails?.regulationControls?.params?.tableKey?.[i]]
-                })
-                dispatch(
-                  getDrawerRegulationData(
-                    `${tableDetails?.complainceStatus?.baseURL}${tableDetails?.regulationControls?.apiEndpoint}`,
-                    paramsKey
-                  )
-                )
-              }}
-            />
+            <ComplianceViewButton label="View" onClick={e => regulationViewEvent(e)} />
           </div>
         ) : id === "bcGcpControl" ? (
           // else return normal row data
@@ -368,6 +350,7 @@ const TableBody = props => {
             data={activeData}
             resourcesId={resourcesId}
             tableDetails={tableDetails}
+            regulationViewEvent={regulationViewEvent()}
           />
         </RightDrawer>
       )}

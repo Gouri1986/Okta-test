@@ -4,7 +4,7 @@ import ComplianceViewButton from "../../../tableContainer/table/columnButtons/Co
 import { SeverityIcon } from "../../../tableContainer/table/assets/index"
 
 const SeverityCell = props => {
-  const { label, labelKey, data } = props
+  const { label, labelKey, data, regulationViewEvent } = props
 
   return (
     <div className="flex-r-jc-ac flex-jc-sp-btn">
@@ -27,7 +27,7 @@ const ComplainceDetails = props => {
   const outerElement = tableDetails?.complainceDetails?.outerElement
   console.log(outerElement?.Severity?.coloumnKey)
   return (
-    <div className="p-10">
+    <div className="p-10 mb-70">
       <div className="bg-blue-light-container bdr-r-10 pt-20 pl-10 pr-10 mt-25">
         {containerElement?.coloumnName?.map((item, i) => (
           <div className="pb-30">
@@ -37,14 +37,19 @@ const ComplainceDetails = props => {
         ))}
       </div>
       <div className="pl-20 pr-20 mt-40 flex-r flex-jc-sp-btn">
-        <div className="cp flex-r-jc-ac bg-secondary bdr-r-25 pt-5 pb-5 pr-5 wp-60">
+        <div className="cp flex-r-jc-ac bg-secondary pt-5 pb-5 pr-5 wp-60">
           <InlineStatusBarChart
             value1={data?.descriptiveComplainceStatus?.[0].Pass}
             value2={data?.descriptiveComplainceStatus?.[0].Fail}
           />
         </div>
         <div className="cp">
-          <ComplianceViewButton />
+          <ComplianceViewButton
+            label="View Regulation"
+            onClick={e => {
+              regulationViewEvent(e)
+            }}
+          />
         </div>
       </div>
       <div className="mt-40 p-10">
@@ -55,7 +60,7 @@ const ComplainceDetails = props => {
           data={data}
         />
       </div>
-      <div className="mt-40 p-10">
+      <div className="mt-10 p-10 ">
         <div className="flex-r flex-jc-fs">
           <h4>{outerElement?.region?.coloumnName}: </h4> {data?.[outerElement?.region?.coloumnKey]}
         </div>
