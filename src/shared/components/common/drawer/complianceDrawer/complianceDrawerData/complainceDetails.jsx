@@ -2,6 +2,7 @@ import React from "react"
 import InlineStatusBarChart from "../../../charts/TableInlineBarStatus"
 import ComplianceViewButton from "../../../tableContainer/table/columnButtons/ComplianceViewButton"
 import { SeverityIcon } from "../../../tableContainer/table/assets/index"
+import { DoubleArrow } from "../../../tableContainer/table/assets"
 
 const SeverityCell = props => {
   const { label, labelKey, data } = props
@@ -42,6 +43,12 @@ const ComplainceDetails = props => {
             value1={data?.descriptiveComplainceStatus?.[0].Pass}
             value2={data?.descriptiveComplainceStatus?.[0].Fail}
           />
+          <div className="ml-10 fw-600 f-14"> 46%
+            {/* {parseInt((data?.[0]?.Pass / (data?.[0]?.Pass + data?.[0]?.Fail)) * 100)}% */}
+          </div>
+          <div className="pl-5 pr-5">
+              <DoubleArrow />
+          </div>
         </div>
         <div className="cp">
           <ComplianceViewButton />
