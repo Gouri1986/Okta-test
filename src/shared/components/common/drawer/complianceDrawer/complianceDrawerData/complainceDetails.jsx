@@ -39,18 +39,20 @@ const ComplainceDetails = props => {
       </div>
       <div className="pl-20 pr-20 mt-40 flex-r flex-jc-sp-btn">
         <div
-          className="cp flex-r-jc-ac bg-secondary pt-5 pb-5 pr-5 wp-60"
+          className="cp flex-r-jc-ac bg-secondary pt-5 pb-5 pr-5 wp-60 bdr-r-25"
           onClick={complainceStatusViewEvent}
         >
           <InlineStatusBarChart
             value1={data?.descriptiveComplainceStatus?.[0].Pass}
             value2={data?.descriptiveComplainceStatus?.[0].Fail}
           />
-          <div className="ml-10 fw-600 f-14"> 46%
+          <div className="ml-10 fw-600 f-14">
+            {" "}
+            46%
             {/* {parseInt((data?.[0]?.Pass / (data?.[0]?.Pass + data?.[0]?.Fail)) * 100)}% */}
           </div>
           <div className="pl-5 pr-5">
-              <DoubleArrow />
+            <DoubleArrow />
           </div>
         </div>
         <div className="cp">

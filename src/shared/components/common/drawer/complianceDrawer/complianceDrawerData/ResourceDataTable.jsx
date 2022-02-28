@@ -51,6 +51,7 @@ const ResourceDataTable = props => {
             <td className="flex-1" style={{ textAlign: "center" }}>
               <ComplianceViewButton
                 dark
+                label="View JSON"
                 onClick={() => {
                   let paramsKey = {
                     resource: data[tableDetails?.complainceStatus?.jsonView?.params?.tableKey?.[1]],
