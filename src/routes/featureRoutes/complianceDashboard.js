@@ -54,7 +54,7 @@ const GCP = [
       {
         title: "Severity",
         id: "Severity",
-        width: 180,
+        width: 120,
         levels: {
           c: "confidentialityRisk",
           i: "integrityRisk",
