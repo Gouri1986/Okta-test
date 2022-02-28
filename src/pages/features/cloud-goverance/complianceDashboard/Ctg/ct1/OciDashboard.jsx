@@ -94,7 +94,8 @@ const TestDashboard = () => {
     hideAdd: true,
     showMap: false,
     showWidget: false,
-    showTable: true 
+    showTable: true ,
+    showDefaultSelectedFilter: false
   };
 
   const tableProps = {

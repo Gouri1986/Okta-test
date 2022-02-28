@@ -21,6 +21,7 @@ const Layout = (props) => {
     showMap,
     showTable,
     showViewByOptions,
+    showDefaultSelectedFilter
   } = props;
 
   const { tabs } = useSelector((state) => state.tableReducer);
@@ -86,6 +87,7 @@ const Layout = (props) => {
               <div className='pl-15 pr-15'>
                 <TableSettings
                   tabs={tabs}
+                  showDefaultSelectedFilter = {showDefaultSelectedFilter}
                   tableTitle={tableTitle}
                   hideAdd={hideAdd}
                   modalOnClick={() => {
