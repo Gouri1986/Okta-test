@@ -6,30 +6,34 @@ import ComplianceActionButton from "../../../tableContainer/table/columnButtons/
 import ComplianceViewButton from "../../../tableContainer/table/columnButtons/ComplianceViewButton"
 import Modal from "../../../modal/center/Modal"
 import View from "../asset/View"
+import Status from "../../../status/Status"
 
-const StatusComponet = props => {
-  const { status } = props
-  return (
-    <div
-      className={`flex-r-jc-ac bg-light-${
-        status === "PASS" ? "green" : "red"
-      }-container bdr-r-50 p-5 pl-10 pr-10`}
-    >
-      <div
-        className={`mt-5 mb-5 mr-5 w-8 h-8 bdr-r-25 status-component-${
-          status === "PASS" ? "success" : "fail"
-        }`}
-      ></div>
-      {status === "PASS" ? <p className="f-12">Complaint</p> : <p className="f-12">Non Complaint</p>}
-    </div>
-  )
-}
+const JSONModalFooter = props => {
+  const { cancel, copyData } = props
 
-const ComplainceJSONModalFooter = props => {
+  const [copiedState, SetCopiedState] = useState(false)
+
+  setTimeout(() => {
+    SetCopiedState(false)
+    console.log("Copy")
+  }, 3.0 * 1000)
+
   return (
-    <div className="flex-r">
-      <ComplianceActionButton dark type="copy" label="Copy" />
-      <ComplianceActionButton label="Cancel" />
+    <div className="flex-r flex-j-end">
+      <div className="cp">
+        <ComplianceActionButton
+          dark
+          type="copy"
+          label={!copiedState ? `Copy` : `Copied`}
+          onClick={() => {
+            navigator.clipboard.writeText(JSON.stringify(copyData))
+            SetCopiedState(true)
+          }}
+        />
+      </div>
+      <div className="cp ml-10">
+        <ComplianceActionButton label="Cancel" onClick={() => cancel()} />
+      </div>
     </div>
   )
 }
@@ -53,52 +57,65 @@ const ResourceDataTable = props => {
     <>
       <table className="compliance-resource-table wp-100 ">
         <tr
-          className="flex-r flex-jc-sp-btn wp-100 t-0 pos-sk bg-white pt-15 pb-15 pl-10 pr-10"
+          className="flex-r t-0 pos-sk bg-white p-15 pl-10 pr-10 text-left"
           style={{ borderBottomWidth: 1, borderBottomColor: "#e6eaf0", borderBottomStyle: "solid" }}
         >
-          <th>Resources</th>
-          <th className="">Complaince Status</th>
-          <th>JSON</th>
+          <th className="flex-3">Resources</th>
+          <th className="flex-3 mr-20">Complaince Status</th>
+          <th className="flex-1 ">JSON</th>
         </tr>
         {resourcesId?.map((item, index) => (
-          <tr className="flex-r flex-jc-sp-btn mt-20 mb-20 pl-15 pr-15">
-            <td className="f-14 lh-2.1 pt-10 w-180" style={{ wordBreak: "break-word" }}>
-              {item.resourceId}
+          <tr className="flex-r p-10 mt-20">
+            <td className="flex-3 f-14 lh-2.1" style={{ wordBreak: "break-word" }}>
+              {item?.resourceId}
             </td>
-            <td className="w-170">
-              <StatusComponet status={item.status} />
+            <td className="flex-3 ">
+              <div className="w-140 m-auto">
+                <Status withLabeled status={item?.status} passLabel="Complaint" failLabel="Non Complaint" />
+              </div>
             </td>
-            <td className="cp" style={{ textAlign: "center" }}>
-              <ComplianceViewButton
-                dark
-                label="JSON"
-                Icon={<View height="16" width="22" />}
-                onClick={() => {
-                  let paramsKey = {
-                    resource: data[tableDetails?.complainceStatus?.jsonView?.params?.tableKey?.[1]],
-                    resourceId: item.resourceId
-                  }
-                  dispatch(
-                    getDrawerJSONData(
-                      `${process.env.REACT_APP_COMPLIANCE_DASHBOARD_BASE_URL}${tableDetails?.complainceStatus?.jsonView?.apiEndpoint}`,
-                      paramsKey
+            <td className="flex-2" style={{ textAlign: "center" }}>
+              <div className="m-auto wp-85 cp">
+                <ComplianceViewButton
+                  dark
+                  label="JSON"
+                  Icon={<View height="16" width="22" />}
+                  onClick={() => {
+                    let paramsKey = {
+                      resource: data[tableDetails?.complainceStatus?.jsonView?.params?.tableKey?.[1]],
+                      resourceId: item?.resourceId
+                    }
+                    dispatch(
+                      getDrawerJSONData(
+                        `${process.env.REACT_APP_COMPLIANCE_DASHBOARD_BASE_URL}${tableDetails?.complainceStatus?.jsonView?.apiEndpoint}`,
+                        paramsKey
+                      )
                     )
-                  )
-                  setOpenComplianceDrawerModal(true)
-                }}
-              />
+                    setOpenComplianceDrawerModal(true)
+                  }}
+                />
+              </div>
             </td>
           </tr>
         ))}
         <Modal
+          //isAnimate
+          isHeaderShow={false}
           open={openComplianceDrawerModal}
           close={() => {
             setOpenComplianceDrawerModal(false)
             setComplianceDrawerJSONDataState()
           }}
           size={`xs`} // sm, md, lg, xl
-          isHeaderShow={false}
-          footer={ComplainceJSONModalFooter}
+          footer={
+            <JSONModalFooter
+              cancel={() => {
+                setOpenComplianceDrawerModal(false)
+                setComplianceDrawerJSONDataState()
+              }}
+              copyData={complianceDrawerJSONDataState}
+            />
+          }
         >
           <div className="h-500 bdr-r-6 p-10">
             <code

@@ -62,7 +62,7 @@ label.tree_label:before {
   border-radius: 1em;
   content: "+";
   text-align: center;
-  line-height: 0.9em;
+  line-height: 1em;
 }
 
 :checked ~ label.tree_label:before {
@@ -84,7 +84,7 @@ label.label_l2:before {
   border-radius: 1em;
   content: "+";
   text-align: center;
-  line-height: 0.9em;
+  line-height: 1em;
 }
 
 :checked ~ label.label_l2:before {

@@ -1,13 +1,23 @@
-import React, { Children } from "react"
+import React from "react"
 import "./Modal.scss"
 
 const Modal = props => {
-  const { open, close, size, columnCount, modalTitle, isHeaderShow, isCloseIconShow = true, footer, children } =
-    props
+  const {
+    open,
+    close,
+    size,
+    columnCount,
+    modalTitle,
+    isAnimate,
+    isHeaderShow,
+    isCloseIconShow = true,
+    footer,
+    children
+  } = props
   return (
     <div className={`modal ${open === true ? "side-on-state" : "side-off-state"}`}>
       <div
-        className={`modal-content animate-top ${
+        className={`modal-content ${isAnimate ? `animate-top` : ""} ${
           size === "xs"
             ? `wd-xs`
             : size === "sm"
@@ -40,7 +50,7 @@ const Modal = props => {
         >
           {children}
         </div>
-        {footer}
+        <div className="mt-15">{footer}</div>
       </div>
     </div>
   )

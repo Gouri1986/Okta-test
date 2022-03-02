@@ -11,7 +11,7 @@ const ComplianceViewButton = ({ label, Icon, dark, onClick }) => {
       }
       onClick={onClick}
     >
-      <span className={` ${dark ? "fc-white" : "fc-secondary"} f-12 lh-2.1 fw-500 mr-5`}>{label}</span>
+      <span className={` ${dark ? "fc-white" : "fc-secondary"} f-12 lh-2.1 fw-500 mr-8`}>{label}</span>
       {Icon ? Icon : <DoubleArrow />}
     </div>
   )

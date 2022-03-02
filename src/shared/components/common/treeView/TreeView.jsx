@@ -33,7 +33,7 @@ const TreeView = props => {
   return (
     <div>
       {regulation?.map((item, i) => (
-        <ul className="tree" key={i}>
+        <ul className="tree pb-20 bdr-bottom-2" key={i}>
           <li className="li-l1">
             <input type="checkbox" id={`l1_${i}`} />
             <label className="tree_label" for={`l1_${i}`}>
@@ -55,7 +55,7 @@ const TreeView = props => {
                       regulationMapDiscription(paramsKey, item2[discriptionData?.params?.tableKey?.[0]])
                     }}
                   />
-                  <span className="flex-c flex-jc-sp-btn">
+                  <span className="flex-c flex-jc-sp-btn ">
                     <span className="">
                       <label for={`${i}-li-l${i2}`} className="tree_label label_l2 ">
                         {item2?.[`Control id`]}
@@ -64,10 +64,7 @@ const TreeView = props => {
                     <small className="pl-5 pt-2">{item2.description}</small>
                   </span>
                   <ul>
-                    <div
-                      className="tree_label mt-20 pt-20 f-14 bg-tab p-10 bdr-r-5"
-                      id={`l3_${i}_${i2}`}
-                    >
+                    <div className="tree_label mt-20 pt-20 f-14 bg-tab p-10 bdr-r-5" id={`l3_${i}_${i2}`}>
                       {colKey.map((item3, i3) => (
                         <>
                           <h4 className="pb-6">{getSpacedDisplayName(item3)}</h4>
@@ -108,7 +105,10 @@ const TreeView = props => {
                           </div>
                         }
                       >
-                        <div className="h-500 bdr-r-6 p-10" style={{ backgroundColor: "rgba(199, 199, 199, 0.37)" }}>
+                        <div
+                          className="h-500 bdr-r-6 p-10"
+                          style={{ backgroundColor: "rgba(199, 199, 199, 0.37)" }}
+                        >
                           {colKey.map((item3, i3) => (
                             <>
                               <h4 className="pb-6">{getSpacedDisplayName(item3)}</h4>

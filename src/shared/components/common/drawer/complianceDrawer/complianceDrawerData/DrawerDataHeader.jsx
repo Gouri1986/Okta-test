@@ -14,10 +14,10 @@ const DrawerDataHeader = props => {
     <>
       <div className="complaince-header">
         <div className="f-24 fw-600 pt-10 pb-40 pl-10">
-          {tableTitle}{" "}
-          <span className="cp">
+          {tableTitle}
+          {/* <span className="cp">
             <LinkToExternal className="cp" height="13" width="13" />
-          </span>
+          </span> */}
           <button onClick={() => close()} className="complaince-sidebar-btn">
             &times;
           </button>
