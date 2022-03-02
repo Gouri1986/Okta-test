@@ -7,6 +7,12 @@ import { AddNewIcon } from "./assets";
 import FilterSearch from "../filter/filterSearch/FilterSearch";
 import { useHistory } from "react-router-dom";
 import { useLocation } from "react-router-dom";
+import {CtGroupIcon} from './assets';
+import {CtIcon} from './assets';
+import {AwsCloudIcon} from './assets';
+import {GlobalRegionIcon} from './assets';
+import {RedCloseIcon} from './assets';
+import {BlueDropdownArrow} from './assets';
 
 function TableSettings(props) {
   const { modalOnClick, hideAdd, tabs, showDefaultSelectedFilter} = props;
@@ -30,27 +36,51 @@ function TableSettings(props) {
         })}
       </div>
       {showDefaultSelectedFilter && (
-        <div className='flex-r-ac flex-jc-sp-btn pt-10'>
-          <div className='flex-r'>
-            <div className="bdr-r-10 bg-violet-container shw-violet p-5 flex-r mr-10">
-              <p className='ml-5 fc-quaternary fw-400'>CT Group:</p>
-              <span className='ml-5 fc-quaternary fw-500'>All</span>
+        <div className='flex-r-ac flex-jc-sp-btn bg-secondary'>
+          <div className='flex-r-ac'>
+            <div className="bdr-r-25 bg-white pt-8 pb-8 pl-10 pr-10 flex-r-ac mr-10">
+              <div><CtGroupIcon /></div>
+              <p className='ml-5 fc-primary fw-500'>CT Group: </p>
+              <div className='ml-5 mr-15 fc-quaternary fw-400 f-16 pt-5 pb-5 pr-10 pl-10 bdr-tertiary-1 bdr-r-25 flex-r-ac'>
+                <div className="fc-tertiary">bds-frontend</div>
+                <div className="pl-10 pr-5">
+                  <BlueDropdownArrow />
+                </div>
+              </div>
+              <div className="mr-10"><RedCloseIcon /></div>
             </div>
-            <div className="bdr-r-10 bg-violet-container shw-violet p-5 flex-r mr-10">
-              <p className='ml-5 fc-quaternary fw-400'>Cloud Tenant:</p>
-              <span className='ml-5 fc-quaternary fw-500'>All</span>
+            <div className="bdr-r-25 bg-white pt-8 pb-8 pl-10 pr-10 flex-r-ac mr-10">
+              <div><CtIcon /></div>
+              <p className='ml-5 fc-primary fw-500'>Cloud Tenant: </p>
+              <div className='ml-5 mr-15 fc-quaternary fw-400 f-16 pt-5 pb-5 pr-10 pl-10 bdr-tertiary-1 bdr-r-25 flex-r-ac'>
+                <div className="fc-tertiary">alok-kumar</div>
+                <div className="pl-10 pr-5">
+                  <BlueDropdownArrow />
+                </div>
+              </div>
+              <div className="mr-10"><RedCloseIcon /></div>
             </div>
-            <div className="bdr-r-10 bg-violet-container shw-violet p-5 flex-r mr-10">
-              <p className='ml-5 fc-quaternary fw-400'>Cloud:</p>
-              <span className='ml-5 fc-quaternary fw-500'>All</span>
+            <div className="bdr-r-25 bg-white pt-2 pb-2 pl-10 pr-10 flex-r-ac mr-10">
+              <div><AwsCloudIcon /></div>
+              <p className='ml-5 fc-primary fw-500'>Account ID: </p>
+              <div className='ml-5 mr-15 fc-quaternary fw-400 f-16 pt-5 pb-5 pr-10 pl-10 bdr-tertiary-1 bdr-r-25 flex-r-ac'>
+                <div className="fc-tertiary">AWS2340982430732</div>
+                {/* <div className="pl-10 pr-5">
+                  <BlueDropdownArrow />
+                </div> */}
+              </div>
+              {/* <div className="mr-10"><RedCloseIcon /></div> */}
             </div>
-            <div className="bdr-r-10 bg-violet-container shw-violet p-5 flex-r mr-10">
-              <p className='ml-5 fc-quaternary fw-400'>Service Type:</p>
-              <span className='ml-5 fc-quaternary fw-500'>All</span>
-            </div>
-            <div className="bdr-r-10 bg-violet-container shw-violet p-5 flex-r mr-10">
-              <p className='ml-5 fc-quaternary fw-400'>Region:</p>
-              <span className='ml-5 fc-quaternary fw-500'>All</span>
+            <div className="bdr-r-25 bg-white pt-8 pb-8 pl-10 pr-10 flex-r-ac mr-10">
+              <div><GlobalRegionIcon /></div>
+              <p className='ml-5 fc-primary fw-500'>Region: </p>
+              <div className='ml-5 mr-15 fc-quaternary fw-400 f-16 pt-5 pb-5 pr-10 pl-10 bdr-tertiary-1 bdr-r-25 flex-r-ac'>
+                <div className="fc-tertiary">Global</div>
+                {/* <div className="pl-10 pr-5">
+                  <BlueDropdownArrow />
+                </div> */}
+              </div>
+              {/* <div className="mr-10"><RedCloseIcon /></div> */}
             </div>
           </div>
 
