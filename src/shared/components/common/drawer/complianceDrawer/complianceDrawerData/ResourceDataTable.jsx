@@ -12,9 +12,9 @@ const StatusComponet = props => {
       <div
         className={`mt-5 mb-5 ml-10 mr-10 w-6 h-6 bdr-r-6 status-component-${
           status === "PASS" ? "success" : "fail"
-        } `}
+        } bg-light-green-container`}
       ></div>
-      {status === "PASS" ? <p className="f-12">Non Complaint</p> : <p className="f-12">Complaint</p>}
+      {status === "PASS" ? <p className="f-14">Non Complaint</p> : <p className="f-14">Complaint</p>}
     </div>
   )
 }
