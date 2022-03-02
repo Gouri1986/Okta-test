@@ -1,4 +1,4 @@
-const InlineBarChart = ({ value1, value2, onClick }) => {
+const InlineBarChart = ({ value1, value2, height, onClick }) => {
   const total = parseInt(value1) + parseInt(value2)
   const p1 = !parseInt(value2) ? 100 : (parseInt(value1) / total) * 100
   const p2 = !parseInt(value1) ? 100 : (parseInt(value2) / total) * 100
@@ -37,7 +37,7 @@ const InlineBarChart = ({ value1, value2, onClick }) => {
               x={getXs()[index]}
               y={y}
               width={getWidth(percentage.value)}
-              height={45}
+              height={height + 5}
             >
               <animate
                 attributeName="width"
@@ -56,11 +56,11 @@ const InlineBarChart = ({ value1, value2, onClick }) => {
 
   return (
     <svg
-      viewBox={`0 0 ${500} ${40}`}
+      viewBox={`0 0 ${500} ${height}`}
       width={"70%"}
       preserveAspectRatio="slice"
       height={"100%"}
-      className="bdr-r-10"
+      className="bdr-r-50"
     >
       {inlineBarChartData.map((datum, index) => (
         <Bar key={datum.key} y={index * (BarHeight + BarGap)} data={datum.data} />

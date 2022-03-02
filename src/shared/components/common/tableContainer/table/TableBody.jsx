@@ -38,7 +38,7 @@ import { setDrawerRegulationData } from "../../../../../redux/drawer/drawerActio
 
 const SeverityCell = ({ levels = {} }) => {
   return (
-    <div className="flex-r-jc-ac flex-jc-sp-btn">
+    <div className="pl-10 flex-r-jc-ac flex-jc-sp-btn">
       <SeverityIcon level={levels.c} />
       <SeverityIcon level={levels.i} />
       <SeverityIcon level={levels.a} />
@@ -211,37 +211,47 @@ const TableBody = props => {
 
           <RowRightArrow />
         ) : id === "descriptiveComplainceStatus" ? (
-          <div className="flex-r-jc-ac bg-secondary bdr-r-25 pt-5 pb-5 pr-5 wp-90">
-            <div
-              onClick={e => {
-                e.stopPropagation()
-                setActiveData(datum)
-                let paramsKey = {}
-                tableDetails?.complainceStatus?.params?.paramKey?.forEach((v, i) => {
-                  paramsKey[v] = datum[tableDetails?.complainceStatus?.params?.tableKey?.[i]]
-                })
-                dispatch(
-                  getDrawerData(
-                    `${tableDetails?.complainceStatus?.baseURL}${tableDetails?.complainceStatus?.apiEndpoint}`,
-                    paramsKey
+          datum[`controlItemVerifyMethod`] === "Manual" ? (
+            <span title={datum[id]?.length > 100 && datum[id]} className={"table-data-cell"}>
+              Manual Check
+            </span>
+          ) : (
+            <div className="flex-r-jc-ac bg-secondary bdr-r-25 pt-5 pb-5 pr-5 wp-90">
+              <div
+                onClick={e => {
+                  e.stopPropagation()
+                  setActiveData(datum)
+                  let paramsKey = {}
+                  tableDetails?.complainceStatus?.params?.paramKey?.forEach((v, i) => {
+                    paramsKey[v] = datum[tableDetails?.complainceStatus?.params?.tableKey?.[i]]
+                  })
+                  dispatch(
+                    getDrawerData(
+                      `${tableDetails?.complainceStatus?.baseURL}${tableDetails?.complainceStatus?.apiEndpoint}`,
+                      paramsKey
+                    )
                   )
-                )
-                dispatch(setComplianceDrawerExpand(true))
-                dispatch(setNavDrawerExpand(false))
-                dispatch(setFilterDrawerExpand(false))
-                setcomplainceDrawerType("Resources")
-              }}
-            >
-              <InlineStatusBarChart value1={datum[id]?.[0]?.Pass} value2={datum[id]?.[0]?.Fail} />
+                  dispatch(setComplianceDrawerExpand(true))
+                  dispatch(setNavDrawerExpand(false))
+                  dispatch(setFilterDrawerExpand(false))
+                  setcomplainceDrawerType("Resources")
+                }}
+              >
+                <InlineStatusBarChart
+                  height={80}
+                  value1={datum[id]?.[0]?.Pass}
+                  value2={datum[id]?.[0]?.Fail}
+                />
+              </div>
+              {/* <div className='fw-500 f-12'>{datum[id]?.[0]?.Pass}/{datum[id]?.[0]?.Pass + datum[id]?.[0]?.Fail}%</div> */}
+              <div className="fw-600 f-14">
+                {parseInt((datum[id]?.[0]?.Pass / (datum[id]?.[0]?.Pass + datum[id]?.[0]?.Fail)) * 100)}%
+              </div>
+              <div className="pl-5 pr-5">
+                <DoubleArrow />
+              </div>
             </div>
-            {/* <div className='fw-500 f-12'>{datum[id]?.[0]?.Pass}/{datum[id]?.[0]?.Pass + datum[id]?.[0]?.Fail}%</div> */}
-            <div className="fw-600 f-14">
-              {parseInt((datum[id]?.[0]?.Pass / (datum[id]?.[0]?.Pass + datum[id]?.[0]?.Fail)) * 100)}%
-            </div>
-            <div className="pl-5 pr-5">
-              <DoubleArrow />
-            </div>
-          </div>
+          )
         ) : id === "lastVerifiedDate" ? (
           <span>{kebabCaseDate(datum[id])}</span>
         ) : id === "resources" ? (

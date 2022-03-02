@@ -38,12 +38,13 @@ const ComplainceDetails = props => {
         ))}
       </div>
       <div className="pl-20 pr-20 mt-40 flex-r flex-jc-sp-btn">
-        <div className="cp flex-r-jc-ac bg-secondary wp-60  bdr-r-25" onClick={complainceStatusViewEvent}>
+        <div className="cp flex-r-jc-ac bg-secondary wp-60 bdr-r-25" onClick={complainceStatusViewEvent}>
           <InlineStatusBarChart
+            height={20}
             value1={data?.descriptiveComplainceStatus?.[0].Pass}
             value2={data?.descriptiveComplainceStatus?.[0].Fail}
           />
-          <div className="ml-10 fw-600 f-14">
+          <div className="mt-5 ml-10 fw-600 f-14">
             {parseInt(
               (data?.descriptiveComplainceStatus?.[0]?.Pass /
                 (data?.descriptiveComplainceStatus?.[0]?.Pass +
@@ -70,7 +71,8 @@ const ComplainceDetails = props => {
       </div>
       <div className="mt-10 p-10 ">
         <div className="flex-r flex-jc-fs">
-          <h4>{outerElement?.region?.coloumnName}: </h4> {data?.[outerElement?.region?.coloumnKey]}
+          <h4>{outerElement?.region?.coloumnName}: &nbsp;</h4>
+          {data?.[outerElement?.region?.coloumnKey]}
         </div>
       </div>
     </div>
